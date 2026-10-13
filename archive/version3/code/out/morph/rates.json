@@ -1,0 +1,78 @@
+[
+  {
+    "task": "morph",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "subset": [
+      "no_empty_segment",
+      "concatenates"
+    ],
+    "n_base": 1000,
+    "n_cand": 32000,
+    "p0": 0.316,
+    "p": 0.30375,
+    "delta": 0.14358310083698686,
+    "eps": 0.5734192649364223,
+    "delta_base": 0.14873417721518986,
+    "delta_cand": 0.1434156378600823,
+    "eps_base": 0.5994152046783626,
+    "eps_cand": 0.5726211849192101,
+    "ceiling_pts": NaN
+  },
+  {
+    "task": "morph",
+    "model": "meta-llama/llama-3.1-8b-instruct",
+    "subset": [
+      "no_empty_segment",
+      "concatenates"
+    ],
+    "n_base": 1000,
+    "n_cand": 32000,
+    "p0": 0.207,
+    "p": 0.18671875,
+    "delta": 0.10142348754448399,
+    "eps": 0.6279364605861735,
+    "delta_base": 0.09178743961352658,
+    "delta_cand": 0.10175732217573222,
+    "eps_base": 0.6960907944514502,
+    "eps_cand": 0.6258597502401537,
+    "ceiling_pts": NaN
+  },
+  {
+    "task": "morph",
+    "model": "openai/gpt-4o-2024-11-20",
+    "subset": [
+      "no_empty_segment",
+      "concatenates"
+    ],
+    "n_base": 1000,
+    "n_cand": 32000,
+    "p0": 0.448,
+    "p": 0.44996875,
+    "delta": 0.14386744796928672,
+    "eps": 0.7439541673552581,
+    "delta_base": 0.14285714285714285,
+    "delta_cand": 0.1438988818667963,
+    "eps_base": 0.7391304347826086,
+    "eps_cand": 0.7441054485540595,
+    "ceiling_pts": NaN
+  },
+  {
+    "task": "morph",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "subset": [
+      "no_empty_segment",
+      "concatenates"
+    ],
+    "n_base": 1000,
+    "n_cand": 32000,
+    "p0": 0.4,
+    "p": 0.39734375,
+    "delta": 0.09752192146397255,
+    "eps": 0.8094040734221776,
+    "delta_base": 0.095,
+    "delta_cand": 0.09760125835627212,
+    "eps_base": 0.8133333333333334,
+    "eps_cand": 0.8092818252527871,
+    "ceiling_pts": NaN
+  }
+]

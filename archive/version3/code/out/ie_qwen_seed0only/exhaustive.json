@@ -1,0 +1,184 @@
+[
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "subset": [
+      "parses"
+    ],
+    "eps": 1.0,
+    "delta": 0.0,
+    "gain_pts": 0.0,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "subset": [
+      "required_fields"
+    ],
+    "eps": 1.0,
+    "delta": 0.0,
+    "gain_pts": 0.0,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "subset": [
+      "schema_valid"
+    ],
+    "eps": 1.0,
+    "delta": 0.0,
+    "gain_pts": 0.0,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "subset": [
+      "no_overlap"
+    ],
+    "eps": 0.8943283582089552,
+    "delta": 0.0,
+    "gain_pts": 2.691397693859744,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "subset": [
+      "parses",
+      "required_fields"
+    ],
+    "eps": 1.0,
+    "delta": 0.0,
+    "gain_pts": 0.0,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "subset": [
+      "parses",
+      "schema_valid"
+    ],
+    "eps": 1.0,
+    "delta": 0.0,
+    "gain_pts": 0.0,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "subset": [
+      "parses",
+      "no_overlap"
+    ],
+    "eps": 0.8943283582089552,
+    "delta": 0.0,
+    "gain_pts": 2.691397693859744,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "subset": [
+      "required_fields",
+      "schema_valid"
+    ],
+    "eps": 1.0,
+    "delta": 0.0,
+    "gain_pts": 0.0,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "subset": [
+      "required_fields",
+      "no_overlap"
+    ],
+    "eps": 0.8943283582089552,
+    "delta": 0.0,
+    "gain_pts": 2.691397693859744,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "subset": [
+      "schema_valid",
+      "no_overlap"
+    ],
+    "eps": 0.8943283582089552,
+    "delta": 0.0,
+    "gain_pts": 2.691397693859744,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "subset": [
+      "parses",
+      "required_fields",
+      "schema_valid"
+    ],
+    "eps": 1.0,
+    "delta": 0.0,
+    "gain_pts": 0.0,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "subset": [
+      "parses",
+      "required_fields",
+      "no_overlap"
+    ],
+    "eps": 0.8943283582089552,
+    "delta": 0.0,
+    "gain_pts": 2.691397693859744,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "subset": [
+      "parses",
+      "schema_valid",
+      "no_overlap"
+    ],
+    "eps": 0.8943283582089552,
+    "delta": 0.0,
+    "gain_pts": 2.691397693859744,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "subset": [
+      "required_fields",
+      "schema_valid",
+      "no_overlap"
+    ],
+    "eps": 0.8943283582089552,
+    "delta": 0.0,
+    "gain_pts": 2.691397693859744,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "subset": [
+      "parses",
+      "required_fields",
+      "schema_valid",
+      "no_overlap"
+    ],
+    "eps": 0.8943283582089552,
+    "delta": 0.0,
+    "gain_pts": 2.691397693859744,
+    "exceeds_full": false
+  }
+]

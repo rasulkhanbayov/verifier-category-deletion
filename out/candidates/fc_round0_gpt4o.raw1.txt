@@ -1,0 +1,125 @@
+### CHECK no_missing_required_string_values
+RATIONALE: Correct outputs must not omit required string arguments or leave them as empty strings, which would violate required argument constraints in the schema.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_call(output)
+        if not parsed:
+            return True
+        func = next((f for f in ctx["functions"] if f["name"] == parsed["name"]), None)
+        if not func:
+            return True
+        for param, details in func["parameters"]["properties"].items():
+            if details["type"] == "string" and param in func["parameters"].get("required", []):
+                value = parsed["arguments"].get(param, "").strip()
+                if value == "":
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK no_unsupported_enums
+RATIONALE: If a parameter has an enumerated set of allowed values, correct outputs must respect these constraints and not use unsupported values.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_call(output)
+        if not parsed:
+            return True
+        func = next((f for f in ctx["functions"] if f["name"] == parsed["name"]), None)
+        if not func:
+            return True
+        for param, details in func["parameters"]["properties"].items():
+            if "enum" in details:
+                value = parsed["arguments"].get(param)
+                if value and value not in details["enum"]:
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK numeric_comparison_uses_floats
+RATIONALE: Numeric arguments (including numeric strings) should be compared as floats, ensuring correct handling of equivalent representations (e.g., "50.0" vs 50).
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_call(output)
+        if not parsed:
+            return True
+        func = next((f for f in ctx["functions"] if f["name"] == parsed["name"]), None)
+        if not func:
+            return True
+        for param, details in func["parameters"]["properties"].items():
+            if details["type"] == "number":
+                value = parsed["arguments"].get(param)
+                if isinstance(value, str) and not value.replace(".", "").isdigit():
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK no_conflicting_schema_type
+RATIONALE: Arguments must match the type defined in the schema; for example, numbers cannot be strings unless explicitly allowed by the schema.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_call(output)
+        if not parsed:
+            return True
+        func = next((f for f in ctx["functions"] if f["name"] == parsed["name"]), None)
+        if not func:
+            return True
+        for param, details in func["parameters"]["properties"].items():
+            value = parsed["arguments"].get(param)
+            if details["type"] == "number" and isinstance(value, str) and not value.isdigit():
+                return False
+            if details["type"] == "string" and not isinstance(value, str):
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK no_missing_required_objects
+RATIONALE: Required object-type parameters must not be omitted or set to `None`, as this would violate schema constraints.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_call(output)
+        if not parsed:
+            return True
+        func = next((f for f in ctx["functions"] if f["name"] == parsed["name"]), None)
+        if not func:
+            return True
+        for param, details in func["parameters"]["properties"].items():
+            if details["type"] == "object" and param in func["parameters"].get("required", []):
+                value = parsed["arguments"].get(param)
+                if value is None:
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK date_format_compliance
+RATIONALE: Dates in ISO format (e.g., "YYYY-MM-DD") can only be correct if they match the required format.
+```python
+def check(output, ctx):
+    import re
+    try:
+        parsed = parse_call(output)
+        if not parsed:
+            return True
+        date_regex = r"^\d{4}-\d{2}-\d{2}$"
+        for _, details in ctx["functions"]:
+            if details["type"] == "string" and "date" in details.get("description", "").lower():
+                value = parsed["arguments"].get(param, "")
+                if value and not re.match(date_regex, value):
+                    return False
+        return True
+    except:
+        return True
+```

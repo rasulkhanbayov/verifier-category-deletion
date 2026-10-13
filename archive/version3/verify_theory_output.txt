@@ -1,0 +1,55 @@
+==========================================================================
+A. Theorem 1 closed form vs Monte Carlo
+==========================================================================
+  PASS  Thm 1 matches simulation   max |theory-sim| = 0.0011
+
+==========================================================================
+B. Cor 2 is Thm 1 at delta = 0
+==========================================================================
+  PASS  Cor 2 = Thm 1 at delta=0   max gap 2.22e-16
+
+==========================================================================
+C. Cor 4 degradation condition predicts the sign
+==========================================================================
+  PASS  Cor 4 condition <=> degradation   0 disagreements / 20000
+
+==========================================================================
+D. Prop 2: conjunction sound, eps <= min, no independence
+==========================================================================
+  PASS  eps_conj <= min eps_i under correlation   0/3000
+
+==========================================================================
+E. Cor 3 DOMINANCE, pointwise, WITHOUT A1--A3
+==========================================================================
+   Claim: for heterogeneous rates with delta(x)=0, the full conjunction
+   dominates every sub-conjunction INSTANCE BY INSTANCE, hence in mean.
+  PASS  pointwise dominance holds under heterogeneity   0 violations; needs only delta=0 and set containment
+
+==========================================================================
+F. Cor 3 EVALUATION: is g(eps_bar) an upper bound on the TRUE E[gain]?
+==========================================================================
+   The paper reports g evaluated at the POOLED measured rates.
+   Cor 5 says the plug-in UNDER-predicts when p is constant, so that number
+   bounds the HOMOGENEOUS model, not the heterogeneous truth. Cor. 3 is
+   split into (a) dominance, which survives heterogeneity, and (b) this
+   evaluation, which does not. Confirming the effect confirms the split.
+  PASS  plug-in under-states E[gain] under heterogeneity (disclosed at Cor. 3b)   4000/4000 populations exceed the plug-in, as Cor. 5 predicts
+     worst case: sd(eps)=0.40  plug-in=5.63 pts  true=9.82 pts  ratio 1.74x
+     => the reported figure is the ceiling OF THE HOMOGENEOUS MODEL
+        fitted to the pooled rates, not of the heterogeneous truth.
+        The paper must say this. Cor. 5 already gives the direction.
+
+==========================================================================
+G. Prop 3 covariance identity
+==========================================================================
+  PASS  Prop 3 identity exact   max gap 1.94e-16
+
+==========================================================================
+H. Cor 5 Jensen direction, and necessity of constant p
+==========================================================================
+  PASS  E[h] >= h(eps_bar) with p constant   0/3000
+  PASS  direction CAN reverse when p varies (hypothesis necessary)   3000/3000 reversals -- constant p is load-bearing, not cosmetic
+
+==========================================================================
+VERDICT: all claims verified
+==========================================================================

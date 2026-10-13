@@ -1,0 +1,84 @@
+[
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "subset": [
+      "parses"
+    ],
+    "eps": 0.9918441323062981,
+    "delta": 0.0,
+    "gain_pts": 0.17131310285919504,
+    "exceeds_full": false
+  },
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "subset": [
+      "schema_valid"
+    ],
+    "eps": 0.839148164929769,
+    "delta": 0.0,
+    "gain_pts": 3.5613483711073584,
+    "exceeds_full": false
+  },
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "subset": [
+      "executes"
+    ],
+    "eps": 0.8323516085183507,
+    "delta": 0.0,
+    "gain_pts": 3.720782026355584,
+    "exceeds_full": false
+  },
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "subset": [
+      "parses",
+      "schema_valid"
+    ],
+    "eps": 0.839148164929769,
+    "delta": 0.0,
+    "gain_pts": 3.5613483711073584,
+    "exceeds_full": false
+  },
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "subset": [
+      "parses",
+      "executes"
+    ],
+    "eps": 0.8323516085183507,
+    "delta": 0.0,
+    "gain_pts": 3.720782026355584,
+    "exceeds_full": false
+  },
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "subset": [
+      "schema_valid",
+      "executes"
+    ],
+    "eps": 0.8323516085183507,
+    "delta": 0.0,
+    "gain_pts": 3.720782026355584,
+    "exceeds_full": false
+  },
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "subset": [
+      "parses",
+      "schema_valid",
+      "executes"
+    ],
+    "eps": 0.8323516085183507,
+    "delta": 0.0,
+    "gain_pts": 3.720782026355584,
+    "exceeds_full": false
+  }
+]

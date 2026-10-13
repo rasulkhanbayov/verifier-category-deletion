@@ -1,0 +1,457 @@
+### CHECK enum_membership
+RATIONALE: Gold values for parameters that declare an enum are drawn from that enum. Outputs that invent a value outside the enum are wrong.
+```python
+def check(output, ctx):
+    try:
+        c = parse_call(output)
+        if not c: return True
+        fn = next((f for f in ctx['functions'] if f.get('name') == c.get('name')), None)
+        if not fn: return True
+        props = fn.get('parameters', {}).get('properties', {})
+        for k, v in (c.get('arguments') or {}).items():
+            p = props.get(k)
+            if not isinstance(p, dict) or 'enum' not in p: continue
+            en = [str(e).strip().lower() for e in p['enum']]
+            vals = v if isinstance(v, list) else [v]
+            for x in vals:
+                if isinstance(x, (str, int, float)) and str(x).strip().lower() not in en:
+                    try:
+                        if any(float(x) == float(e) for e in en): continue
+                    except Exception: pass
+                    return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK email_values_in_request
+RATIONALE: An email address passed as an argument must come from the conversation. A fabricated address is always wrong.
+```python
+def check(output, ctx):
+    try:
+        import re
+        c = parse_call(output)
+        if not c: return True
+        req = ctx['request'].lower()
+        def walk(v):
+            if isinstance(v, str):
+                for e in re.findall(r'[\w.+-]+@[\w-]+\.[\w.]+', v):
+                    if e.lower().strip('.') not in req: return False
+            elif isinstance(v, list):
+                return all(walk(i) is not False for i in v)
+            elif isinstance(v, dict):
+                return all(walk(i) is not False for i in v.values())
+            return True
+        return walk(c.get('arguments') or {}) is not False
+    except Exception:
+        return True
+```
+
+### CHECK url_values_in_request
+RATIONALE: URLs passed as arguments must be copied from the request. Invented URLs are wrong.
+```python
+def check(output, ctx):
+    try:
+        import re
+        c = parse_call(output)
+        if not c: return True
+        req = ctx['request'].lower()
+        for v in (c.get('arguments') or {}).values():
+            if isinstance(v, str):
+                for u in re.findall(r'https?://\S+', v):
+                    if u.lower().rstrip('.,)') not in req: return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_dialog_artifacts
+RATIONALE: No correct argument contains chat-transcript tokens. Outputs that leak "ASSISTANT:" or "<|endoftext|>" into values are wrong.
+```python
+def check(output, ctx):
+    try:
+        c = parse_call(output)
+        if not c: return True
+        s = str(c.get('arguments')).lower()
+        return not any(t in s for t in ['<|endoftext|>', 'assistant:', 'user:', '<|im_'])
+    except Exception:
+        return True
+```
+
+### CHECK no_angle_placeholders
+RATIONALE: Gold values are never template placeholders like "<title>" or "{date}". Such values signal an unfilled argument.
+```python
+def check(output, ctx):
+    try:
+        import re
+        c = parse_call(output)
+        if not c: return True
+        for v in (c.get('arguments') or {}).values():
+            if isinstance(v, str) and re.fullmatch(r'\s*[<{\[][^<>{}\[\]]{1,40}[>}\]]\s*', v):
+                if v.strip() not in ctx['request']: return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK value_not_key_name
+RATIONALE: A string value identical to its own key name (e.g. "title": "title") is a placeholder. It only passes when that word actually appears in the request.
+```python
+def check(output, ctx):
+    try:
+        c = parse_call(output)
+        if not c: return True
+        req = ctx['request'].lower()
+        for k, v in (c.get('arguments') or {}).items():
+            if isinstance(v, str) and v.strip().lower() == k.lower() and k.lower() not in req:
+                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_duplicate_list_items
+RATIONALE: Gold lists do not repeat the same item. Duplicated entries indicate a generation error.
+```python
+def check(output, ctx):
+    try:
+        c = parse_call(output)
+        if not c: return True
+        for v in (c.get('arguments') or {}).values():
+            if isinstance(v, list) and all(isinstance(i, str) for i in v):
+                n = [i.strip().lower() for i in v]
+                if len(n) != len(set(n)): return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK finite_numbers
+RATIONALE: Correct numbers are finite. NaN or infinity values are wrong.
+```python
+def check(output, ctx):
+    try:
+        import math
+        c = parse_call(output)
+        if not c: return True
+        for v in (c.get('arguments') or {}).values():
+            if isinstance(v, float) and not math.isfinite(v): return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK year_from_request
+RATIONALE: A year argument should be one of the years stated in the request. This check only applies when the request contains 4-digit years and no relative phrasing like "last year".
+```python
+def check(output, ctx):
+    try:
+        import re
+        c = parse_call(output)
+        if not c: return True
+        req = ctx['request'].lower()
+        years = set(re.findall(r'(?<!\d)(1[89]\d\d|20\d\d)(?!\d)', req))
+        if not years or re.search(r'\b(last|next|this|ago|previous|since)\b', req): return True
+        for k, v in (c.get('arguments') or {}).items():
+            if 'year' in k.lower() and isinstance(v, (int, float)) and not isinstance(v, bool):
+                if float(v).is_integer() and 1800 <= v <= 2099 and str(int(v)) not in years:
+                    return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK long_digit_strings_in_request
+RATIONALE: Phone numbers, zip codes and IDs (5+ digits) in string arguments must be copied from the request. Fabricated digit strings are wrong.
+```python
+def check(output, ctx):
+    try:
+        import re
+        c = parse_call(output)
+        if not c: return True
+        rd = re.sub(r'\D', '', ctx['request'])
+        for v in (c.get('arguments') or {}).values():
+            if isinstance(v, str):
+                for d in re.findall(r'\d[\d\s\-().]{4,}\d', v):
+                    dd = re.sub(r'\D', '', d)
+                    if len(dd) >= 5 and dd not in rd: return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK large_numbers_in_request
+RATIONALE: Large precise numbers (e.g. loan amounts) come straight from the request. The check is skipped when multiplier words like "k" or "million" could explain a conversion.
+```python
+def check(output, ctx):
+    try:
+        import re
+        c = parse_call(output)
+        if not c: return True
+        req = ctx['request'].lower()
+        if re.search(r'\d\s*k\b|million|thousand|billion|lakh|crore|hundred', req): return True
+        nums = set()
+        for m in re.findall(r'\d[\d,]*\.?\d*', req):
+            try: nums.add(float(m.replace(',', '')))
+            except: pass
+        for v in (c.get('arguments') or {}).values():
+            if isinstance(v, (int, float)) and not isinstance(v, bool) and abs(v) >= 10000:
+                if float(v) not in nums: return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK percent_value_consistent
+RATIONALE: When the request states exactly one percentage, a percent-like argument must equal N or N/100. Other values are wrong.
+```python
+def check(output, ctx):
+    try:
+        import re
+        c = parse_call(output)
+        if not c: return True
+        ps = set(re.findall(r'(\d+(?:\.\d+)?)\s*(?:%|percent)', ctx['request'].lower()))
+        if len(ps) != 1: return True
+        p = float(ps.pop())
+        keys = [k for k in (c.get('arguments') or {}) if 'percent' in k.lower()]
+        if len(keys) != 1: return True
+        v = c['arguments'][keys[0]]
+        if isinstance(v, (int, float)) and not isinstance(v, bool):
+            return abs(v - p) < 1e-6 or abs(v - p / 100) < 1e-6
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK iso_date_not_invented_format
+RATIONALE: If the request writes a date in non-ISO form and the schema does not ask for YYYY-MM-DD, gold keeps the user's form. Reformatting it to ISO is wrong.
+```python
+def check(output, ctx):
+    try:
+        import re
+        c = parse_call(output)
+        if not c: return True
+        req = ctx['request']
+        if re.search(r'\d{4}-\d{2}-\d{2}', req): return True
+        fn = next((f for f in ctx['functions'] if f.get('name') == c.get('name')), None)
+        if not fn: return True
+        props = fn.get('parameters', {}).get('properties', {})
+        for k, v in (c.get('arguments') or {}).items():
+            if isinstance(v, str) and re.fullmatch(r'\s*\d{4}-\d{2}-\d{2}\s*', v):
+                d = str(props.get(k, {}).get('description', '')).lower()
+                if 'yyyy' in d or 'iso' in d or 'format' in d: continue
+                if re.search(r'\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\b', req.lower()) and re.search(r'\d', req):
+                    return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK iso_dates_present_in_request
+RATIONALE: When the request already contains ISO dates, an ISO-formatted date argument should be one of them. This catches typos and swapped digits.
+```python
+def check(output, ctx):
+    try:
+        import re
+        c = parse_call(output)
+        if not c: return True
+        req = ctx['request'].lower()
+        ds = set(re.findall(r'\d{4}-\d{2}-\d{2}', req))
+        if not ds or re.search(r'today|tomorrow|yesterday|next|last|ago|later', req): return True
+        for v in (c.get('arguments') or {}).values():
+            if isinstance(v, str) and re.fullmatch(r'\s*\d{4}-\d{2}-\d{2}\s*', v) and v.strip() not in ds:
+                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK distinct_dates_not_collapsed
+RATIONALE: If the request gives two different ISO dates, two date arguments should not end up with the same value. This catches copy errors such as both birthdates being identical.
+```python
+def check(output, ctx):
+    try:
+        import re
+        c = parse_call(output)
+        if not c: return True
+        ds = set(re.findall(r'\d{4}-\d{2}-\d{2}', ctx['request']))
+        if len(ds) < 2: return True
+        vals = [v.strip() for v in (c.get('arguments') or {}).values() if isinstance(v, str) and re.fullmatch(r'\s*\d{4}-\d{2}-\d{2}\s*', v)]
+        if len(vals) >= 2 and len(set(vals)) == 1: return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK single_quoted_title_matches
+RATIONALE: When exactly one double-quoted phrase is in the request and the call has one title-like argument, gold uses that phrase verbatim. This check is lenient: it only rejects if neither string contains the other.
+```python
+def check(output, ctx):
+    try:
+        import re
+        c = parse_call(output)
+        if not c: return True
+        q = re.findall(r'"([^"]{2,80})"', ctx['request'])
+        if len(set(x.strip().lower() for x in q)) != 1: return True
+        q = q[0].strip().lower()
+        ks = [k for k, v in (c.get('arguments') or {}).items() if (k.lower() == 'title' or k.lower().endswith('_title')) and isinstance(v, str)]
+        if len(ks) != 1: return True
+        v = c['arguments'][ks[0]].strip().lower()
+        if not v: return True
+        return q in v or v in q
+    except Exception:
+        return True
+```
+
+### CHECK time_value_from_request
+RATIONALE: A clock time like "10:00" in an argument should come from the request. The hour/minute pair must appear in the request text if the request contains times.
+```python
+def check(output, ctx):
+    try:
+        import re
+        c = parse_call(output)
+        if not c: return True
+        req = ctx['request'].lower()
+        rts = re.findall(r'(\d{1,2}):(\d{2})', req)
+        if not rts: return True
+        rset = set((int(h) % 12, m) for h, m in rts)
+        for v in (c.get('arguments') or {}).values():
+            if isinstance(v, str):
+                for h, m in re.findall(r'(\d{1,2}):(\d{2})', v):
+                    if (int(h) % 12, m) not in rset: return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_negative_without_cue
+RATIONALE: Negative quantities (other than coordinates or offsets) require a negative cue in the request. This catches sign errors.
+```python
+def check(output, ctx):
+    try:
+        import re
+        c = parse_call(output)
+        if not c: return True
+        req = ctx['request'].lower()
+        if re.search(r'-\s*\d|minus|negative|below|loss|debt|south|west|lat|lon|coordinat|offset', req): return True
+        for k, v in (c.get('arguments') or {}).items():
+            if any(t in k.lower() for t in ['lat', 'lon', 'lng', 'coord', 'offset', 'change', 'delta']): continue
+            if isinstance(v, (int, float)) and not isinstance(v, bool) and v < 0: return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_raw_json_string_value
+RATIONALE: Gold argument values are never JSON-encoded objects stuffed into strings for non-object params. Double-encoded values are wrong.
+```python
+def check(output, ctx):
+    try:
+        import json
+        c = parse_call(output)
+        if not c: return True
+        for v in (c.get('arguments') or {}).values():
+            if isinstance(v, str) and v.strip().startswith('{') and v.strip().endswith('}'):
+                try:
+                    if isinstance(json.loads(v), dict) and v.strip() not in ctx['request']: return False
+                except Exception: pass
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_ellipsis_values
+RATIONALE: Values like "..." or "etc" are truncation placeholders and never gold.
+```python
+def check(output, ctx):
+    try:
+        c = parse_call(output)
+        if not c: return True
+        for v in (c.get('arguments') or {}).values():
+            if isinstance(v, str) and v.strip().lower() in ('...', '…', 'etc', 'etc.', 'n/a', 'tbd', 'placeholder'):
+                if v.strip().lower() not in ctx['request'].lower(): return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_unknown_null_strings
+RATIONALE: Strings such as "unknown", "none" or "null" used as filler for unknown info are not gold unless the user wrote them.
+```python
+def check(output, ctx):
+    try:
+        import re
+        c = parse_call(output)
+        if not c: return True
+        req = ctx['request'].lower()
+        for v in (c.get('arguments') or {}).values():
+            if isinstance(v, str) and v.strip().lower() in ('unknown', 'null', 'none', 'not specified', 'unspecified', 'not provided'):
+                if not re.search(r'\b' + re.escape(v.strip().lower()) + r'\b', req): return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK array_items_nonempty
+RATIONALE: Items inside a gold string list are never empty strings. Empty entries are generation errors.
+```python
+def check(output, ctx):
+    try:
+        c = parse_call(output)
+        if not c: return True
+        for v in (c.get('arguments') or {}).values():
+            if isinstance(v, list) and any(isinstance(i, str) and not i.strip() for i in v): return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK name_mentioned_in_quotes_tracked
+RATIONALE: Short string arguments that look like copied names (Title Case, under 6 words) should mostly have their words in the request. This check only rejects when no word of the value occurs and the value is Title Case.
+```python
+def check(output, ctx):
+    try:
+        import re
+        c = parse_call(output)
+        if not c: return True
+        req = ctx['request'].lower()
+        for k, v in (c.get('arguments') or {}).items():
+            if not isinstance(v, str): continue
+            ws = re.findall(r'[A-Za-z]+', v)
+            if 1 <= len(ws) <= 5 and all(w[0].isupper() and w[1:].islower() for w in ws if len(w) > 1) and len(''.join(ws)) > 6:
+                if k.lower() in ('author', 'title', 'name', 'location', 'city', 'recipient', 'director'):
+                    if not any(w.lower() in req for w in ws if len(w) > 2): return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK integer_counts_not_fractional
+RATIONALE: Count-like fields (quantity, number_of_*, num_*) given as non-integers are wrong, since gold counts are whole numbers.
+```python
+def check(output, ctx):
+    try:
+        c = parse_call(output)
+        if not c: return True
+        for k, v in (c.get('arguments') or {}).items():
+            kl = k.lower()
+            if (kl.startswith('num') or kl.startswith('number_of') or kl in ('quantity', 'count', 'limit')) and isinstance(v, float) and not v.is_integer():
+                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_chain_multiple_calls_text
+RATIONALE: A correct output is a single call. Outputs containing two distinct "name" keys at top level (multiple calls) are wrong.
+```python
+def check(output, ctx):
+    try:
+        import re
+        names = re.findall(r'"name"\s*:\s*"([^"]+)"', output)
+        fnames = set(f.get('name') for f in ctx['functions'])
+        called = [n for n in names if n in fnames]
+        return len(set(called)) <= 1
+    except Exception:
+        return True
+```

@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the paper."
+title: "When Verifiers Delete Categories: Agreement-Based Selection of LLM-Written Checks and a Certified Alternative"
+authors:
+  - family-names: "TODO"
+    given-names: "TODO"
+date-released: 2026-10-13
+license: MIT

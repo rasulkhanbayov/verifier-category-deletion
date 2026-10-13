@@ -1,0 +1,141 @@
+{
+ "task": "sql",
+ "pool": "data/pilot/pool_sql_test_seed0.jsonl",
+ "results": {
+  "handwritten": {
+   "precision": 0.7615631691648822,
+   "recall": 0.9983157894736842,
+   "kept": 9340,
+   "coverage": 1.0,
+   "lost": 0,
+   "n": 255,
+   "subgroups": {
+    "order_by": {
+     "n": 55,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "aggregate": {
+     "n": 142,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "simple": {
+     "n": 76,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "group_by": {
+     "n": 69,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "join": {
+     "n": 83,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "nested_or_setop": {
+     "n": 41,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "having": {
+     "n": 12,
+     "lost": 0,
+     "coverage": 1.0
+    }
+   }
+  },
+  "itau=0.02": {
+   "precision": 0.7641813493768801,
+   "recall": 0.9983157894736842,
+   "kept": 9308,
+   "coverage": 1.0,
+   "lost": 0,
+   "n": 255,
+   "subgroups": {
+    "order_by": {
+     "n": 55,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "aggregate": {
+     "n": 142,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "simple": {
+     "n": 76,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "group_by": {
+     "n": 69,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "join": {
+     "n": 83,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "nested_or_setop": {
+     "n": 41,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "having": {
+     "n": 12,
+     "lost": 0,
+     "coverage": 1.0
+    }
+   }
+  },
+  "f1_baseline": {
+   "precision": 0.7938447612582032,
+   "recall": 0.984701754385965,
+   "kept": 8838,
+   "coverage": 0.9882352941176471,
+   "lost": 3,
+   "n": 255,
+   "subgroups": {
+    "order_by": {
+     "n": 55,
+     "lost": 3,
+     "coverage": 0.9454545454545454
+    },
+    "aggregate": {
+     "n": 142,
+     "lost": 3,
+     "coverage": 0.9788732394366197
+    },
+    "simple": {
+     "n": 76,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "group_by": {
+     "n": 69,
+     "lost": 3,
+     "coverage": 0.9565217391304348
+    },
+    "join": {
+     "n": 83,
+     "lost": 3,
+     "coverage": 0.963855421686747
+    },
+    "nested_or_setop": {
+     "n": 41,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "having": {
+     "n": 12,
+     "lost": 0,
+     "coverage": 1.0
+    }
+   }
+  }
+ }
+}

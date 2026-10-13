@@ -1,0 +1,15 @@
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+section                  start   pages
+----------------------------------------
+front (title+abs+Fig1)    0.00    0.73
+1 Introduction            0.73    1.59
+2 Related Work            2.32    1.04
+3 Setup                   3.36    9.31
+6 Experiments             5.81    1.01
+7 Findings                6.82    1.05
+8 Conclusion              7.88    0.17
+----------------------------------------
+MAIN BODY                         8.04
+LIMIT                             8.00
+
+  OVER by 0.04 pages  -- still a desk-reject risk

@@ -1,0 +1,410 @@
+### CHECK no_duplicate_entities_across_fields
+RATIONALE: Correct outputs never duplicate the same entity across multiple fields. This can catch cases where the same entity is misclassified into more than one category.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        all_entities = []
+        for field in parsed.values():
+            all_entities.extend(field)
+        if len(all_entities) != len(set(all_entities)):
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK entities_are_substrings_of_text
+RATIONALE: Every correct entity must be a substring of the given text, since entities are extracted directly from the text.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        text = ctx['text']
+        for field in parsed.values():
+            for entity in field:
+                if entity not in text:
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK no_single_character_entities
+RATIONALE: Correct entities are meaningful spans of text, and single-character entities are almost always incorrect.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        for field in parsed.values():
+            for entity in field:
+                if len(entity) == 1:
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK entities_not_whitespace_only
+RATIONALE: Correct entities cannot consist solely of whitespace characters; these are invalid outputs.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        for field in parsed.values():
+            for entity in field:
+                if entity.strip() == "":
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK no_purely_numeric_entities
+RATIONALE: Correct entities are not purely numeric in most cases, as numbers alone are rarely meaningful named entities.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        for field in parsed.values():
+            for entity in field:
+                if entity.isdigit():
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK no_repeated_consecutive_words_in_entity
+RATIONALE: Correct entities do not have repeated consecutive words (e.g., "New New York"), which are likely model errors.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        for field in parsed.values():
+            for entity in field:
+                words = entity.split()
+                for i in range(len(words) - 1):
+                    if words[i] == words[i + 1]:
+                        return False
+        return True
+    except:
+        return True
+```
+
+### CHECK entities_within_reasonable_length
+RATIONALE: Correct entities have a reasonable length and are not excessively long (e.g., complete sentences).
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        for field in parsed.values():
+            for entity in field:
+                if len(entity) > 100:  # Arbitrary max length for reasonable entities
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK no_entities_with_unmatched_quotes
+RATIONALE: Correct entities do not have unmatched quotes, which indicate likely extraction or formatting errors.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        for field in parsed.values():
+            for entity in field:
+                if entity.count('"') % 2 != 0 or entity.count("'") % 2 != 0:
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK no_entities_with_special_characters_only
+RATIONALE: Correct entities must contain meaningful text and not consist entirely of special characters.
+```python
+def check(output, ctx):
+    import string
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        for field in parsed.values():
+            for entity in field:
+                if all(char in string.punctuation for char in entity):
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK entities_not_split_across_fields
+RATIONALE: A correct entity should not be split and appear partially in multiple fields.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        entity_parts = set()
+        for field in parsed.values():
+            for entity in field:
+                entity_parts.update(entity.split())
+        if len(entity_parts) < sum(len(field) for field in parsed.values()):
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK no_duplicate_words_in_entity
+RATIONALE: Correct entities do not have duplicate words within them unnecessarily, e.g., "the the".
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        for field in parsed.values():
+            for entity in field:
+                words = entity.split()
+                if len(words) != len(set(words)):
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK no_entities_with_leading_or_trailing_punctuation
+RATIONALE: Correct entities do not have unnecessary leading or trailing punctuation (e.g., ', entity.').
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        for field in parsed.values():
+            for entity in field:
+                if entity and (entity[0] in string.punctuation or entity[-1] in string.punctuation):
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK all_entities_case_insensitive_in_text
+RATIONALE: Entities should match the text (case-insensitive), as they are direct spans from it.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        text = ctx['text'].lower()
+        for field in parsed.values():
+            for entity in field:
+                if entity.lower() not in text:
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK no_field_contains_empty_string
+RATIONALE: No field in the output should contain an empty string, as it is not a valid entity.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        for field in parsed.values():
+            if "" in field:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK no_field_contains_none_value
+RATIONALE: Fields should not contain `None` as an entity, which indicates an extraction error.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        for field in parsed.values():
+            if None in field:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK entities_not_entire_sentence
+RATIONALE: Correct entities are not entire sentences; they represent specific spans of interest.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        for field in parsed.values():
+            for entity in field:
+                if entity.endswith('.') and len(entity.split()) > 10:  # Arbitrary sentence length threshold
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK no_entities_with_multiple_spaces
+RATIONALE: Correct entities do not have multiple consecutive spaces, which indicate formatting errors.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        for field in parsed.values():
+            for entity in field:
+                if "  " in entity:
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK no_duplicate_fields_across_output
+RATIONALE: Correct outputs do not have the exact same entity list in more than one field, which suggests misclassification.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        field_values = list(parsed.values())
+        if len(field_values) != len(set(map(tuple, field_values))):
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK no_entities_with_unnecessary_articles
+RATIONALE: Entities should not include unnecessary leading articles (e.g., "the", "a") unless part of a proper name.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        for field in parsed.values():
+            for entity in field:
+                if entity.lower().startswith(("the ", "a ", "an ")) and not entity[4:].strip().istitle():
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK entities_match_tokenization
+RATIONALE: Correct entities must match token boundaries in the text, as they are token spans.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        tokens = ctx['text'].split()
+        for field in parsed.values():
+            for entity in field:
+                if any(entity not in token for token in tokens):
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK no_fields_empty_if_output_nonempty
+RATIONALE: If the output contains entities, at least one field should not be empty.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        if any(parsed.values()) and all(len(field) == 0 for field in parsed.values()):
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK entities_with_proper_casing
+RATIONALE: Proper nouns/entities usually begin with capital letters, and entities with all lowercase letters are likely errors.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        for field in parsed.values():
+            for entity in field:
+                if entity.islower():
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK no_entities_with_non_alphanumeric_start
+RATIONALE: Correct entities do not start with non-alphanumeric characters, which are likely formatting errors.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        for field in parsed.values():
+            for entity in field:
+                if entity and not entity[0].isalnum():
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK no_empty_output_with_nonempty_text
+RATIONALE: If the text contains named entities, the output should not be entirely empty.
+```python
+def check(output, ctx):
+    try:
+        parsed = parse_json(output)
+        if not parsed:
+            return True
+        if len(ctx['text'].split()) > 5 and all(len(field) == 0 for field in parsed.values()):  # Arbitrary threshold
+            return False
+        return True
+    except:
+        return True
+```

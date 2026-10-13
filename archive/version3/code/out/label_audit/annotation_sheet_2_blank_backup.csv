@@ -1,0 +1,651 @@
+row_id,task,task_input,candidate_output,human_label(correct|incorrect|unsure),notes
+0,morph,Gisclair,Gis+clair,,
+1,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix') AND isofficial = 'T',,
+2,sql,What are the countries that have cartoons on TV that were written by Todd Casey?,SELECT DISTINCT tv_channel.country FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.written_by = 'Todd Casey',,
+3,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"Text: Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .
+
+{
+  ""person"": [],
+  ""location"": [],
+  ""organization"": [""Internet companies""],
+  ""else"": [""copyright-based industries"", ""soccer results"", ""stock prices""]
+}",,
+4,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,SELECT DISTINCT model FROM model_list WHERE maker IN (SELECT id FROM car_makers WHERE fullname = 'General Motors') OR modelid IN (SELECT id FROM cars_data WHERE weight > 3500);,,
+5,ie,Gaulieder 's family was sleeping in a bedroom at the back of the house and were unharmed by the blast .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+6,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,SELECT DISTINCT model FROM model_list WHERE maker IN (SELECT id FROM car_makers WHERE fullname = 'General Motors') OR modelid IN (SELECT id FROM cars_data WHERE weight > 3500);,,
+7,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch');",,
+8,ie,"Diplomats said General Joseph Garba of Nigeria , a U.N. General Assembly president in 1989-90 , was putting forth his own candidacy without being nominated by his country .","
+
+{""person"": [""Joseph Garba""], ""location"": [""Nigeria""], ""organization"": [""U.N.""], ""else"": [""General Assembly""]}",,
+9,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch');",,
+10,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id = (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(*) DESC LIMIT 1),,
+11,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": [""Newsroom""]}",,
+12,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch')",,
+13,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id IN (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(employee_id) DESC LIMIT 1),,
+14,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+15,ie,"- 36 barges , two each week May-August , Illinois , offered at 130 percent of tariff , no bid or comparison .","{""person"": [], ""location"": [""Illinois""], ""organization"": [], ""else"": [""barges"", ""tariff""]}",,
+16,morph,nasheed,nash+eed,,
+17,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT T1.name FROM employee AS T1 INNER JOIN evaluation AS T2 ON T1.employee_id = T2.employee_id GROUP BY T1.name ORDER BY COUNT(T1.name) DESC LIMIT 1,,
+18,morph,swordsman,sword+sman,,
+19,sql,How many people are there of each nationality?,"SELECT name, COUNT(*) FROM people GROUP BY name",,
+20,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix') AND isofficial = 1,,
+21,morph,observable,observ+able,,
+22,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix') AND isofficial = 'T',,
+23,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+24,sql,How many people are there of each nationality?,"SELECT COUNT(name), nationality FROM people GROUP BY nationality",,
+25,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix') AND isofficial = 'T',,
+26,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+27,morph,Gisclair,Gis+clair,,
+28,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+29,morph,Gisclair,Gis+clair,,
+30,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": [""Internet"", ""soccer""]}",,
+31,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+32,sql,What is the name of the shop that is hiring the largest number of employees?,SELECT name FROM employee WHERE age > 20,,
+33,morph,tetrachloroethane,tetra+chloro+ethan+e,,
+34,morph,observable,observ+able,,
+35,morph,liposuctions,lipo+suct+ion+s,,
+36,sql,What are the names of players who won in both 2013 and 2016?,"SELECT DISTINCT p.first_name, p.last_name 
+FROM players p 
+JOIN matches m2013 ON p.player_id = m2013.winner_id AND m2013.tourney_date LIKE '2013%' 
+JOIN matches m2016 ON p.player_id = m2016.winner_id AND m2016.tourney_date LIKE '2016%'",,
+37,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",,
+38,ie,"More than 14,000 people have lost their lives in over a decade of political turf wars between the ANC and Zulu Chief Mangosuthu Buthelezi 's Inkatha Freedom Party in the province .","{""person"": [""Mangosuthu Buthelezi""], ""location"": [], ""organization"": [""ANC"", ""Inkatha Freedom Party""], ""else"": []}",,
+39,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT car_makers.fullname, COUNT(model_list.modelid) AS model_count 
+FROM car_makers 
+JOIN model_list ON car_makers.id = model_list.maker 
+GROUP BY car_makers.fullname;",,
+40,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",,
+41,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(*) FROM countrylanguage WHERE language = 'English' AND isofficial = 1 INTERSECT SELECT COUNT(*) FROM countrylanguage WHERE language = 'Dutch' AND isofficial = 1,,
+42,morph,observable,ob+serv+able,,
+43,morph,bummiest,bum+mi+est,,
+44,morph,mayorship,may+or+ship,,
+45,sql,What are the ids of documents that have 2 or more paragraphs?,SELECT T1.document_id FROM paragraphs AS T1 INNER JOIN documents AS T2 ON T1.document_id = T2.document_id GROUP BY T1.document_id HAVING COUNT(T1.paragraph_id) >= 2,,
+46,morph,bummiest,bum+mi+est,,
+47,ie,-- London Newsroom +44 171 542-7768,"{""location"": [""London""], ""else"": [""Newsroom""], ""organization"": [], ""person"": []}",,
+48,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT COUNT(DISTINCT model) , T1.fullname FROM car_makers AS T1 INNER JOIN model_list AS T2 ON T1.id = T2.maker",,
+49,morph,observable,observ+able,,
+50,sql,What is the name of the shop that is hiring the largest number of employees?,SELECT T2.name FROM hiring AS T1 INNER JOIN shop AS T2 ON T1.shop_id = T2.shop_id GROUP BY T2.name ORDER BY COUNT(T1.employee_id) DESC LIMIT 1,,
+51,sql,What are the ids of documents that have 2 or more paragraphs?,"SELECT d.document_id 
+FROM documents d 
+JOIN paragraphs p ON d.document_id = p.document_id 
+GROUP BY d.document_id 
+HAVING COUNT(p.paragraph_id) >= 2;",,
+52,sql,How many people are there of each nationality?,SELECT COUNT(*) FROM people GROUP BY nationality,,
+53,morph,tetrachloroethane,tetra+chloro+ethane,,
+54,morph,observable,ob+serv+able,,
+55,morph,nasheed,nash+eed,,
+56,morph,swordsman,sword+sman,,
+57,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",,
+58,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(*) FROM countrylanguage WHERE language = 'English' OR language = 'Dutch',,
+59,morph,swordsman,sword+sman,,
+60,morph,bummiest,bum+mi+est,,
+61,morph,xynomyzithra,xy+no+myz+ithra,,
+62,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",,
+63,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",,
+64,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"
+
+{""person"": [], ""location"": [], ""organization"": [], ""else"": [""Internet"", ""pacts"", ""soccer"", ""stock prices""]}",,
+65,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": [""Internet companies""]}",,
+66,sql,What are the names of players who won in both 2013 and 2016?,"SELECT DISTINCT m1.winner_name 
+FROM matches m1 
+JOIN matches m2 ON m1.winner_id = m2.winner_id 
+WHERE strftime('%Y', m1.tourney_date) = '2013' 
+  AND strftime('%Y', m2.tourney_date) = '2016';",,
+67,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT cl.countrycode) FROM countrylanguage cl WHERE cl.language IN ('English', 'Dutch') GROUP BY cl.countrycode HAVING COUNT(DISTINCT cl.language) = 2",,
+68,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",,
+69,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT COUNT(*) AS count, c.fullname FROM car_makers AS c JOIN model_list AS m ON c.fullname = m.maker GROUP BY c.fullname",,
+70,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",,
+71,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",,
+72,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",,
+73,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage AS T1 INNER JOIN country AS T2 ON T1.countrycode = T2.code WHERE T2.headofstate = 'Beatrix' AND isofficial = 1,,
+74,morph,Gisclair,Gis+clair,,
+75,sql,What are the names of players who won in both 2013 and 2016?,"SELECT DISTINCT m1.winner_name 
+FROM matches m1 
+JOIN matches m2 
+ON m1.winner_name = m2.winner_name 
+WHERE strftime('%Y', m1.tourney_date) = '2013' 
+AND strftime('%Y', m2.tourney_date) = '2016';",,
+76,ie,"More than 14,000 people have lost their lives in over a decade of political turf wars between the ANC and Zulu Chief Mangosuthu Buthelezi 's Inkatha Freedom Party in the province .","{""person"": [""Mangosuthu Buthelezi""], ""location"": [], ""organization"": [""Inkatha Freedom Party"", ""ANC""], ""else"": []}",,
+77,morph,bummiest,bum+mi+est,,
+78,ie,NEW DELHI 1996-12-06,"{""location"": [""NEW DELHI""], ""else"": [""1996-12-06""], ""organization"": [], ""person"": []}",,
+79,sql,What are the names of players who won in both 2013 and 2016?,"SELECT T1.first_name, T1.last_name FROM players AS T1 INNER JOIN matches AS T2 ON T1.player_id = T2.winner_id WHERE T2.year IN (2013, 2016)",,
+80,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch');",,
+81,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix') AND isofficial = 1,,
+82,morph,observable,obser+v+able,,
+83,morph,swordsman,sword+s+man,,
+84,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,SELECT COUNT(*) FROM car_makers AS t1 INNER JOIN model_list AS t2 ON t1.id = t2.maker GROUP BY t1.fullname,,
+85,sql,What are the countries that have cartoons on TV that were written by Todd Casey?,SELECT DISTINCT tv_channel.country FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.written_by = 'Todd Casey',,
+86,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",,
+87,morph,Gisclair,Gis+clair,,
+88,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": [""Newsroom""]}",,
+89,morph,mayorship,mayo+r+ship,,
+90,sql,How many people are there of each nationality?,"SELECT COUNT(*) as people_count, nationality FROM people GROUP BY nationality",,
+91,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","Text: They lost 2.21 percent , depressed by a wave of new Canadian supply .
+
+JSON: {""person"": [], ""location"": [""Canada""], ""organization"": [], ""else"": []}",,
+92,morph,Gisclair,Gis+clair,,
+93,morph,bummiest,bum+mi+est,,
+94,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",,
+95,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(T1.countrycode) FROM countrylanguage AS T1 INNER JOIN countrylanguage AS T2 ON T1.countrycode = T2.countrycode WHERE T1.language = 'English' AND T2.language = 'Dutch',,
+96,morph,swordsman,sword+sman,,
+97,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": [""Internet companies"", ""copyright-based industries"", ""soccer"", ""stock prices""]}",,
+98,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch');",,
+99,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.",SELECT T2.channel FROM cartoon AS T1 INNER JOIN tv_series AS T2 ON T1.id = T2.channel WHERE T1.title = 'The Rise of the Blue Beetle!',,
+100,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT car_makers.fullname, COUNT(model_list.modelid) AS model_count 
+FROM car_makers 
+JOIN model_list ON car_makers.id = model_list.maker 
+GROUP BY car_makers.fullname;",,
+101,morph,bummiest,bum+mi+est,,
+102,morph,Gisclair,Gis+clair,,
+103,morph,xynomyzithra,xy+nom+y+zithra,,
+104,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",,
+105,morph,jaggier,jag+gi+er,,
+106,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT COUNT(*) ,  fullname FROM car_makers GROUP BY maker",,
+107,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","Text: They lost 2.21 percent , depressed by a wave of new Canadian supply .
+
+{
+  ""person"": [],
+  ""location"": [""Canada""],
+  ""organization"": [],
+  ""else"": [""percent"", ""Canadian supply""]
+}",,
+108,ie,"- 36 barges , two each week May-August , Illinois , offered at 130 percent of tariff , no bid or comparison .","{""person"": [], ""location"": [""Illinois""], ""organization"": [], ""else"": [""May-August"", ""barges""]}",,
+109,morph,mayorship,may+or+ship,,
+110,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": [""copyright-based industries"", ""Internet"", ""soccer""]}",,
+111,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE isofficial = 'T' AND countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix'),,
+112,morph,Gisclair,Gi+S+clair,,
+113,morph,nasheed,nash+eed,,
+114,ie,Welsh division one,"{""location"": [""Welsh""], ""else"": [""division one""], ""organization"": [], ""person"": []}",,
+115,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage AS T1 INNER JOIN country AS T2 ON T1.countrycode = T2.code WHERE T2.headofstate = 'Beatrix' AND isofficial = 1,,
+116,morph,liposuctions,lipo+suct+ion+s,,
+117,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",,
+118,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT T1.name FROM employee AS T1 INNER JOIN evaluation AS T2 ON T1.employee_id = T2.employee_id GROUP BY T1.name ORDER BY COUNT(T2.year_awarded) DESC LIMIT 1,,
+119,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": [""January"", ""NYMEX""]}",,
+120,sql,What are the names of players who won in both 2013 and 2016?,"SELECT DISTINCT m1.winner_name 
+FROM matches m1
+JOIN matches m2 ON m1.winner_id = m2.winner_id
+WHERE strftime('%Y', m1.tourney_date) = '2013' AND strftime('%Y', m2.tourney_date) = '2016';",,
+121,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT car_makers.fullname, COUNT(model_list.modelid) AS model_count FROM car_makers JOIN model_list ON car_makers.id = model_list.maker GROUP BY car_makers.fullname",,
+122,morph,tetrachloroethane,tetra+chlor+o+eth+an+e,,
+123,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(T1.countrycode) FROM countrylanguage AS T1 INNER JOIN countrylanguage AS T2 ON T1.countrycode = T2.countrycode WHERE T1.language = 'English' AND T2.language = 'Dutch',,
+124,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.","SELECT T1.series_name FROM tv_channel AS T1 INNER JOIN cartoon AS T2 ON T1.content = T2.channel WHERE T2.title = ""The Rise of the Blue Beetle!""",,
+125,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT T1.name) FROM country AS T1 INNER JOIN countrylanguage AS T2 ON T1.code = T2.countrycode WHERE T2.language IN ('English', 'Dutch')",,
+126,sql,What are the countries that have cartoons on TV that were written by Todd Casey?,SELECT DISTINCT tv_channel.country FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.written_by = 'Todd Casey',,
+127,sql,What is the name of the shop that is hiring the largest number of employees?,"
+
+SELECT T1.name FROM shop AS T1 INNER JOIN hiring AS T2 ON T1.shop_id = T2.shop_id GROUP BY T1.name ORDER BY COUNT(T2.employee_id) DESC LIMIT 1",,
+128,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""location"": [""Canada""], ""else"": [], ""organization"": [], ""person"": []}",,
+129,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",,
+130,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT T2.name FROM evaluation AS T1 INNER JOIN employee AS T2 ON T1.employee_id = T2.employee_id GROUP BY T2.name ORDER BY COUNT(bonus) DESC LIMIT 1,,
+131,morph,swordsman,"
+
+sword+s+man",,
+132,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{
+  ""person"": [],
+  ""location"": [],
+  ""organization"": [],
+  ""else"": [""Internet companies"", ""soccers"", ""stock prices""]
+}",,
+133,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,"
+
+SELECT T3.model FROM car_makers AS T1 INNER JOIN model_list AS T2 ON T1.id = T2.maker INNER JOIN car_names AS T3 ON T2.model = T3.makeid INNER JOIN cars_data AS T4 ON T3.makeid = T4.id WHERE T1.fullname = 'General Motors' OR T4.weight > 3500",,
+134,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch');",,
+135,morph,Gisclair,Gis+clair,,
+136,sql,What grade is Kyle in?,SELECT T1.grade FROM highschooler AS T1 INNER JOIN friend AS T2 ON T1.id = T2.student_id INNER JOIN highschooler AS T3 ON T2.friend_id = T3.id WHERE T3.name = 'Kyle',,
+137,sql,What are the countries that have cartoons on TV that were written by Todd Casey?,SELECT DISTINCT tv_channel.country FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.written_by = 'Todd Casey',,
+138,morph,jaggier,"
+
+jag+gi+er",,
+139,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT COUNT(modelid), fullname FROM car_makers AS t1 INNER JOIN model_list AS t2 ON t1.maker = t2.maker GROUP BY t1.fullname",,
+140,morph,Gisclair,Gis+clair,,
+141,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"Text: Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .
+
+{
+  ""person"": [],
+  ""location"": [],
+  ""organization"": [""Internet companies""],
+  ""else"": [""copyright-based industries"", ""pacts"", ""soccer results"", ""stock prices""]
+}",,
+142,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",,
+143,morph,swordsman,sword+s+man,,
+144,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch');",,
+145,morph,nasheed,nash+eed,,
+146,morph,bummiest,"
+
+bum+mi+est",,
+147,morph,snavel,sna+vel,,
+148,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT car_makers.fullname, COUNT(model_list.model) AS model_count FROM car_makers JOIN model_list ON car_makers.id = model_list.maker GROUP BY car_makers.fullname;",,
+149,sql,How many people are there of each nationality?,"SELECT COUNT(people_id), nationality FROM people GROUP BY nationality",,
+150,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": [""Newsroom""]}",,
+151,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,SELECT COUNT(*) FROM car_makers WHERE country IN ( SELECT country FROM car_makers GROUP BY country HAVING COUNT(*) > 1 ),,
+152,sql,What is the number of nations that use English and Dutch?,"
+
+SELECT COUNT(*) FROM countrylanguage WHERE language = 'English' OR language = 'Dutch'",,
+153,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT car_makers.fullname, COUNT(model_list.modelid) AS model_count 
+FROM car_makers 
+JOIN model_list ON car_makers.id = model_list.maker 
+GROUP BY car_makers.fullname;",,
+154,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",,
+155,morph,liposuctions,lipo+suct+ion+s,,
+156,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",,
+157,morph,tetrachloroethane,tetra+chlor+o+eth+ane,,
+158,morph,jaggier,jag+gi+er,,
+159,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+160,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",,
+161,morph,xynomyzithra,xy+nom+y+zithra,,
+162,morph,observable,observ+able,,
+163,morph,bummiest,b+um+mi+est,,
+164,morph,jaggier,jag+gi+er,,
+165,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",,
+166,morph,xynomyzithra,xy+nom+y+zithra,,
+167,morph,jaggier,jag+gi+er,,
+168,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+169,morph,tetrachloroethane,tetra+chlor+o+eth+ane,,
+170,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": [""Newsroom""]}",,
+171,ie,"- 36 barges , two each week May-August , Illinois , offered at 130 percent of tariff , no bid or comparison .","{
+  ""person"": [],
+  ""location"": [""Illinois""],
+  ""organization"": [],
+  ""else"": [""May"", ""August""]
+}",,
+172,morph,Gisclair,Gis+clair,,
+173,ie,"More than 14,000 people have lost their lives in over a decade of political turf wars between the ANC and Zulu Chief Mangosuthu Buthelezi 's Inkatha Freedom Party in the province .","
+
+{""person"": [""Mangosuthu Buthelezi""], ""location"": [], ""organization"": [""ANC"", ""Inkatha Freedom Party""], ""else"": []}",,
+174,sql,Which employee received the most awards in evaluations? Give me the employee name.,"
+
+SELECT T1.name FROM employee AS T1 INNER JOIN evaluation AS T2 ON T1.employee_id = T2.employee_id GROUP BY T1.name ORDER BY COUNT(T2.employee_id) DESC LIMIT 1",,
+175,morph,snavel,snav+el,,
+176,sql,What are the countries that have cartoons on TV that were written by Todd Casey?,SELECT DISTINCT tv_channel.country FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.written_by = 'Todd Casey',,
+177,morph,swordsman,"
+
+sword+s+man",,
+178,morph,tetrachloroethane,"
+
+tetra+chloro+ethan+e",,
+179,morph,tetrachloroethane,tetra+chloro+ethane,,
+180,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": []}",,
+181,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.","SELECT tv_channel.series_name FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.title = ""The Rise of the Blue Beetle!"";",,
+182,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"Text: Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .
+
+{""person"": [], ""location"": [], ""organization"": [""Internet""], ""else"": [""copyright-based industries"", ""soccer results"", ""stock prices""]}",,
+183,morph,minidistricts,mini+districts,,
+184,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",,
+185,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [""Canadian""], ""organization"": [], ""else"": []}",,
+186,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language = 'English' INTERSECT SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language = 'Dutch';,,
+187,morph,swordsman,sword+s+man,,
+188,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [""Canadian""], ""organization"": [], ""else"": []}",,
+189,ie,NEW DELHI 1996-12-06,"{""location"": [""NEW DELHI""], ""else"": [""1996-12-06""], ""organization"": [], ""person"": []}",,
+190,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,"SELECT DISTINCT ml.model 
+FROM model_list ml 
+JOIN car_makers cm ON ml.maker = cm.id 
+JOIN cars_data cd ON ml.modelid = cd.id 
+WHERE cm.fullname = 'General Motors' OR cd.weight > 3500;",,
+191,morph,swordsman,sword+s+man,,
+192,morph,swordsman,sword+sman,,
+193,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",,
+194,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [""Canadian""], ""organization"": [], ""else"": []}",,
+195,ie,Bristol City 21 9 6 6 36 23 33,"{""location"": [""Bristol City""], ""else"": [], ""organization"": [], ""person"": []}",,
+196,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT country.code) FROM countrylanguage INNER JOIN country ON countrylanguage.countrycode = country.code WHERE countrylanguage.language IN ('English', 'Dutch') GROUP BY country.code HAVING COUNT(DISTINCT countrylanguage.language) = 2;",,
+197,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",,
+198,sql,How many people are there of each nationality?,SELECT COUNT(*) FROM people GROUP BY nationality,,
+199,morph,swordsman,sword+sman,,
+200,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": [""copyright-based industries"", ""Internet"", ""soccer""]}",,
+201,ie,"More than 14,000 people have lost their lives in over a decade of political turf wars between the ANC and Zulu Chief Mangosuthu Buthelezi 's Inkatha Freedom Party in the province .","{""person"": [""Mangosuthu Buthelezi""], ""location"": [], ""organization"": [""ANC"", ""Inkatha Freedom Party""], ""else"": []}",,
+202,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,"SELECT DISTINCT m.model 
+FROM car_makers cm 
+JOIN model_list m ON cm.maker = m.maker 
+JOIN cars_data cd ON m.modelid = cd.id 
+WHERE cm.fullname = 'General Motors' OR cd.weight > 3500;",,
+203,morph,snavel,snav+el,,
+204,sql,What is the name of the shop that is hiring the largest number of employees?,SELECT name FROM employee WHERE age > 20,,
+205,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""location"": [], ""else"": [""January""], ""organization"": [], ""person"": []}",,
+206,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",,
+207,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT COUNT(car_makers.id), car_makers.fullname FROM car_makers GROUP BY car_makers.fullname",,
+208,morph,snavel,snav+el,,
+209,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+210,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT T1.name FROM employee AS T1 INNER JOIN evaluation AS T2 ON T1.employee_id = T2.employee_id GROUP BY T1.name ORDER BY COUNT(T2.employee_id) DESC LIMIT 1,,
+211,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"Text: NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .
+JSON: {""person"": [], ""location"": [""NYMEX""], ""organization"": [], ""else"": [""January delivery"", ""light"", ""overall""]}",,
+212,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+213,sql,What grade is Kyle in?,SELECT T1.grade FROM highschooler AS T1 INNER JOIN friend AS T2 ON T1.id = T2.student_id INNER JOIN highschooler AS T3 ON T3.id = T2.friend_id WHERE T3.name = 'Kyle',,
+214,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id = (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(*) DESC LIMIT 1),,
+215,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"Text: Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .
+
+{
+  ""person"": [],
+  ""location"": [],
+  ""organization"": [""Internet companies""],
+  ""else"": [""copyright-based industries"", ""protests"", ""pacts"", ""soccer results"", ""stock prices""]
+}",,
+216,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",,
+217,ie,"The general did not mention these refugees , who are on the outer limit of the strip the planes have been checking .","The text is ""The general did not mention these refugees , who are on the outer limit of the strip the planes have been checking .""
+
+The JSON output is:
+{""person"": [""The general""], ""location"": [""the strip""], ""organization"": [], ""else"": [""refugees"", ""planes""]}",,
+218,morph,Gisclair,Gis+clair,,
+219,sql,How many people are there of each nationality?,SELECT COUNT(*) FROM people GROUP BY nationality,,
+220,morph,observable,observ+able,,
+221,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id IN (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(employee_id) DESC LIMIT 1),,
+222,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(DISTINCT T1.countrycode) FROM countrylanguage AS T1 INNER JOIN countrylanguage AS T2 ON T1.countrycode = T2.countrycode WHERE T1.language = 'English' AND T2.language = 'Dutch',,
+223,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"
+
+{""person"": [], ""location"": [], ""organization"": [""Internet""], ""else"": [""soccer"", ""stock prices""]}",,
+224,morph,tetrachloroethane,"
+
+tetra+chloro+ethan+e",,
+225,morph,bummiest,bum+miest,,
+226,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+227,morph,bummiest,"
+
+bum+mi+est",,
+228,sql,What are the names of players who won in both 2013 and 2016?,"SELECT winner_name 
+FROM matches 
+WHERE strftime('%Y', tourney_date) = '2013' 
+INTERSECT 
+SELECT winner_name 
+FROM matches 
+WHERE strftime('%Y', tourney_date) = '2016';",,
+229,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.","SELECT tv_channel.series_name FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.title = ""The Rise of the Blue Beetle!"";",,
+230,morph,jaggier,jag+gi+er,,
+231,ie,-- London Newsroom +44 171 542-7768,"{""location"": [""London""], ""else"": [], ""organization"": [], ""person"": []}",,
+232,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",,
+233,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,"SELECT DISTINCT ml.model 
+FROM model_list ml 
+JOIN car_makers cm ON ml.maker = cm.id 
+JOIN cars_data cd ON ml.modelid = cd.id 
+WHERE cm.fullname = 'General Motors' OR cd.weight > 3500;",,
+234,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix') AND isofficial = 'T',,
+235,sql,What is the name of the shop that is hiring the largest number of employees?,SELECT T2.name FROM hiring AS T1 INNER JOIN shop AS T2 ON T1.shop_id = T2.shop_id GROUP BY T2.name ORDER BY COUNT(T1.employee_id) DESC LIMIT 1,,
+236,morph,nasheed,nash+eed,,
+237,morph,xynomyzithra,xy+nom+y+zithra,,
+238,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [""Canada""], ""organization"": [], ""else"": []}",,
+239,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id = (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(*) DESC LIMIT 1),,
+240,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+241,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",,
+242,sql,Which city has most number of departing flights?,SELECT sourceairport FROM flights GROUP BY sourceairport ORDER BY COUNT(*) DESC LIMIT 1,,
+243,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": [""Internet companies""]}",,
+244,sql,What are the names of players who won in both 2013 and 2016?,"SELECT DISTINCT p.first_name, p.last_name 
+FROM players p 
+JOIN matches m1 ON p.player_id = m1.winner_id AND m1.tourney_date LIKE '2013%' 
+JOIN matches m2 ON p.player_id = m2.winner_id AND m2.tourney_date LIKE '2016%'",,
+245,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+246,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",,
+247,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id = (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(*) DESC LIMIT 1),,
+248,sql,What grade is Kyle in?,SELECT T1.grade FROM highschooler AS T1 INNER JOIN friend AS T2 ON T1.id = T2.student_id INNER JOIN highschooler AS T3 ON T3.id = T2.friend_id WHERE T3.name = 'Kyle',,
+249,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"Here is the JSON object:
+{
+  ""person"": [],
+  ""location"": [],
+  ""organization"": [],
+  ""else"": [
+    ""Internet companies"", ""soccer"", ""stock prices""
+  ]
+}",,
+250,morph,nasheed,nash+eed,,
+251,morph,minidistricts,mini+dis+trict+s,,
+252,morph,liposuctions,lipo+suct+ion+s,,
+253,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": [""Newsroom""]}",,
+254,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+255,morph,Gisclair,Gi+s+clair,,
+256,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""location"": [], ""else"": [""January"", ""NYMEX""], ""organization"": [], ""person"": []}",,
+257,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT T2.language FROM country AS T1 INNER JOIN countrylanguage AS T2 ON T1.code = T2.countrycode WHERE T1.headofstate = 'Beatrix' AND T2.isofficial = 1,,
+258,morph,semicomas,semi+com+as,,
+259,morph,bummiest,bum+mi+est,,
+260,morph,tetrachloroethane,tetra+chloro+ethan+e,,
+261,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{
+  ""person"": [], 
+  ""location"": [], 
+  ""organization"": [], 
+  ""else"": [""Internet companies"", ""online works"", ""soccer results"", ""stock prices""]
+}",,
+262,ie,NEW DELHI 1996-12-06,"{""location"": [""NEW DELHI""], ""else"": [""1996-12-06""], ""organization"": [], ""person"": []}",,
+263,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""location"": [], ""else"": [""NYMEX""], ""organization"": [], ""person"": []}",,
+264,sql,How many people are there of each nationality?,"SELECT COUNT(*) ,  nationality FROM people GROUP BY nationality",,
+265,ie,"- 36 barges , two each week May-August , Illinois , offered at 130 percent of tariff , no bid or comparison .","{""location"": [""Illinois""], ""else"": [""May-August"", ""two each week""], ""organization"": [], ""person"": []}",,
+266,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",,
+267,morph,snavel,sna+vel,,
+268,sql,Find the distinct breed type and size type combinations for dogs.,"SELECT DISTINCT b.breed_name, s.size_description 
+FROM dogs d
+JOIN breeds b ON d.breed_code = b.breed_code
+JOIN sizes s ON d.size_code = s.size_code;",,
+269,morph,snavel,snav+el,,
+270,morph,observable,observ+able,,
+271,morph,observable,observ+able,,
+272,morph,bummiest,bum+mi+est,,
+273,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [""Canadian""], ""organization"": [], ""else"": []}",,
+274,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+275,morph,Gisclair,Gis+clair,,
+276,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT T2.name) FROM countrylanguage AS T1 INNER JOIN country AS T2 ON T1.countrycode = T2.code WHERE T1.language IN ('English', 'Dutch')",,
+277,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",,
+278,ie,"More than 14,000 people have lost their lives in over a decade of political turf wars between the ANC and Zulu Chief Mangosuthu Buthelezi 's Inkatha Freedom Party in the province .","{""person"": [""Mangosuthu Buthelezi""], ""location"": [], ""organization"": [""ANC"", ""Inkatha Freedom Party""], ""else"": []}",,
+279,morph,observable,"
+
+ob+serv+able",,
+280,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.",SELECT T1.series_name FROM tv_channel AS T1 INNER JOIN cartoon AS T2 ON T2.channel = T1.content WHERE T2.title = 'The Rise of the Blue Beetle!',,
+281,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT car_makers.fullname, COUNT(model_list.modelid) AS model_count
+FROM car_makers
+JOIN model_list ON car_makers.id = model_list.maker
+GROUP BY car_makers.fullname;",,
+282,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE isofficial = 'T' AND countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix'),,
+283,morph,swordsman,sword+s+man,,
+284,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": [""Newsroom""]}",,
+285,morph,Gisclair,Gis+clair,,
+286,morph,mayorship,mayo+r+ship,,
+287,sql,What are the countries that have cartoons on TV that were written by Todd Casey?,SELECT DISTINCT tv_channel.country FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.written_by = 'Todd Casey',,
+288,morph,swordsman,sword+sman,,
+289,morph,bummiest,bum+miest,,
+290,sql,Which city has most number of departing flights?,SELECT sourceairport FROM flights GROUP BY sourceairport ORDER BY COUNT(*) DESC LIMIT 1;,,
+291,morph,swordsman,"
+
+sword+s+man",,
+292,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"
+
+{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",,
+293,ie,"More than 14,000 people have lost their lives in over a decade of political turf wars between the ANC and Zulu Chief Mangosuthu Buthelezi 's Inkatha Freedom Party in the province .","{""person"": [""Mangosuthu Buthelezi""], ""location"": [], ""organization"": [""ANC"", ""Inkatha Freedom Party""], ""else"": []}",,
+294,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch');",,
+295,morph,swordsman,sword+s+man,,
+296,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT T1.name FROM employee AS T1 INNER JOIN evaluation AS T2 ON T1.employee_id = T2.employee_id GROUP BY T1.name ORDER BY COUNT(T2.employee_id) DESC LIMIT 1,,
+297,morph,mayorship,may+or+ship,,
+298,morph,observable,o+bserv+able,,
+299,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [""Canadian""], ""organization"": [], ""else"": []}",,
+300,morph,bummiest,bum+miest,,
+301,sql,How many people are there of each nationality?,"SELECT COUNT(name), nationality FROM people GROUP BY nationality",,
+302,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": [""Newsroom""]}",,
+303,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT T2.name FROM evaluation AS T1 INNER JOIN employee AS T2 ON T1.employee_id = T2.employee_id GROUP BY T2.name ORDER BY COUNT(T1.employee_id) DESC LIMIT 1,,
+304,morph,snavel,"
+
+s+nav+el",,
+305,sql,What is the name of the shop that is hiring the largest number of employees?,SELECT name FROM employee WHERE age > 30,,
+306,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT car_makers.fullname, COUNT(model_list.modelid) AS model_count 
+FROM car_makers 
+JOIN model_list ON car_makers.id = model_list.maker 
+GROUP BY car_makers.fullname;",,
+307,morph,snavel,sna+vel,,
+308,morph,Gisclair,gis+clair,,
+309,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+310,morph,Gisclair,Gis+clair,,
+311,ie,"The general did not mention these refugees , who are on the outer limit of the strip the planes have been checking .","Text: The general did not mention these refugees , who are on the outer limit of the strip the planes have been checking .
+{""person"": [], ""location"": [], ""organization"": [], ""else"": [""The general"", ""refugees"", ""planes"", ""strip""]}",,
+312,sql,What are the countries that have cartoons on TV that were written by Todd Casey?,SELECT DISTINCT tv_channel.country FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.written_by = 'Todd Casey',,
+313,morph,snavel,snav+el,,
+314,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id = (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(*) DESC LIMIT 1),,
+315,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",,
+316,morph,minidistricts,mini+dis+trict+s,,
+317,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+318,sql,What is the name of the shop that is hiring the largest number of employees?,SELECT name FROM employee WHERE age > 20,,
+319,morph,bummiest,bum+mi+est,,
+320,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",,
+321,morph,swordsman,sword+s+man,,
+322,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(*) FROM countrylanguage WHERE language = 'English' INTERSECT SELECT COUNT(*) FROM countrylanguage WHERE language = 'Dutch',,
+323,sql,How many people are there of each nationality?,"SELECT COUNT(*), nationality FROM people GROUP BY nationality",,
+324,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",,
+325,sql,What grade is Kyle in?,SELECT T1.grade FROM highschooler AS T1 INNER JOIN friend AS T2 ON T1.id = T2.student_id INNER JOIN highschooler AS T3 ON T3.id = T2.friend_id WHERE T3.name = 'Kyle',,
+326,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",,
+327,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+328,morph,bummiest,bum+miest,,
+329,morph,snavel,sna+vel,,
+330,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE isofficial = 'T' AND countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix'),,
+331,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT T2.name FROM evaluation AS T1 INNER JOIN employee AS T2 ON T1.employee_id = T2.employee_id GROUP BY T2.name ORDER BY COUNT(T1.employee_id) DESC LIMIT 1,,
+332,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix') AND isofficial = 'T',,
+333,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.","SELECT tv_channel.series_name FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.title = ""The Rise of the Blue Beetle!""",,
+334,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,SELECT DISTINCT model FROM model_list WHERE maker IN (SELECT id FROM car_makers WHERE fullname = 'General Motors') OR modelid IN (SELECT id FROM cars_data WHERE weight > 3500);,,
+335,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",,
+336,morph,bummiest,bum+mi+est,,
+337,morph,observable,observ+able,,
+338,morph,minidistricts,mini+dis+trict+s+,,
+339,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix') AND isofficial = 'T',,
+340,sql,What are the names of players who won in both 2013 and 2016?,"SELECT T1.last_name, T1.first_name 
+FROM players AS T1 
+INNER JOIN matches AS T2 
+ON T1.player_id = T2.winner_id 
+WHERE SUBSTR(T2.tourney_date, 1, 4) IN (2013, 2016)",,
+341,sql,What are the names of players who won in both 2013 and 2016?,"SELECT T1.first_name, T1.last_name FROM players AS T1 INNER JOIN matches AS T2 ON T1.player_id = T2.winner_id WHERE T2.year IN (2013, 2016)",,
+342,sql,What are the names of players who won in both 2013 and 2016?,"SELECT T1.first_name, T1.last_name FROM players AS T1 INNER JOIN matches AS T2 ON T1.player_id = T2.winner_id WHERE T2.year IN (2013, 2016)",,
+343,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",,
+344,sql,How many people are there of each nationality?,"SELECT COUNT(*), nationality FROM people GROUP BY nationality",,
+345,ie,Gaulieder 's family was sleeping in a bedroom at the back of the house and were unharmed by the blast .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+346,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",,
+347,morph,jaggier,jag+gi+er,,
+348,morph,swordsman,sword+s+man,,
+349,morph,observable,obser+vable,,
+350,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"Text: NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .
+{""location"": [], ""else"": [""January"", ""NYMEX""], ""organization"": [], ""person"": []}",,
+351,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,"
+
+SELECT T1.model FROM model_list AS T1 INNER JOIN car_makers AS T2 ON T1.maker = T2.fullname INNER JOIN cars_data AS T3 ON T2.id = T3.id WHERE T2.fullname = 'General Motors' OR T3.weight > 3500",,
+352,morph,swordsman,sword+s+man,,
+353,morph,bummiest,bum+miest,,
+354,morph,minidistricts,mini+dis+trict+s,,
+355,morph,bummiest,bum+mi+est,,
+356,ie,Bristol City 21 9 6 6 36 23 33,"{""location"": [""Bristol City""], ""else"": [], ""organization"": [], ""person"": []}",,
+357,morph,minidistricts,mini+dis+trict+s,,
+358,morph,observable,ob+serv+able,,
+359,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix') AND isofficial = 1,,
+360,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",,
+361,morph,bummiest,b+um+mi+est,,
+362,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",,
+363,sql,What are the countries that have cartoons on TV that were written by Todd Casey?,SELECT DISTINCT tv_channel.country FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.written_by = 'Todd Casey',,
+364,ie,"The general did not mention these refugees , who are on the outer limit of the strip the planes have been checking .","{""location"": [""Paris""], ""else"": [""refugees"", ""strip""], ""organization"": [""Acme Corp""], ""person"": [""John Smith""]}",,
+365,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""location"": [], ""else"": [], ""organization"": [], ""person"": []}",,
+366,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",,
+367,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id = (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(*) DESC LIMIT 1),,
+368,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.","SELECT tc.series_name FROM tv_channel tc JOIN cartoon c ON tc.id = c.id WHERE c.title = ""The Rise of the Blue Beetle!"";",,
+369,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"I'll extract the named entities from the given text. However, since the text you provided does not contain any named entities, I'll use a generic text for illustration.
+
+Text: ""John Smith joined Acme Corp in Paris to attend the 2020 Olympics.""
+
+JSON: 
+{
+  ""person"": [""John Smith""],
+  ""location"": [""Paris""],
+  ""organization"": [""Acme Corp""],
+  ""else"": [""2020 Olympics""]
+}",,
+370,ie,"Diplomats said General Joseph Garba of Nigeria , a U.N. General Assembly president in 1989-90 , was putting forth his own candidacy without being nominated by his country .","{""person"": [""Joseph Garba""], ""location"": [""Nigeria""], ""organization"": [""U.N.""], ""else"": [""General Assembly""]}",,
+371,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch') GROUP BY countrycode HAVING COUNT(DISTINCT language) = 2",,
+372,sql,How many people are there of each nationality?,"SELECT COUNT(people_id), nationality FROM people GROUP BY nationality",,
+373,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT T1.name FROM employee AS T1 INNER JOIN evaluation AS T2 ON T1.employee_id = T2.employee_id GROUP BY T1.name ORDER BY COUNT(T2.employee_id) DESC LIMIT 1,,
+374,ie,"More than 14,000 people have lost their lives in over a decade of political turf wars between the ANC and Zulu Chief Mangosuthu Buthelezi 's Inkatha Freedom Party in the province .","{""person"": [""Mangosuthu Buthelezi""], ""location"": [], ""organization"": [""ANC"", ""Inkatha Freedom Party""], ""else"": []}",,
+375,sql,What are the names of players who won in both 2013 and 2016?,"SELECT T1.first_name, T1.last_name FROM players AS T1 
+INNER JOIN matches AS T2 
+ON T1.player_id = T2.winner_id 
+WHERE T2.year IN (2013, 2016)",,
+376,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,"SELECT DISTINCT ml.model 
+FROM model_list ml
+JOIN car_makers cm ON ml.maker = cm.id
+JOIN cars_data cd ON ml.modelid = cd.id
+WHERE cm.fullname = 'General Motors' OR cd.weight > 3500;",,
+377,morph,bummiest,bum+miest,,
+378,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",,
+379,morph,swordsman,sword+sman,,
+380,sql,How many people are there of each nationality?,"
+
+SELECT COUNT(people_id), nationality FROM people GROUP BY nationality",,
+381,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",,
+382,ie,"The general did not mention these refugees , who are on the outer limit of the strip the planes have been checking .","{""person"": [""The general""], ""location"": [""the strip""], ""organization"": [], ""else"": [""refugees""]}",,
+383,morph,jaggier,jag+gi+er,,
+384,sql,What are the names of players who won in both 2013 and 2016?,"SELECT DISTINCT m1.winner_name 
+FROM matches m1 
+JOIN matches m2 ON m1.winner_name = m2.winner_name 
+WHERE strftime('%Y', m1.tourney_date) = '2013' 
+  AND strftime('%Y', m2.tourney_date) = '2016';",,
+385,morph,nasheed,nash+eed,,
+386,morph,swordsman,sword+sman,,
+387,morph,snavel,snav+el,,
+388,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",,
+389,morph,snavel,snav+el,,
+390,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.",SELECT tv_channel.series_name FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.title = 'The Rise of the Blue Beetle!';,,
+391,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT car_makers.fullname, COUNT(model_list.modelid) AS model_count 
+FROM car_makers 
+JOIN model_list ON car_makers.id = model_list.maker 
+GROUP BY car_makers.fullname;",,
+392,ie,"Diplomats said General Joseph Garba of Nigeria , a U.N. General Assembly president in 1989-90 , was putting forth his own candidacy without being nominated by his country .","{""person"": [""General Joseph Garba""], ""location"": [""Nigeria""], ""organization"": [""U.N.""], ""else"": [""General Assembly""]}",,
+393,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,"SELECT DISTINCT ml.model 
+FROM model_list ml 
+JOIN car_makers cm ON ml.maker = cm.id 
+JOIN cars_data cd ON ml.modelid = cd.id 
+WHERE cm.fullname = 'General Motors' OR cd.weight > 3500;",,
+394,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(T1.countrycode) FROM countrylanguage AS T1 INNER JOIN countrylanguage AS T2 ON T1.countrycode = T2.countrycode WHERE T1.language = 'English' AND T2.language = 'Dutch',,
+395,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": [""Internet"", ""soccer""]}",,
+396,ie,"- 36 barges , two each week May-August , Illinois , offered at 130 percent of tariff , no bid or comparison .","{""location"": [""Illinois""], ""else"": [""May-August"", ""barges"", ""tariff"", ""percent""], ""organization"": [], ""person"": []}",,
+397,morph,Gisclair,"
+
+Gi+s+clair",,
+398,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+399,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage JOIN country ON countrylanguage.countrycode = country.code WHERE governmentform = 'Constitutional Monarchy' AND headofstate = 'Beatrix' AND isofficial = 1,,
+400,morph,liposuctions,lipo+suct+ion+s,,
+401,morph,jaggier,jag+gi+er,,
+402,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",,
+403,ie,"- 36 barges , two each week May-August , Illinois , offered at 130 percent of tariff , no bid or comparison .","{""person"": [], ""location"": [""Illinois""], ""organization"": [], ""else"": [""May-August"", ""tariff"", ""barges""]}",,
+404,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",,
+405,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.","SELECT tv_channel.series_name FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.title = ""The Rise of the Blue Beetle!""",,
+406,ie,"More than 14,000 people have lost their lives in over a decade of political turf wars between the ANC and Zulu Chief Mangosuthu Buthelezi 's Inkatha Freedom Party in the province .","{""person"": [""Mangosuthu Buthelezi""], ""location"": [], ""organization"": [""Inkatha Freedom Party"", ""ANC""], ""else"": []}",,
+407,ie,Welsh division one," Welsh division one
+{""person"": [], ""location"": [], ""organization"": [], ""else"": [""Welsh division one""]}",,
+408,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",,
+409,morph,Gisclair,Gis+clair,,
+410,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id = (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(*) DESC LIMIT 1),,
+411,morph,Gisclair,Gis+clair,,
+412,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.","SELECT tc.series_name FROM tv_channel tc JOIN cartoon c ON tc.id = c.id WHERE c.title = ""The Rise of the Blue Beetle!"";",,
+413,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",,
+414,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id IN (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(employee_id) DESC LIMIT 1),,
+415,morph,jaggier,jag+gi+er,,
+416,morph,swordsman,"
+
+sword+s+man",,
+417,morph,snavel,snav+el,,
+418,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"
+
+{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",,
+419,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(T1.countrycode) FROM countrylanguage AS T1 INNER JOIN countrylanguage AS T2 ON T1.countrycode = T2.countrycode WHERE T1.language = 'English' AND T2.language = 'Dutch',,
+420,morph,swordsman,sword+sman,,
+421,morph,nasheed,nash+eed,,
+422,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.","SELECT tv_channel.series_name FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.title = ""The Rise of the Blue Beetle!""",,
+423,morph,minidistricts,mini+dis+trict+s,,
+424,morph,observable,"
+
+obser+v+able",,
+425,sql,What grade is Kyle in?,SELECT T1.grade FROM highschooler AS T1 INNER JOIN friend AS T2 ON T1.id = T2.student_id INNER JOIN highschooler AS T3 ON T3.id = T2.friend_id WHERE T3.name = 'Kyle',,
+426,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch');",,
+427,ie,NEW DELHI 1996-12-06,"{""person"": [], ""location"": [""Paris""], ""organization"": [""Acme Corp""], ""else"": []}",,
+428,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT T1.name FROM employee AS T1 INNER JOIN evaluation AS T2 ON T1.employee_id = T2.employee_id GROUP BY T1.name ORDER BY COUNT(T1.name) DESC LIMIT 1,,
+429,morph,swordsman,sword+s+man,,
+430,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",,
+431,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",,
+432,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",,
+433,morph,observable,ob+serv+able,,
+434,morph,mayorship,mayo+r+ship,,
+435,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",,
+436,ie,"The general did not mention these refugees , who are on the outer limit of the strip the planes have been checking .","Text: The general did not mention these refugees , who are on the outer limit of the strip the planes have been checking .
+
+JSON: {""person"": [], ""location"": [""the strip""], ""organization"": [], ""else"": []}",,
+437,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",,
+438,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(T1.countrycode) FROM countrylanguage AS T1 INNER JOIN countrylanguage AS T2 ON T1.countrycode = T2.countrycode WHERE T1.language = 'English' AND T2.language = 'Dutch',,
+439,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch');",,
+440,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",,
+441,morph,swordsman,sword+s+man,,
+442,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [""Internet""], ""else"": [""copyright-based industries"", ""soccer results"", ""stock prices""]}",,
+443,morph,snavel,"
+
+snav+el",,

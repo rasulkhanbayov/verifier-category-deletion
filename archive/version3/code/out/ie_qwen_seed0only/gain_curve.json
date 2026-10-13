@@ -1,0 +1,62 @@
+[
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "N": 1,
+    "predicted": 0.5354688470149254,
+    "observed": 0.51,
+    "observed_lo": 0.44,
+    "observed_hi": 0.58,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "N": 2,
+    "predicted": 0.53683638155011,
+    "observed": 0.51,
+    "observed_lo": 0.44,
+    "observed_hi": 0.58,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "N": 4,
+    "predicted": 0.5369137532241933,
+    "observed": 0.515,
+    "observed_lo": 0.445,
+    "observed_hi": 0.585,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "N": 8,
+    "predicted": 0.5369139769367379,
+    "observed": 0.515,
+    "observed_lo": 0.445,
+    "observed_hi": 0.585,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "N": 16,
+    "predicted": 0.5369139769385974,
+    "observed": 0.52,
+    "observed_lo": 0.45,
+    "observed_hi": 0.59,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "N": 32,
+    "predicted": 0.5369139769385974,
+    "observed": 0.52,
+    "observed_lo": 0.45,
+    "observed_hi": 0.59,
+    "inside": true
+  }
+]

@@ -1,0 +1,2051 @@
+{
+ "task": "fewnerd",
+ "pool": "data/pools/pool_fewnerd_admit_seed0.jsonl",
+ "candidates": [
+  "out/candidates/fewnerd_round0_gpt4o.jsonl",
+  "out/candidates/fewnerd_round0_opus.jsonl"
+ ],
+ "report": [
+  {
+   "id": "fewnerd-r0_opus-c258c3b196",
+   "name": "entity_is_token_span",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 938,
+   "catch_rate": 0.11376591873862947
+  },
+  {
+   "id": "fewnerd-r0_opus-47543cc326",
+   "name": "entity_tokens_are_text_tokens",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 816,
+   "catch_rate": 0.09896907216494845
+  },
+  {
+   "id": "fewnerd-r0_opus-556b16170f",
+   "name": "accent_preserved",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 816,
+   "catch_rate": 0.09896907216494845
+  },
+  {
+   "id": "fewnerd-r0_opus-e7bbba53f4",
+   "name": "entity_substring_of_text",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 709,
+   "catch_rate": 0.08599151000606428
+  },
+  {
+   "id": "fewnerd-r0_opus-0c56f02f69",
+   "name": "period_tokenization",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 183,
+   "catch_rate": 0.02219526986052153
+  },
+  {
+   "id": "fewnerd-r0_opus-ead0bb42cf",
+   "name": "occurrence_bound",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 160,
+   "catch_rate": 0.019405700424499697
+  },
+  {
+   "id": "fewnerd-r0_opus-3f48e403ba",
+   "name": "apostrophe_tokenization",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 150,
+   "catch_rate": 0.018192844147968467
+  },
+  {
+   "id": "fewnerd-r0_opus-63f285a47e",
+   "name": "no_ampersand_entity_rewrite",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 44,
+   "catch_rate": 0.005336567616737417
+  },
+  {
+   "id": "fewnerd-r0_opus-5fcdbeb03f",
+   "name": "paren_tokenization",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 41,
+   "catch_rate": 0.004972710733778047
+  },
+  {
+   "id": "fewnerd-r0_opus-9410ddf006",
+   "name": "hyphen_tokenization",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 41,
+   "catch_rate": 0.004972710733778047
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-720ed77e72",
+   "name": "no_other_field_with_named_entities",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 28,
+   "catch_rate": 0.003395997574287447
+  },
+  {
+   "id": "fewnerd-r0_opus-29be7b39d6",
+   "name": "chars_subset_of_text",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 25,
+   "catch_rate": 0.0030321406913280777
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-38f0b78fb9",
+   "name": "no_location_field_with_generic_places",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 21,
+   "catch_rate": 0.0025469981807155853
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-29b90dac47",
+   "name": "no_entities_with_repeated_characters",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 20,
+   "catch_rate": 0.002425712553062462
+  },
+  {
+   "id": "hw:parses",
+   "name": "hw:parses",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 20,
+   "catch_rate": 0.002425712553062462
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-bb4ee13a25",
+   "name": "no_event_field_with_only_numbers",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 18,
+   "catch_rate": 0.002183141297756216
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-520276976b",
+   "name": "no_event_field_with_dates_only",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 18,
+   "catch_rate": 0.002183141297756216
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-10bd04d4a8",
+   "name": "no_location_field_with_directional_terms",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 16,
+   "catch_rate": 0.0019405700424499697
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-283a48aafb",
+   "name": "no_non_alphanumeric_art_entities",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 10,
+   "catch_rate": 0.001212856276531231
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-75944c16af",
+   "name": "art_field_contains_titles",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 10,
+   "catch_rate": 0.001212856276531231
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-7af84059a6",
+   "name": "no_organization_field_with_generic_terms",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 9,
+   "catch_rate": 0.001091570648878108
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-33af849a0c",
+   "name": "no_event_field_with_generic_terms",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 7,
+   "catch_rate": 0.0008489993935718618
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-3fe9e261e5",
+   "name": "no_special_characters_in_person_field",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 5,
+   "catch_rate": 0.0006064281382656155
+  },
+  {
+   "id": "fewnerd-r0_opus-5dfc27184c",
+   "name": "total_entity_tokens_le_text",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 4,
+   "catch_rate": 0.00048514251061249243
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-389a1a0166",
+   "name": "no_location_words_as_organization",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 2,
+   "catch_rate": 0.00024257125530624622
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-24e2adb5e7",
+   "name": "no_fields_with_unreasonably_long_entities",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 2,
+   "catch_rate": 0.00024257125530624622
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-c8cc7de392",
+   "name": "no_event_field_with_artifacts",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 2,
+   "catch_rate": 0.00024257125530624622
+  },
+  {
+   "id": "fewnerd-r0_opus-ea8bf48e62",
+   "name": "not_only_stopwords",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 2,
+   "catch_rate": 0.00024257125530624622
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-1b6e7499f3",
+   "name": "no_empty_strings_in_fields",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 1,
+   "catch_rate": 0.00012128562765312311
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-541fa4b9bb",
+   "name": "no_whitespace_only_entities",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 1,
+   "catch_rate": 0.00012128562765312311
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-7e0c8556ea",
+   "name": "no_entities_with_leading_or_trailing_whitespace",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 1,
+   "catch_rate": 0.00012128562765312311
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-bc5a87bd6b",
+   "name": "no_fields_with_nonsense_strings",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 1,
+   "catch_rate": 0.00012128562765312311
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-6ba5cd4836",
+   "name": "no_empty_strings_in_fields",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 1,
+   "catch_rate": 0.00012128562765312311
+  },
+  {
+   "id": "fewnerd-r0_opus-1fe5b8142a",
+   "name": "entity_nonempty",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 1,
+   "catch_rate": 0.00012128562765312311
+  },
+  {
+   "id": "fewnerd-r0_opus-8d9dafa836",
+   "name": "no_starting_possessive",
+   "status": "admitted",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 1,
+   "catch_rate": 0.00012128562765312311
+  },
+  {
+   "id": "hw:no_overlap",
+   "name": "hw:no_overlap",
+   "status": "unsound",
+   "n_correct": 4755,
+   "rejected_correct": 1,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 1490,
+   "catch_rate": 0.18071558520315342
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-e757b75877",
+   "name": "no_nonexistent_tokens",
+   "status": "unsound",
+   "n_correct": 4755,
+   "rejected_correct": 15,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 832,
+   "catch_rate": 0.10090964220739843
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-b9687ca144",
+   "name": "no_unrelated_words_as_entities",
+   "status": "unsound",
+   "n_correct": 4755,
+   "rejected_correct": 26,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 737,
+   "catch_rate": 0.08938750758035173
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-01f3129a79",
+   "name": "no_partial_span_matches",
+   "status": "unsound",
+   "n_correct": 4755,
+   "rejected_correct": 26,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 737,
+   "catch_rate": 0.08938750758035173
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-9d2fcb6d4c",
+   "name": "entities_in_correct_order",
+   "status": "unsound",
+   "n_correct": 4755,
+   "rejected_correct": 114,
+   "rejected_correct_gold": 31,
+   "n_incorrect": 8245,
+   "caught_incorrect": 598,
+   "catch_rate": 0.07252880533656762
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-5e38c44639",
+   "name": "no_duplicate_entities_across_fields",
+   "status": "unsound",
+   "n_correct": 4755,
+   "rejected_correct": 60,
+   "rejected_correct_gold": 53,
+   "n_incorrect": 8245,
+   "caught_incorrect": 194,
+   "catch_rate": 0.023529411764705882
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-fa25820ee0",
+   "name": "no_duplicate_entities_across_fields",
+   "status": "unsound",
+   "n_correct": 4755,
+   "rejected_correct": 60,
+   "rejected_correct_gold": 53,
+   "n_incorrect": 8245,
+   "caught_incorrect": 194,
+   "catch_rate": 0.023529411764705882
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-b118206095",
+   "name": "no_duplicate_across_fields_and_case",
+   "status": "unsound",
+   "n_correct": 4755,
+   "rejected_correct": 60,
+   "rejected_correct_gold": 53,
+   "n_incorrect": 8245,
+   "caught_incorrect": 194,
+   "catch_rate": 0.023529411764705882
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-1fa3dde482",
+   "name": "no_location_field_with_products",
+   "status": "unsound",
+   "n_correct": 4755,
+   "rejected_correct": 37,
+   "rejected_correct_gold": 10,
+   "n_incorrect": 8245,
+   "caught_incorrect": 53,
+   "catch_rate": 0.006428138265615524
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-437b08d823",
+   "name": "no_empty_fields",
+   "status": "unsound",
+   "n_correct": 4755,
+   "rejected_correct": 9,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 34,
+   "catch_rate": 0.004123711340206186
+  },
+  {
+   "id": "hw:schema_valid",
+   "name": "hw:schema_valid",
+   "status": "unsound",
+   "n_correct": 4755,
+   "rejected_correct": 9,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 34,
+   "catch_rate": 0.004123711340206186
+  },
+  {
+   "id": "hw:required_fields",
+   "name": "hw:required_fields",
+   "status": "unsound",
+   "n_correct": 4755,
+   "rejected_correct": 1,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 20,
+   "catch_rate": 0.002425712553062462
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-526aba3aa5",
+   "name": "no_duplicate_entities_in_single_field",
+   "status": "unsound",
+   "n_correct": 4755,
+   "rejected_correct": 60,
+   "rejected_correct_gold": 53,
+   "n_incorrect": 8245,
+   "caught_incorrect": 18,
+   "catch_rate": 0.002183141297756216
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-95547fed43",
+   "name": "no_overlap_within_field",
+   "status": "unsound",
+   "n_correct": 4755,
+   "rejected_correct": 60,
+   "rejected_correct_gold": 53,
+   "n_incorrect": 8245,
+   "caught_incorrect": 18,
+   "catch_rate": 0.002183141297756216
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-fefe7cf40e",
+   "name": "no_empty_fields_with_entities_in_text",
+   "status": "unsound",
+   "n_correct": 4755,
+   "rejected_correct": 26,
+   "rejected_correct_gold": 3,
+   "n_incorrect": 8245,
+   "caught_incorrect": 13,
+   "catch_rate": 0.0015767131594906004
+  },
+  {
+   "id": "fewnerd-r0_opus-ff67aa212b",
+   "name": "entity_has_alnum",
+   "status": "unsound",
+   "n_correct": 4755,
+   "rejected_correct": 4,
+   "rejected_correct_gold": 4,
+   "n_incorrect": 8245,
+   "caught_incorrect": 13,
+   "catch_rate": 0.0015767131594906004
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-f35f8f04df",
+   "name": "no_product_field_with_verbs",
+   "status": "unsound",
+   "n_correct": 4755,
+   "rejected_correct": 1,
+   "rejected_correct_gold": 1,
+   "n_incorrect": 8245,
+   "caught_incorrect": 9,
+   "catch_rate": 0.001091570648878108
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-a4554916c3",
+   "name": "no_numeric_entities_in_person_field",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-ecfde5629f",
+   "name": "no_single_character_person_entities",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-2a45c4d307",
+   "name": "no_entities_with_internal_newlines",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-f6a5c4e79e",
+   "name": "no_field_exceeding_reasonable_length",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-dc5740da7e",
+   "name": "no_field_with_mostly_punctuation",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-bf1da9acae",
+   "name": "no_entities_with_internal_tabs",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-37e6f30180",
+   "name": "no_entities_with_repeated_words",
+   "status": "unsound",
+   "n_correct": 4755,
+   "rejected_correct": 22,
+   "rejected_correct_gold": 2,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-093ce064c7",
+   "name": "no_entities_with_disallowed_characters",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-20c068994e",
+   "name": "no_person_field_with_non_names",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-db987da569",
+   "name": "no_building_field_with_generic_structures",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-cdd1146c22",
+   "name": "no_product_field_with_generic_terms",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-37ca7110e4",
+   "name": "no_other_field_with_generic_terms",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-88cc6e94c7",
+   "name": "no_miscategorized_buildings",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-1f824c8d7f",
+   "name": "no_miscategorized_persons",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-f57d988e6b",
+   "name": "field_values_are_lists",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-8b9f9bda07",
+   "name": "no_misclassified_speakers",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_opus-06e4410c4a",
+   "name": "no_leading_bad_punct",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_opus-13b99a56ad",
+   "name": "no_trailing_bad_punct",
+   "status": "unsound",
+   "n_correct": 4755,
+   "rejected_correct": 3,
+   "rejected_correct_gold": 3,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_opus-d7e90d1494",
+   "name": "total_entities_le_tokens",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_opus-8b4899a7ba",
+   "name": "no_unbalanced_open_paren",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_opus-c141724ec1",
+   "name": "no_newlines_in_entity",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_opus-8dbacc2e1f",
+   "name": "no_double_space",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_opus-fa2ec9a32f",
+   "name": "entity_max_length",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_opus-b576faeaa5",
+   "name": "not_whole_sentence",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "fewnerd-r0_opus-410441a794",
+   "name": "no_quote_wrapping",
+   "status": "vacuous",
+   "n_correct": 4755,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 8245,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  }
+ ],
+ "admitted": [
+  {
+   "id": "fewnerd-r0_gpt4o-1b6e7499f3",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_empty_strings_in_fields",
+   "rationale": "Correct outputs never include empty strings as entities in any field. This catches outputs with improperly extracted empty entities.",
+   "source": "def check(output, ctx):\n    try:\n        parsed = parse_json(output)\n        if not parsed:\n            return True\n        for field in parsed.values():\n            if \"\" in field:\n                return False\n        return True\n    except:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-541fa4b9bb",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_whitespace_only_entities",
+   "rationale": "Correct outputs do not include entities that are just whitespace. This catches outputs with invalid or improperly trimmed entities.",
+   "source": "def check(output, ctx):\n    try:\n        parsed = parse_json(output)\n        if not parsed:\n            return True\n        for field in parsed.values():\n            for entity in field:\n                if entity.strip() == \"\":\n                    return False\n        return True\n    except:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-283a48aafb",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_non_alphanumeric_art_entities",
+   "rationale": "Correct outputs do not classify non-alphanumeric strings as \"art\". This catches outputs misclassifying punctuation or special characters as art.",
+   "source": "def check(output, ctx):\n    try:\n        parsed = parse_json(output)\n        if not parsed:\n            return True\n        for entity in parsed.get(\"art\", []):\n            if not any(char.isalnum() for char in entity):\n                return False\n        return True\n    except:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-389a1a0166",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_location_words_as_organization",
+   "rationale": "Correct outputs do not classify location-specific words (e.g., countries or cities) as organizations. This catches misclassification of locations.",
+   "source": "def check(output, ctx):\n    try:\n        parsed = parse_json(output)\n        if not parsed:\n            return True\n        for entity in parsed.get(\"organization\", []):\n            if entity.lower() in {\"yemen\", \"russia\", \"montenegro\"}:\n                return False\n        return True\n    except:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-3fe9e261e5",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_special_characters_in_person_field",
+   "rationale": "Correct outputs do not classify entities with excessive special characters as \"person\". This catches outputs misclassifying improperly formatted names.",
+   "source": "def check(output, ctx):\n    try:\n        parsed = parse_json(output)\n        if not parsed:\n            return True\n        for entity in parsed.get(\"person\", []):\n            if any(char in entity for char in \"!@#$%^&*()_+={}[]|\\\\\"):\n                return False\n        return True\n    except:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-bb4ee13a25",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_event_field_with_only_numbers",
+   "rationale": "Correct outputs do not classify purely numeric entities as events. This catches outputs misclassifying years or other numbers as events.",
+   "source": "def check(output, ctx):\n    try:\n        parsed = parse_json(output)\n        if not parsed:\n            return True\n        for entity in parsed.get(\"event\", []):\n            if entity.isdigit():\n                return False\n        return True\n    except:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-7e0c8556ea",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_entities_with_leading_or_trailing_whitespace",
+   "rationale": "Correct outputs trim whitespace from entities. This catches outputs with improperly formatted entities.",
+   "source": "def check(output, ctx):\n    try:\n        parsed = parse_json(output)\n        if not parsed:\n            return True\n        for field in parsed.values():\n            for entity in field:\n                if entity != entity.strip():\n                    return False\n        return True\n    except:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-bc5a87bd6b",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_fields_with_nonsense_strings",
+   "rationale": "Correct outputs do not classify gibberish or random strings as entities. This catches outputs with meaningless entities.",
+   "source": "def check(output, ctx):\n    try:\n        parsed = parse_json(output)\n        if not parsed:\n            return True\n        for field in parsed.values():\n            for entity in field:\n                if all(char not in string.ascii_letters for char in entity):\n                    return False\n        return True\n    except:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-24e2adb5e7",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_fields_with_unreasonably_long_entities",
+   "rationale": "Correct outputs do not classify unreasonably long strings as single entities. This catches outputs with overly long or invalid entities.",
+   "source": "def check(output, ctx):\n    try:\n        parsed = parse_json(output)\n        if not parsed:\n            return True\n        for field in parsed.values():\n            for entity in field:\n                if len(entity) > 100:  # Arbitrary reasonable limit\n                    return False\n        return True\n    except:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-29b90dac47",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_entities_with_repeated_characters",
+   "rationale": "Correct outputs do not include entities with excessive character repetition (e.g., \"aaaaa\"). This catches outputs with invalid extractions.",
+   "source": "def check(output, ctx):\n    try:\n        parsed = parse_json(output)\n        if not parsed:\n            return True\n        for field in parsed.values():\n            for entity in field:\n                if any(entity.count(char) > 10 for char in set(entity)):  # Arbitrary repetition limit\n                    return False\n        return True\n    except:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-7af84059a6",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_organization_field_with_generic_terms",
+   "rationale": "Organizations must be named entities, not generic terms like \"company\" or \"team.\" This catches outputs where such generic terms are labeled as organizations.",
+   "source": "def check(output, ctx):\n    try:\n        data = parse_json(output)\n        if data is None:\n            return True\n        for org in data.get(\"organization\", []):\n            if org.lower() in {\"company\", \"team\", \"group\", \"organization\"}:\n                return False\n        return True\n    except:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-6ba5cd4836",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_empty_strings_in_fields",
+   "rationale": "Correct outputs do not have empty strings as entities. This catches outputs where an entity is mistakenly an empty string.",
+   "source": "def check(output, ctx):\n    try:\n        data = parse_json(output)\n        if data is None:\n            return True\n        for field in data.values():\n            if \"\" in field:\n                return False\n        return True\n    except:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-38f0b78fb9",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_location_field_with_generic_places",
+   "rationale": "Locations should be specific entities, not generic terms like \"city\" or \"place.\" This catches outputs with such generic terms in the \"location\" field.",
+   "source": "def check(output, ctx):\n    try:\n        data = parse_json(output)\n        if data is None:\n            return True\n        for location in data.get(\"location\", []):\n            if location.lower() in {\"city\", \"place\", \"country\", \"area\"}:\n                return False\n        return True\n    except:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-75944c16af",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "art_field_contains_titles",
+   "rationale": "The \"art\" field should contain titles of works (e.g., books, films), not generic terms or non-title entities. This catches misclassifications in the \"art\" field.",
+   "source": "def check(output, ctx):\n    try:\n        data = parse_json(output)\n        if data is None:\n            return True\n        for art in data.get(\"art\", []):\n            if not any(c.isalpha() for c in art):\n                return False\n        return True\n    except:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-10bd04d4a8",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_location_field_with_directional_terms",
+   "rationale": "Locations should not contain standalone directional terms like \"north\" or \"south.\" This catches misclassifications of such terms as locations.",
+   "source": "def check(output, ctx):\n    try:\n        data = parse_json(output)\n        if data is None:\n            return True\n        for location in data.get(\"location\", []):\n            if location.lower() in {\"north\", \"south\", \"east\", \"west\"}:\n                return False\n        return True\n    except:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-33af849a0c",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_event_field_with_generic_terms",
+   "rationale": "Events should refer to specific named occurrences, not generic terms like \"event\" or \"meeting.\" This catches such generic terms in the \"event\" field.",
+   "source": "def check(output, ctx):\n    try:\n        data = parse_json(output)\n        if data is None:\n            return True\n        for event in data.get(\"event\", []):\n            if event.lower() in {\"event\", \"meeting\", \"conference\"}:\n                return False\n        return True\n    except:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-c8cc7de392",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_event_field_with_artifacts",
+   "rationale": "Artifacts like \"World Cup\" belong in the \"event\" or \"art\" field but not both. This ensures proper classification of events and artifacts.",
+   "source": "def check(output, ctx):\n    try:\n        data = parse_json(output)\n        if data is None:\n            return True\n        event_entities = set(data.get(\"event\", []))\n        art_entities = set(data.get(\"art\", []))\n        if event_entities & art_entities:\n            return False\n        return True\n    except:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-520276976b",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_event_field_with_dates_only",
+   "rationale": "Dates or years alone (e.g., \"2016\") should not be labeled as events. This ensures events are more specific than just dates.",
+   "source": "def check(output, ctx):\n    try:\n        data = parse_json(output)\n        if data is None:\n            return True\n        for event in data.get(\"event\", []):\n            if event.isdigit():\n                return False\n        return True\n    except:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_gpt4o-720ed77e72",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_other_field_with_named_entities",
+   "rationale": "Named entities (e.g., persons, locations) should not be misclassified as \"other.\" This ensures proper categorization of named entities.",
+   "source": "def check(output, ctx):\n    try:\n        data = parse_json(output)\n        if data is None:\n            return True\n        named_entity_fields = [\"person\", \"location\", \"organization\", \"art\", \"building\", \"event\", \"product\"]\n        named_entities = set()\n        for field in named_entity_fields:\n            named_entities.update(data.get(field, []))\n        for other in data.get(\"other\", []):\n            if other in named_entities:\n                return False\n        return True\n    except:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_opus-c258c3b196",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "entity_is_token_span",
+   "rationale": "Every gold entity is a contiguous token span of the text, and the label compares lower-cased, stripped strings. So every entity in a correct output, lower-cased and stripped, equals some lower-cased token span. This catches \"It's Only...\", \"(GAMP)\", \"Dr. Martin Haskell\" and \"D & E procedure\".",
+   "source": "def check(output, ctx):\n    try:\n        d = parse_json(output)\n        if not isinstance(d, dict):\n            return True\n        toks = ctx['text'].lower().split()\n        spans = set()\n        n = len(toks)\n        for i in range(n):\n            for j in range(i + 1, min(n, i + 60) + 1):\n                spans.add(' '.join(toks[i:j]))\n        for k, v in d.items():\n            if not isinstance(v, list):\n                continue\n            for e in v:\n                if isinstance(e, str):\n                    s = e.strip().lower()\n                    if s and ' '.join(s.split()) == s and s not in spans:\n                        if len(s.split()) <= 60:\n                            return False\n        return True\n    except Exception:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_opus-1fe5b8142a",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "entity_nonempty",
+   "rationale": "Gold entities are non-empty token spans, so a correct output never contains an empty or whitespace-only string. This catches degenerate outputs.",
+   "source": "def check(output, ctx):\n    try:\n        d = parse_json(output)\n        if not isinstance(d, dict):\n            return True\n        for v in d.values():\n            if isinstance(v, list):\n                for e in v:\n                    if isinstance(e, str) and e.strip() == '':\n                        return False\n        return True\n    except Exception:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_opus-ead0bb42cf",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "occurrence_bound",
+   "rationale": "Each gold entity is a distinct token span. So any string can appear across all fields at most as many times as it occurs in the text. This catches \"FIFA World Cup 2018\" listed as both art and event when it occurs once.",
+   "source": "def check(output, ctx):\n    try:\n        d = parse_json(output)\n        if not isinstance(d, dict):\n            return True\n        toks = ctx['text'].lower().split()\n        from collections import Counter\n        c = Counter()\n        for v in d.values():\n            if isinstance(v, list):\n                for e in v:\n                    if isinstance(e, str) and e.strip():\n                        c[e.strip().lower()] += 1\n        for s, cnt in c.items():\n            st = s.split()\n            m = len(st)\n            occ = sum(1 for i in range(len(toks) - m + 1) if toks[i:i + m] == st)\n            if occ > 0 and cnt > occ:\n                return False\n        return True\n    except Exception:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_opus-ea8bf48e62",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "not_only_stopwords",
+   "rationale": "A named entity never consists solely of function words. This catches spans like \"the\" or \"of the\".",
+   "source": "def check(output, ctx):\n    try:\n        d = parse_json(output)\n        if not isinstance(d, dict):\n            return True\n        sw = {'the', 'a', 'an', 'of', 'and', 'in', 'on', 'to', 'for', 'by', 'with', 'he', 'she', 'it', 'they', 'his', 'her', 'its', 'their', 'was', 'is', 'were', 'be'}\n        for v in d.values():\n            if isinstance(v, list):\n                for e in v:\n                    if isinstance(e, str):\n                        t = e.strip().lower().split()\n                        if t and all(x in sw for x in t):\n                            return False\n        return True\n    except Exception:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_opus-5dfc27184c",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "total_entity_tokens_le_text",
+   "rationale": "Non-overlapping spans cannot cover more tokens in total than the text contains. This catches outputs with redundant or overlapping material.",
+   "source": "def check(output, ctx):\n    try:\n        d = parse_json(output)\n        if not isinstance(d, dict):\n            return True\n        n = 0\n        for v in d.values():\n            if isinstance(v, list):\n                for e in v:\n                    if isinstance(e, str):\n                        n += len(e.split())\n        return n <= len(ctx['text'].split())\n    except Exception:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_opus-29be7b39d6",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "chars_subset_of_text",
+   "rationale": "Entities are substrings of the text, so every character of a lower-cased entity appears in the lower-cased text. This catches \"It's\" when the text lacks such a fused form only in combination with the other checks, and also catches invented characters such as curly quotes.",
+   "source": "def check(output, ctx):\n    try:\n        d = parse_json(output)\n        if not isinstance(d, dict):\n            return True\n        tc = set(ctx['text'].lower())\n        for v in d.values():\n            if isinstance(v, list):\n                for e in v:\n                    if isinstance(e, str):\n                        for ch in e.strip().lower():\n                            if ch not in tc and ch != ' ':\n                                return False\n        return True\n    except Exception:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_opus-e7bbba53f4",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "entity_substring_of_text",
+   "rationale": "A lower-cased stripped entity must be a substring of the lower-cased text. This is a weaker form of the token-span check and catches paraphrased entities.",
+   "source": "def check(output, ctx):\n    try:\n        d = parse_json(output)\n        if not isinstance(d, dict):\n            return True\n        t = ctx['text'].lower()\n        for v in d.values():\n            if isinstance(v, list):\n                for e in v:\n                    if isinstance(e, str) and e.strip() and e.strip().lower() not in t:\n                        return False\n        return True\n    except Exception:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_opus-47543cc326",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "entity_tokens_are_text_tokens",
+   "rationale": "Each token of a correct entity is a token of the text. This catches merged or split tokens such as \"Dr.\" and \"(GAMP)\".",
+   "source": "def check(output, ctx):\n    try:\n        d = parse_json(output)\n        if not isinstance(d, dict):\n            return True\n        ts = set(ctx['text'].lower().split())\n        for v in d.values():\n            if isinstance(v, list):\n                for e in v:\n                    if isinstance(e, str):\n                        for w in e.strip().lower().split():\n                            if w not in ts:\n                                return False\n        return True\n    except Exception:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_opus-8d9dafa836",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_starting_possessive",
+   "rationale": "A gold span never begins with the clitic \"'s\". This catches spans like \"'s idea\".",
+   "source": "def check(output, ctx):\n    try:\n        d = parse_json(output)\n        if not isinstance(d, dict):\n            return True\n        for v in d.values():\n            if isinstance(v, list):\n                for e in v:\n                    if isinstance(e, str):\n                        t = e.strip().split()\n                        if t and t[0] in (\"'s\", \"'\"):\n                            if len(t) > 1 and t[0] == \"'s\":\n                                return False\n        return True\n    except Exception:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_opus-63f285a47e",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "no_ampersand_entity_rewrite",
+   "rationale": "If the text contains \"& amp ;\", any entity containing \"&\" must reproduce the exact token sequence. This catches \"D & E\", which normalises the HTML-escaped form.",
+   "source": "def check(output, ctx):\n    try:\n        d = parse_json(output)\n        if not isinstance(d, dict):\n            return True\n        t = ' ' + ' '.join(ctx['text'].lower().split()) + ' '\n        for v in d.values():\n            if isinstance(v, list):\n                for e in v:\n                    if isinstance(e, str) and '&' in e:\n                        if ' ' + e.strip().lower() + ' ' not in t:\n                            return False\n        return True\n    except Exception:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_opus-3f48e403ba",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "apostrophe_tokenization",
+   "rationale": "If an entity contains an apostrophe, its exact spacing must occur in the text. This catches \"It's\" when the text has \"It 's\".",
+   "source": "def check(output, ctx):\n    try:\n        d = parse_json(output)\n        if not isinstance(d, dict):\n            return True\n        t = ' ' + ' '.join(ctx['text'].lower().split()) + ' '\n        for v in d.values():\n            if isinstance(v, list):\n                for e in v:\n                    if isinstance(e, str) and \"'\" in e:\n                        if ' ' + e.strip().lower() + ' ' not in t:\n                            return False\n        return True\n    except Exception:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_opus-5fcdbeb03f",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "paren_tokenization",
+   "rationale": "An entity containing a parenthesis must match the spaced token form found in the text. This catches \"Programs (GAMP)\".",
+   "source": "def check(output, ctx):\n    try:\n        d = parse_json(output)\n        if not isinstance(d, dict):\n            return True\n        t = ' ' + ' '.join(ctx['text'].lower().split()) + ' '\n        for v in d.values():\n            if isinstance(v, list):\n                for e in v:\n                    if isinstance(e, str) and ('(' in e or ')' in e):\n                        if ' ' + e.strip().lower() + ' ' not in t:\n                            return False\n        return True\n    except Exception:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_opus-0c56f02f69",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "period_tokenization",
+   "rationale": "An entity containing \".\" must occur with the text's spacing. This catches \"Dr. Martin Haskell\" when the text has \"Dr . Martin\".",
+   "source": "def check(output, ctx):\n    try:\n        d = parse_json(output)\n        if not isinstance(d, dict):\n            return True\n        t = ' ' + ' '.join(ctx['text'].lower().split()) + ' '\n        for v in d.values():\n            if isinstance(v, list):\n                for e in v:\n                    if isinstance(e, str) and '.' in e:\n                        if ' ' + e.strip().lower() + ' ' not in t:\n                            return False\n        return True\n    except Exception:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_opus-9410ddf006",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "hyphen_tokenization",
+   "rationale": "An entity containing a hyphen must occur verbatim, at token boundaries, in the text. This catches hyphens that were invented or had their spacing changed.",
+   "source": "def check(output, ctx):\n    try:\n        d = parse_json(output)\n        if not isinstance(d, dict):\n            return True\n        t = ' ' + ' '.join(ctx['text'].lower().split()) + ' '\n        for v in d.values():\n            if isinstance(v, list):\n                for e in v:\n                    if isinstance(e, str) and '-' in e:\n                        if ' ' + e.strip().lower() + ' ' not in t:\n                            return False\n        return True\n    except Exception:\n        return True\n"
+  },
+  {
+   "id": "fewnerd-r0_opus-556b16170f",
+   "task": "fewnerd",
+   "round": 0,
+   "name": "accent_preserved",
+   "rationale": "An entity whose de-accented form matches a text token, but whose actual characters do not, is wrong. The label compares exact lower-cased strings, so this catches \"Francoise\" written for \"Fran\u00e7oise\".",
+   "source": "def check(output, ctx):\n    try:\n        import unicodedata\n        d = parse_json(output)\n        if not isinstance(d, dict):\n            return True\n        ts = set(ctx['text'].lower().split())\n        for v in d.values():\n            if isinstance(v, list):\n                for e in v:\n                    if isinstance(e, str):\n                        for w in e.strip().lower().split():\n                            if w not in ts:\n                                return False\n        return True\n    except Exception:\n        return True\n"
+  },
+  {
+   "id": "hw:parses",
+   "name": "hw:parses",
+   "source": null,
+   "rationale": "version3 hand-written"
+  }
+ ],
+ "feedback": [
+  {
+   "name": "no_duplicate_entities_in_single_field",
+   "source": "def check(output, ctx):\n    try:\n        parsed = parse_json(output)\n        if not parsed:\n            return True\n        for field in parsed.values():\n            if len(field) != len(set(field)):\n                return False\n        return True\n    except:\n        return True\n",
+   "n_rejected_correct": 60,
+   "n_correct": 4755,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "Blum was born in Long Beach , California and grew up in Rancho Santa Margarita , California ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Long Beach\", \"California\", \"Rancho Santa Margarita\", \"California\"], \"organization\": [], \"other\": [], \"person\": [\"Blum\"], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Blum was born in Long Beach , California and grew up in Rancho Santa Margarita , California ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Long Beach\", \"California\", \"Rancho Santa Margarita\", \"California\"], \"organization\": [], \"other\": [], \"person\": [\"Blum\"], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Blum was born in Long Beach , California and grew up in Rancho Santa Margarita , California ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Long Beach\", \"California\", \"Rancho Santa Margarita\", \"California\"], \"organization\": [], \"other\": [], \"person\": [\"Blum\"], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "From her locations Mrs. Strong created papers for the Duke of Windsor and Wallis , The Duchess of Windsor , Barbara Hutton , the Rockefeller , Astor , Vanderbilt , and DuPont families , as well as Bette Davis , Diana Vreeland , Jacqueline Bouvier Kennedy , Barbara Paley , and other icons of style ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [], \"person\": [\"Mrs. Strong\", \"Windsor\", \"Wallis\", \"Windsor\", \"Barbara Hutton\", \"Rockefeller\", \"Astor\", \"Vanderbilt\", \"DuPont\", \"Bette Davis\", \"Diana Vreeland\", \"Jacqueline Bouvier Kennedy\", \"Barbara Paley\"], \"product\": []}",
+     "is_gold": true
+    }
+   ]
+  },
+  {
+   "name": "no_unrelated_words_as_entities",
+   "source": "def check(output, ctx):\n    try:\n        parsed = parse_json(output)\n        if not parsed:\n            return True\n        text = ctx[\"text\"]\n        for field in parsed.values():\n            for entity in field:\n                if entity not in text:\n                    return False\n        return True\n    except:\n        return True\n",
+   "n_rejected_correct": 26,
+   "n_correct": 4755,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "Acute kidney disease is now termed acute kidney injury and is marked by the sudden reduction in kidney function over seven days ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"acute kidney disease\", \"acute kidney injury\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Acute kidney disease is now termed acute kidney injury and is marked by the sudden reduction in kidney function over seven days ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"acute kidney disease\", \"acute kidney injury\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Acute kidney disease is now termed acute kidney injury and is marked by the sudden reduction in kidney function over seven days ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"acute kidney disease\", \"acute kidney injury\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Acute kidney disease is now termed acute kidney injury and is marked by the sudden reduction in kidney function over seven days ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"acute kidney disease\", \"acute kidney injury\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Acute kidney disease is now termed acute kidney injury and is marked by the sudden reduction in kidney function over seven days ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"Acute kidney disease\", \"Acute kidney injury\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Acute kidney disease is now termed acute kidney injury and is marked by the sudden reduction in kidney function over seven days ."
+     },
+     "output": "\n\n{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"acute kidney injury\", \"acute kidney disease\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Acute kidney disease is now termed acute kidney injury and is marked by the sudden reduction in kidney function over seven days ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"Acute kidney disease\", \"Acute kidney injury\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Acute kidney disease is now termed acute kidney injury and is marked by the sudden reduction in kidney function over seven days ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"Acute kidney disease\", \"Acute kidney injury\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    }
+   ]
+  },
+  {
+   "name": "entities_in_correct_order",
+   "source": "def check(output, ctx):\n    try:\n        parsed = parse_json(output)\n        if not parsed:\n            return True\n        text = ctx[\"text\"]\n        for field in parsed.values():\n            indices = [text.find(entity) for entity in field]\n            if indices != sorted(indices):\n                return False\n        return True\n    except:\n        return True\n",
+   "n_rejected_correct": 114,
+   "n_correct": 4755,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "Eerdmans Bible Dictionary tentatively agrees on the ancient alternative names , and suggest as location either Hamat Tiberias or Tell Raqqat ( ; also Tell al-Qunitria ) , north of Tiberias ."
+     },
+     "output": "{\"art\": [\"Eerdmans Bible Dictionary\"], \"building\": [], \"event\": [], \"location\": [\"Hamat Tiberias\", \"Tell Raqqat\", \"Tell al-Qunitria\", \"Tiberias\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "On 17 October 1970 a serious confrontation took place on Chelsea Bridge between the Essex and Chelsea chapters of the Hells Angels , and rival motorcycle gangs the Road Rats , Nightingales , Windsor Angels and Jokers ."
+     },
+     "output": "{\"art\":[],\"building\":[\"Chelsea Bridge\"],\"event\":[],\"location\":[\"Essex\",\"Chelsea\"],\"organization\":[\"Hells Angels\",\"Road Rats\",\"Nightingales\",\"Windsor Angels\",\"Jokers\"],\"other\":[],\"person\":[],\"product\":[]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "On 17 October 1970 a serious confrontation took place on Chelsea Bridge between the Essex and Chelsea chapters of the Hells Angels , and rival motorcycle gangs the Road Rats , Nightingales , Windsor Angels and Jokers ."
+     },
+     "output": "{\"art\": [], \"building\": [\"Chelsea Bridge\"], \"event\": [], \"location\": [\"Essex\", \"Chelsea\"], \"organization\": [\"Hells Angels\", \"Road Rats\", \"Nightingales\", \"Windsor Angels\", \"Jokers\"], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "On 17 October 1970 a serious confrontation took place on Chelsea Bridge between the Essex and Chelsea chapters of the Hells Angels , and rival motorcycle gangs the Road Rats , Nightingales , Windsor Angels and Jokers ."
+     },
+     "output": "{\"art\":[],\"building\":[\"Chelsea Bridge\"],\"event\":[],\"location\":[\"Essex\",\"Chelsea\"],\"organization\":[\"Hells Angels\",\"Road Rats\",\"Nightingales\",\"Windsor Angels\",\"Jokers\"],\"other\":[],\"person\":[],\"product\":[]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "On 17 October 1970 a serious confrontation took place on Chelsea Bridge between the Essex and Chelsea chapters of the Hells Angels , and rival motorcycle gangs the Road Rats , Nightingales , Windsor Angels and Jokers ."
+     },
+     "output": "{\"art\": [], \"building\": [\"Chelsea Bridge\"], \"event\": [], \"location\": [\"Essex\", \"Chelsea\"], \"organization\": [\"Hells Angels\", \"Road Rats\", \"Nightingales\", \"Windsor Angels\", \"Jokers\"], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "All were built by Vosper Thornycroft in Woolston except and , which were built by Yarrow Shipbuilders Limited on the River Clyde ."
+     },
+     "output": "\n\n{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"River Clyde\", \"Woolston\"], \"organization\": [\"Vosper Thornycroft\", \"Yarrow Shipbuilders Limited\"], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "A depiction of Civil War troops reading their mail at the Eagle Tavern which doubled as the post office in Silver Spring , Maryland can be seen at the Silver Spring Library ."
+     },
+     "output": "\n\n{\"art\": [], \"building\": [\"Eagle Tavern\", \"Silver Spring Library\"], \"event\": [\"Civil War\"], \"location\": [\"Maryland\", \"Silver Spring\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "It was established in 1980 by separating from the Faculty of Natural Sciences under the name of `` Faculty of Mathematics and Physics `` ( ) ."
+     },
+     "output": "\n\n{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [\"Faculty of Mathematics and Physics\", \"Faculty of Natural Sciences\"], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    }
+   ]
+  },
+  {
+   "name": "no_product_field_with_verbs",
+   "source": "def check(output, ctx):\n    try:\n        parsed = parse_json(output)\n        if not parsed:\n            return True\n        for entity in parsed.get(\"product\", []):\n            if any(word in entity.lower() for word in {\"run\", \"build\", \"develop\"}):\n                return False\n        return True\n    except:\n        return True\n",
+   "n_rejected_correct": 1,
+   "n_correct": 4755,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "The `` RuneQuest II `` game system has been retitled `` Legend `` , and contains no Gloranthan material ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [\"Gloranthan\"], \"other\": [], \"person\": [], \"product\": [\"RuneQuest II\", \"Legend\"]}",
+     "is_gold": true
+    }
+   ]
+  },
+  {
+   "name": "no_duplicate_entities_across_fields",
+   "source": "def check(output, ctx):\n    try:\n        parsed = parse_json(output)\n        if not parsed:\n            return True\n        seen = set()\n        for field in parsed.values():\n            for entity in field:\n                if entity in seen:\n                    return False\n                seen.add(entity)\n        return True\n    except:\n        return True\n",
+   "n_rejected_correct": 60,
+   "n_correct": 4755,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "Blum was born in Long Beach , California and grew up in Rancho Santa Margarita , California ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Long Beach\", \"California\", \"Rancho Santa Margarita\", \"California\"], \"organization\": [], \"other\": [], \"person\": [\"Blum\"], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Blum was born in Long Beach , California and grew up in Rancho Santa Margarita , California ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Long Beach\", \"California\", \"Rancho Santa Margarita\", \"California\"], \"organization\": [], \"other\": [], \"person\": [\"Blum\"], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Blum was born in Long Beach , California and grew up in Rancho Santa Margarita , California ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Long Beach\", \"California\", \"Rancho Santa Margarita\", \"California\"], \"organization\": [], \"other\": [], \"person\": [\"Blum\"], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "From her locations Mrs. Strong created papers for the Duke of Windsor and Wallis , The Duchess of Windsor , Barbara Hutton , the Rockefeller , Astor , Vanderbilt , and DuPont families , as well as Bette Davis , Diana Vreeland , Jacqueline Bouvier Kennedy , Barbara Paley , and other icons of style ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [], \"person\": [\"Mrs. Strong\", \"Windsor\", \"Wallis\", \"Windsor\", \"Barbara Hutton\", \"Rockefeller\", \"Astor\", \"Vanderbilt\", \"DuPont\", \"Bette Davis\", \"Diana Vreeland\", \"Jacqueline Bouvier Kennedy\", \"Barbara Paley\"], \"product\": []}",
+     "is_gold": true
+    }
+   ]
+  },
+  {
+   "name": "no_entities_with_repeated_words",
+   "source": "def check(output, ctx):\n    try:\n        parsed = parse_json(output)\n        if not parsed:\n            return True\n        for field in parsed.values():\n            for entity in field:\n                words = entity.split()\n                for i in range(len(words) - 1):\n                    if words[i] == words[i + 1]:\n                        return False\n        return True\n    except:\n        return True\n",
+   "n_rejected_correct": 22,
+   "n_correct": 4755,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "`` Tuvvi Tuvvi Tuvvi `` was directed by Singeetam Srinivasa Rao , produced by Parvathamma Rajkumar under Dakshayani Cine Combines , and written by Richard Louis ."
+     },
+     "output": "{\"art\":[\"Tuvvi Tuvvi Tuvvi\"], \"building\":[], \"event\":[], \"location\":[], \"organization\":[\"Dakshayani Cine Combines\"], \"other\":[], \"person\":[\"Singeetam Srinivasa Rao\",\"Parvathamma Rajkumar\",\"Richard Louis\"], \"product\":[]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "`` Tuvvi Tuvvi Tuvvi `` was directed by Singeetam Srinivasa Rao , produced by Parvathamma Rajkumar under Dakshayani Cine Combines , and written by Richard Louis ."
+     },
+     "output": "{\"art\":[\"Tuvvi Tuvvi Tuvvi\"], \"building\":[], \"event\":[], \"location\":[], \"organization\":[\"Dakshayani Cine Combines\"], \"other\":[], \"person\":[\"Singeetam Srinivasa Rao\",\"Parvathamma Rajkumar\",\"Richard Louis\"], \"product\":[]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "`` Tuvvi Tuvvi Tuvvi `` was directed by Singeetam Srinivasa Rao , produced by Parvathamma Rajkumar under Dakshayani Cine Combines , and written by Richard Louis ."
+     },
+     "output": "{\"art\":[\"Tuvvi Tuvvi Tuvvi\"], \"building\":[], \"event\":[], \"location\":[], \"organization\":[\"Dakshayani Cine Combines\"], \"other\":[], \"person\":[\"Singeetam Srinivasa Rao\",\"Parvathamma Rajkumar\",\"Richard Louis\"], \"product\":[] }",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "`` Tuvvi Tuvvi Tuvvi `` was directed by Singeetam Srinivasa Rao , produced by Parvathamma Rajkumar under Dakshayani Cine Combines , and written by Richard Louis ."
+     },
+     "output": "{\"art\":[\"Tuvvi Tuvvi Tuvvi\"], \"building\":[], \"event\":[], \"location\":[], \"organization\":[\"Dakshayani Cine Combines\"], \"other\":[], \"person\":[\"Singeetam Srinivasa Rao\",\"Parvathamma Rajkumar\",\"Richard Louis\"], \"product\":[]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "The game was preceded by musical performances by the Goo Goo Dolls , Green Day , and U2 ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [\"Goo Goo Dolls\", \"Green Day\", \"U2\"], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "The game was preceded by musical performances by the Goo Goo Dolls , Green Day , and U2 ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [\"Goo Goo Dolls\", \"Green Day\", \"U2\"], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "The game was preceded by musical performances by the Goo Goo Dolls , Green Day , and U2 ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [\"Goo Goo Dolls\", \"Green Day\", \"U2\"], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "The game was preceded by musical performances by the Goo Goo Dolls , Green Day , and U2 ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [\"Goo Goo Dolls\", \"Green Day\", \"U2\"], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    }
+   ]
+  },
+  {
+   "name": "no_empty_fields_with_entities_in_text",
+   "source": "def check(output, ctx):\n    try:\n        parsed = parse_json(output)\n        if not parsed:\n            return True\n        text = ctx[\"text\"]\n        if \"person\" in text.lower() and not parsed.get(\"person\"):\n            return False\n        return True\n    except:\n        return True\n",
+   "n_rejected_correct": 26,
+   "n_correct": 4755,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "Initial personnel came from the 4203d Photographic Technical Squadron ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [\"4203d Photographic Technical Squadron\"], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Initial personnel came from the 4203d Photographic Technical Squadron ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [\"4203d Photographic Technical Squadron\"], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Initial personnel came from the 4203d Photographic Technical Squadron ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [\"4203d Photographic Technical Squadron\"], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Initial personnel came from the 4203d Photographic Technical Squadron ."
+     },
+     "output": "{\"art\":[],\"building\":[],\"event\":[],\"location\":[],\"organization\":[\"4203d Photographic Technical Squadron\"],\"other\":[],\"person\":[],\"product\":[]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Initial personnel came from the 4203d Photographic Technical Squadron ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [\"4203d Photographic Technical Squadron\"], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Initial personnel came from the 4203d Photographic Technical Squadron ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [\"4203d Photographic Technical Squadron\"], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Initial personnel came from the 4203d Photographic Technical Squadron ."
+     },
+     "output": "\n\n{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [\"4203d Photographic Technical Squadron\"], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Initial personnel came from the 4203d Photographic Technical Squadron ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [\"4203d Photographic Technical Squadron\"], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    }
+   ]
+  },
+  {
+   "name": "no_nonexistent_tokens",
+   "source": "def check(output, ctx):\n    try:\n        data = parse_json(output)\n        if data is None:\n            return True\n        text_tokens = set(ctx['text'].split())\n        for field in data.values():\n            for entity in field:\n                if not set(entity.split()).issubset(text_tokens):\n                    return False\n        return True\n    except:\n        return True\n",
+   "n_rejected_correct": 15,
+   "n_correct": 4755,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "Cyclothymia , known today as cyclothymic disorder , tends to be underdiagnosed due to its low intensity ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"cyclothymia\", \"cyclothymic disorder\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Cyclothymia , known today as cyclothymic disorder , tends to be underdiagnosed due to its low intensity ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"cyclothymic disorder\", \"cyclothymia\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Cyclothymia , known today as cyclothymic disorder , tends to be underdiagnosed due to its low intensity ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"cyclothymia\", \"cyclothymic disorder\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Cyclothymia , known today as cyclothymic disorder , tends to be underdiagnosed due to its low intensity ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"cyclothymia\", \"cyclothymic disorder\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Myocarditis and pericarditis that occur as a result of mumps may lead to endocardial fibroelastosis , i.e ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"endocardial fibroelastosis\", \"mumps\", \"myocarditis\", \"pericarditis\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Exenatide is a 39-amino-acid peptide that is a synthetic version of exendin-4 , a hormone found in the saliva of the Gila monster ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"exendin-4\", \"exenatide\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Exenatide is a 39-amino-acid peptide that is a synthetic version of exendin-4 , a hormone found in the saliva of the Gila monster ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"exendin-4\", \"exenatide\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Exenatide is a 39-amino-acid peptide that is a synthetic version of exendin-4 , a hormone found in the saliva of the Gila monster ."
+     },
+     "output": "\n\n{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"exendin-4\", \"exenatide\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    }
+   ]
+  },
+  {
+   "name": "no_duplicate_entities_across_fields",
+   "source": "def check(output, ctx):\n    try:\n        data = parse_json(output)\n        if data is None:\n            return True\n        seen = set()\n        for field in data.values():\n            for entity in field:\n                if entity in seen:\n                    return False\n                seen.add(entity)\n        return True\n    except:\n        return True\n",
+   "n_rejected_correct": 60,
+   "n_correct": 4755,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "Blum was born in Long Beach , California and grew up in Rancho Santa Margarita , California ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Long Beach\", \"California\", \"Rancho Santa Margarita\", \"California\"], \"organization\": [], \"other\": [], \"person\": [\"Blum\"], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Blum was born in Long Beach , California and grew up in Rancho Santa Margarita , California ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Long Beach\", \"California\", \"Rancho Santa Margarita\", \"California\"], \"organization\": [], \"other\": [], \"person\": [\"Blum\"], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Blum was born in Long Beach , California and grew up in Rancho Santa Margarita , California ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Long Beach\", \"California\", \"Rancho Santa Margarita\", \"California\"], \"organization\": [], \"other\": [], \"person\": [\"Blum\"], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "From her locations Mrs. Strong created papers for the Duke of Windsor and Wallis , The Duchess of Windsor , Barbara Hutton , the Rockefeller , Astor , Vanderbilt , and DuPont families , as well as Bette Davis , Diana Vreeland , Jacqueline Bouvier Kennedy , Barbara Paley , and other icons of style ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [], \"person\": [\"Mrs. Strong\", \"Windsor\", \"Wallis\", \"Windsor\", \"Barbara Hutton\", \"Rockefeller\", \"Astor\", \"Vanderbilt\", \"DuPont\", \"Bette Davis\", \"Diana Vreeland\", \"Jacqueline Bouvier Kennedy\", \"Barbara Paley\"], \"product\": []}",
+     "is_gold": true
+    }
+   ]
+  },
+  {
+   "name": "no_partial_span_matches",
+   "source": "def check(output, ctx):\n    try:\n        data = parse_json(output)\n        if data is None:\n            return True\n        text_tokens = ctx['text'].split()\n        for field in data.values():\n            for entity in field:\n                if ' '.join(entity.split()) not in ' '.join(text_tokens):\n                    return False\n        return True\n    except:\n        return True\n",
+   "n_rejected_correct": 26,
+   "n_correct": 4755,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "Acute kidney disease is now termed acute kidney injury and is marked by the sudden reduction in kidney function over seven days ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"acute kidney disease\", \"acute kidney injury\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Acute kidney disease is now termed acute kidney injury and is marked by the sudden reduction in kidney function over seven days ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"acute kidney disease\", \"acute kidney injury\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Acute kidney disease is now termed acute kidney injury and is marked by the sudden reduction in kidney function over seven days ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"acute kidney disease\", \"acute kidney injury\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Acute kidney disease is now termed acute kidney injury and is marked by the sudden reduction in kidney function over seven days ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"acute kidney disease\", \"acute kidney injury\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Acute kidney disease is now termed acute kidney injury and is marked by the sudden reduction in kidney function over seven days ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"Acute kidney disease\", \"Acute kidney injury\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Acute kidney disease is now termed acute kidney injury and is marked by the sudden reduction in kidney function over seven days ."
+     },
+     "output": "\n\n{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"acute kidney injury\", \"acute kidney disease\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Acute kidney disease is now termed acute kidney injury and is marked by the sudden reduction in kidney function over seven days ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"Acute kidney disease\", \"Acute kidney injury\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Acute kidney disease is now termed acute kidney injury and is marked by the sudden reduction in kidney function over seven days ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"Acute kidney disease\", \"Acute kidney injury\"], \"person\": [], \"product\": []}",
+     "is_gold": false
+    }
+   ]
+  },
+  {
+   "name": "no_overlap_within_field",
+   "source": "def check(output, ctx):\n    try:\n        data = parse_json(output)\n        if data is None:\n            return True\n        for field in data.values():\n            if len(field) != len(set(field)):\n                return False\n        return True\n    except:\n        return True\n",
+   "n_rejected_correct": 60,
+   "n_correct": 4755,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "Blum was born in Long Beach , California and grew up in Rancho Santa Margarita , California ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Long Beach\", \"California\", \"Rancho Santa Margarita\", \"California\"], \"organization\": [], \"other\": [], \"person\": [\"Blum\"], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Blum was born in Long Beach , California and grew up in Rancho Santa Margarita , California ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Long Beach\", \"California\", \"Rancho Santa Margarita\", \"California\"], \"organization\": [], \"other\": [], \"person\": [\"Blum\"], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Blum was born in Long Beach , California and grew up in Rancho Santa Margarita , California ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Long Beach\", \"California\", \"Rancho Santa Margarita\", \"California\"], \"organization\": [], \"other\": [], \"person\": [\"Blum\"], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "From her locations Mrs. Strong created papers for the Duke of Windsor and Wallis , The Duchess of Windsor , Barbara Hutton , the Rockefeller , Astor , Vanderbilt , and DuPont families , as well as Bette Davis , Diana Vreeland , Jacqueline Bouvier Kennedy , Barbara Paley , and other icons of style ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [], \"person\": [\"Mrs. Strong\", \"Windsor\", \"Wallis\", \"Windsor\", \"Barbara Hutton\", \"Rockefeller\", \"Astor\", \"Vanderbilt\", \"DuPont\", \"Bette Davis\", \"Diana Vreeland\", \"Jacqueline Bouvier Kennedy\", \"Barbara Paley\"], \"product\": []}",
+     "is_gold": true
+    }
+   ]
+  },
+  {
+   "name": "no_empty_fields",
+   "source": "def check(output, ctx):\n    try:\n        data = parse_json(output)\n        if data is None or len(data) != 8:\n            return False\n        return True\n    except:\n        return True\n",
+   "n_rejected_correct": 9,
+   "n_correct": 4755,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "In July 1980 , the wing acquired the commitment of a primary Rapid Deployment Force unit ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [\"Rapid Deployment Force\"], \"other\": [], \"person\": [], \"product\": [], \"date\": [\"July 1980\"]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Later in 2018 , the Sun-Times board took action and accepted Eisendrath 's resignation as CEO ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [\"Sun-Times\"], \"other\": [], \"person\": [\"Eisendrath\"], \"product\": [], \"date\": [\"2018\"]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Gardiner was sent to the Fleet Prison in September and remained there until January 1548 ."
+     },
+     "output": "{\"art\": [], \"building\": [\"Fleet Prison\"], \"event\": [], \"location\": [], \"organization\": [], \"other\": [], \"person\": [\"Gardiner\"], \"product\": [], \"date\": [\"September\", \"January 1548\"]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Beers was diagnosed with Osteochondritis dissecans in 2006 , at the age of 12 ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"Osteochondritis dissecans\"], \"person\": [\"Beers\"], \"product\": [], \"date\": [\"2006\"]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Beers was diagnosed with Osteochondritis dissecans in 2006 , at the age of 12 ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"Osteochondritis dissecans\"], \"person\": [\"Beers\"], \"product\": [], \"date\": [\"2006\"]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Beers was diagnosed with Osteochondritis dissecans in 2006 , at the age of 12 ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"Osteochondritis dissecans\"], \"person\": [\"Beers\"], \"product\": [], \"date\": [\"2006\"]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Beers was diagnosed with Osteochondritis dissecans in 2006 , at the age of 12 ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"Osteochondritis dissecans\"], \"person\": [\"Beers\"], \"product\": [], \"date\": [\"2006\"]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "He was elected MP representing Mbagala in 2015 ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Mbagala\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": [], \"year\": [\"2015\"]}",
+     "is_gold": false
+    }
+   ]
+  },
+  {
+   "name": "no_duplicate_across_fields_and_case",
+   "source": "def check(output, ctx):\n    try:\n        data = parse_json(output)\n        if data is None:\n            return True\n        seen = set()\n        for field in data.values():\n            for entity in field:\n                if entity.lower() in seen:\n                    return False\n                seen.add(entity.lower())\n        return True\n    except:\n        return True\n",
+   "n_rejected_correct": 60,
+   "n_correct": 4755,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "Blum was born in Long Beach , California and grew up in Rancho Santa Margarita , California ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Long Beach\", \"California\", \"Rancho Santa Margarita\", \"California\"], \"organization\": [], \"other\": [], \"person\": [\"Blum\"], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Blum was born in Long Beach , California and grew up in Rancho Santa Margarita , California ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Long Beach\", \"California\", \"Rancho Santa Margarita\", \"California\"], \"organization\": [], \"other\": [], \"person\": [\"Blum\"], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Blum was born in Long Beach , California and grew up in Rancho Santa Margarita , California ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Long Beach\", \"California\", \"Rancho Santa Margarita\", \"California\"], \"organization\": [], \"other\": [], \"person\": [\"Blum\"], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Greece is also one of the few EU countries where there is a rising crime rate , though comparatively the crime rate is still very low by EU standards ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Greece\", \"EU\", \"EU\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "From her locations Mrs. Strong created papers for the Duke of Windsor and Wallis , The Duchess of Windsor , Barbara Hutton , the Rockefeller , Astor , Vanderbilt , and DuPont families , as well as Bette Davis , Diana Vreeland , Jacqueline Bouvier Kennedy , Barbara Paley , and other icons of style ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [], \"person\": [\"Mrs. Strong\", \"Windsor\", \"Wallis\", \"Windsor\", \"Barbara Hutton\", \"Rockefeller\", \"Astor\", \"Vanderbilt\", \"DuPont\", \"Bette Davis\", \"Diana Vreeland\", \"Jacqueline Bouvier Kennedy\", \"Barbara Paley\"], \"product\": []}",
+     "is_gold": true
+    }
+   ]
+  },
+  {
+   "name": "no_location_field_with_products",
+   "source": "def check(output, ctx):\n    try:\n        data = parse_json(output)\n        if data is None:\n            return True\n        for location in data.get(\"location\", []):\n            if any(char.isdigit() for char in location):  # Products often have numbers\n                return False\n        return True\n    except:\n        return True\n",
+   "n_rejected_correct": 37,
+   "n_correct": 4755,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "The community is located along the West Branch Susquehanna River and Pennsylvania Route 120 east of Renovo ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"West Branch Susquehanna River\", \"Pennsylvania Route 120\", \"Renovo\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "The community is located along the West Branch Susquehanna River and Pennsylvania Route 120 east of Renovo ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"West Branch Susquehanna River\", \"Pennsylvania Route 120\", \"Renovo\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "The community is located along the West Branch Susquehanna River and Pennsylvania Route 120 east of Renovo ."
+     },
+     "output": "{\"art\":[],\"building\":[],\"event\":[],\"location\":[\"West Branch Susquehanna River\",\"Pennsylvania Route 120\",\"Renovo\"],\"organization\":[],\"other\":[],\"person\":[],\"product\":[]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "After Lexington Avenue\u201353rd Street , the westbound tracks rise above the eastbound tracks ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Lexington Avenue\u201353rd Street\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Service on the 63rd Street Line was replaced by a shuttle running from the BMT Broadway Line ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"63rd Street Line\", \"BMT Broadway Line\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Service on the 63rd Street Line was replaced by a shuttle running from the BMT Broadway Line ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"63rd Street Line\", \"BMT Broadway Line\"], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Service on the 63rd Street Line was replaced by a shuttle running from the BMT Broadway Line ."
+     },
+     "output": "{\"art\":[],\"building\":[],\"event\":[],\"location\":[\"63rd Street Line\",\"BMT Broadway Line\"],\"organization\":[],\"other\":[],\"person\":[],\"product\":[]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "The project is a joint venture between Minto Communities and Buffett 's Margaritaville Holdings , with the development being built on land close to LPGA Boulevard and about a mile to the west of Interstate 95 ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"LPGA Boulevard\", \"Interstate 95\"], \"organization\": [\"Minto Communities\", \"Margaritaville Holdings\"], \"other\": [], \"person\": [\"Buffett\"], \"product\": []}",
+     "is_gold": false
+    }
+   ]
+  },
+  {
+   "name": "entity_has_alnum",
+   "source": "def check(output, ctx):\n    try:\n        d = parse_json(output)\n        if not isinstance(d, dict):\n            return True\n        for v in d.values():\n            if isinstance(v, list):\n                for e in v:\n                    if isinstance(e, str) and e.strip() and not any(ch.isalnum() for ch in e):\n                        return False\n        return True\n    except Exception:\n        return True\n",
+   "n_rejected_correct": 4,
+   "n_correct": 4755,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "Sculptor Raymond Kaskey was paid $ 228,000 in public funds and reportedly an additional $ 100,000 in private donations ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"$\", \"$\"], \"person\": [\"Raymond Kaskey\"], \"product\": []}",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "text": "In 2016 , Cohen launched Cohen Veterans Network with a pledge of $ 275 million to fund the project , and announced the first four Military Family Clinic locations ."
+     },
+     "output": "{\"art\": [], \"building\": [\"Military Family Clinic\"], \"event\": [], \"location\": [], \"organization\": [\"Cohen Veterans Network\"], \"other\": [\"$\"], \"person\": [\"Cohen\"], \"product\": []}",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "text": "The steep price was originally slashed to \u00a3 16,000 and when the Rover 25 was launched , this was cut to \u00a3 14,000 to get rid of vehicles still lingering in showrooms ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [\"\\u00a3\", \"\\u00a3\"], \"person\": [], \"product\": [\"Rover 25 was\"]}",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "text": "The $ 196 million `` Libraries for All '' bond measure , along with private funds raised by The Seattle Public Library Foundation , nearly doubled the square footage in Seattle 's libraries , including the building of new branches and a new Central Library ."
+     },
+     "output": "{\"art\": [], \"building\": [\"Central Library\"], \"event\": [], \"location\": [\"Seattle\"], \"organization\": [\"The Seattle Public Library Foundation\"], \"other\": [\"$\"], \"person\": [], \"product\": []}",
+     "is_gold": true
+    }
+   ]
+  },
+  {
+   "name": "no_trailing_bad_punct",
+   "source": "def check(output, ctx):\n    try:\n        d = parse_json(output)\n        if not isinstance(d, dict):\n            return True\n        bad = {',', '(', ';', '[', '{'}\n        for v in d.values():\n            if isinstance(v, list):\n                for e in v:\n                    if isinstance(e, str):\n                        t = e.strip().split()\n                        if t and t[-1] in bad:\n                            return False\n        return True\n    except Exception:\n        return True\n",
+   "n_rejected_correct": 3,
+   "n_correct": 4755,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "The 13th episode of `` Veggie Tales `` , `` King George and the Ducky , `` contained a brief parody of `` The Englishman Who Went up a Hill but Came down a Mountain '' entitled `` The Englishman Who Went up a Hill and Came Down with All the Bananas . ''"
+     },
+     "output": "{\"art\": [\"Veggie Tales\", \"King George and the Ducky ,\"], \"building\": [], \"event\": [], \"location\": [], \"organization\": [], \"other\": [], \"person\": [], \"product\": []}",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "text": "Her work has been published by international magazines and newspapers such as Der Spiegel , National Geographic Magazine , Atlas Obscura , Foreign Policy Magazine , L'OBS Magazine , Zenith , The Weather Channel , Le Monde hors serie , , The American Scholar Magazine , T\u00e9l\u00e9rama Magazine , , Zenith Magazine , Woman Paper Visa journal , Emerge Magazine , Kel12 Magazine , The Caravan Magazine , Fotoblur magazine , and other publications ."
+     },
+     "output": "{\"art\": [\"Der Spiegel\", \"National Geographic Magazine\", \"Atlas Obscura\", \"Foreign Policy Magazine\", \"L'OBS Magazine\", \"Zenith\", \"The Weather Channel\", \"Le Monde hors serie ,\", \"The American Scholar Magazine\", \"T\\u00e9l\\u00e9rama Magazine ,\", \"Zenith Magazine\", \"Woman Paper Visa journal\", \"Emerge Magazine\", \"Kel12 Magazine\", \"Caravan Magazine\", \"Fotoblur magazine\"], \"building\": [], \"event\": [], \"lo",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "text": "[ As well as Alan Bond and Laurie Connell , ] Hawke also mingled with John Roberts , the hard-as-a-hammer builder who created the giant Multiplex corporation , the philanthropic James McCusker , founder of the Town and Country building society , Ernest Lee-Steer e , the pastoralist , racehorse owner and Perth lord mayor , prominent businessman Kevin Parry and Ric Stowe , Australia 's most reclusive billionaire , of Griffin Coal fame ."
+     },
+     "output": "{\"art\": [], \"building\": [], \"event\": [], \"location\": [\"Perth\"], \"organization\": [\"Multiplex\", \"Town and Country\", \"Griffin Coal\"], \"other\": [], \"person\": [\"Alan Bond\", \"Laurie Connell ,\", \"Hawke\", \"John Roberts\", \"James McCusker\", \"Ernest Lee-Steer\", \"Kevin Parry\", \"Ric Stowe\"], \"product\": []}",
+     "is_gold": true
+    }
+   ]
+  }
+ ]
+}

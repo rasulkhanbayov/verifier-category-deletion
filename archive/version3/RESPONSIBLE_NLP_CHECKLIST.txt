@@ -1,0 +1,252 @@
+RESPONSIBLE NLP CHECKLIST — draft answers for the ARR OpenReview submission form
+COLING 2027 Main Track, ARR October 2026 cycle
+Prepared 2026-08-30. Verified against https://aclrollingreview.org/cfp (fetched
+2026-08-30) and the Responsible NLP checklist guidelines linked from it.
+
+READ THIS FIRST
+ARR desk-rejects for "incorrect, incomplete or misleading filing of the
+responsible NLP checklist". That makes the checklist a desk-reject surface in
+its own right, and it is the one place where the temptation to round an
+uncomfortable answer up is strongest. Several answers below are "no" or
+"partially", and they must stay that way. An honest "no" with a pointer to the
+Limitations section costs nothing; a "yes" that a reviewer can falsify from the
+paper is a desk rejection.
+
+Metadata fields, including this checklist, remain editable for 48 hours after
+the deadline.
+
+================================================================================
+A. FOR EVERY SUBMISSION
+================================================================================
+
+A1. Did you describe the limitations of your work?
+    YES — "Limitations", placed after the Conclusion and before the references,
+    excluded from the page count as ARR requires. It covers: language coverage
+    (all three tasks are English) with the typological prediction that follows;
+    what the ceiling does and does not bound, including that the reported
+    figures evaluate Cor. 3(b) under a homogeneity assumption that is false in
+    practice and understates the heterogeneous case; the A2 conditional-
+    independence failure for stacks sharing a parse; contamination; and the
+    absence of a total compute figure.
+
+A2. Did you discuss any potential risks of your work?
+    YES — "Ethical considerations". The specific risk named is that the floor of
+    Prop. 1 is a guarantee about expected accuracy and must not be presented to
+    downstream users as a correctness guarantee, since a system that never
+    degrades on average can still fail badly on an individual input.
+
+A3. Do the abstract and introduction summarize the paper's main claims?
+    YES.
+
+A4. Have you used AI assistants in writing, and is that disclosed?
+    See E1. Answer there, not here.
+
+================================================================================
+B. DID YOU USE OR CREATE SCIENTIFIC ARTIFACTS?   YES
+================================================================================
+
+B1. Did you cite the creators of artifacts you used?
+    YES — Spider (via the official Yale LILY database release), CoNLL2003 (via
+    the zjunlp/iepile release), SIGMORPHON 2022 English word-level segmentation,
+    test-suite accuracy (Zhong et al.), and the four models. Cited in Section 6
+    and Appendix A.
+    >> AUTHOR ACTION: confirm Spider, CoNLL2003 and SIGMORPHON each have a
+       bibliography entry, not only a prose mention. At present they are named
+       in prose; a reviewer checking B1 will look for the citations.
+
+B2. Did you discuss the license or terms of use?
+    PARTIALLY — Spider's CC BY-SA 4.0 is stated. CoNLL2003 and SIGMORPHON
+    licences are not.
+    >> AUTHOR ACTION: add both, and confirm the OpenRouter terms permit the
+       reported use. Answer "partially" until done; do not answer "yes".
+
+B3. Did you discuss whether your use was consistent with intended use?
+    YES — all three are public research benchmarks used for their intended
+    evaluation purpose. No new data collection.
+
+B4. Did you discuss steps taken to check for PII or offensive content?
+    NO, and this is the correct answer. We created no new data. CoNLL2003 is
+    Reuters newswire containing named persons, which is inherent to the NER task
+    and to the benchmark as distributed; we neither augment nor redistribute it.
+    >> Answer "N/A — no new artifacts created", with that sentence as
+       justification. Do not claim a screening step that was not performed.
+
+B5. Did you document the artifacts (domain, language, linguistic phenomena)?
+    YES — Section 6 states the three tasks and what kind of well-formedness
+    condition each carries; Appendix A gives splits and instance counts; the
+    language (English throughout) is stated in Limitations as the first
+    limitation.
+
+B6. Did you report statistics about the data?
+    YES — 200 instances per task per model; Spider dev is 1,034 examples of
+    which 875 (84.6%) are subquery-free, the coverage limit of the constrained-
+    decoding reference point. Two cells ran short of 200 because of OpenRouter
+    rate-limiting (145 and 184) and Appendix A says so, including that the
+    dropped instances were not verified missing-at-random.
+
+================================================================================
+C. DID YOU RUN COMPUTATIONAL EXPERIMENTS?   YES
+================================================================================
+
+C1. Did you report the number of parameters, compute budget, and infrastructure?
+    PARTIALLY, AND THIS MUST BE ANSWERED AS "PARTIALLY".
+    Infrastructure: yes — OpenRouter-hosted inference for the four API models,
+    plus one local GPU (Tesla P100) for the constrained-decoding reference
+    point. Parameters: model sizes are stated where public (8B, 70B); the OpenAI
+    models' parameter counts are not disclosed by the provider.
+    Compute budget: NO. Total spend was not tracked per experiment from the
+    start, because exploratory calls made while building the harness are mixed
+    in with the measurements finally reported. The paper says this in
+    Limitations rather than substituting an estimate.
+    >> Do NOT answer "yes" here. The paper openly says the figure does not
+       exist; a "yes" would be exactly the misleading filing ARR desk-rejects.
+
+C2. Did you discuss the experimental setup, including hyperparameter search?
+    YES — greedy decoding for the base output, temperature 0.7 for candidates,
+    N in {1,2,4,8,16,32}, seed 0, 200 instances per cell. No hyperparameter
+    search was run: the decoding settings were fixed in advance and not tuned,
+    and the trained scorers are logistic regressions over fixed feature sets.
+    >> AUTHOR ACTION (B9): record the OpenRouter model snapshot strings and
+       access dates. These are moving endpoints and no snapshot is recorded
+       anywhere in the bundle. Without them the setup is not reproducible, and
+       C2 and D-series reproducibility answers are weaker than they look.
+
+C3. Did you report descriptive statistics, e.g. error bars?
+    PARTIALLY, AND THIS MUST BE ANSWERED AS "PARTIALLY".
+    Reported: paired bootstrap 95% confidence intervals over instances, a paired
+    permutation test, and the minimum detectable effect (7.5-9.3 accuracy points
+    at 80% power) stated in Section 6 BEFORE any near-null is reported.
+    Not reported: variation across random seeds. Every cell is a single draw at
+    seed 0, and no standard deviations across seeds appear anywhere. Section 6
+    does not claim otherwise; an earlier draft did and the claim was removed.
+    >> This is blocking finding B4. Answer "partially" and point to Limitations.
+
+C4. Did you report the packages used?
+    YES — sqlglot for SQL parsing, transformers and outlines for the local
+    constrained-decoding run, numpy for the analysis. Appendix A and the
+    supplementary archive.
+    >> AUTHOR ACTION: add version numbers for each. Package versions matter for
+       sqlglot in particular, since two parsing defects in the schema-validity
+       checker are reported in Section 7 and their behaviour is version-
+       dependent.
+
+================================================================================
+D. DID YOU USE HUMAN ANNOTATORS OR RESEARCH WITH HUMAN PARTICIPANTS?   NO
+================================================================================
+
+    Answer NO for this submission, and answer it plainly.
+
+    Appendix C designs a human validation of the correctness label (V1: 150
+    epsilon events per task, two annotators blind to the automatic label and to
+    each other, third adjudicating, Krippendorff's alpha reported with a
+    pre-registered floor of 0.67). It has NOT been run. A design is not an
+    annotation study, and answering "yes" on the strength of a design would be
+    a misleading filing.
+
+    >> If V1 is run before the deadline, D1-D5 all become answerable and must be
+       completed: instructions given to participants, recruitment and payment,
+       consent, ethics-board approval, and annotator demographics.
+
+================================================================================
+E. DID YOU USE AI ASSISTANTS IN YOUR RESEARCH, CODING, OR WRITING?   YES
+================================================================================
+
+E1. Disclose the use and its scope.
+
+    YES. Disclose, in substance:
+
+      "AI assistants were used for drafting and editing the manuscript, for
+       deriving and checking the formal results, and for writing analysis and
+       verification code. All formal results were additionally verified by
+       machine (symbolic differentiation, Monte Carlo simulation, and exhaustive
+       enumeration over random check systems; the checkers are in the
+       supplementary archive), and the human authors independently re-derived
+       every numbered result and take full responsibility for the correctness of
+       all methods, results and writing."
+
+    Under the ACL policy this use spans categories (a) language assistance,
+    (d) low-novelty text, and (e) new ideas. Categories (a) and (b) do not
+    require disclosure on their own; (d) and (e) do, so a full disclosure is
+    required and is given above.
+
+    >> TWO AUTHOR ACTIONS, BOTH GATING.
+       1. ARR states that details "should be included in the Acknowledgements
+          section". This anonymous submission has no Acknowledgements section.
+          Add one at camera-ready, and keep the disclosure in "Ethical
+          considerations" for the review version so it is visible to reviewers.
+       2. The claim that the human authors independently re-derived every
+          numbered result MUST BE TRUE before this is filed. The bundle's own
+          handover notes still list that re-derivation as outstanding. Filing
+          E1 with an untrue verification claim is precisely the misleading
+          filing that carries desk rejection, and it is worse than the
+          underlying gap it would conceal.
+
+================================================================================
+FORMAT AND SUBMISSION MECHANICS (verified against the ARR CFP, 2026-08-30)
+================================================================================
+
+  8 pages of content .................. VERIFIED. Page 9 begins with
+                                        "Limitations". Re-verify with
+                                        measure_pages.py after any edit.
+  Limitations, after conclusion,
+    before references, uncounted ...... VERIFIED
+  Ethical considerations, optional,
+    uncounted, ARR's recommended title  DONE (renamed from "Ethics Statement")
+  Unlimited references ................ OK
+  Appendices after the references ..... VERIFIED
+  Appendices in double column ......... VERIFIED (single-column appendices are
+                                        a desk-reject ground since July 2025)
+  Official unmodified ACL template .... acl.sty carries the official header, and
+                                        soundver.sty touches no geometry, font
+                                        or margin setting. Byte-comparison
+                                        against acl-org/acl-style-files was
+                                        blocked by the sandbox network.
+                                        >> AUTHOR ACTION: diff acl.sty against
+                                           the current release before submitting.
+  Two-way anonymised .................. VERIFIED. No names, affiliations, URLs,
+                                        repository links or identifying
+                                        self-references. All code pointers now
+                                        name the anonymised supplementary
+                                        archive rather than a "released" artifact
+                                        a reviewer cannot open.
+  Line numbers for review ............. present via \usepackage[review]{acl}
+  No anonymity period ................. correct under current ACL/ARR policy;
+                                        preprinting during review is permitted.
+                                        Note that anonymous submissions receive
+                                        priority for borderline papers, which is
+                                        an argument for the binding
+                                        "no non-anonymous preprint" option.
+  Supplementary material .............. software as ONE .tgz/.zip, data as a
+                                        SEPARATE archive, both fully anonymised.
+                                        Anonymous GitHub is acceptable; Dropbox
+                                        and Google Drive are NOT.
+  All authors register as reviewers ... within 48h of the deadline. Papers from
+                                        teams that do not may be desk rejected.
+  Multiple submission .................. the work must not be under review
+                                        elsewhere during the ARR cycle.
+
+================================================================================
+THE ONE JUDGEMENT CALL A REVIEWER COULD GO EITHER WAY ON
+================================================================================
+
+  ARR warns: "Including key materials in appendices could be viewed as an
+  attempt to circumvent the content page count, and result in desk rejection."
+
+  This paper reached 8 pages partly by moving material to the appendix: the full
+  rate table, the main comparison table, Figure 2, the protocol, the check
+  definitions and the validity designs. Proofs, protocol and check definitions
+  are explicitly permitted there. The two result tables are the judgement call.
+
+  The argument that it is compliant: the main body is self-contained for every
+  claim. Table 1 gives p_0, epsilon and the ceiling for all seven certified
+  cells, which is the headline. Section 7 states the E3 result (24/24 SQL, 4/4
+  IE cells), the two composition cells (71.5->73.5 and 43.0->45.5), and the E3b
+  null (p >= 0.112) in the body text. A reviewer can assess every claim without
+  turning to the appendix; the appendix tables carry the full supporting data.
+
+  The residual risk, stated plainly: a reviewer who feels the full comparison
+  table belongs in the body may say so. If you want to remove that risk, bring
+  Table 6 (the measured rates) into the main paper. It needs roughly 0.35 of a
+  page, and Related Work is the place to find it: it currently runs 0.95 pages
+  and would still work at 0.65. That is a trade, not a fix, and it is yours to
+  make rather than ours.

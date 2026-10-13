@@ -1,0 +1,70 @@
+{
+ "task": "morph",
+ "selection": "tau=0.005",
+ "N": 32,
+ "by_model": {
+  "meta-llama/llama-3.1-70b-instruct": {
+   "n": 100,
+   "base": 0.34,
+   "handwritten": 0.3,
+   "synth": 0.34,
+   "synth_minus_base": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "synth_minus_handwritten": [
+    0.04,
+    0.0,
+    0.09
+   ],
+   "handwritten_minus_base": [
+    -0.04,
+    -0.09,
+    0.0
+   ]
+  },
+  "openai/gpt-4o-mini-2024-07-18": {
+   "n": 100,
+   "base": 0.33,
+   "handwritten": 0.31,
+   "synth": 0.34,
+   "synth_minus_base": [
+    0.01,
+    0.0,
+    0.03
+   ],
+   "synth_minus_handwritten": [
+    0.03,
+    0.0,
+    0.07
+   ],
+   "handwritten_minus_base": [
+    -0.02,
+    -0.05,
+    0.0
+   ]
+  },
+  "qwen/qwen-2.5-72b-instruct": {
+   "n": 100,
+   "base": 0.38,
+   "handwritten": 0.35,
+   "synth": 0.39,
+   "synth_minus_base": [
+    0.01,
+    0.0,
+    0.03
+   ],
+   "synth_minus_handwritten": [
+    0.04,
+    0.01,
+    0.08
+   ],
+   "handwritten_minus_base": [
+    -0.03,
+    -0.07,
+    0.0
+   ]
+  }
+ }
+}

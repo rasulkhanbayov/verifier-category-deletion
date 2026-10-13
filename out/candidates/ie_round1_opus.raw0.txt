@@ -1,0 +1,545 @@
+### CHECK entities_are_strings
+RATIONALE: The label lower-cases every entity, so a correct output can only contain strings. This catches outputs whose lists hold numbers, nested objects or nulls.
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                for e in v:
+                    if not isinstance(e, str):
+                        return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK entities_nonempty
+RATIONALE: Gold entities are non-empty substrings of the text. This catches entries that are empty or contain only whitespace.
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str) and e.strip() == "":
+                        return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK substring_case_insensitive
+RATIONALE: Every gold entity is an exact substring of the text, and the label compares lower-cased values. So every correct entity is a case-insensitive substring of the text. This catches invented or paraphrased entities.
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        t = ctx['text'].lower()
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str) and e.strip().lower() not in t:
+                        return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK token_aligned
+RATIONALE: CoNLL entities are spans of whole tokens, so a correct entity must match a contiguous token sequence of the text (case-insensitive). This catches partial-token extractions.
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        toks = [x.lower() for x in ctx['text'].split()]
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if not isinstance(v, list):
+                continue
+            for e in v:
+                if not isinstance(e, str):
+                    continue
+                et = e.strip().lower().split()
+                if not et:
+                    continue
+                n = len(et)
+                if not any(toks[i:i+n] == et for i in range(len(toks) - n + 1)):
+                    return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK entity_has_letter
+RATIONALE: Named entities contain letters. This catches numbers, scores and dates extracted as entities, such as "1", "0-0" and "1996-08-26".
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str) and e.strip() and not any(c.isalpha() for c in e):
+                        return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK entity_capitalized_in_text
+RATIONALE: Named entities in CoNLL contain at least one uppercase character where they occur in the text. The check accepts if any occurrence qualifies. It catches common-noun phrases like "wild card", "former president" and "world record".
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        toks = ctx['text'].split()
+        low = [x.lower() for x in toks]
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if not isinstance(v, list):
+                continue
+            for e in v:
+                if not isinstance(e, str):
+                    continue
+                et = e.strip().lower().split()
+                n = len(et)
+                if n == 0:
+                    continue
+                occ = [i for i in range(len(toks) - n + 1) if low[i:i+n] == et]
+                if not occ:
+                    continue
+                if not any(any(c.isupper() for c in " ".join(toks[i:i+n])) for i in occ):
+                    return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK count_le_occurrences
+RATIONALE: Each gold entity is a distinct span of the text. So an entity string cannot appear across all fields more times than it occurs in the text. This catches the same span being duplicated or assigned to several types.
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        low = [x.lower() for x in ctx['text'].split()]
+        from collections import Counter
+        c = Counter()
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        c[" ".join(e.strip().lower().split())] += 1
+        for s, cnt in c.items():
+            et = s.split()
+            n = len(et)
+            if n == 0:
+                continue
+            occ = sum(1 for i in range(len(low) - n + 1) if low[i:i+n] == et)
+            if occ and cnt > occ:
+                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_punct_edges
+RATIONALE: CoNLL entity spans never start or end with a standalone punctuation token. This catches sloppy spans like "( Hungary" or "Reuters .".
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        P = {",", "(", ")", '"', "'", ".", ";", ":", "--", "-", "?", "!", "[", "]"}
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        et = e.split()
+                        if et and (et[0] in P or et[-1] in P):
+                            return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_quote_paren_tokens_inside
+RATIONALE: Standalone quote or parenthesis tokens never occur inside CoNLL entity spans. This catches spans that run across brackets or quotes.
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        P = {'"', "(", ")", "[", "]"}
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str) and any(t in P for t in e.split()):
+                        return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_leading_lowercase_article
+RATIONALE: CoNLL spans exclude a lowercase leading "the", "a" or "an" (for example "the Dodgers" is gold "Dodgers"). The check only rejects when every text occurrence starts with the lowercase article.
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        toks = ctx['text'].split()
+        low = [x.lower() for x in toks]
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if not isinstance(v, list):
+                continue
+            for e in v:
+                if not isinstance(e, str):
+                    continue
+                et = e.strip().lower().split()
+                n = len(et)
+                if n < 2 or et[0] not in ("the", "a", "an"):
+                    continue
+                occ = [i for i in range(len(toks) - n + 1) if low[i:i+n] == et]
+                if occ and all(toks[i] in ("the", "a", "an") for i in occ):
+                    return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_trailing_function_word
+RATIONALE: Entity spans do not end with lowercase function words or the possessive "'s" token. This catches over-extended spans like "Malawi 's".
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        F = {"'s", "of", "and", "the", "in", "on", "for", "to", "a", "an", "at", "by", "with"}
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        et = e.strip().split()
+                        if len(et) >= 2 and et[-1] in F:
+                            return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK max_entity_length
+RATIONALE: CoNLL entities are short, essentially always 12 tokens or fewer. This catches whole clauses extracted as a single entity.
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str) and len(e.split()) > 12:
+                        return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK total_le_capitalized_tokens
+RATIONALE: Each gold entity is a non-overlapping span containing at least one token with an uppercase letter. So the total entity count cannot exceed the number of such tokens. This catches over-generation.
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        cap = sum(1 for t in ctx['text'].split() if any(c.isupper() for c in t))
+        tot = 0
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                tot += len(v)
+        return tot <= cap
+    except Exception:
+        return True
+```
+
+### CHECK no_weekday_entity
+RATIONALE: CoNLL does not tag days of the week. This catches "Monday" or "Saturday" extracted as an entity.
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        W = {"monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"}
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str) and e.strip().lower() in W:
+                        return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_pronoun_title_entity
+RATIONALE: Pronouns and bare titles are never CoNLL entities on their own. This catches entries like "He", "President" or "Minister".
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        B = {"he", "she", "it", "they", "we", "i", "you", "his", "her", "mr", "mrs", "ms", "president", "minister", "the", "a", "an", "this", "that"}
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str) and e.strip().lower() in B:
+                        return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_currency_percent
+RATIONALE: Monetary amounts and percentages are not named entities. This catches spans containing "$" or "%".
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str) and ("$" in e or "%" in e):
+                        return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_date_pattern
+RATIONALE: CoNLL does not tag dates. This catches strings like "1996-08-26" or "08/26/96".
+```python
+def check(output, ctx):
+    try:
+        import re
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str) and re.search(r"\d{4}-\d\d-\d\d|\d{1,2}/\d{1,2}/\d{2,4}", e):
+                        return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_score_token
+RATIONALE: Score tokens like "0-0" or "13-10" are never part of an entity. This catches score extraction.
+```python
+def check(output, ctx):
+    try:
+        import re
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str) and any(re.fullmatch(r"\d+-\d+", t) for t in e.split()):
+                        return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK lowercase_text_empty
+RATIONALE: If the text has no uppercase letter at all, it contains no capitalized named entity. So every field must be empty, and any extraction is rejected.
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        if any(c.isupper() for c in ctx['text']):
+            return True
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list) and len(v) > 0:
+                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_clause_punct_inside
+RATIONALE: Entity spans never contain standalone ";", "?", "!" or ":" tokens. This catches spans that cross clause boundaries.
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        P = {";", "?", "!", ":"}
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str) and any(t in P for t in e.split()):
+                        return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_irregular_whitespace
+RATIONALE: Gold entities are substrings of single-space-tokenized text, so their internal whitespace is single spaces. This catches tabs, newlines or double spaces inside an entity.
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        s = e.strip()
+                        if "  " in s or "\t" in s or "\n" in s:
+                            return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK list_len_le_tokens
+RATIONALE: Non-overlapping spans cannot outnumber the tokens of the text. This catches runaway lists in any field.
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        n = len(ctx['text'].split())
+        tot = 0
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                tot += len(v)
+        return tot <= n
+    except Exception:
+        return True
+```
+
+### CHECK no_time_token
+RATIONALE: Clock times are not named entities. This catches tokens like "10:30", "GMT 1430" style pieces, or "a.m." / "p.m." inside an entity.
+```python
+def check(output, ctx):
+    try:
+        import re
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        for t in e.split():
+                            if re.fullmatch(r"\d{1,2}:\d\d", t) or t.lower() in ("a.m.", "p.m."):
+                                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_all_lowercase_multiword_else
+RATIONALE: A multi-word "else" entry where every text occurrence is fully lowercase cannot be a named entity. This specifically catches phrases like "alien-led profit boost".
+```python
+def check(output, ctx):
+    try:
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        toks = ctx['text'].split()
+        low = [x.lower() for x in toks]
+        v = d.get("else", [])
+        if not isinstance(v, list):
+            return True
+        for e in v:
+            if not isinstance(e, str):
+                continue
+            et = e.strip().lower().split()
+            n = len(et)
+            if n < 2:
+                continue
+            occ = [i for i in range(len(toks) - n + 1) if low[i:i+n] == et]
+            if occ and all(" ".join(toks[i:i+n]) == " ".join(toks[i:i+n]).lower() for i in occ):
+                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_number_only_token_edges
+RATIONALE: Entity spans essentially never end with a pure-number token, so a trailing number signals an over-extended span (for example "Hungary 1"). Leading numbers are allowed because names like "1860 Munich" exist.
+```python
+def check(output, ctx):
+    try:
+        import re
+        d = parse_json(output)
+        if not isinstance(d, dict):
+            return True
+        for k in ["person", "location", "organization", "else"]:
+            v = d.get(k, [])
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        et = e.split()
+                        if len(et) >= 2 and re.fullmatch(r"[\d,.]+", et[-1]) and not re.fullmatch(r"[\d,.]+", et[0]):
+                            return False
+        return True
+    except Exception:
+        return True
+```

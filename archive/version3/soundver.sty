@@ -1,0 +1,103 @@
+% ====================================================================
+% soundver.sty  -- shared style for the SoundVer paper
+% Venue-neutral: load AFTER \documentclass and after the venue's own
+% font/geometry choices (inputenc, fontenc, font package, geometry).
+% Works with the generic two-column build and the LNCS preview alike.
+%   \usepackage{soundver}
+% ====================================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{soundver}[2026/06/15 SoundVer shared macros and packages]
+
+% ---- math, graphics, tables, color ----
+\RequirePackage{amsmath,amssymb,amsthm}
+\RequirePackage{graphicx}
+\RequirePackage{booktabs}
+\RequirePackage{threeparttable}
+\RequirePackage{siunitx}
+\sisetup{detect-weight=true,detect-inline-weight=math,table-align-uncertainty=true}
+\RequirePackage{xcolor}
+% ---- Wong colourblind-safe palette (Nat. Methods 8:441) ----
+\definecolor{blk}{HTML}{000000}\definecolor{org}{HTML}{E69F00}
+\definecolor{sky}{HTML}{56B4E9}\definecolor{grn}{HTML}{009E73}
+\definecolor{yel}{HTML}{F0E442}\definecolor{blu}{HTML}{0072B2}
+\definecolor{ver}{HTML}{D55E00}\definecolor{pur}{HTML}{CC79A7}
+
+% ---- figures (native TikZ) ----
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds,calc,shapes.geometric}
+
+% ---- algorithms ----
+\RequirePackage{algorithm}
+\RequirePackage{algpseudocode}
+
+% ---- citations and hyperref -------------------------------------------
+% acl.sty already loads natbib (numeric, ACL style) and hyperref with its
+% own options; do not load either again here, since a second load with
+% different options is a package option clash. Only load them as a
+% fallback for a venue template that does not supply them.
+\makeatletter
+\@ifpackageloaded{natbib}{}{\RequirePackage[numbers,sort&compress]{natbib}}
+\@ifpackageloaded{hyperref}{}{%
+  \RequirePackage{hyperref}
+  \hypersetup{colorlinks=true,linkcolor=blue!45!black,
+              citecolor=blue!45!black,urlcolor=blue!45!black}}
+\makeatother
+
+% ---- captions ----
+\RequirePackage{caption}
+\captionsetup{font=small,labelfont=bf}
+\setlength{\emergencystretch}{3em}
+
+% ---- INTEGRITY MACROS ---------------------------------------------------
+% \rp{...}    RESULT PLACEHOLDER: every unmeasured number uses this. It is
+%             deliberately red+bold so no placeholder can survive to camera-ready.
+% \torun{...} an experiment still to run, tagged for the student.
+\providecommand{\rp}[1]{{\color{red}\textbf{[RP: #1]}}}
+\providecommand{\miss}[1]{\textcolor{red}{\textbf{[MISSING: #1]}}}
+\providecommand{\vfy}[1]{\textcolor{red}{\textbf{[VERIFY: #1]}}}
+\providecommand{\torun}[1]{{\color{blue!50!black}\texttt{>>> TO RUN: #1}}}
+
+% ---- theorem environments ----
+\newtheorem{proposition}{Proposition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{claim}{Claim}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+
+% ---- LINE NUMBERING: fitted to this template's gutter -----------------
+% MEASURED, not guessed. acl.sty produces an A4 two-column page whose text
+% columns are 71--289pt and 306--524pt, so the gutter is 17pt wide.
+%
+% acl.sty loads lineno with the `switch' option, which alternates the numbers
+% between sides. In this layout that puts many of them INSIDE a text column:
+% 169 line numbers printed on top of body text, on pages 3-8 of the submitted
+% eight as well as throughout the appendix. Measured with verify_layout.py.
+%
+% Forcing all numbers to the left of their column puts the right column's
+% numbers in that 17pt gutter, which only works if the number is narrow
+% enough to fit. At acl.sty's 8pt Helvetica a four-digit number is 13.3pt and
+% needs more separation than the gutter has. At \scriptsize (7pt) with a 1pt
+% separation it fits, and the collisions drop from 169 to 9.
+%
+% Measured alternatives, same document, same checker:
+%     stock `switch'                     169 overlaps
+%     \leftlinenumbers at 8pt            536
+%     \rightlinenumbers, \tiny, 3pt      470
+%     \leftlinenumbers, \footnotesize    182
+%     \leftlinenumbers, \scriptsize, 1pt   9   <- chosen
+%
+% This sets lineno's own parameters from our package. It does NOT modify
+% acl.sty, which ARR treats as grounds for rejection without review.
+% Re-run verify_layout.py after any layout change.
+\makeatletter
+\AtBeginDocument{%
+  \@ifpackageloaded{lineno}{%
+    \leftlinenumbers
+    \setlength{\linenumbersep}{1pt}%
+    \renewcommand\linenumberfont{\normalfont\scriptsize\color{gray}}%
+  }{}}
+\makeatother
+
+\endinput

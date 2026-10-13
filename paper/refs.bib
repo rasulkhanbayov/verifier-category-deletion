@@ -1,0 +1,675 @@
+% SoundVer references. Verification status inherited from the 2026-07-20 pass.
+
+@article{snell2024scaling,
+  title={Scaling llm test-time compute optimally can be more effective than scaling model parameters},
+  author={Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},
+  journal={arXiv preprint arXiv:2408.03314},
+  year={2024}
+}
+
+@inproceedings{stroebl2024verifier,
+  title={The limits of inference scaling through resampling},
+  author={Stroebl, Benedikt and Kapoor, Sayash and Narayanan, Arvind},
+  booktitle={International Conference on Learning Representations},
+  volume={2026},
+  pages={92601--92633},
+  year={2026}
+}
+
+@article{setlur2025vbvf,
+  title={Scaling test-time compute without verification or rl is suboptimal},
+  author={Setlur, Amrith and Rajaraman, Nived and Levine, Sergey and Kumar, Aviral},
+  journal={arXiv preprint arXiv:2502.12118},
+  year={2025}
+}
+
+@article{brown2024monkeys,
+  title={Large language monkeys: Scaling inference compute with repeated sampling},
+  author={Brown, Bradley and Juravsky, Jordan and Ehrlich, Ryan and Clark, Ronald and Le, Quoc V and R{\'e}, Christopher and Mirhoseini, Azalia},
+  journal={arXiv preprint arXiv:2407.21787},
+  year={2024}
+}
+
+@inproceedings{lightman2024verify,
+  title={Let's verify step by step},
+  author={Lightman, Hunter and Kosaraju, Vineet and Burda, Yuri and Edwards, Harrison and Baker, Bowen and Lee, Teddy and Leike, Jan and Schulman, John and Sutskever, Ilya and Cobbe, Karl},
+  booktitle={International Conference on Learning Representations},
+  volume={2024},
+  pages={39578--39601},
+  year={2024}
+}
+
+@article{wang2023self,
+  title={Self-consistency improves chain of thought reasoning in language models},
+  author={Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc and Chi, Ed and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny},
+  journal={arXiv preprint arXiv:2203.11171},
+  year={2022}
+}
+
+@book{efron1994bootstrap,
+  title={An introduction to the bootstrap},
+  author={Efron, Bradley and Tibshirani, Robert J and others},
+  year={2000},
+  publisher={Boca Raton, Florida}
+}
+
+
+% [V-2026-07] arXiv:2606.30851. Reports that learned outcome reward models
+% outperform execution-based Best-of-N and majority voting on BIRD and
+% Spider. This is the empirical puzzle the paper explains. Author list
+% confirmed from the paper's own title page.
+@article{gradesql2026,
+  title={Test-Time Verification for Text-to-SQL via Outcome Reward Models},
+  author={Tritto, Mattia and Farano, Giuseppe and Di Palma, Dario and Rossiello, Gaetano and Narducci, Fedelucio and Subramanian, Dharmashankar and Di Noia, Tommaso},
+  journal={arXiv preprint arXiv:2606.30851},
+  year={2026}
+}
+
+% [V-2026-07] arXiv:2507.12399. THE CLOSEST THEORETICAL NEIGHBOUR. Proves
+% that instance-level accuracy of Rejection Sampling and Best-of-N is
+% characterised by the geometry of the verifier's ROC curve; RS beats BoN at
+% fixed compute; low-compute performance does not extrapolate to high
+% compute. Our Prop. 2 is the sound corner (TPR = 1) of their framework.
+% Authors and affiliations confirmed from the arXiv HTML.
+@inproceedings{dorner2025rocnreroll,
+  title={Roc-n-reroll: How verifier imperfection affects test-time scaling},
+  author={Dorner, Florian Eddie and Chen, Yatong and Cruz, Andr{\'e} F and Yang, Fanny},
+  booktitle={International Conference on Learning Representations},
+  volume={2026},
+  pages={150895--150936},
+  year={2026}
+}
+
+% [V-2026-07] arXiv:2505.14625. Reports that among responses marked
+% incorrect by Prime Verifier on Big-Math-RL-Verified, 38.5% were in fact
+% correct. This is the false-discovery rate of rejection, NOT delta; the
+% paper must not conflate them. Evidence that nominal soundness does not
+% imply realised soundness. Author list NOT confirmed.
+@article{tinyv2025,
+  title={Tinyv: Reducing false negatives in verification improves rl for llm reasoning},
+  author={Xu, Zhangchen and Li, Yuetai and Jiang, Fengqing and Ramasubramanian, Bhaskar and Niu, Luyao and Lin, Bill Yuchen and Poovendran, Radha},
+  journal={arXiv preprint arXiv:2505.14625},
+  year={2025}
+}
+
+% [V-2026-07] arXiv:2507.08794. LLM judges accept substantively empty
+% responses; reported false-positive rates of roughly 35-67% for a
+% superficial "master key" prefix across several judges. Evidence that
+% learned verifiers carry large epsilon. Author list NOT confirmed.
+@article{onetoken2025,
+  title={One token to fool llm-as-a-judge},
+  author={Zhao, Yulai and Liu, Haolin and Yu, Dian and Kung, Sunyuan and Chen, Meijia and Mi, Haitao and Yu, Dong},
+  journal={arXiv preprint arXiv:2507.08794},
+  year={2025}
+}
+
+% [V-2026-07] arXiv:2506.18203. Weaver combines multiple weak imperfect
+% verifiers by WEIGHTED ensembling with weak supervision. Contrast with our
+% Prop. 4: a weighted score cannot preserve delta = 0, whereas conjunction
+% does. Full author list confirmed from the authors' GitHub citation block.
+@article{saadfalcon2025weaver,
+  title={Shrinking the generation-verification gap with weak verifiers},
+  author={Saad-Falcon, Jon and Buchanan, E Kelly and Chen, Mayee F and Huang, Tzu-Heng and McLaughlin, Brendan and Bhathal, Tanvir and Zhu, Shang and Athiwaratkun, Ben and Sala, Frederic and Linderman, Scott and others},
+  journal={arXiv preprint arXiv:2506.18203},
+  year={2025}
+}
+
+% [V-2026-07] arXiv:2510.00915. Frames verifier fallibility as false
+% positives and false negatives in the RLVR setting and notes that rule-based
+% checkers are brittle to formatting and algebraically equivalent forms.
+% Author list NOT confirmed.
+@article{cai2025noisy,
+  title={Reinforcement learning with verifiable yet noisy rewards under imperfect verifiers},
+  author={Cai, Xin-Qiang and Wang, Wei and Liu, Feng and Liu, Tongliang and Niu, Gang and Sugiyama, Masashi},
+  journal={arXiv preprint arXiv:2510.00915},
+  year={2025}
+}
+
+@inproceedings{dpc2026,
+  title={DPC: Training-Free Text-to-SQL Candidate Selection via Dual-Paradigm Consistency},
+  author={Li, Boyan and Hei, Ou Ocean Kun and Yu, Yue and Luo, Yuyu},
+  booktitle={Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  pages={6897--6913},
+  year={2026}
+}
+
+% [V-2026-07] Confirmed via the reference lists of multiple arXiv papers.
+% Needed because execution-result matching against a single database
+% conflates "does not execute" with "wrong", which breaks the delta
+% measurement in Experiment 2. Distilled test suites give a correctness
+% label that does not depend on the executability check.
+@inproceedings{zhong2020testsuite,
+  title={Semantic evaluation for text-to-sql with distilled test suites},
+  author={Zhong, Ruiqi and Yu, Tao and Klein, Dan},
+  booktitle={Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  pages={396--411},
+  year={2020}
+}
+
+@article{chow1957recognition,
+  title={An optimum character recognition system using decision functions},
+  author={Chow, Chi-Keung},
+  journal={IRE Transactions on Electronic Computers},
+  number={4},
+  pages={247--254},
+  year={1957},
+  publisher={IEEE}
+}
+
+
+@article{elyaniv2010foundations,
+  title={On the Foundations of Noise-free Selective Classification.},
+  author={El-Yaniv, Ran and others},
+  journal={Journal of Machine Learning Research},
+  volume={11},
+  number={5},
+  year={2010}
+}
+
+@article{geifman2017selective,
+  title={Selective classification for deep neural networks},
+  author={Geifman, Yonatan and El-Yaniv, Ran},
+  journal={Advances in neural information processing systems},
+  volume={30},
+  year={2017}
+}
+
+@article{chen2023frugalgpt,
+  title={Frugalgpt: How to use large language models while reducing cost and improving performance},
+  author={Chen, Lingjiao and Zaharia, Matei and Zou, James},
+  journal={arXiv preprint arXiv:2305.05176},
+  year={2023}
+}
+
+@inproceedings{geng2023grammar,
+  title={Grammar-constrained decoding for structured NLP tasks without finetuning},
+  author={Geng, Saibo and Josifoski, Martin and Peyrard, Maxime and West, Robert},
+  booktitle={Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing},
+  pages={10932--10952},
+  year={2023}
+}
+
+@article{park2024grammar,
+  title={Grammar-aligned decoding},
+  author={Park, Kanghee and Wang, Jiayu and Berg-Kirkpatrick, Taylor and Polikarpova, Nadia and D'Antoni, Loris},
+  journal={Advances in Neural Information Processing Systems},
+  volume={37},
+  pages={24547--24568},
+  year={2024}
+}
+@inproceedings{cotterell2016canonical,
+  title={A Joint Model of Orthography and Morphological Segmentation},
+  author={Cotterell, Ryan and Vieira, Tim and Sch{\"u}tze, Hinrich},
+  booktitle={Proceedings of the 2016 Conference of the North American Chapter of
+             the Association for Computational Linguistics: Human Language Technologies},
+  pages={664--669},
+  year={2016}
+  % VERIFY: author list and page range read from third-party reference lists
+  % (Springer chapter on Nguni segmentation; Semantic Scholar), NOT from the
+  % paper's own title page. Confirm before submission -- ARR screens references.
+}
+
+@inproceedings{tam2024format,
+  title={Let Me Speak Freely? A Study on the Impact of Format Restrictions on
+         Large Language Model Performance},
+  author={Tam, Zhi Rui and Wu, Cheng-Kuang and Tsai, Yi-Lin and Lin, Chieh-Yen
+          and Lee, Hung-yi and Chen, Yun-Nung},
+  booktitle={Proceedings of the 2024 Conference on Empirical Methods in Natural
+             Language Processing: Industry Track},
+  pages={1218--1236},
+  year={2024},
+  address={Miami, Florida, US},
+  publisher={Association for Computational Linguistics}
+  % VERIFIED 2026-08-30 against the ACL Anthology entry (2024.emnlp-industry.91),
+  % dblp, and the proceedings front matter. Author list, venue and page range
+  % agree across all three.
+}
+
+@inproceedings{yu2018spider,
+  title={Spider: A Large-Scale Human-Labeled Dataset for Complex and
+         Cross-Domain Semantic Parsing and Text-to-{SQL} Task},
+  author={Yu, Tao and Zhang, Rui and Yang, Kai and Yasunaga, Michihiro and
+          Wang, Dongxu and Li, Zifan and Ma, James and Li, Irene and
+          Yao, Qingning and Roman, Shanelle and Zhang, Zilin and Radev, Dragomir},
+  booktitle={Proceedings of the 2018 Conference on Empirical Methods in
+             Natural Language Processing},
+  pages={3911--3921},
+  year={2018},
+  address={Brussels, Belgium},
+  publisher={Association for Computational Linguistics}
+  % VERIFIED 2026-08-30 against the ACL Anthology (D18-1425), dblp, the Penn
+  % State research portal and BibSonomy. Author list, venue and page range
+  % agree across all four.
+}
+
+@misc{variationverif2026,
+  title={Variation in Verification: Understanding Verification Dynamics in
+         Large Language Models},
+  author={Zhou, Yefan and Xu, Austin and Zhou, Yilun and Singh, Janvijay and
+          Gui, Jiang and Joty, Shafiq},
+  year={2025},
+  eprint={2509.17995},
+  archivePrefix={arXiv},
+  primaryClass={cs.CL}
+  % VERIFIED 2026-09-03: read in full (arXiv:2509.17995, submitted 2025-09-22;
+  % no confirmed peer-reviewed venue found, cited as an arXiv preprint).
+  % Sec. 4.2 reports TNR falling substantially as generator capability rises
+  % (e.g. Qwen2.5-72B verifier: TNR 0.68 on Llama-3.1-8B outputs down to 0.17
+  % on Qwen3-32B outputs, Mathematics domain), attributed to stronger
+  % generators producing "well-structured but incorrect solutions" that read
+  % as internally consistent. Verifiers are general instruction-tuned LLMs
+  % (Qwen2.5/3, Llama, Gemma-2, Ministral, GPT-4o) prompted to output a CoT
+  % plus a binary verdict -- not purpose-trained/fine-tuned reward models, so
+  % "learned verifier" in the main text is reasonable shorthand (neural,
+  % non-rule-based) but not a discriminative reward model specifically. This
+  % matches how the main text already cites the finding -- no prose change
+  % needed, only this placeholder author list.
+}
+
+@inproceedings{tjongkimsang2003conll,
+  title={Introduction to the {CoNLL}-2003 Shared Task: Language-Independent Named Entity Recognition},
+  author={Tjong Kim Sang, Erik F. and De Meulder, Fien},
+  booktitle={Proceedings of the Seventh Conference on Natural Language Learning at HLT-NAACL 2003},
+  pages={142--147},
+  publisher={Association for Computational Linguistics},
+  year={2003}
+  % VERIFIED 2026-09-03 against the ACL Anthology. English data derives from
+  % the Reuters Corpus (Reuters news stories, Aug 1996-Aug 1997), distributed
+  % via LDC under a restrictive user agreement -- it cannot be freely
+  % redistributed, which is why HuggingFace's own conll2003 dataset card
+  % lists the license as "other" rather than a standard open license. State
+  % this restriction explicitly rather than imply an open license by silence.
+}
+
+@inproceedings{batsuren2022sigmorphon,
+  title={The {SIGMORPHON} 2022 Shared Task on Morpheme Segmentation},
+  author={Batsuren, Khuyagbaatar and Bella, G{\'a}bor and Arora, Aryaman and
+          Martinovic, Viktor and Gorman, Kyle and {\v Z}abokrtsk{\'y}, Zden{\v e}k and
+          Ganbold, Amarsanaa and Dohnalov{\'a}, {\v S}{\'a}rka and {\v S}ev{\v c}{\'i}kov{\'a}, Magda and
+          Pelegrinov{\'a}, Kate{\v r}ina and Giunchiglia, Fausto and Cotterell, Ryan and
+          Vylomova, Ekaterina},
+  booktitle={Proceedings of the 19th SIGMORPHON Workshop on Computational Research in Phonetics, Phonology, and Morphology},
+  pages={103--116},
+  publisher={Association for Computational Linguistics},
+  year={2022}
+  % VERIFIED 2026-09-03 against the ACL Anthology and the shared task's
+  % official GitHub repo (sigmorphon/2022SegmentationST). Data license is
+  % CC BY-SA 3.0 Unported (inherited from Wiktionary), NOT the CC BY 4.0 that
+  % applies to the ACL Anthology paper text itself -- do not conflate the two.
+}
+
+@inproceedings{dukes2010morphological,
+  title={Morphological Annotation of {Q}uranic {A}rabic},
+  author={Dukes, Kais and Habash, Nizar},
+  booktitle={Proceedings of the Seventh International Conference on Language Resources and Evaluation ({LREC}'10)},
+  month=may,
+  year={2010},
+  address={Valletta, Malta},
+  publisher={European Language Resources Association (ELRA)}
+  % VERIFIED 2026-09-28 against the ACL Anthology (L10-1190) directly.
+  % Data used via github.com/mustafa0x/quran-morphology (GPL), a mirror of
+  % corpus.quran.com's morphological layer (converted to Arabic script,
+  % with corrections) -- the original corpus.quran.com/download/ form is
+  % email-gated, so the GitHub mirror was used for actual data access.
+}
+% Verified against arXiv API / abstract pages (and conference sites where noted), 2026-10-10.
+
+@article{autopyverifier2026,
+  title   = {{AutoPyVerifier}: Learning Compact Executable Verifiers for Large Language Model Outputs},
+  author  = {Pezeshkpour, Pouya and Hruschka, Estevam},
+  journal = {arXiv preprint arXiv:2604.22937},
+  year    = {2026}
+}
+
+% arXiv v1 title. Also a poster at the NeurIPS 2025 Workshop on Deep Learning for Code
+% in the Agentic Era (neurips.cc/virtual/2025/131673). A revised version appeared at
+% ICLR 2026 under a different title ("HARDTESTGEN: A High-Quality RL Verifier Generation
+% Pipeline for LLM Algorithimic Coding", 26.6k problems, adds author Yixiao Zeng).
+@inproceedings{hardtests2025,
+  title     = {{HardTests}: Synthesizing High-Quality Test Cases for {LLM} Coding},
+  author    = {He, Zhongmou and Choi, Yee Man and Zhang, Kexun and Ji, Jiabao and Zhou, Junting and Xu, Dejia and Bercovich, Ivan and Zhang, Aidan and Li, Lei},
+  booktitle = {NeurIPS 2025 Workshop on Deep Learning for Code in the Agentic Era},
+  year      = {2025},
+  note      = {arXiv:2505.24098}
+}
+
+% arXiv comment: "Appeared in ICLR'23 Deep Learning for Code (DL4C) Workshop & 2023 Midwest
+% Machine Learning Symposium". arXiv posting is Feb 2025.
+@inproceedings{scriptoriumws2025,
+  title     = {{ScriptoriumWS}: A Code Generation Assistant for Weak Supervision},
+  author    = {Huang, Tzu-Heng and Cao, Catherine and Schoenberg, Spencer and Vishwakarma, Harit and Roberts, Nicholas and Sala, Frederic},
+  booktitle = {ICLR 2023 Workshop on Deep Learning for Code (DL4C)},
+  year      = {2023},
+  note      = {arXiv:2502.12366}
+}
+
+@inproceedings{cherian2024conformal,
+  title     = {Large Language Model Validity via Enhanced Conformal Prediction Methods},
+  author    = {Cherian, John J. and Gibbs, Isaac and Cand{\`e}s, Emmanuel J.},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2024},
+  doi       = {10.52202/079017-3645},
+  note      = {arXiv:2406.09714}
+}
+
+@article{kiyani2026cheap,
+  title   = {When to Trust the Cheap Check: Weak and Strong Verification for Reasoning},
+  author  = {Kiyani, Shayan and Noorani, Sima and Pappas, George and Hassani, Hamed},
+  journal = {arXiv preprint arXiv:2602.17633},
+  year    = {2026}
+}
+
+@article{rad2026rate,
+  title   = {Rate or Fate? {RLV}$^\varepsilon${R}: Reinforcement Learning with Verifiable Noisy Rewards},
+  author  = {Rad, Ali and Filom, Khashayar and Keivan, Darioush and Mohajerin Esfahani, Peyman and Kamalinejad, Ehsan},
+  journal = {arXiv preprint arXiv:2601.04411},
+  year    = {2026}
+}
+
+% arXiv comment: "COLM 2026".
+@inproceedings{egashira2026delay,
+  title     = {Delay, Plateau, or Collapse: Evaluating the Impact of Systematic Verification Error on {RLVR}},
+  author    = {Egashira, Kazuki and Vero, Mark and Dekoninck, Jasper and Dorner, Florian E. and Staab, Robin and Vechev, Martin},
+  booktitle = {Conference on Language Modeling (COLM)},
+  year      = {2026},
+  note      = {arXiv:2605.02909}
+}
+
+% Current (v3) arXiv title; v1 was "Pitfalls of Rule- and Model-based Verifiers -- A Case
+% Study on Mathematical Reasoning". arXiv comment: "EMNLP 2026 Main Conference".
+@inproceedings{pitfalls2025verifiers,
+  title     = {From Accuracy to Robustness: A Study of Rule- and Model-based Verifiers in Mathematical Reasoning},
+  author    = {Huang, Yuzhen and Zeng, Weihao and Zeng, Xingshan and Zhu, Qi and He, Junxian},
+  booktitle = {Proceedings of the 2026 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year      = {2026},
+  note      = {arXiv:2505.22203}
+}
+
+% Venue confirmed via ICLR 2023 poster page (iclr.cc/virtual/2023/poster/12011).
+@inproceedings{chen2023codet,
+  title     = {{CodeT}: Code Generation with Generated Tests},
+  author    = {Chen, Bei and Zhang, Fengji and Nguyen, Anh and Zan, Daoguang and Lin, Zeqi and Lou, Jian-Guang and Chen, Weizhu},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2023},
+  note      = {arXiv:2207.10397}
+}
+
+% arXiv comment: "ICLR 2024".
+@inproceedings{ma2024eureka,
+  title     = {Eureka: Human-Level Reward Design via Coding Large Language Models},
+  author    = {Ma, Yecheng Jason and Liang, William and Wang, Guanzhi and Huang, De-An and Bastani, Osbert and Jayaraman, Dinesh and Zhu, Yuke and Fan, Linxi and Anandkumar, Anima},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2024},
+  note      = {arXiv:2310.12931}
+}
+
+@article{ray2026fuzzing,
+  title   = {Before the Model Learns the Bug: Fuzzing {RLVR} Verifiers},
+  author  = {Ray, Jaideep},
+  journal = {arXiv preprint arXiv:2606.01066},
+  year    = {2026}
+}
+@article{clopper1934,
+  title={The use of confidence or fiducial limits illustrated in the case of the binomial},
+  author={Clopper, C. J. and Pearson, E. S.},
+  journal={Biometrika},
+  volume={26},
+  number={4},
+  pages={404--413},
+  year={1934}
+}
+
+@article{hanley1983rule,
+  title={If nothing goes wrong, is everything all right? {I}nterpreting zero numerators},
+  author={Hanley, James A. and Lippman-Hand, Abby},
+  journal={JAMA},
+  volume={249},
+  number={13},
+  pages={1743--1745},
+  year={1983}
+}
+
+@article{cobbe2021gsm8k,
+  title={Training Verifiers to Solve Math Word Problems},
+  author={Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},
+  journal={arXiv preprint arXiv:2110.14168},
+  year={2021}
+}
+
+@inproceedings{hu2022lora,
+  title={{LoRA}: Low-Rank Adaptation of Large Language Models},
+  author={Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},
+  booktitle={International Conference on Learning Representations},
+  year={2022}
+}
+% review_refs.bib -- references added in response to reviewer request
+% (risk control / conformal prediction, weak supervision, worst-group robustness,
+% models and datasets). Metadata verified 2026-10-12 against: arXiv API,
+% Crossref (publisher DOI records), OpenReview, PMLR, ACL Anthology,
+% NeurIPS proceedings, ICLR 2020 virtual site, Hugging Face dataset API.
+
+@article{angelopoulos2021ltt,
+  title     = {Learn then Test: Calibrating Predictive Algorithms to Achieve Risk Control},
+  author    = {Angelopoulos, Anastasios N. and Bates, Stephen and Cand{\`e}s, Emmanuel J. and Jordan, Michael I. and Lei, Lihua},
+  journal   = {The Annals of Applied Statistics},
+  volume    = {19},
+  number    = {2},
+  pages     = {1641--1662},
+  year      = {2025},
+  doi       = {10.1214/24-AOAS1998},
+  note      = {arXiv:2110.01052}
+}
+
+@inproceedings{angelopoulos2024crc,
+  title     = {Conformal Risk Control},
+  author    = {Angelopoulos, Anastasios Nikolas and Bates, Stephen and Fisch, Adam and Lei, Lihua and Schuster, Tal},
+  booktitle = {The Twelfth International Conference on Learning Representations (ICLR)},
+  year      = {2024},
+  url       = {https://openreview.net/forum?id=33XGfHLtZg}
+}
+
+@inproceedings{quach2024conformal,
+  title     = {Conformal Language Modeling},
+  author    = {Quach, Victor and Fisch, Adam and Schuster, Tal and Yala, Adam and Sohn, Jae Ho and Jaakkola, Tommi S. and Barzilay, Regina},
+  booktitle = {The Twelfth International Conference on Learning Representations (ICLR)},
+  year      = {2024},
+  url       = {https://openreview.net/forum?id=pzUhfQ74c5}
+}
+
+@inproceedings{mohri2024conformal,
+  title     = {Language Models with Conformal Factuality Guarantees},
+  author    = {Mohri, Christopher and Hashimoto, Tatsunori},
+  booktitle = {Proceedings of the 41st International Conference on Machine Learning},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {235},
+  pages     = {36029--36047},
+  publisher = {PMLR},
+  year      = {2024},
+  url       = {https://proceedings.mlr.press/v235/mohri24a.html}
+}
+
+@inproceedings{ratner2016data,
+  title     = {Data Programming: Creating Large Training Sets, Quickly},
+  author    = {Ratner, Alexander J. and De Sa, Christopher M. and Wu, Sen and Selsam, Daniel and R{\'e}, Christopher},
+  booktitle = {Advances in Neural Information Processing Systems 29 (NIPS 2016)},
+  pages     = {3567--3575},
+  year      = {2016}
+}
+
+@article{ratner2017snorkel,
+  title     = {Snorkel: Rapid Training Data Creation with Weak Supervision},
+  author    = {Ratner, Alexander and Bach, Stephen H. and Ehrenberg, Henry and Fries, Jason and Wu, Sen and R{\'e}, Christopher},
+  journal   = {Proceedings of the VLDB Endowment},
+  volume    = {11},
+  number    = {3},
+  pages     = {269--282},
+  year      = {2017},
+  doi       = {10.14778/3157794.3157797}
+}
+
+% Note: the ICLR 2020 (OpenReview / iclr.cc) title is the short form
+% "Distributionally Robust Neural Networks"; the arXiv title (1911.08731) is
+% "Distributionally Robust Neural Networks for Group Shifts: On the Importance
+% of Regularization for Worst-Case Generalization".
+@inproceedings{sagawa2020dro,
+  title     = {Distributionally Robust Neural Networks},
+  author    = {Sagawa, Shiori and Koh, Pang Wei and Hashimoto, Tatsunori B. and Liang, Percy},
+  booktitle = {Eighth International Conference on Learning Representations (ICLR)},
+  year      = {2020},
+  url       = {https://openreview.net/forum?id=ryxGuJrFvS}
+}
+
+@article{shao2024deepseekmath,
+  title     = {{DeepSeekMath}: Pushing the Limits of Mathematical Reasoning in Open Language Models},
+  author    = {Shao, Zhihong and Wang, Peiyi and Zhu, Qihao and Xu, Runxin and Song, Junxiao and Bi, Xiao and Zhang, Haowei and Zhang, Mingchuan and Li, Y. K. and Wu, Y. and Guo, Daya},
+  journal   = {arXiv preprint arXiv:2402.03300},
+  year      = {2024}
+}
+
+@article{qwen3report,
+  title     = {{Qwen3} Technical Report},
+  author    = {Yang, An and Li, Anfeng and Yang, Baosong and Zhang, Beichen and Hui, Binyuan and Zheng, Bo and Yu, Bowen and Gao, Chang and Huang, Chengen and Lv, Chenxu and Zheng, Chujie and Liu, Dayiheng and Zhou, Fan and Huang, Fei and Hu, Feng and Ge, Hao and Wei, Haoran and Lin, Huan and Tang, Jialong and Yang, Jian and Tu, Jianhong and Zhang, Jianwei and Yang, Jianxin and Yang, Jiaxi and Zhou, Jing and Zhou, Jingren and Lin, Junyang and Dang, Kai and Bao, Keqin and Yang, Kexin and Yu, Le and Deng, Lianghao and Li, Mei and Xue, Mingfeng and Li, Mingze and Zhang, Pei and Wang, Peng and Zhu, Qin and Men, Rui and Gao, Ruize and Liu, Shixuan and Luo, Shuang and Li, Tianhao and Tang, Tianyi and Yin, Wenbiao and Ren, Xingzhang and Wang, Xinyu and Zhang, Xinyu and Ren, Xuancheng and Fan, Yang and Su, Yang and Zhang, Yichang and Zhang, Yinger and Wan, Yu and Liu, Yuqiong and Wang, Zekun and Cui, Zeyu and Zhang, Zhenru and Zhou, Zhipeng and Qiu, Zihan},
+  journal   = {arXiv preprint arXiv:2505.09388},
+  year      = {2025}
+}
+
+@inproceedings{ding2021fewnerd,
+  title     = {Few-{NERD}: A Few-shot Named Entity Recognition Dataset},
+  author    = {Ding, Ning and Xu, Guangwei and Chen, Yulin and Wang, Xiaobin and Han, Xu and Xie, Pengjun and Zheng, Haitao and Liu, Zhiyuan},
+  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)},
+  pages     = {3198--3213},
+  address   = {Online},
+  publisher = {Association for Computational Linguistics},
+  year      = {2021},
+  doi       = {10.18653/v1/2021.acl-long.248},
+  url       = {https://aclanthology.org/2021.acl-long.248/}
+}
+
+% The Hugging Face dataset card has no citation block or named authors; the
+% publisher is the "glaiveai" organization. Dataset created 2023-08-15
+% (last modified 2023-09-27), license Apache-2.0.
+@misc{glaive2023fc,
+  title        = {glaive-function-calling-v2},
+  author       = {{Glaive AI}},
+  year         = {2023},
+  howpublished = {Hugging Face dataset},
+  url          = {https://huggingface.co/datasets/glaiveai/glaive-function-calling-v2}
+}
+% jmlr.org/papers/v14/zhao13a.html (checked 2026-10-13)
+@article{zhao2013beyond,
+  author  = {Zhao, Ming-Jie and Edakunni, Narayanan and Pocock, Adam and Brown, Gavin},
+  title   = {Beyond {F}ano's Inequality: Bounds on the Optimal {F}-Score, {BER}, and Cost-Sensitive Risk and Their Implications},
+  journal = {Journal of Machine Learning Research},
+  year    = {2013},
+  volume  = {14},
+  number  = {32},
+  pages   = {1033--1090},
+  url     = {http://jmlr.org/papers/v14/zhao13a.html}
+}
+
+% arXiv 1402.1892; PMC4442797 (LNCS 8725:225-239) (checked 2026-10-13)
+@inproceedings{lipton2014optimal,
+  author    = {Lipton, Zachary C. and Elkan, Charles and Naryanaswamy, Balakrishnan},
+  title     = {Optimal Thresholding of Classifiers to Maximize {F1} Measure},
+  booktitle = {Machine Learning and Knowledge Discovery in Databases (ECML PKDD 2014), Part II},
+  editor    = {Calders, Toon and Esposito, Floriana and H{\"u}llermeier, Eyke and Meo, Rosa},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {8725},
+  pages     = {225--239},
+  publisher = {Springer},
+  year      = {2014},
+  doi       = {10.1007/978-3-662-44851-9_15}
+}
+
+% arXiv 2401.03038 + PDF Sec. 3.2 ILP: min |F'| s.t. coverage>=alpha, FFR<=tau on labelled sample (checked 2026-10-13)
+@article{shankar2024spade,
+  title   = {{SPADE}: Synthesizing Data Quality Assertions for Large Language Model Pipelines},
+  author  = {Shankar, Shreya and Li, Haotian and Asawa, Parth and Hulsebos, Madelon and Lin, Yiming and Zamfirescu-Pereira, J.D. and Chase, Harrison and Fu-Hinthorn, Will and Parameswaran, Aditya G. and Wu, Eugene},
+  journal = {Proceedings of the VLDB Endowment},
+  volume  = {17},
+  number  = {12},
+  pages   = {4173--4186},
+  year    = {2024},
+  doi     = {10.14778/3685800.3685835}
+}
+
+% arXiv 2404.12272 (EvalGen; UIST 2024 per DOI) (checked 2026-10-13)
+@inproceedings{shankar2024validators,
+  title     = {Who Validates the Validators? Aligning {LLM}-Assisted Evaluation of {LLM} Outputs with Human Preferences},
+  author    = {Shankar, Shreya and Zamfirescu-Pereira, J.D. and Hartmann, Bj{\"o}rn and Parameswaran, Aditya G. and Arawjo, Ian},
+  booktitle = {Proceedings of the 37th Annual ACM Symposium on User Interface Software and Technology (UIST)},
+  year      = {2024},
+  doi       = {10.1145/3654777.3676450}
+}
+
+% aclanthology 2025.findings-emnlp.299 (checked 2026-10-13)
+@inproceedings{wang-etal-2025-codecontests,
+  title     = {{C}ode{C}ontests+: High-Quality Test Case Generation for Competitive Programming},
+  author    = {Wang, Zihan and Liu, Siyao and Sun, Yang and Ding, Ming and Li, Hongyan},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2025},
+  month     = nov,
+  year      = {2025},
+  address   = {Suzhou, China},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2025.findings-emnlp.299/},
+  doi       = {10.18653/v1/2025.findings-emnlp.299},
+  pages     = {5576--5600}
+}
+
+% arXiv 2510.10193; iclr.cc/virtual/2026/poster/10007799 (checked 2026-10-13)
+@inproceedings{wang2026safer,
+  author    = {Wang, Qingni and Fan, Yue and Wang, Xin Eric},
+  title     = {{SAFER}: Risk-Constrained Sample-then-Filter in Large Language Models},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2026}
+}
+
+% jmlr.org/papers/v12/rigollet11a.html (checked 2026-10-13)
+@article{rigollet2011neyman,
+  author  = {Rigollet, Philippe and Tong, Xin},
+  title   = {Neyman-Pearson Classification, Convexity and Stochastic Constraints},
+  journal = {Journal of Machine Learning Research},
+  year    = {2011},
+  volume  = {12},
+  number  = {86},
+  pages   = {2831--2855}
+}
+
+% arXiv 2608.20362 (checked 2026-10-13)
+@misc{zhou2026multilingual,
+  title         = {Multilingual Verifier Bias in {RLVR}: Benchmark, Rollout Diagnosis, and the Cross-Lingual Selection Bottleneck},
+  author        = {Zhou, Chenyu and Jiang, Qiliang and Zhou, Xu},
+  year          = {2026},
+  eprint        = {2608.20362},
+  archivePrefix = {arXiv}
+}
+
+% aclanthology 2022.emnlp-main.165 (checked 2026-10-13)
+@inproceedings{gururangan-etal-2022-whose,
+  title     = {Whose Language Counts as High Quality? Measuring Language Ideologies in Text Data Selection},
+  author    = {Gururangan, Suchin and Card, Dallas and Dreier, Sarah and Gade, Emily and Wang, Leroy and Wang, Zeyu and Zettlemoyer, Luke and Smith, Noah A.},
+  booktitle = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing},
+  year      = {2022},
+  pages     = {2562--2580},
+  doi       = {10.18653/v1/2022.emnlp-main.165}
+}
+
+% arXiv 2504.13837 (NeurIPS 2025) (agent-verified 2026-10-13)
+@inproceedings{yue2025does,
+  title     = {Does Reinforcement Learning Really Incentivize Reasoning Capacity in {LLMs} Beyond the Base Model?},
+  author    = {Yue, Yang and Chen, Zhiqi and Lu, Rui and Zhao, Andrew and Wang, Zhaokai and Yue, Yang and Song, Shiji and Huang, Gao},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2025},
+  note      = {arXiv:2504.13837}
+}
+
+% CHIL 2020, DOI 10.1145/3368555.3384468 (agent-verified 2026-10-13)
+@inproceedings{oakdenrayner2020hidden,
+  title     = {Hidden Stratification Causes Clinically Meaningful Failures in Machine Learning for Medical Imaging},
+  author    = {Oakden-Rayner, Luke and Dunnmon, Jared and Carneiro, Gustavo and R{\'e}, Christopher},
+  booktitle = {Proceedings of the ACM Conference on Health, Inference, and Learning (CHIL)},
+  pages     = {151--159},
+  year      = {2020},
+  doi       = {10.1145/3368555.3384468}
+}
+

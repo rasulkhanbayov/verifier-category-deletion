@@ -1,0 +1,122 @@
+[
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "N": 1,
+    "predicted": 0.5059586877544481,
+    "observed": 0.485,
+    "observed_lo": 0.415,
+    "observed_hi": 0.555,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "N": 2,
+    "predicted": 0.5068185910395439,
+    "observed": 0.485,
+    "observed_lo": 0.415,
+    "observed_hi": 0.555,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "N": 4,
+    "predicted": 0.5068553190787388,
+    "observed": 0.485,
+    "observed_lo": 0.415,
+    "observed_hi": 0.555,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "N": 8,
+    "predicted": 0.5068553810084755,
+    "observed": 0.485,
+    "observed_lo": 0.415,
+    "observed_hi": 0.555,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "N": 16,
+    "predicted": 0.506855381008651,
+    "observed": 0.49,
+    "observed_lo": 0.42,
+    "observed_hi": 0.56,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "N": 32,
+    "predicted": 0.506855381008651,
+    "observed": 0.49,
+    "observed_lo": 0.42,
+    "observed_hi": 0.56,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "N": 1,
+    "predicted": 0.33283783108866444,
+    "observed": 0.31,
+    "observed_lo": 0.245,
+    "observed_hi": 0.375,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "N": 2,
+    "predicted": 0.335147074469708,
+    "observed": 0.31,
+    "observed_lo": 0.245,
+    "observed_hi": 0.375,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "N": 4,
+    "predicted": 0.3353545246411243,
+    "observed": 0.31,
+    "observed_lo": 0.245,
+    "observed_hi": 0.375,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "N": 8,
+    "predicted": 0.335355961985006,
+    "observed": 0.315,
+    "observed_lo": 0.25,
+    "observed_hi": 0.38,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "N": 16,
+    "predicted": 0.33535596205307017,
+    "observed": 0.315,
+    "observed_lo": 0.25,
+    "observed_hi": 0.38,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "N": 32,
+    "predicted": 0.33535596205307017,
+    "observed": 0.315,
+    "observed_lo": 0.25,
+    "observed_hi": 0.38,
+    "inside": true
+  }
+]

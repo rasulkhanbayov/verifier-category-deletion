@@ -1,0 +1,654 @@
+{
+ "feedback": [
+  {
+   "name": "else_field_should_not_include_proper_nouns",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    parsed = parse_json(output)\n    if not parsed:\n        return False\n    for entity in parsed['else']:\n        if entity.istitle():\n            return False\n    return True",
+   "n_rejected_correct": 451,
+   "n_correct": 6043,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "15 - Christian Cullen , 14 - Jeff Wilson , 13 - Walter Little , 12 - Frank Bunce , 11 - Glen Osborne ; 10 - Andrew Mehrtens , 9 - Justin Marshall ; 8 - Zinzan Brooke , 7 - Josh Kronfeld , 6 - Michael Jones , 5 - Ian Jones , 4 - Robin Brooke , 3 - Olo Brown , 2 - Sean Fitzpatrick ( captain ) , 1 - Craig Dowd ."
+     },
+     "output": "{\"person\": [\"Christian Cullen\", \"Jeff Wilson\", \"Walter Little\", \"Frank Bunce\", \"Glen Osborne\", \"Andrew Mehrtens\", \"Justin Marshall\", \"Zinzan Brooke\", \"Josh Kronfeld\", \"Michael Jones\", \"Ian Jones\", \"Robin Brooke\", \"Olo Brown\", \"Sean Fitzpatrick\", \"Craig Dowd\"], \"location\": [], \"organization\": [], \"else\": [{\"captain\": \"captain\"}]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Result of a European Super League"
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": [\"European Super League\"]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Result of a European Super League"
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": [\"European Super League\"]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Result of a European Super League"
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": [\"European Super League\"]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Result of a European Super League"
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": [\"European Super League\"]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "A Dutch couple who manage a farm in northern Costa Rica have been kidnapped by an unidentified group demanding $ 1.5 million in ransom , authorities said on Monday ."
+     },
+     "output": "{\"person\": [], \"location\": [\"Costa Rica\"], \"organization\": [], \"else\": [\"Dutch\"]}",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.3269
+  },
+  {
+   "name": "person_field_cannot_be_empty_if_pronoun_present",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    parsed = parse_json(output)\n    if not parsed:\n        return False\n    if any(pronoun in ctx['text'].lower() for pronoun in ['he', 'she', 'they', 'him', 'her', 'them']) and not parsed['person']:\n        return False\n    return True",
+   "n_rejected_correct": 1643,
+   "n_correct": 6043,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "The surgery is under way . \""
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "The surgery is under way . \""
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "The surgery is under way . \""
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "The surgery is under way . \""
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "You do n't keep it to help industry , you keep it in case of emergency . \""
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "You do n't keep it to help industry , you keep it in case of emergency . \""
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.3169
+  },
+  {
+   "name": "entity_capitalized_in_text",
+   "source": "def check(output, ctx):\n    try:\n        d = parse_json(output)\n        if not isinstance(d, dict):\n            return True\n        toks = ctx['text'].split()\n        low = [x.lower() for x in toks]\n        for k in [\"person\", \"location\", \"organization\", \"else\"]:\n            v = d.get(k, [])\n            if not isinstance(v, list):\n                continue\n            for e in v:\n                if not isinstance(e, str):\n                    continue\n                et = e.strip().lower().split()\n                n = len(et)\n                if n == 0:\n                    continue\n                occ = [i for i in range(len(toks) - n + 1) if low[i:i+n] == et]\n                if not occ:\n                    continue\n                if not any(any(c.isupper() for c in \" \".join(toks[i:i+n])) for i in occ):\n                    return False\n        return True\n    except Exception:\n        return True\n",
+   "n_rejected_correct": 1,
+   "n_correct": 6043,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "With tension rising among Senegal 's political parties ahead of local elections on November 24 , the interior ministry on Thursday banned the carrying of guns and ammunition until the end of the year ."
+     },
+     "output": "{\"location\": [\"Senegal\"], \"else\": [], \"organization\": [\"interior ministry\"], \"person\": []}",
+     "is_gold": true
+    }
+   ],
+   "catch_rate_on_incorrect": 0.2937
+  },
+  {
+   "name": "non_empty_field_for_text_with_named_entities",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    obj = parse_json(output)\n    if obj is None:\n        return False\n    tokens = ctx['text'].split()\n    contains_named_entity = any(token[0].isupper() for token in tokens if token.isalpha())\n    if contains_named_entity:\n        return any(obj[field] for field in ['person', 'location', 'organization', 'else'])\n    return True",
+   "n_rejected_correct": 1636,
+   "n_correct": 6043,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "The surgery is under way . \""
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "The surgery is under way . \""
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "The surgery is under way . \""
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "The surgery is under way . \""
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Attendance 48,123 ."
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "Attendance 48,123 ."
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.1391
+  },
+  {
+   "name": "only_capitalized_for_person_organization",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    obj = parse_json(output)\n    if obj is None:\n        return False\n    for field in ['person', 'organization']:\n        if any(entity[0].islower() for entity in obj.get(field, []) if entity):\n            return False\n    return True",
+   "n_rejected_correct": 7,
+   "n_correct": 6043,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "x-PAO v Legia Warsaw ( Poland )"
+     },
+     "output": "{\"person\": [], \"location\": [\"Poland\"], \"organization\": [\"x-PAO\", \"Legia Warsaw\"], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "x-PAO v Legia Warsaw ( Poland )"
+     },
+     "output": "{\"person\": [], \"location\": [\"Poland\"], \"organization\": [\"x-PAO\", \"Legia Warsaw\"], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "x-PAO v Legia Warsaw ( Poland )"
+     },
+     "output": "{\"person\": [], \"location\": [\"Poland\"], \"organization\": [\"x-PAO\", \"Legia Warsaw\"], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "x-PAO v Legia Warsaw ( Poland )"
+     },
+     "output": "{\"person\": [], \"location\": [\"Poland\"], \"organization\": [\"x-PAO\", \"Legia Warsaw\"], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "x-PAO v Legia Warsaw ( Poland )"
+     },
+     "output": "{\"location\": [\"Poland\"], \"else\": [], \"organization\": [\"Legia Warsaw\", \"x-PAO\"], \"person\": []}",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "text": "With tension rising among Senegal 's political parties ahead of local elections on November 24 , the interior ministry on Thursday banned the carrying of guns and ammunition until the end of the year ."
+     },
+     "output": "{\"location\": [\"Senegal\"], \"else\": [], \"organization\": [\"interior ministry\"], \"person\": []}",
+     "is_gold": true
+    }
+   ],
+   "catch_rate_on_incorrect": 0.1038
+  },
+  {
+   "name": "all_entities_present_in_text",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    parsed = parse_json(output)\n    if not parsed:\n        return False\n    text = ctx['text']\n    for key in ['person', 'location', 'organization', 'else']:\n        for entity in parsed[key]:\n            if entity not in text:\n                return False\n    return True",
+   "n_rejected_correct": 4,
+   "n_correct": 6043,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "15 - Christian Cullen , 14 - Jeff Wilson , 13 - Walter Little , 12 - Frank Bunce , 11 - Glen Osborne ; 10 - Andrew Mehrtens , 9 - Justin Marshall ; 8 - Zinzan Brooke , 7 - Josh Kronfeld , 6 - Michael Jones , 5 - Ian Jones , 4 - Robin Brooke , 3 - Olo Brown , 2 - Sean Fitzpatrick ( captain ) , 1 - Craig Dowd ."
+     },
+     "output": "{\"person\": [\"Christian Cullen\", \"Jeff Wilson\", \"Walter Little\", \"Frank Bunce\", \"Glen Osborne\", \"Andrew Mehrtens\", \"Justin Marshall\", \"Zinzan Brooke\", \"Josh Kronfeld\", \"Michael Jones\", \"Ian Jones\", \"Robin Brooke\", \"Olo Brown\", \"Sean Fitzpatrick\", \"Craig Dowd\"], \"location\": [], \"organization\": [], \"else\": [{\"captain\": \"captain\"}]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "\" I do n't think one should have expected more than what one got , \" he said . \""
+     },
+     "output": "{}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "SYDNEY 2,292.9 +18.3 2,326.00 2,096.10"
+     },
+     "output": "{\"person\": [], \"location\": [\"Sydney\"], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "BONN 1996-08-27"
+     },
+     "output": "{\"person\": [], \"location\": [\"Bonn\"], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0987
+  },
+  {
+   "name": "fields_contain_text_substrings",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    obj = parse_json(output)\n    if obj is None:\n        return False\n    text = ctx['text']\n    for field in ['person', 'location', 'organization', 'else']:\n        if any(entity not in text for entity in obj.get(field, [])):\n            return False\n    return True",
+   "n_rejected_correct": 3,
+   "n_correct": 6043,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "15 - Christian Cullen , 14 - Jeff Wilson , 13 - Walter Little , 12 - Frank Bunce , 11 - Glen Osborne ; 10 - Andrew Mehrtens , 9 - Justin Marshall ; 8 - Zinzan Brooke , 7 - Josh Kronfeld , 6 - Michael Jones , 5 - Ian Jones , 4 - Robin Brooke , 3 - Olo Brown , 2 - Sean Fitzpatrick ( captain ) , 1 - Craig Dowd ."
+     },
+     "output": "{\"person\": [\"Christian Cullen\", \"Jeff Wilson\", \"Walter Little\", \"Frank Bunce\", \"Glen Osborne\", \"Andrew Mehrtens\", \"Justin Marshall\", \"Zinzan Brooke\", \"Josh Kronfeld\", \"Michael Jones\", \"Ian Jones\", \"Robin Brooke\", \"Olo Brown\", \"Sean Fitzpatrick\", \"Craig Dowd\"], \"location\": [], \"organization\": [], \"else\": [{\"captain\": \"captain\"}]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "SYDNEY 2,292.9 +18.3 2,326.00 2,096.10"
+     },
+     "output": "{\"person\": [], \"location\": [\"Sydney\"], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "BONN 1996-08-27"
+     },
+     "output": "{\"person\": [], \"location\": [\"Bonn\"], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0983
+  },
+  {
+   "name": "no_partial_matches",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    obj = parse_json(output)\n    if obj is None:\n        return False\n    text = ctx['text']\n    for field in ['person', 'location', 'organization', 'else']:\n        for entity in obj.get(field, []):\n            if entity not in text:\n                return False\n    return True",
+   "n_rejected_correct": 3,
+   "n_correct": 6043,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "15 - Christian Cullen , 14 - Jeff Wilson , 13 - Walter Little , 12 - Frank Bunce , 11 - Glen Osborne ; 10 - Andrew Mehrtens , 9 - Justin Marshall ; 8 - Zinzan Brooke , 7 - Josh Kronfeld , 6 - Michael Jones , 5 - Ian Jones , 4 - Robin Brooke , 3 - Olo Brown , 2 - Sean Fitzpatrick ( captain ) , 1 - Craig Dowd ."
+     },
+     "output": "{\"person\": [\"Christian Cullen\", \"Jeff Wilson\", \"Walter Little\", \"Frank Bunce\", \"Glen Osborne\", \"Andrew Mehrtens\", \"Justin Marshall\", \"Zinzan Brooke\", \"Josh Kronfeld\", \"Michael Jones\", \"Ian Jones\", \"Robin Brooke\", \"Olo Brown\", \"Sean Fitzpatrick\", \"Craig Dowd\"], \"location\": [], \"organization\": [], \"else\": [{\"captain\": \"captain\"}]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "SYDNEY 2,292.9 +18.3 2,326.00 2,096.10"
+     },
+     "output": "{\"person\": [], \"location\": [\"Sydney\"], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "BONN 1996-08-27"
+     },
+     "output": "{\"person\": [], \"location\": [\"Bonn\"], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0983
+  },
+  {
+   "name": "no_numeric_only_entities",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    parsed = parse_json(output)\n    if not parsed:\n        return False\n    for key in ['person', 'location', 'organization', 'else']:\n        if any(entity.isdigit() for entity in parsed[key]):\n            return False\n    return True",
+   "n_rejected_correct": 2,
+   "n_correct": 6043,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "15 - Christian Cullen , 14 - Jeff Wilson , 13 - Walter Little , 12 - Frank Bunce , 11 - Glen Osborne ; 10 - Andrew Mehrtens , 9 - Justin Marshall ; 8 - Zinzan Brooke , 7 - Josh Kronfeld , 6 - Michael Jones , 5 - Ian Jones , 4 - Robin Brooke , 3 - Olo Brown , 2 - Sean Fitzpatrick ( captain ) , 1 - Craig Dowd ."
+     },
+     "output": "{\"person\": [\"Christian Cullen\", \"Jeff Wilson\", \"Walter Little\", \"Frank Bunce\", \"Glen Osborne\", \"Andrew Mehrtens\", \"Justin Marshall\", \"Zinzan Brooke\", \"Josh Kronfeld\", \"Michael Jones\", \"Ian Jones\", \"Robin Brooke\", \"Olo Brown\", \"Sean Fitzpatrick\", \"Craig Dowd\"], \"location\": [], \"organization\": [], \"else\": [{\"captain\": \"captain\"}]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "\" I do n't think one should have expected more than what one got , \" he said . \""
+     },
+     "output": "{}",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0772
+  },
+  {
+   "name": "location_field_cannot_be_empty_if_country_present",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    parsed = parse_json(output)\n    if not parsed:\n        return False\n    countries = ['greece', 'hungary', 'france', 'japan', 'china', 'india']  # Add more as needed\n    if any(country in ctx['text'].lower() for country in countries) and not parsed['location']:\n        return False\n    return True",
+   "n_rejected_correct": 32,
+   "n_correct": 6043,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "of Japanese rider Noriyuki Haga for using an illegal carburettor"
+     },
+     "output": "{\"person\": [\"Noriyuki Haga\"], \"location\": [], \"organization\": [], \"else\": [\"Japanese\"]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "of Japanese rider Noriyuki Haga for using an illegal carburettor"
+     },
+     "output": "{\"person\": [\"Noriyuki Haga\"], \"location\": [], \"organization\": [], \"else\": [\"Japanese\"]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "of Japanese rider Noriyuki Haga for using an illegal carburettor"
+     },
+     "output": "{\"person\": [\"Noriyuki Haga\"], \"location\": [], \"organization\": [], \"else\": [\"Japanese\"]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "of Japanese rider Noriyuki Haga for using an illegal carburettor"
+     },
+     "output": "{\"person\": [\"Noriyuki Haga\"], \"location\": [], \"organization\": [], \"else\": [\"Japanese\"]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "of Japanese rider Noriyuki Haga for using an illegal carburettor"
+     },
+     "output": "{\"person\": [\"Noriyuki Haga\"], \"location\": [], \"organization\": [], \"else\": [\"Japanese\"]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "of Japanese rider Noriyuki Haga for using an illegal carburettor"
+     },
+     "output": "\n\n{\"person\": [\"Noriyuki Haga\"], \"location\": [], \"organization\": [], \"else\": [\"Japanese\"]}",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0769
+  },
+  {
+   "name": "organization_field_cannot_be_empty_if_keywords_present",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    parsed = parse_json(output)\n    if not parsed:\n        return False\n    if any(keyword in ctx['text'].lower() for keyword in ['company', 'ministry', 'organization']) and not parsed['organization']:\n        return False\n    return True",
+   "n_rejected_correct": 48,
+   "n_correct": 6043,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "The reorganization plan calls for all secured claims to be paid in full ."
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "The reorganization plan calls for all secured claims to be paid in full ."
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "The reorganization plan calls for all secured claims to be paid in full ."
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "The reorganization plan calls for all secured claims to be paid in full ."
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "\" We 've always taken the view that we are the sort of company that 's quite capable of working in difficult circumstances -- we 're rather used to it ."
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "\" We 've always taken the view that we are the sort of company that 's quite capable of working in difficult circumstances -- we 're rather used to it ."
+     },
+     "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0697
+  },
+  {
+   "name": "organization_not_in_else",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    obj = parse_json(output)\n    if obj is None:\n        return False\n    for entity in obj.get('else', []):\n        if entity.lower() in ['ministry', 'newsroom', 'reuters']:\n            return False\n    return True",
+   "n_rejected_correct": 1,
+   "n_correct": 6043,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "15 - Christian Cullen , 14 - Jeff Wilson , 13 - Walter Little , 12 - Frank Bunce , 11 - Glen Osborne ; 10 - Andrew Mehrtens , 9 - Justin Marshall ; 8 - Zinzan Brooke , 7 - Josh Kronfeld , 6 - Michael Jones , 5 - Ian Jones , 4 - Robin Brooke , 3 - Olo Brown , 2 - Sean Fitzpatrick ( captain ) , 1 - Craig Dowd ."
+     },
+     "output": "{\"person\": [\"Christian Cullen\", \"Jeff Wilson\", \"Walter Little\", \"Frank Bunce\", \"Glen Osborne\", \"Andrew Mehrtens\", \"Justin Marshall\", \"Zinzan Brooke\", \"Josh Kronfeld\", \"Michael Jones\", \"Ian Jones\", \"Robin Brooke\", \"Olo Brown\", \"Sean Fitzpatrick\", \"Craig Dowd\"], \"location\": [], \"organization\": [], \"else\": [{\"captain\": \"captain\"}]}",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0693
+  },
+  {
+   "name": "person_field_case_insensitive_match",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    parsed = parse_json(output)\n    if not parsed:\n        return False\n    text_lower = ctx['text'].lower()\n    for entity in parsed['person']:\n        if entity.lower() not in text_lower:\n            return False\n    return True",
+   "n_rejected_correct": 1,
+   "n_correct": 6043,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "\" I do n't think one should have expected more than what one got , \" he said . \""
+     },
+     "output": "{}",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.069
+  },
+  {
+   "name": "no_duplicate_entities",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    parsed = parse_json(output)\n    if not parsed:\n        return False\n    for key in ['person', 'location', 'organization', 'else']:\n        if len(parsed[key]) != len(set(parsed[key])):\n            return False\n    return True",
+   "n_rejected_correct": 20,
+   "n_correct": 6043,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "15 - Christian Cullen , 14 - Jeff Wilson , 13 - Walter Little , 12 - Frank Bunce , 11 - Glen Osborne ; 10 - Andrew Mehrtens , 9 - Justin Marshall ; 8 - Zinzan Brooke , 7 - Josh Kronfeld , 6 - Michael Jones , 5 - Ian Jones , 4 - Robin Brooke , 3 - Olo Brown , 2 - Sean Fitzpatrick ( captain ) , 1 - Craig Dowd ."
+     },
+     "output": "{\"person\": [\"Christian Cullen\", \"Jeff Wilson\", \"Walter Little\", \"Frank Bunce\", \"Glen Osborne\", \"Andrew Mehrtens\", \"Justin Marshall\", \"Zinzan Brooke\", \"Josh Kronfeld\", \"Michael Jones\", \"Ian Jones\", \"Robin Brooke\", \"Olo Brown\", \"Sean Fitzpatrick\", \"Craig Dowd\"], \"location\": [], \"organization\": [], \"else\": [{\"captain\": \"captain\"}]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "\" I do n't think one should have expected more than what one got , \" he said . \""
+     },
+     "output": "{}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "An Iranian exile group based in Iraq vowed on Thursday to extend support to Iran 's Kurdish rebels after they were attacked by Iranian troops deep inside Iraq last month ."
+     },
+     "output": "{\"location\": [\"Iran\", \"Iraq\", \"Iraq\"], \"else\": [\"Iranian\", \"Iranian\", \"Kurdish\"], \"organization\": [], \"person\": []}",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "text": "The Egyptian government will have nothing more to do with the Sudanese government because it continues to shelter and support Egyptian militants , President Hosni Mubarak said in a speech on Thursday ."
+     },
+     "output": "{\"location\": [], \"else\": [\"Sudanese\", \"Egyptian\", \"Egyptian\"], \"organization\": [], \"person\": [\"Hosni Mubarak\"]}",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "text": "Showers and rain 0.25-1.00 inch ( 6-25 mm ) and locally heavier through most of central and south central India , up to 0.75 inch ( 19 mm ) in 75 percent of north central India , and only isolated up to 0.50 inch ( 13 mm ) elsewhere over India ."
+     },
+     "output": "{\"location\": [\"India\", \"India\", \"India\"], \"else\": [], \"organization\": [], \"person\": []}",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "text": "Authorities in Kassala said opposition forces based in Eritrea have been laying landmines and stealing vehicles and other goods to smuggle them across the border into Eritrea ."
+     },
+     "output": "{\"location\": [\"Eritrea\", \"Eritrea\", \"Kassala\"], \"else\": [], \"organization\": [], \"person\": []}",
+     "is_gold": true
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0689
+  },
+  {
+   "name": "no_overlapping_entities_in_fields",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    obj = parse_json(output)\n    if obj is None:\n        return False\n    all_entities = sum([obj.get(field, []) for field in ['person', 'location', 'organization', 'else']], [])\n    return len(all_entities) == len(set(all_entities))",
+   "n_rejected_correct": 19,
+   "n_correct": 6043,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "15 - Christian Cullen , 14 - Jeff Wilson , 13 - Walter Little , 12 - Frank Bunce , 11 - Glen Osborne ; 10 - Andrew Mehrtens , 9 - Justin Marshall ; 8 - Zinzan Brooke , 7 - Josh Kronfeld , 6 - Michael Jones , 5 - Ian Jones , 4 - Robin Brooke , 3 - Olo Brown , 2 - Sean Fitzpatrick ( captain ) , 1 - Craig Dowd ."
+     },
+     "output": "{\"person\": [\"Christian Cullen\", \"Jeff Wilson\", \"Walter Little\", \"Frank Bunce\", \"Glen Osborne\", \"Andrew Mehrtens\", \"Justin Marshall\", \"Zinzan Brooke\", \"Josh Kronfeld\", \"Michael Jones\", \"Ian Jones\", \"Robin Brooke\", \"Olo Brown\", \"Sean Fitzpatrick\", \"Craig Dowd\"], \"location\": [], \"organization\": [], \"else\": [{\"captain\": \"captain\"}]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "An Iranian exile group based in Iraq vowed on Thursday to extend support to Iran 's Kurdish rebels after they were attacked by Iranian troops deep inside Iraq last month ."
+     },
+     "output": "{\"location\": [\"Iran\", \"Iraq\", \"Iraq\"], \"else\": [\"Iranian\", \"Iranian\", \"Kurdish\"], \"organization\": [], \"person\": []}",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "text": "The Egyptian government will have nothing more to do with the Sudanese government because it continues to shelter and support Egyptian militants , President Hosni Mubarak said in a speech on Thursday ."
+     },
+     "output": "{\"location\": [], \"else\": [\"Sudanese\", \"Egyptian\", \"Egyptian\"], \"organization\": [], \"person\": [\"Hosni Mubarak\"]}",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "text": "Showers and rain 0.25-1.00 inch ( 6-25 mm ) and locally heavier through most of central and south central India , up to 0.75 inch ( 19 mm ) in 75 percent of north central India , and only isolated up to 0.50 inch ( 13 mm ) elsewhere over India ."
+     },
+     "output": "{\"location\": [\"India\", \"India\", \"India\"], \"else\": [], \"organization\": [], \"person\": []}",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "text": "Authorities in Kassala said opposition forces based in Eritrea have been laying landmines and stealing vehicles and other goods to smuggle them across the border into Eritrea ."
+     },
+     "output": "{\"location\": [\"Eritrea\", \"Eritrea\", \"Kassala\"], \"else\": [], \"organization\": [], \"person\": []}",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "text": "Mickelson three-stroke lead was cut to two when Mayfair birdied the course 's only easy hole , the par five second hole , while Mickelson three-putted for par from 25 feet ."
+     },
+     "output": "{\"location\": [], \"else\": [], \"organization\": [], \"person\": [\"Mickelson\", \"Mayfair\", \"Mickelson\"]}",
+     "is_gold": true
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0687
+  },
+  {
+   "name": "no_duplicates_in_fields",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    obj = parse_json(output)\n    if obj is None:\n        return False\n    for field in ['person', 'location', 'organization', 'else']:\n        if len(obj.get(field, [])) != len(set(obj.get(field, []))):\n            return False\n    return True",
+   "n_rejected_correct": 19,
+   "n_correct": 6043,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "15 - Christian Cullen , 14 - Jeff Wilson , 13 - Walter Little , 12 - Frank Bunce , 11 - Glen Osborne ; 10 - Andrew Mehrtens , 9 - Justin Marshall ; 8 - Zinzan Brooke , 7 - Josh Kronfeld , 6 - Michael Jones , 5 - Ian Jones , 4 - Robin Brooke , 3 - Olo Brown , 2 - Sean Fitzpatrick ( captain ) , 1 - Craig Dowd ."
+     },
+     "output": "{\"person\": [\"Christian Cullen\", \"Jeff Wilson\", \"Walter Little\", \"Frank Bunce\", \"Glen Osborne\", \"Andrew Mehrtens\", \"Justin Marshall\", \"Zinzan Brooke\", \"Josh Kronfeld\", \"Michael Jones\", \"Ian Jones\", \"Robin Brooke\", \"Olo Brown\", \"Sean Fitzpatrick\", \"Craig Dowd\"], \"location\": [], \"organization\": [], \"else\": [{\"captain\": \"captain\"}]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "An Iranian exile group based in Iraq vowed on Thursday to extend support to Iran 's Kurdish rebels after they were attacked by Iranian troops deep inside Iraq last month ."
+     },
+     "output": "{\"location\": [\"Iran\", \"Iraq\", \"Iraq\"], \"else\": [\"Iranian\", \"Iranian\", \"Kurdish\"], \"organization\": [], \"person\": []}",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "text": "The Egyptian government will have nothing more to do with the Sudanese government because it continues to shelter and support Egyptian militants , President Hosni Mubarak said in a speech on Thursday ."
+     },
+     "output": "{\"location\": [], \"else\": [\"Sudanese\", \"Egyptian\", \"Egyptian\"], \"organization\": [], \"person\": [\"Hosni Mubarak\"]}",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "text": "Showers and rain 0.25-1.00 inch ( 6-25 mm ) and locally heavier through most of central and south central India , up to 0.75 inch ( 19 mm ) in 75 percent of north central India , and only isolated up to 0.50 inch ( 13 mm ) elsewhere over India ."
+     },
+     "output": "{\"location\": [\"India\", \"India\", \"India\"], \"else\": [], \"organization\": [], \"person\": []}",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "text": "Authorities in Kassala said opposition forces based in Eritrea have been laying landmines and stealing vehicles and other goods to smuggle them across the border into Eritrea ."
+     },
+     "output": "{\"location\": [\"Eritrea\", \"Eritrea\", \"Kassala\"], \"else\": [], \"organization\": [], \"person\": []}",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "text": "Mickelson three-stroke lead was cut to two when Mayfair birdied the course 's only easy hole , the par five second hole , while Mickelson three-putted for par from 25 feet ."
+     },
+     "output": "{\"location\": [], \"else\": [], \"organization\": [], \"person\": [\"Mickelson\", \"Mayfair\", \"Mickelson\"]}",
+     "is_gold": true
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0684
+  },
+  {
+   "name": "no_empty_strings_in_fields",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    parsed = parse_json(output)\n    if not parsed:\n        return False\n    for key in ['person', 'location', 'organization', 'else']:\n        if any(entity.strip() == '' for entity in parsed[key]):\n            return False\n    return True",
+   "n_rejected_correct": 2,
+   "n_correct": 6043,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "text": "15 - Christian Cullen , 14 - Jeff Wilson , 13 - Walter Little , 12 - Frank Bunce , 11 - Glen Osborne ; 10 - Andrew Mehrtens , 9 - Justin Marshall ; 8 - Zinzan Brooke , 7 - Josh Kronfeld , 6 - Michael Jones , 5 - Ian Jones , 4 - Robin Brooke , 3 - Olo Brown , 2 - Sean Fitzpatrick ( captain ) , 1 - Craig Dowd ."
+     },
+     "output": "{\"person\": [\"Christian Cullen\", \"Jeff Wilson\", \"Walter Little\", \"Frank Bunce\", \"Glen Osborne\", \"Andrew Mehrtens\", \"Justin Marshall\", \"Zinzan Brooke\", \"Josh Kronfeld\", \"Michael Jones\", \"Ian Jones\", \"Robin Brooke\", \"Olo Brown\", \"Sean Fitzpatrick\", \"Craig Dowd\"], \"location\": [], \"organization\": [], \"else\": [{\"captain\": \"captain\"}]}",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "text": "\" I do n't think one should have expected more than what one got , \" he said . \""
+     },
+     "output": "{}",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0683
+  }
+ ]
+}

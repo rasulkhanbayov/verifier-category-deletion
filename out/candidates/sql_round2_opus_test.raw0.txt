@@ -1,0 +1,119 @@
+### CHECK literal_case_mismatch
+RATIONALE: SQLite `=` is case-sensitive. If the query compares a column to a string literal that never occurs in that column, while the same value in different case does occur, the filter silently drops the real rows. A correct answer would use the stored spelling. Catches mistakes like `'food'` vs `'Food'`.
+```python
+def check(output, ctx):
+    try:
+        import re
+        sql = extract_sql(output)
+        pairs = re.findall(r'([A-Za-z_][A-Za-z0-9_]*)\.?([A-Za-z_][A-Za-z0-9_]*)?\s*=\s*\'([^\']*)\'', sql)
+        for a, b, lit in pairs:
+            col = (b or a).lower()
+            tables = [t for t, cols in ctx['schema'].items() if col in [c.lower() for c in cols]]
+            if not tables or lit == '':
+                continue
+            exact_any = False
+            ci_any = False
+            for t in tables:
+                try:
+                    r1 = execute('SELECT 1 FROM "%s" WHERE "%s" = ? LIMIT 1' % (t, col)) if False else execute("SELECT 1 FROM \"%s\" WHERE \"%s\" = '%s' LIMIT 1" % (t, col, lit.replace("'", "''")))
+                    if r1:
+                        exact_any = True
+                    r2 = execute("SELECT 1 FROM \"%s\" WHERE lower(\"%s\") = lower('%s') LIMIT 1" % (t, col, lit.replace("'", "''")))
+                    if r2:
+                        ci_any = True
+                except Exception:
+                    return True
+            if not exact_any and ci_any:
+                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK quoted_question_literal_present
+RATIONALE: A value the question puts in quotes (e.g. `"Village"`, `'Sigma'`, a timestamp) must appear in any correct query. The comparison ignores case, spacing and punctuation. Catches outputs that drop or misspell the quoted filter.
+```python
+def check(output, ctx):
+    try:
+        import re
+        q = ctx['question']
+        sql = extract_sql(output)
+        norm = lambda s: re.sub(r'[^a-z0-9]', '', s.lower())
+        ns = norm(sql)
+        for m in re.findall(r'"([^"]{2,60})"|\'([^\']{2,60})\'', q):
+            lit = m[0] or m[1]
+            nl = norm(lit)
+            if len(nl) < 2:
+                continue
+            if nl not in ns:
+                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK question_numbers_in_sql
+RATIONALE: A standalone integer of 10 or more in the question (a threshold, year or amount) must appear in a correct query. The check also accepts n-1 and n+1 to allow `>=` / `>` rewrites, and skips numbers attached to letters or other characters (e.g. `1990s`, `100%`). Catches queries that drop or alter numeric conditions.
+```python
+def check(output, ctx):
+    try:
+        import re
+        q = ctx['question']
+        sql = extract_sql(output)
+        sqlnums = set(re.findall(r'\d+', sql))
+        for m in re.finditer(r'(?<![\w.\-:/])(\d+)(?![\w.%\-:/])', q):
+            s = m.group(1)
+            n = int(s)
+            if n < 10:
+                continue
+            if not ({s, str(n), str(n - 1), str(n + 1)} & sqlnums):
+                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK how_many_single_row
+RATIONALE: A question that starts with "How many" and contains no per-group wording ("each", "per", "every", "by", "for all", "respectively", etc.) asks for one number, so a correct result has at most one row. Catches stray GROUP BY clauses and listing queries.
+```python
+def check(output, ctx):
+    try:
+        import re
+        q = ctx['question'].lower().strip()
+        if not q.startswith('how many'):
+            return True
+        if re.search(r'\b(each|per|every|by|for all|respectively|different|and what|list|show|which)\b', q):
+            return True
+        rows = execute(extract_sql(output))
+        return len(rows) <= 1
+    except Exception:
+        return True
+```
+
+### CHECK how_many_numeric_answer
+RATIONALE: For a plain "How many ..." question with no grouping or extra-attribute wording, the single answer row of a correct query contains at least one numeric value. Catches queries that return names or text instead of a count.
+```python
+def check(output, ctx):
+    try:
+        import re
+        q = ctx['question'].lower().strip()
+        if not q.startswith('how many'):
+            return True
+        if re.search(r'\b(each|per|every|by|for all|respectively|and what|list|show|which|name|names)\b', q):
+            return True
+        rows = execute(extract_sql(output))
+        if len(rows) != 1:
+            return True
+        row = rows[0]
+        for v in row:
+            if v is None or isinstance(v, (int, float)):
+                return True
+            try:
+                float(v)
+                return True
+            except Exception:
+                pass
+        return False
+    except Exception:
+        return True
+```

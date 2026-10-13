@@ -1,0 +1,150 @@
+================================================================
+AV-TTS EXPERIMENT RUNBOOK  (read top to bottom before running)
+Anatomy-Verified Test-Time Scaling for Medical Image Segmentation
+================================================================
+
+----------------------------------------------------------------
+*** THE TWO MOST IMPORTANT CORRECTNESS RULES (read first) ***
+----------------------------------------------------------------
+(1) RUN EXPERIMENT 1 (THE ORACLE POSITIVE CONTROL) BEFORE ANYTHING ELSE.
+    It is the cheapest experiment and it can kill the whole paper early.
+    The oracle verifier selects the candidate with the best Dice-against-
+    ground-truth (labels used ONLY for this control, never in the method).
+    It is the upper bound on what candidate selection can buy.
+    - If the oracle gain over the base prediction is ~0, there is no headroom:
+      STOP and re-scope. No verifier can beat the oracle. Do not proceed to
+      the main comparison hoping for a gain that the oracle says cannot exist.
+    - If the oracle gain is clearly positive, the question becomes whether a
+      SOUND verifier captures it (Experiment 2). Proceed.
+
+(2) THE METHOD MUST NEVER SEE GROUND-TRUTH LABELS AT TEST TIME.
+    Labels appear only in (a) the oracle control and (b) final evaluation.
+    The verifier V(.) is computed from a candidate mask alone. If any label
+    leaks into candidate generation or selection, every result is invalid.
+    Re-check the data pipeline for this leak before trusting any number.
+
+----------------------------------------------------------------
+RESOURCES (pin these; record exact versions in the paper appendix)
+----------------------------------------------------------------
+- Python 3.11, numpy (this repo's avtts_analysis.py is numpy-only).
+- For real runs: PyTorch (pin the exact version), and for connected
+  components / Euler characteristic at scale you MAY swap the numpy
+  reference for scipy.ndimage.label and a vectorized chi for speed.
+  Verify the scipy result matches avtts_analysis.py on a few masks first.
+- Backbones (use BOTH to show backbone-agnosticism):
+    * an nnU-Net-style CNN trained on the source site;
+    * a SAM-based segmenter (frozen) for the foundation-model setting.
+- Compute: a few GPUs is enough. AV-TTS adds only forward passes
+  (no backward passes, no parameter state); candidates run in parallel.
+
+PUBLIC DATASETS (confirm current download links + licenses before use;
+all are used WITHOUT labels at test time):
+- Prostate MRI, multi-site cross-domain (the standard multi-site prostate
+  segmentation benchmark used in the TTA literature). Verifier: single
+  hole-free component per slice (expected Euler = 1).
+- Optic disc/cup fundus, cross-dataset (e.g. one cohort -> held-out cohorts).
+  Verifier: cup contained in disc; each a single blob; compactness in range.
+- Cardiac MRI, multi-vendor (LV / Myo / RV). Verifier: myocardium is an
+  annulus enclosing the LV blood pool; expected component counts per class.
+>>> ACTION: finalize exact splits, cite each dataset source, record licenses.
+
+----------------------------------------------------------------
+CHEAP PILOT FIRST (do this before the full grid)
+----------------------------------------------------------------
+On ONE dataset (prostate), ONE backbone (CNN), small N (e.g. N=8),
+3 seeds, ONE held-out site:
+  a. Generate candidates via test-time augmentation (flips, multi-scale,
+     gamma/intensity jitter) + MC-dropout if available.
+  b. Run Experiment 1 (oracle) and Experiment 2 (entropy vs anatomy vs oracle).
+  c. Decision gate:
+       - oracle gain ~0           -> STOP, re-scope (see flag-backs).
+       - oracle gain > 0 but
+         anatomy ~ entropy         -> the verifier is not adding value here;
+                                      revisit the verifier design before scaling.
+       - anatomy >> entropy and
+         anatomy near oracle       -> GREEN LIGHT: run the full grid.
+
+----------------------------------------------------------------
+EXPERIMENTS (each lists: objective | data | method | baselines |
+metrics | expected output | claim supported)
+----------------------------------------------------------------
+E1  POSITIVE CONTROL (run first)
+    Objective: measure candidate-selection headroom.
+    Method: oracle-verifier select-best vs base prediction.
+    Metric: Dice gain (oracle - base), HD95, violation rate.
+    Expected output: per-dataset headroom number.
+    Supports: contribution 3; kills "no headroom" objection early.
+
+E2  SOUNDNESS ISOLATION
+    Objective: show SOUNDNESS, not candidate multiplicity, drives the gain.
+    Method: same candidate sets; select by entropy (unsound) vs anatomy
+            verifier vs oracle.
+    Metric: fraction of oracle headroom recovered by each selector.
+    Expected: anatomy >> entropy; entropy may fall below base.
+    Supports: the central thesis; kills "just TTA renamed" objection.
+
+E3  MAIN COMPARISON
+    Objective: realized gains vs strong baselines.
+    Method: AV-TTS (select-best AND verifier-weighted), both backbones.
+    Baselines (VERIFY each is the current strongest before submission):
+      source-only, TENT, CoTTA, SAR, SAM-TTA, and TopoTTA where structure
+      applies. Internal: TTA-aug averaging (no verifier), majority vote.
+    Metrics: Dice, HD95, anatomical-violation rate; >=3 seeds (mean +/- std);
+      paired bootstrap over cases + Wilcoxon signed-rank; report p + effect size.
+    Expected: Table 1 in the paper. Violation-rate drop is likely the most
+      robust effect; Dice gain magnitude is the open empirical question.
+    Supports: contribution 4; kills "weaker than TTA" objection.
+
+E4  ASSUMPTION 1 AUDIT (verifier-accuracy alignment)
+    Objective: test whether higher V implies higher Dice (Assumption 1).
+    Method: rank correlation between V and true Dice over candidates, per dataset.
+    Expected: report where monotonicity holds and where it fails.
+    Supports: the practical reach of Proposition 1; kills "safeguard is vacuous".
+
+E5  COMPUTE SCALING
+    Objective: accuracy/compute trade-off and scaling shape.
+    Method: Dice + violation rate vs N in {1,2,4,8,16,32}; fixed vs adaptive.
+    Expected: Figure 2. Test whether the sound verifier escapes the
+      diminishing-returns shape of imperfect-verifier scaling.
+    Supports: the scaling story.
+
+----------------------------------------------------------------
+FLAG-BACK TRIGGERS (stop and reconsider; tell your advisor / re-scope)
+----------------------------------------------------------------
+- E1 oracle gain ~ 0 on all datasets: the candidate generator is not diverse
+  enough OR there is genuinely no headroom. Try stronger perturbations; if
+  still flat, the wedge does not hold for these tasks -> re-scope.
+- E2 anatomy ~ entropy: your verifier is not sound/discriminative as built.
+  Re-examine the penalty terms and tolerances before claiming soundness.
+- E4 weak/negative V-Dice correlation: do NOT claim Dice safety from Prop. 1.
+  Reframe the contribution as plausibility improvement; report honestly.
+- E3 gains within noise vs the strongest baseline: report as such; consider
+  framing around the no-degradation guarantee + violation-rate reduction
+  rather than a Dice SOTA claim. Do not inflate.
+
+----------------------------------------------------------------
+INTEGRITY REMINDERS
+----------------------------------------------------------------
+- Every number in the paper is a placeholder until your run produces it.
+  Replace [RP: ...] only with measured values; never fill from expectation.
+- AI assisted the drafting of method, proofs, and text. YOU must independently
+  verify Proposition 1, Assumption 1's empirical status, and every claim.
+  The human authors are the only authors and take full responsibility.
+- Re-run the deep arXiv novelty check immediately before submission; new
+  preprints appear monthly in test-time adaptation and test-time compute.
+  Confirm AV-TTS is still distinct from the closest neighbors (TopoTTA,
+  SAM-TTA, the MedSeg-TTA paradigms) and update Related Work.
+- Double-blind: keep the submission anonymous; do not de-anonymize via repo
+  links or acknowledgments.
+- Get 2-3 INDEPENDENT HUMAN MOCK REVIEWS and resolve every raised issue
+  before submitting. Treat unresolved findings as blocking.
+
+----------------------------------------------------------------
+VENUE / TIMELINE
+----------------------------------------------------------------
+- MICCAI 2026 is CLOSED (was Feb 26, 2026). Primary target: MICCAI 2027
+  (LNCS, 8 pages, double-blind; confirm 2027 dates when posted). Alternatives
+  framed as a method paper: ICLR 2027 or CVPR 2027 (verify each deadline).
+- This draft is venue-neutral. For final submission, paste the content into the
+  official LNCS / ICLR / CVPR class file and re-check the page limit and layout.
+================================================================

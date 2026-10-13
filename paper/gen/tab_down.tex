@@ -1,0 +1,15 @@
+Distill, CoNLL (0.6B, 3 seeds) & F1-selected & 50.4$\pm$1.0 & 5.6$\pm$0.6 & 0.08$\pm$0.03 \\
+Distill, CoNLL (0.6B, 3 seeds) & Certified & 48.0$\pm$1.5 & 17.6$\pm$0.0 & 0.31$\pm$0.00 \\
+\quad size-matched (3 subsamples) & Certified & 49.1$\pm$2.3 & 15.4$\pm$1.5 & 0.29$\pm$0.01 \\
+\quad without the deleting check (3 seeds) & F1-selected & 50.1$\pm$1.4 & 19.9$\pm$1.1 & 0.34$\pm$0.01 \\
+\quad 1.7B student & F1-selected & 52.1 & 6.9 & 0.10 \\
+\quad 1.7B student & Certified & 52.6 & 25.5 & 0.39 \\
+\addlinespace[2pt]
+RL, CoNLL (1 seed) & Start (label-filtered SFT) & 63.6 & 25.5 & 0.37 \\
+RL, CoNLL (2 seeds) & RL, label reward & 64.0 / 67.9 & 26.5 / 35.3 & 0.42 / 0.55 \\
+RL, CoNLL (4 seeds) & RL, certified gate & 65.0$\pm$0.3 & 26.5$\pm$6.0 & 0.40$\pm$0.08 \\
+RL, CoNLL (4 seeds) & RL, F1 gate & 62.8$\pm$0.6 & 6.4$\pm$4.6 & 0.11$\pm$0.04 \\
+\addlinespace[2pt]
+Distill, Few-NERD (0.6B, 1 seed) & Hand-written & 29.4 & -- & -- \\
+Distill, Few-NERD (0.6B, 3 seeds) & F1-selected & 30.6$\pm$0.4 & -- & -- \\
+Distill, Few-NERD (0.6B, 3 seeds) & Certified & 31.6$\pm$1.6 & -- & -- \\

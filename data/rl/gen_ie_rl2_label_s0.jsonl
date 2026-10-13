@@ -1,0 +1,555 @@
+{"instance_id": "ie-01610", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02828", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Bristol City\"], \"else\": []}"}
+{"instance_id": "ie-01126", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01666", "output": "{\"person\": [], \"location\": [\"Illinois\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01801", "output": "{\"person\": [], \"location\": [\"London\"], \"organization\": [\"London Newsroom\"], \"else\": []}"}
+{"instance_id": "ie-00213", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01957", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01921", "output": "{\"person\": [], \"location\": [\"NYMEX\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03041", "output": "{\"person\": [\"Hassan Ahmed\", \"Adnan Al Talyani\", \"Bakhit Saad\"], \"location\": [\"UAE\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02667", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": [\"Welsh\"]}"}
+{"instance_id": "ie-01736", "output": "{\"person\": [\"Joseph Garba\"], \"location\": [\"Nigeria\"], \"organization\": [\"U.N. General Assembly\"], \"else\": []}"}
+{"instance_id": "ie-01808", "output": "{\"person\": [], \"location\": [\"Canadian\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00822", "output": "{\"person\": [\"ANC\", \"Zulu Chief Mangosuthu Buthelezi\", \"Inkatha Freedom Party\"], \"location\": [], \"organization\": [], \"else\": [\"Zulu\"]}"}
+{"instance_id": "ie-01772", "output": "{\"person\": [], \"location\": [\"NEW DELHI\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01269", "output": "{\"person\": [\"Gaulieder\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00603", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Lille\"], \"else\": []}"}
+{"instance_id": "ie-00092", "output": "{\"person\": [], \"location\": [\"Pakistan\", \"New Zealand\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00126", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02383", "output": "{\"person\": [\"Renate Goetschl\"], \"location\": [\"Austria\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00749", "output": "{\"person\": [], \"location\": [\"AUSTRIA\"], \"organization\": [\"GUNMEN WOUND\", \"MANCHESTER UNITED\"], \"else\": []}"}
+{"instance_id": "ie-02260", "output": "{\"person\": [\"Florence Masnada\"], \"location\": [\"France\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00469", "output": "{\"person\": [], \"location\": [\"X-DENVER\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00153", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02834", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Gillingham\"], \"else\": []}"}
+{"instance_id": "ie-00767", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Lazio\", \"AS Roma\"], \"else\": []}"}
+{"instance_id": "ie-00452", "output": "{\"person\": [], \"location\": [], \"organization\": [\"National Football League\"], \"else\": []}"}
+{"instance_id": "ie-01351", "output": "{\"person\": [], \"location\": [\"Pacific Coast\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00751", "output": "{\"person\": [], \"location\": [\"Austrian\"], \"organization\": [\"Manchester United\"], \"else\": []}"}
+{"instance_id": "ie-01038", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01563", "output": "{\"person\": [], \"location\": [\"Florida\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01833", "output": "{\"person\": [], \"location\": [\"Ireland\", \"Michigan\", \"Newfoundland\", \"Stephenville\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01625", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Rye\"], \"else\": []}"}
+{"instance_id": "ie-00869", "output": "{\"person\": [\"Rosati\"], \"location\": [\"Warsaw\", \"Switzerland\"], \"organization\": [], \"else\": [\"Soviet-imposed communists\"]}"}
+{"instance_id": "ie-01023", "output": "{\"person\": [], \"location\": [\"Winnipeg\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01109", "output": "{\"person\": [\"Young\"], \"location\": [\"Zaire\", \"Rwanda\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02084", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": [\"Australian\", \"Cambodian\"]}"}
+{"instance_id": "ie-00708", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02210", "output": "{\"person\": [\"Derek da Cunha\"], \"location\": [\"Singapore\"], \"organization\": [\"ISEAS\"], \"else\": []}"}
+{"instance_id": "ie-00915", "output": "{\"person\": [], \"location\": [\"Tambang Timah\", \"London\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02363", "output": "{\"person\": [\"Katharina Gutensohn\"], \"location\": [\"Germany\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01217", "output": "{\"person\": [\"Livshits\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01021", "output": "{\"person\": [], \"location\": [\"CAN / U.S.\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01853", "output": "{\"person\": [\"Arafat\", \"Netanyahu\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03040", "output": "{\"person\": [], \"location\": [\"United Arab Emirates\", \"Kuwait\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02651", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Crusaders\"], \"else\": []}"}
+{"instance_id": "ie-02660", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Pilkington Cup\"], \"else\": []}"}
+{"instance_id": "ie-02202", "output": "{\"person\": [\"Ramthan Hussain\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02445", "output": "{\"person\": [\"Pierre Lueders\", \"Dave MacEachern\"], \"location\": [\"Canada\"], \"organization\": [], \"else\": [\"World cup\", \"Italians\"]}"}
+{"instance_id": "ie-00616", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Lens\", \"Nantes\"], \"else\": []}"}
+{"instance_id": "ie-02702", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01540", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00911", "output": "{\"person\": [], \"location\": [\"UK\", \"U.S.\"], \"organization\": [\"Department of Transport\"], \"else\": []}"}
+{"instance_id": "ie-02209", "output": "{\"person\": [], \"location\": [\"Singapore\"], \"organization\": [\"WTO\"], \"else\": []}"}
+{"instance_id": "ie-01211", "output": "{\"person\": [], \"location\": [\"Poland\"], \"organization\": [\"Democratic Left Alliance\", \"Catholic Church\"], \"else\": []}"}
+{"instance_id": "ie-02815", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Grimsby\"], \"else\": []}"}
+{"instance_id": "ie-02766", "output": "{\"person\": [], \"location\": [\"Queen's Park\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01105", "output": "{\"person\": [\"Laurent Kabila\"], \"location\": [\"Goma\", \"Rwanda\"], \"organization\": [\"Baril\"], \"else\": []}"}
+{"instance_id": "ie-02048", "output": "{\"person\": [], \"location\": [\"Frankfurt\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02578", "output": "{\"person\": [\"Marianne Timmer\"], \"location\": [\"Netherlands\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00210", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01002", "output": "{\"person\": [], \"location\": [\"Pakistan\", \"New Zealand\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01108", "output": "{\"person\": [\"Doug Young\"], \"location\": [], \"organization\": [], \"else\": [\"Canadian\"]}"}
+{"instance_id": "ie-02475", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00176", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01761", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Senate\"], \"else\": []}"}
+{"instance_id": "ie-00432", "output": "{\"person\": [], \"location\": [\"SAN ANTONIO\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00585", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": [\"Dutch\"]}"}
+{"instance_id": "ie-01458", "output": "{\"person\": [\"Matthew\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00988", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01272", "output": "{\"person\": [], \"location\": [], \"organization\": [\"SOFIA\"], \"else\": []}"}
+{"instance_id": "ie-01918", "output": "{\"person\": [], \"location\": [], \"organization\": [\"NYSE\"], \"else\": [\"NYMEX\"]}"}
+{"instance_id": "ie-02069", "output": "{\"person\": [\"Clarke\"], \"location\": [], \"organization\": [\"Parliament\"], \"else\": [\"Marlow\"]}"}
+{"instance_id": "ie-01604", "output": "{\"person\": [\"Voeks\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02481", "output": "{\"person\": [\"Hannes Conti\", \"Georg Kuttner\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03031", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Hapoel Jerusalem\"], \"else\": []}"}
+{"instance_id": "ie-02370", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Nation\"], \"else\": []}"}
+{"instance_id": "ie-00363", "output": "{\"person\": [], \"location\": [\"COLORADO\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02237", "output": "{\"person\": [], \"location\": [\"Asia\"], \"organization\": [\"BILO\", \"Ahold\", \"TOPS\"], \"else\": []}"}
+{"instance_id": "ie-01374", "output": "{\"person\": [\"Aninat\"], \"location\": [\"Chilean\"], \"organization\": [\"Chilean Congress\"], \"else\": []}"}
+{"instance_id": "ie-03016", "output": "{\"person\": [], \"location\": [\"Hapoel Tel Aviv\", \"Betar Jerusalem\"], \"organization\": [\"Hapoel Tel Aviv\", \"Betar Jerusalem\"], \"else\": []}"}
+{"instance_id": "ie-00434", "output": "{\"person\": [], \"location\": [\"SEATTLE\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00209", "output": "{\"person\": [\"Iordanescu\"], \"location\": [\"National Bucharest\", \"Otelul Galati\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01087", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Newmont\", \"Santa Fe\"], \"else\": [\"We have more money in our pocket\"]}"}
+{"instance_id": "ie-00267", "output": "{\"person\": [\"G. Blewett\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00380", "output": "{\"person\": [], \"location\": [], \"organization\": [\"NBA\", \"NHL\", \"La Clippers\", \"Ny Islanders\"], \"else\": []}"}
+{"instance_id": "ie-00409", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03165", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01579", "output": "{\"person\": [\"Frederick\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01007", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00273", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01838", "output": "{\"person\": [\"Snow\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02594", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02256", "output": "{\"person\": [\"Hilde Gerg\"], \"location\": [\"Germany\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00597", "output": "{\"person\": [], \"location\": [\"Strasbourg\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00025", "output": "{\"person\": [\"Murrayfield\"], \"location\": [\"Scotland\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01718", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02428", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02908", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Charlton\", \"Swindon\"], \"else\": []}"}
+{"instance_id": "ie-00605", "output": "{\"person\": [], \"location\": [\"Lyon\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01939", "output": "{\"person\": [\"Rashid\", \"Abu Ibrahim\"], \"location\": [\"United States\"], \"organization\": [], \"else\": [\"Palestinian\"]}"}
+{"instance_id": "ie-02452", "output": "{\"person\": [], \"location\": [\"France\", \"Canada\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00535", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Sparta Rotterdam\"], \"else\": []}"}
+{"instance_id": "ie-02408", "output": "{\"person\": [\"Brigitte Obermoser\"], \"location\": [\"Austria\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02456", "output": "{\"person\": [\"Veronica Brenner\"], \"location\": [\"Canada\", \"Tignes\"], \"organization\": [], \"else\": [\"French\"]}"}
+{"instance_id": "ie-01003", "output": "{\"person\": [], \"location\": [\"Manitoba\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02040", "output": "{\"person\": [], \"location\": [\"Munich Re\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01074", "output": "{\"person\": [], \"location\": [\"Santa Fe\", \"Nevada\", \"Central Asia\"], \"organization\": [\"Placer Dome Inc\"], \"else\": []}"}
+{"instance_id": "ie-00284", "output": "{\"person\": [], \"location\": [], \"organization\": [\"SHEFFIELD SHIELD\"], \"else\": []}"}
+{"instance_id": "ie-01308", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01102", "output": "{\"person\": [\"Maurice Baril\"], \"location\": [\"Nairobi\", \"Goma\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01980", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01578", "output": "{\"person\": [\"Lawhon\", \"Mills\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02467", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02599", "output": "{\"person\": [\"Becky Sundstrom\"], \"location\": [\"U.S.\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00301", "output": "{\"person\": [], \"location\": [\"West Indies\", \"Australia\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01398", "output": "{\"person\": [\"Wenchang\"], \"location\": [\"Xinhua\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01210", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01493", "output": "{\"person\": [\"Antoine Lahd\"], \"location\": [\"Lebanon\", \"Israel\"], \"organization\": [\"South Lebanon Army (SLA)\"], \"else\": []}"}
+{"instance_id": "ie-00595", "output": "{\"person\": [], \"location\": [\"Monaco\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02853", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Lincoln\"], \"else\": []}"}
+{"instance_id": "ie-03077", "output": "{\"person\": [], \"location\": [\"PHOENIX\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02718", "output": "{\"person\": [\"Melville\", \"Ekoku\", \"Holdsworth\"], \"location\": [], \"organization\": [\"Sunderland\", \"Wimbledon\"], \"else\": []}"}
+{"instance_id": "ie-02319", "output": "{\"person\": [\"Stefanie Schuster\"], \"location\": [\"Austria\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00653", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01785", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00364", "output": "{\"person\": [], \"location\": [], \"organization\": [\"VANCOUVER\"], \"else\": []}"}
+{"instance_id": "ie-00310", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01177", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": [\"French\"]}"}
+{"instance_id": "ie-01440", "output": "{\"person\": [\"Bill Jordan\", \"Michel Hansenne\"], \"location\": [], \"organization\": [\"International Confederation of Free Trade Unions ( ICFTU )\", \"WTO\", \"ILO\"], \"else\": []}"}
+{"instance_id": "ie-02738", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Falkirk\"], \"else\": []}"}
+{"instance_id": "ie-01403", "output": "{\"person\": [], \"location\": [\"Ranyon\", \"Rangoon\"], \"organization\": [\"Ranyon University\"], \"else\": [\"Burmese\"]}"}
+{"instance_id": "ie-00792", "output": "{\"person\": [], \"location\": [\"Charleroi\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00506", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02463", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02784", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Derby\"], \"else\": []}"}
+{"instance_id": "ie-02552", "output": "{\"person\": [], \"location\": [], \"organization\": [\"World Grand Prix\"], \"else\": []}"}
+{"instance_id": "ie-02521", "output": "{\"person\": [\"Xu Nannan\"], \"location\": [\"China\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00097", "output": "{\"person\": [\"Ijaz Ahmad\", \"Spearman\", \" Vaughan\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02796", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Barnsley\"], \"else\": []}"}
+{"instance_id": "ie-00396", "output": "{\"person\": [], \"location\": [\"Philadelphia\", \"Dallas Cowboys\", \"Washington Redskins\", \"New York Jets\", \"Arizona\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01151", "output": "{\"person\": [\"Bangui\"], \"location\": [\"France\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03125", "output": "{\"person\": [], \"location\": [\"TAMPA BAY\", \"SAN JOSE\"], \"organization\": [\"TAMPA BAY AT SAN JOSE\"], \"else\": []}"}
+{"instance_id": "ie-02983", "output": "{\"person\": [\"Altin Rraklli\", \"Viktor Paco\", \"Fatmir Vata\", \"Erjon Bogdani\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02000", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01611", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Durum\"], \"else\": []}"}
+{"instance_id": "ie-01045", "output": "{\"person\": [], \"location\": [\"Thai\", \"Red Sea\", \"Mobil\"], \"organization\": [\"Thai Resource\", \"Ras Tanura\", \"Mobil\"], \"else\": []}"}
+{"instance_id": "ie-01873", "output": "{\"person\": [], \"location\": [\"Turkey\", \"Iraq\"], \"organization\": [\"PKK\"], \"else\": []}"}
+{"instance_id": "ie-02717", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03175", "output": "{\"person\": [\"Jack Charlton\"], \"location\": [\"Ireland\"], \"organization\": [], \"else\": [\"Englishman\"]}"}
+{"instance_id": "ie-02556", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02232", "output": "{\"person\": [], \"location\": [], \"organization\": [\"NTT\"], \"else\": []}"}
+{"instance_id": "ie-03167", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": [\"Spanish\"]}"}
+{"instance_id": "ie-01854", "output": "{\"person\": [], \"location\": [\"Washington\"], \"organization\": [], \"else\": [\"Palestines\", \"Isr\"]}"}
+{"instance_id": "ie-02785", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Leicester\"], \"else\": []}"}
+{"instance_id": "ie-01249", "output": "{\"person\": [\"Clinton\", \"Boris Yeltsin\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01161", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": [\"French\"]}"}
+{"instance_id": "ie-01898", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01637", "output": "{\"person\": [], \"location\": [\"British\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00162", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01925", "output": "{\"person\": [], \"location\": [\"U.S.\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02304", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01216", "output": "{\"person\": [\"Konstantin Chernyshev\"], \"location\": [\"Norilsk\", \"Moscow\"], \"organization\": [\"Rinaco Plus\"], \"else\": []}"}
+{"instance_id": "ie-03126", "output": "{\"person\": [], \"location\": [\"OTTAWA\", \"VANCOUVER\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03061", "output": "{\"person\": [], \"location\": [\"WASHINGTON\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00756", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Manchester United\"], \"else\": []}"}
+{"instance_id": "ie-00657", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02518", "output": "{\"person\": [\"Marie Lindgren\"], \"location\": [\"Sweden\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02437", "output": "{\"person\": [], \"location\": [], \"organization\": [\"ALPINE SKIING-GOETCHL WINS WORLD CUP DOWNHILL\"], \"else\": []}"}
+{"instance_id": "ie-02807", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Queens Park Rangers\"], \"else\": []}"}
+{"instance_id": "ie-00922", "output": "{\"person\": [], \"location\": [\"London\"], \"organization\": [\"Telkom\"], \"else\": []}"}
+{"instance_id": "ie-01492", "output": "{\"person\": [], \"location\": [\"Lebanon\", \"Israel\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00193", "output": "{\"person\": [\"Tim Stimpson\", \"Tony Underwood\", \"Ian Jones\", \"Norm Hewitt\"], \"location\": [\"England\"], \"organization\": [\"Barbarians\"], \"else\": [\"All Black\"]}"}
+{"instance_id": "ie-00175", "output": "{\"person\": [], \"location\": [\"Germany\"], \"organization\": [\"Bayer Leverkusen\"], \"else\": []}"}
+{"instance_id": "ie-02887", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Stranraer\", \"Brechin\"], \"else\": []}"}
+{"instance_id": "ie-01053", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00425", "output": "{\"person\": [], \"location\": [\"TORONTO\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00195", "output": "{\"person\": [\"Tim Stimpson\", \"Nigel Walker\", \"Allan Bateman\", \"Gregor Townsend\", \"Tony Underwood\", \"Rob Andrew\", \"Rob Howley\", \"Scott Quinnell\", \"Neil Back\", \"Dale McIntosh\", \"Ian Jones\", \"Craig Quinnell\", \"Darren Garforth\", \"Norm Hewitt\", \"Nick Popplewell\"], \"location\": [\"England\", \"Wales\", \"Scotland\", \"Wales\", \"Scotland\", \"Wales\", \"England\", \"New Zealand\", \"Ireland\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03010", "output": "{\"person\": [], \"location\": [\"JERUSALEM\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00580", "output": "{\"person\": [\"Bruno N'Gotty\", \"Paul Fischer\"], \"location\": [\"Paris St Germain\", \"Nancy\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02290", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00402", "output": "{\"person\": [\"Kerwin Bell\", \"Marvin Harrison\"], \"location\": [], \"organization\": [\"Miami Dolphins\"], \"else\": []}"}
+{"instance_id": "ie-00614", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": [\"FRENCH\"]}"}
+{"instance_id": "ie-02642", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01758", "output": "{\"person\": [], \"location\": [\"Hanover\"], \"organization\": [], \"else\": [\"Saint Nicholas\", \"German\"]}"}
+{"instance_id": "ie-01547", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01342", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Millet\"], \"else\": []}"}
+{"instance_id": "ie-00758", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Italian Serie A\"], \"else\": []}"}
+{"instance_id": "ie-01830", "output": "{\"person\": [\"Major\", \"Clarke\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01897", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01612", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Oats\"], \"else\": []}"}
+{"instance_id": "ie-00885", "output": "{\"person\": [\"van Boxmeer\"], \"location\": [\"Polish\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02258", "output": "{\"person\": [\"Warwara Zelenskaja\"], \"location\": [\"Russia\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00087", "output": "{\"person\": [], \"location\": [\"China\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02995", "output": "{\"person\": [\"Michael DiVenuto\", \"David Boon\", \"Shaun Young\", \"Dean Jones\"], \"location\": [\"Tasmania\", \"Victoria\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02607", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00416", "output": "{\"person\": [], \"location\": [\"BOSTON\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01095", "output": "{\"person\": [], \"location\": [\"Zimbabwe\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00128", "output": "{\"person\": [\"Wasim Akram\", \"Waqar Younis\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01077", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01030", "output": "{\"person\": [], \"location\": [\"Vancouver\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02522", "output": "{\"person\": [], \"location\": [\"Norway\"], \"organization\": [\"Hilde Synnove Lid\"], \"else\": []}"}
+{"instance_id": "ie-00219", "output": "{\"person\": [], \"location\": [\"BRAZILIAN\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02608", "output": "{\"person\": [], \"location\": [\"Whistler Mountain\"], \"organization\": [], \"else\": [\"World Cup\"]}"}
+{"instance_id": "ie-00278", "output": "{\"person\": [], \"location\": [\"Australia\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01835", "output": "{\"person\": [], \"location\": [\"east coast Canadian province\"], \"organization\": [], \"else\": [\"EST\", \"GMT\"]}"}
+{"instance_id": "ie-00156", "output": "{\"person\": [], \"location\": [\"Russia\"], \"organization\": [\"CSKA Moscow\"], \"else\": []}"}
+{"instance_id": "ie-02011", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Reuter\", \"Radiometer\"], \"else\": []}"}
+{"instance_id": "ie-00650", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Real Madrid\", \"Barcelona\"], \"else\": []}"}
+{"instance_id": "ie-00558", "output": "{\"person\": [], \"location\": [], \"organization\": [\"VfL Bochum\"], \"else\": []}"}
+{"instance_id": "ie-00593", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00331", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03026", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Maccabi Petah Tikva\"], \"else\": []}"}
+{"instance_id": "ie-02444", "output": "{\"person\": [\"Guenther Huber\", \"Antonio Tartaglia\"], \"location\": [\"Italy\"], \"organization\": [\"Americans\"], \"else\": []}"}
+{"instance_id": "ie-00103", "output": "{\"person\": [\"Saqlain Mushtaq\", \"Harris\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01165", "output": "{\"person\": [], \"location\": [\"Bangui\"], \"organization\": [], \"else\": [\"Franco-African\"]}"}
+{"instance_id": "ie-00540", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Fortuna Sittard\"], \"else\": []}"}
+{"instance_id": "ie-00610", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Montpellier\"], \"else\": []}"}
+{"instance_id": "ie-02786", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Leeds\"], \"else\": []}"}
+{"instance_id": "ie-02248", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02076", "output": "{\"person\": [], \"location\": [\"Australian\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00221", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": [\"Brazilian\"]}"}
+{"instance_id": "ie-02338", "output": "{\"person\": [\"Svetlana Gladishiva\"], \"location\": [\"Russia\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03130", "output": "{\"person\": [], \"location\": [], \"organization\": [\"BUFFALO\", \"Anaheim\"], \"else\": []}"}
+{"instance_id": "ie-03179", "output": "{\"person\": [\"Charlton\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00393", "output": "{\"person\": [\"Paul Justin\", \"Jim Harbaugh\"], \"location\": [], \"organization\": [\"Colts\"], \"else\": []}"}
+{"instance_id": "ie-01938", "output": "{\"person\": [\"Rashid\"], \"location\": [\"Greece\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00600", "output": "{\"person\": [], \"location\": [\"Metz\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02152", "output": "{\"person\": [], \"location\": [\"China\", \"Guilin\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01701", "output": "{\"person\": [], \"location\": [\"United States\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01322", "output": "{\"person\": [\"Ivo Pitangy\"], \"location\": [\"Brazil\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03137", "output": "{\"person\": [\"Pavel Bure\", \"Garry Galley\"], \"location\": [\"Buffalo Sabres\", \"Vancouver Canucks\"], \"organization\": [\"National Hockey League\"], \"else\": [\"Buffalo Sabres\", \"Vancouver Canucks\"]}"}
+{"instance_id": "ie-02930", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Mansfield\", \"Stockport\"], \"else\": []}"}
+{"instance_id": "ie-00894", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": [\"Polish\"]}"}
+{"instance_id": "ie-01411", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Vithoon Amorn\"], \"else\": []}"}
+{"instance_id": "ie-00224", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Portuguesa\", \"Atletico Mineiro\"], \"else\": []}"}
+{"instance_id": "ie-02013", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02305", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00577", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01926", "output": "{\"person\": [], \"location\": [\"WASHINGTON\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02356", "output": "{\"person\": [\"Isolde Kostner\"], \"location\": [\"Italy\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03129", "output": "{\"person\": [], \"location\": [], \"organization\": [\"NY RANGERS\", \"Toronto\"], \"else\": []}"}
+{"instance_id": "ie-01680", "output": "{\"person\": [], \"location\": [\"Toledo\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00127", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01203", "output": "{\"person\": [\"Buza\", \"Gjonaj\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01357", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02933", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Sudbury Town\", \"Brentford\"], \"else\": []}"}
+{"instance_id": "ie-02022", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": [\"Turkish\"]}"}
+{"instance_id": "ie-01060", "output": "{\"person\": [], \"location\": [\"DES MOINES\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01788", "output": "{\"person\": [], \"location\": [\"LUXEMBOURG\"], \"organization\": [], \"else\": [\"WORLD WIDE WEB\"]}"}
+{"instance_id": "ie-02324", "output": "{\"person\": [\"Kate Pace Lindsay\"], \"location\": [\"Canada\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02752", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Queen of South\"], \"else\": []}"}
+{"instance_id": "ie-01140", "output": "{\"person\": [], \"location\": [\"DAKAR\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02709", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01156", "output": "{\"person\": [], \"location\": [\"Yakoma\"], \"organization\": [\"Grelombe\"], \"else\": []}"}
+{"instance_id": "ie-00762", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Cagliari\", \"Reggiana\"], \"else\": []}"}
+{"instance_id": "ie-00020", "output": "{\"person\": [], \"location\": [\"UAE\", \"Kuwait\", \"South Korea\", \"Indonesia\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00968", "output": "{\"person\": [], \"location\": [\"Manchester\", \"England\"], \"organization\": [\"Sale Grammar School\"], \"else\": []}"}
+{"instance_id": "ie-03156", "output": "{\"person\": [\"Ronaldo\"], \"location\": [\"Barcelona\"], \"organization\": [], \"else\": [\"Brazilian\"]}"}
+{"instance_id": "ie-01689", "output": "{\"person\": [], \"location\": [\"WASHINGTON\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00640", "output": "{\"person\": [\"Paulinho Santos\", \"Sergio Conceicao\", \"Joao Manuel Pinto\", \"Oceano Cruz\", \"Fernando Couto\", \"Helder Cristovao\", \"Dimas Teixeira\", \"Carlos Secretario\", \"Carlos Secretario\"], \"location\": [\"Porto\", \"Barcelona\", \"Deportivo Coruna\", \"Real Madrid\", \"Juventus\", \"Italy\"], \"organization\": [\"Defenders\", \"Porto\", \"Sporting\", \"Oceano Cruz\", \"Fernando Couto\", \"Helder Cristovao\", \"Dimas Teixeira\", \"Carlos Secretario\", \"Real Madrid\", \"Juventus\", \"Deportivo Coruna\", \"Porto\"], \"else\": []}"}
+{"instance_id": "ie-03072", "output": "{\"person\": [], \"location\": [], \"organization\": [\"VANCOUVER\"], \"else\": []}"}
+{"instance_id": "ie-02741", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Partick\"], \"else\": []}"}
+{"instance_id": "ie-02469", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02107", "output": "{\"person\": [\"Halverson\", \"Mr John Vance Langmore\"], \"location\": [\"Australian Capital Territory\"], \"organization\": [], \"else\": [\"Fraser\"]}"}
+{"instance_id": "ie-01286", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00496", "output": "{\"person\": [], \"location\": [\"JACKSONVILLE\", \"HOUSTON\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00269", "output": "{\"person\": [\"S. Law b Hooper\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01958", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00989", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Electronic Data Systems\", \"Private Finance Initiative\"], \"else\": []}"}
+{"instance_id": "ie-01796", "output": "{\"person\": [], \"location\": [\"UK\"], \"organization\": [], \"else\": [\"Conservative\"]}"}
+{"instance_id": "ie-00251", "output": "{\"person\": [\"J. Murray\", \"Blewett\", \"Warne\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01131", "output": "{\"person\": [], \"location\": [\"Mauritius\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00633", "output": "{\"person\": [], \"location\": [], \"organization\": [\"WEAHA\", \"PORTUGAL\"], \"else\": []}"}
+{"instance_id": "ie-00420", "output": "{\"person\": [], \"location\": [\"CLEVELAND\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00666", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02285", "output": "{\"person\": [\"Svetlana Gladishiva\"], \"location\": [\"Russia\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01770", "output": "{\"person\": [], \"location\": [\"EU\", \"Poland\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02611", "output": "{\"person\": [\"Bernd Zobel\"], \"location\": [\"Canadian\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02693", "output": "{\"person\": [\"Campese\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00470", "output": "{\"person\": [], \"location\": [\"KANSAS CITY\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01711", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01261", "output": "{\"person\": [\"Yeltsin\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00997", "output": "{\"person\": [\"Sherwin Campbell\", \"Shivnarine Chanderpaul\"], \"location\": [], \"organization\": [\"West Indies\"], \"else\": []}"}
+{"instance_id": "ie-01123", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00108", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01174", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Codos\"], \"else\": []}"}
+{"instance_id": "ie-01528", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00575", "output": "{\"person\": [\"Japhet N'Doram\", \"Claude Makelele\", \"Jocelyn\"], \"location\": [], \"organization\": [\"Lens\", \"Nantes\"], \"else\": []}"}
+{"instance_id": "ie-00833", "output": "{\"person\": [\"Albright\", \"Marie Korbelova\"], \"location\": [\"United States\"], \"organization\": [], \"else\": [\"Czechoslovak\"]}"}
+{"instance_id": "ie-00996", "output": "{\"person\": [], \"location\": [\"Australia\", \"West Indies\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00065", "output": "{\"person\": [\"Tae Satoya\"], \"location\": [\"Japan\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00000", "output": "{\"person\": [], \"location\": [\"JAPAN\", \"CHINA\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03133", "output": "{\"person\": [], \"location\": [\"Philadelphia\", \"DALLAS\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01734", "output": "{\"person\": [\"Paolo Fulci\", \"Ghana\", \"Ivory Coast\", \"Mauritania\", \"Niger\", \"Italy\"], \"location\": [], \"organization\": [\"U.N.\"], \"else\": []}"}
+{"instance_id": "ie-02416", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": [\"World Cup biathlon\"]}"}
+{"instance_id": "ie-00899", "output": "{\"person\": [\"Van Boxmeer\", \"Zywiec\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01477", "output": "{\"person\": [\"Sakakibara\"], \"location\": [], \"organization\": [], \"else\": [\"International Finance Bureau\"]}"}
+{"instance_id": "ie-00190", "output": "{\"person\": [\"Rob Andrew\"], \"location\": [\"Cape Town\"], \"organization\": [\"Campese\", \"Barbarians\"], \"else\": [\"Australia\"]}"}
+{"instance_id": "ie-00045", "output": "{\"person\": [\"Salem Bitar\", \"Bachar Srour\", \"Hassan Abbas\", \"Tarek Jabban\", \"Ammar Awad\", \"Louay Taleb\", \"Nihad al-Boushi\", \"Mohammed Afash\", \"Ali Dib\", \"Abdul Latif Helou\", \"Ammar Rihawiy\", \"Khaled Zaher\", \"Nader Jokhadar\"], \"location\": [\"Syria\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02750", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Hamilton\"], \"else\": []}"}
+{"instance_id": "ie-02922", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Cambridge United\", \"Woking\"], \"else\": []}"}
+{"instance_id": "ie-00291", "output": "{\"person\": [\"Tom Moody\", \"Shane Warne\"], \"location\": [], \"organization\": [\"West Indies\"], \"else\": []}"}
+{"instance_id": "ie-02127", "output": "{\"person\": [], \"location\": [\"Iran Sabr\"], \"organization\": [\"Iran\"], \"else\": []}"}
+{"instance_id": "ie-02926", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Enfield\", \"Peterborough\"], \"else\": []}"}
+{"instance_id": "ie-00679", "output": "{\"person\": [\"Pedrag Mijatovic\", \"Luis Figo\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02759", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Montrose\"], \"else\": []}"}
+{"instance_id": "ie-02083", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02449", "output": "{\"person\": [], \"location\": [\"TIGNES\", \"France\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00893", "output": "{\"person\": [\"van Boxmeer\"], \"location\": [\"Poland\"], \"organization\": [\"CEFTA\"], \"else\": [\"Czech\"]}"}
+{"instance_id": "ie-02019", "output": "{\"person\": [], \"location\": [\"Spain\", \"Belgian\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00520", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": [\"DUTCH\"]}"}
+{"instance_id": "ie-00759", "output": "{\"person\": [], \"location\": [\"Bologna\", \"Piacenza\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01179", "output": "{\"person\": [], \"location\": [\"JOHANNESBURG\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02289", "output": "{\"person\": [], \"location\": [\"Innisbrook Hilton Resort\"], \"organization\": [\"JCPenney Classic\"], \"else\": []}"}
+{"instance_id": "ie-02706", "output": "{\"person\": [\"Kanchelskis\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02364", "output": "{\"person\": [\"Stefanie Schuster\"], \"location\": [\"Austria\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02537", "output": "{\"person\": [\"Kristian Brenden\"], \"location\": [\"Norway\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01580", "output": "{\"person\": [], \"location\": [\"New York\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01348", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Communications and Transportation Ministry\"], \"else\": []}"}
+{"instance_id": "ie-00863", "output": "{\"person\": [], \"location\": [\"Poland\"], \"organization\": [], \"else\": [\"Swiss\", \"Polish Jews\", \"Holocaust\", \"World War Two\"]}"}
+{"instance_id": "ie-02969", "output": "{\"person\": [\"Fourie\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03098", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Indiana\", \"GOLDEN STATE\"], \"else\": []}"}
+{"instance_id": "ie-01884", "output": "{\"person\": [], \"location\": [\"Texas\", \"Okla\"], \"organization\": [\"USDA\"], \"else\": []}"}
+{"instance_id": "ie-03067", "output": "{\"person\": [], \"location\": [\"INDIANA\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01067", "output": "{\"person\": [], \"location\": [\"Wall Street\"], \"organization\": [\"Newmont\", \"Santa Fe\"], \"else\": []}"}
+{"instance_id": "ie-00621", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00458", "output": "{\"person\": [], \"location\": [\"NEW ENGLAND\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00686", "output": "{\"person\": [\"Popescu\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00426", "output": "{\"person\": [], \"location\": [], \"organization\": [\"MIDWEST\"], \"else\": []}"}
+{"instance_id": "ie-02361", "output": "{\"person\": [\"Madlen Brigger-Summermatter\"], \"location\": [\"Switzerland\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01999", "output": "{\"person\": [\"Scalfaro\"], \"location\": [\"Mantua\"], \"organization\": [\"League\"], \"else\": [\"Italian\"]}"}
+{"instance_id": "ie-01506", "output": "{\"person\": [\"Saqr\", \"Lahd\"], \"location\": [\"Israel\", \"Lebanon\"], \"organization\": [], \"else\": [\"Israeli\"]}"}
+{"instance_id": "ie-02178", "output": "{\"person\": [\"Bre-X\", \"Barrick\"], \"location\": [\"Toronto\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01384", "output": "{\"person\": [\"Ramos Horta\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02965", "output": "{\"person\": [\"Merwe\", \"Hennie Swart\"], \"location\": [\"Namibia\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01631", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Oats Rye Flaxseed Canola Corn\"], \"else\": []}"}
+{"instance_id": "ie-02919", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Barnet\", \"Wycombe\"], \"else\": []}"}
+{"instance_id": "ie-01490", "output": "{\"person\": [\"Haitham Haddadin\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00615", "output": "{\"person\": [], \"location\": [\"French\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00490", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01111", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00308", "output": "{\"person\": [], \"location\": [\"BALI\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01983", "output": "{\"person\": [\"Tim Casey\"], \"location\": [\"U.S.\"], \"organization\": [\"MCI Communications Corporation\"], \"else\": []}"}
+{"instance_id": "ie-00378", "output": "{\"person\": [], \"location\": [], \"organization\": [\"NHL ICE HOCKEY\"], \"else\": []}"}
+{"instance_id": "ie-00757", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": [\"ITALIAN\"]}"}
+{"instance_id": "ie-00716", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Real Sociedad\"], \"else\": []}"}
+{"instance_id": "ie-02207", "output": "{\"person\": [\"Mickey Kantor\"], \"location\": [\"Singapore\", \"U.S.\"], \"organization\": [\"WTO\"], \"else\": []}"}
+{"instance_id": "ie-01589", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Carcass Basis\"], \"else\": []}"}
+{"instance_id": "ie-00785", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Vicenza\", \"Internazionale\"], \"else\": []}"}
+{"instance_id": "ie-00935", "output": "{\"person\": [], \"location\": [\"Britain\"], \"organization\": [], \"else\": [\"American\"]}"}
+{"instance_id": "ie-01698", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01623", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Oats\"], \"else\": []}"}
+{"instance_id": "ie-01757", "output": "{\"person\": [], \"location\": [], \"organization\": [\"German\"], \"else\": [\"Santa Claus\"]}"}
+{"instance_id": "ie-01437", "output": "{\"person\": [], \"location\": [], \"organization\": [\"WTO\", \"ILO\"], \"else\": []}"}
+{"instance_id": "ie-02610", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00112", "output": "{\"person\": [], \"location\": [\"New Zealand\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01169", "output": "{\"person\": [\"Patasse\"], \"location\": [\"Central Africa\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01418", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02535", "output": "{\"person\": [\"Hiroya Saitoh\"], \"location\": [\"Japan\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02760", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Inverness Thistle\"], \"else\": []}"}
+{"instance_id": "ie-01302", "output": "{\"person\": [], \"location\": [\"New York\"], \"organization\": [], \"else\": [\"Mexican\"]}"}
+{"instance_id": "ie-00005", "output": "{\"person\": [\"Igor Shkvyrin\"], \"location\": [\"China\"], \"organization\": [], \"else\": [\"Uzbek\"]}"}
+{"instance_id": "ie-01168", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00478", "output": "{\"person\": [], \"location\": [\"ARIZONA\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02074", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": [\"Australian\"]}"}
+{"instance_id": "ie-03082", "output": "{\"person\": [], \"location\": [\"DETROIT\", \"NEW JERSEY\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02947", "output": "{\"person\": [\"Burke\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00742", "output": "{\"person\": [\"Weah\"], \"location\": [], \"organization\": [\"UEFA\", \"European soccer\"], \"else\": []}"}
+{"instance_id": "ie-02531", "output": "{\"person\": [\"Dieter Thoma\"], \"location\": [\"Germany\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00094", "output": "{\"person\": [], \"location\": [\"Pakistan\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02211", "output": "{\"person\": [\"Tan Kong Yam\"], \"location\": [\"Singapore\"], \"organization\": [\"National University of Singapore\"], \"else\": []}"}
+{"instance_id": "ie-01813", "output": "{\"person\": [], \"location\": [\"U.S.\", \"Japan\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01448", "output": "{\"person\": [], \"location\": [\"ASEAN\", \"Brunei\", \"Indonesia\", \"Malaysia\", \"Philippines\", \"Singapore\", \"Thailand\", \"Vietnam\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01279", "output": "{\"person\": [], \"location\": [\"Hungary\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01345", "output": "{\"person\": [], \"location\": [\"Buenos Aires\"], \"organization\": [\"Buenos Aires Newsroom\"], \"else\": []}"}
+{"instance_id": "ie-02448", "output": "{\"person\": [], \"location\": [], \"organization\": [\"SKIING-CHINESE\"], \"else\": []}"}
+{"instance_id": "ie-01371", "output": "{\"person\": [\"Aninat\"], \"location\": [\"Mexico\", \"Canada\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03132", "output": "{\"person\": [], \"location\": [\"Montreal\", \"CHICAGO\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01304", "output": "{\"person\": [], \"location\": [\"New York\", \"Mexico\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03160", "output": "{\"person\": [\"Vampeta\", \"Luc Nilis\"], \"location\": [], \"organization\": [], \"else\": [\"Brazilian\", \"Belgian\"]}"}
+{"instance_id": "ie-02769", "output": "{\"person\": [], \"location\": [], \"organization\": [\"ENGLISH LEAGUE\"], \"else\": []}"}
+{"instance_id": "ie-02952", "output": "{\"person\": [], \"location\": [\"HARARE\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01460", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02471", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00977", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02700", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00782", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Sampdoria\", \"Juventus\"], \"else\": []}"}
+{"instance_id": "ie-01931", "output": "{\"person\": [], \"location\": [\"Greece\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00261", "output": "{\"person\": [\"Moody\", \"Blewett\", \"Warne\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01380", "output": "{\"person\": [\"Belo\"], \"location\": [\"Jakarta\"], \"organization\": [], \"else\": [\"Indonesian\"]}"}
+{"instance_id": "ie-02037", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Muenchener Rueckversicherungs AG\"], \"else\": []}"}
+{"instance_id": "ie-02848", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Barnet\"], \"else\": []}"}
+{"instance_id": "ie-02386", "output": "{\"person\": [\"Alexandra Meissnitzer\"], \"location\": [\"Austria\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03117", "output": "{\"person\": [], \"location\": [\"PHOENIX\", \"NEW JERSEY\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01222", "output": "{\"person\": [\"Chernyshev\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00494", "output": "{\"person\": [], \"location\": [\"BALTIMORE\", \"CINCINNATI\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01820", "output": "{\"person\": [], \"location\": [], \"organization\": [\"OPEC\"], \"else\": []}"}
+{"instance_id": "ie-00234", "output": "{\"person\": [\"Lara\", \"Shane Warne\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01443", "output": "{\"person\": [], \"location\": [\"Singapore\"], \"organization\": [\"WTO\"], \"else\": []}"}
+{"instance_id": "ie-01255", "output": "{\"person\": [\"Yeltsin\"], \"location\": [\"Kremlin\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02171", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02118", "output": "{\"person\": [], \"location\": [], \"organization\": [\"YIT\"], \"else\": []}"}
+{"instance_id": "ie-00215", "output": "{\"person\": [\"Dan Petrescu\", \"Daniel Prodan\", \"Anton Dobos\", \"Cornel Papura\", \"Liviu Ciobotariu\", \"Tibor Selymess\", \"Iulian Filipescu\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00912", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Reuters\", \"DOT\"], \"else\": []}"}
+{"instance_id": "ie-02540", "output": "{\"person\": [\"Brenden\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03109", "output": "{\"person\": [], \"location\": [], \"organization\": [\"NY RANGERS\"], \"else\": []}"}
+{"instance_id": "ie-01806", "output": "{\"person\": [], \"location\": [\"France\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01121", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02241", "output": "{\"person\": [], \"location\": [\"Amsterdam\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02515", "output": "{\"person\": [\"Evelyne Leu\"], \"location\": [\"Switzerland\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00674", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Barcelona Draw\"], \"else\": []}"}
+{"instance_id": "ie-00560", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Schalke 04\"], \"else\": []}"}
+{"instance_id": "ie-02453", "output": "{\"person\": [\"Alexis Blanc\", \"Sebastien Foucras\"], \"location\": [\"France\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01969", "output": "{\"person\": [], \"location\": [\"Mongolia\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01997", "output": "{\"person\": [], \"location\": [\"MANTUA\", \"Italy\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01139", "output": "{\"person\": [], \"location\": [\"Senegal\"], \"organization\": [\"U.N.\"], \"else\": []}"}
+{"instance_id": "ie-00729", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Compostela\"], \"else\": []}"}
+{"instance_id": "ie-03022", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Betar Jerusalem\"], \"else\": []}"}
+{"instance_id": "ie-00131", "output": "{\"person\": [\"Ijaz Ahmad\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01040", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00084", "output": "{\"person\": [], \"location\": [\"Uzbekistan\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00850", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00441", "output": "{\"person\": [], \"location\": [\"NEW JERSEY\", \"BOSTON\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00668", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Real Madrid Draw\"], \"else\": []}"}
+{"instance_id": "ie-02829", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Bristol Rovers\"], \"else\": []}"}
+{"instance_id": "ie-02663", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Bath\", \"Harlequins\"], \"else\": []}"}
+{"instance_id": "ie-01258", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00161", "output": "{\"person\": [], \"location\": [\"Panionios\", \"Greece\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02147", "output": "{\"person\": [], \"location\": [\"U.S.\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00702", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Santiago Bernabeu\", \"Real Madrid-Barcelona\", \"El Mundo\"], \"else\": [\"Spanish\"]}"}
+{"instance_id": "ie-00553", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Bayer Leverkusen\"], \"else\": []}"}
+{"instance_id": "ie-02393", "output": "{\"person\": [\"Heidi Zurbriggen\"], \"location\": [\"Switzerland\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00482", "output": "{\"person\": [], \"location\": [\"CHICAGO\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01084", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00197", "output": "{\"person\": [], \"location\": [\"ZIMBABWE\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00515", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Pace\", \"Ohio State\", \"Arizona State\"], \"else\": [\"Rose Bowl\"]}"}
+{"instance_id": "ie-02979", "output": "{\"person\": [\"Artur Lekbello\", \"Hafizi\"], \"location\": [\"Belfast\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02914", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Port Vale\"], \"else\": []}"}
+{"instance_id": "ie-00876", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Radical Democrats ( FDP )\"], \"else\": [\"Swiss\", \"Jewish\"]}"}
+{"instance_id": "ie-01227", "output": "{\"person\": [], \"location\": [\"Norilsk\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01347", "output": "{\"person\": [], \"location\": [\"MEXICO CITY\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02494", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00179", "output": "{\"person\": [], \"location\": [\"Belgrade\", \"Yugoslavia\"], \"organization\": [\"Partizan\"], \"else\": []}"}
+{"instance_id": "ie-00493", "output": "{\"person\": [], \"location\": [\"ST LOUIS\", \"CHICAGO\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01675", "output": "{\"person\": [], \"location\": [\"St. Louis\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02884", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Fife\", \"Partick\", \"Stirling\", \"St Mirren\"], \"else\": []}"}
+{"instance_id": "ie-01273", "output": "{\"person\": [], \"location\": [\"Kazanluk\"], \"organization\": [], \"else\": [\"Bulgarian\"]}"}
+{"instance_id": "ie-01582", "output": "{\"person\": [], \"location\": [\"Iowa-S Minn\", \"USDA\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01541", "output": "{\"person\": [], \"location\": [], \"organization\": [\"FSA\"], \"else\": []}"}
+{"instance_id": "ie-00951", "output": "{\"person\": [\"Lang\"], \"location\": [], \"organization\": [\"Office of Fair Trading\"], \"else\": []}"}
+{"instance_id": "ie-00149", "output": "{\"person\": [\"Bowyer\"], \"location\": [], \"organization\": [\"Leeds\"], \"else\": []}"}
+{"instance_id": "ie-00466", "output": "{\"person\": [], \"location\": [\"CINCINNATI\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00594", "output": "{\"person\": [], \"location\": [\"Paris\"], \"organization\": [\"Paris Saint-Germain\"], \"else\": []}"}
+{"instance_id": "ie-01338", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02052", "output": "{\"person\": [\"John Lewis\"], \"location\": [\"UK\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02345", "output": "{\"person\": [\"Sabina Panzanini\"], \"location\": [\"Italy\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02136", "output": "{\"person\": [], \"location\": [\"Japan\"], \"organization\": [\"King Ace\"], \"else\": []}"}
+{"instance_id": "ie-02637", "output": "{\"person\": [\"Sutton\", \"Blackburn\"], \"location\": [], \"organization\": [\"Sutton\", \"Blackburn\"], \"else\": []}"}
+{"instance_id": "ie-01375", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01293", "output": "{\"person\": [\"Alan Greenspan\"], \"location\": [], \"organization\": [\"Federal Reserve\"], \"else\": [\"Dow\", \"Jones\"]}"}
+{"instance_id": "ie-01050", "output": "{\"person\": [], \"location\": [\"NYC\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02635", "output": "{\"person\": [\"Robbie Earle\", \"Les Ferdinand\"], \"location\": [], \"organization\": [\"Wimbledon\", \"Newcastle\"], \"else\": []}"}
+{"instance_id": "ie-00119", "output": "{\"person\": [\"C. Harris\", \"Wasim\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00551", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00682", "output": "{\"person\": [\"Victor Sanchez\", \"Guillermo\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02047", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Brussels Newsroom\"], \"else\": []}"}
+{"instance_id": "ie-00483", "output": "{\"person\": [], \"location\": [\"DETROIT\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00880", "output": "{\"person\": [\"Zywiec\"], \"location\": [], \"organization\": [], \"else\": [\"Polish\"]}"}
+{"instance_id": "ie-02134", "output": "{\"person\": [\"Myos Yang\"], \"location\": [\"Indonesia\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01054", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Euronotes\"], \"else\": []}"}
+{"instance_id": "ie-03021", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01685", "output": "{\"person\": [], \"location\": [\"St. Louis\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03047", "output": "{\"person\": [\"Ronny Wabia\", \"Widodo Putra\"], \"location\": [\"Indonesia\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00236", "output": "{\"person\": [\"Lara\", \"Geoff Marsh\", \"Ian Healy\"], \"location\": [\"Australia\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03074", "output": "{\"person\": [], \"location\": [\"PORTLAND\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00117", "output": "{\"person\": [\"C. Cairns\", \"Saqlain\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01430", "output": "{\"person\": [\"Suu Kyi\"], \"location\": [], \"organization\": [\"NLD\"], \"else\": []}"}
+{"instance_id": "ie-01502", "output": "{\"person\": [\"Lahd\"], \"location\": [\"Lebanese\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00688", "output": "{\"person\": [\"JosepGuardiola\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00116", "output": "{\"person\": [\"S. Fleming\", \"Afridi\"], \"location\": [], \"organization\": [], \"else\": [\"Afridi\"]}"}
+{"instance_id": "ie-00356", "output": "{\"person\": [], \"location\": [\"DETROIT\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02688", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01516", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02300", "output": "{\"person\": [], \"location\": [\"Lillehammer Norway\", \"Flachau\", \"Austria\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00946", "output": "{\"person\": [], \"location\": [], \"organization\": [\"British Airways\"], \"else\": [\"British\"]}"}
+{"instance_id": "ie-02946", "output": "{\"person\": [\"Matthew Burke\", \"Joe Roff\", \"David Campese\", \"Tim Horan\"], \"location\": [\"Australia\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02943", "output": "{\"person\": [\"Matthew Burke\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01451", "output": "{\"person\": [], \"location\": [], \"organization\": [\"WTO\", \"ILO\"], \"else\": []}"}
+{"instance_id": "ie-01339", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Maize ( Flint )\"], \"else\": []}"}
+{"instance_id": "ie-00133", "output": "{\"person\": [], \"location\": [\"Karachi\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00107", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01152", "output": "{\"person\": [\"Jacques Chirac\"], \"location\": [\"France\", \"Burkina Faso\"], \"organization\": [], \"else\": [\"Franco-African\"]}"}
+{"instance_id": "ie-00909", "output": "{\"person\": [\"Havel\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02687", "output": "{\"person\": [\"Ferguson\", \"McCoist\", \"Laudrup\", \"Wright\", \"Jackson\", \"McGinlay\"], \"location\": [], \"organization\": [\"Rangers\", \"Hibernian\"], \"else\": []}"}
+{"instance_id": "ie-02631", "output": "{\"person\": [], \"location\": [\"Newcastle\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01367", "output": "{\"person\": [], \"location\": [\"SANTIAGO\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02234", "output": "{\"person\": [], \"location\": [\"ZAANDAM\", \"Netherlands\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02373", "output": "{\"person\": [], \"location\": [\"Switzerland\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02585", "output": "{\"person\": [\"Sergey Klevchenya\"], \"location\": [\"Russia\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00109", "output": "{\"person\": [\"Doull\", \"Kennedy\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01727", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Basis Steers\"], \"else\": []}"}
+{"instance_id": "ie-00625", "output": "{\"person\": [], \"location\": [\"Karlsruhe\", \"Reich\", \"Carl\", \"Dundee\", \"Freiburg\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01188", "output": "{\"person\": [], \"location\": [\"BRATISLAVA\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00194", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01288", "output": "{\"person\": [\"Sandor Peto\"], \"location\": [\"Budapest\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02823", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Chesterfield\"], \"else\": []}"}
+{"instance_id": "ie-01948", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00343", "output": "{\"person\": [], \"location\": [\"MONTREAL\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02527", "output": "{\"person\": [\"Takanobu Okabe\"], \"location\": [\"Japan\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01905", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01941", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00907", "output": "{\"person\": [\"Havel\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01315", "output": "{\"person\": [\"Farid Hakme\"], \"location\": [\"Brazil\"], \"organization\": [\"SBCP\"], \"else\": []}"}
+{"instance_id": "ie-02196", "output": "{\"person\": [\"Suharto\", \"Siti Hardianti Rukmana\"], \"location\": [], \"organization\": [\"Barrick\", \"Citra Group\"], \"else\": []}"}
+{"instance_id": "ie-01934", "output": "{\"person\": [\"Clinton\", \"Burns\"], \"location\": [], \"organization\": [], \"else\": [\"Greek\"]}"}
+{"instance_id": "ie-01187", "output": "{\"person\": [], \"location\": [\"Bratislava\"], \"organization\": [], \"else\": [\"Skinheads\"]}"}
+{"instance_id": "ie-00654", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01250", "output": "{\"person\": [\"Clinton\", \"Yeltsin\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03121", "output": "{\"person\": [], \"location\": [\"CHICAGO\", \"Montreal\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01573", "output": "{\"person\": [\"Morris\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01158", "output": "{\"person\": [], \"location\": [\"Bangui\"], \"organization\": [\"French\"], \"else\": [\"presidential palace\"]}"}
+{"instance_id": "ie-00797", "output": "{\"person\": [], \"location\": [\"Belgrade\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01709", "output": "{\"person\": [\"Don Rieck\"], \"location\": [], \"organization\": [\"National Animal Control Association\"], \"else\": []}"}
+{"instance_id": "ie-02322", "output": "{\"person\": [\"Hilde Gerg\"], \"location\": [\"Germany\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02277", "output": "{\"person\": [\"Hilary Lindh\"], \"location\": [\"U.S.\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01212", "output": "{\"person\": [\"Kwasniewski\"], \"location\": [\"Poland\"], \"organization\": [\"Vatican\"], \"else\": []}"}
+{"instance_id": "ie-03142", "output": "{\"person\": [\"Bure\"], \"location\": [\"Ottawa\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00071", "output": "{\"person\": [\"Katleen Allais\"], \"location\": [\"France\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02175", "output": "{\"person\": [], \"location\": [\"JAKARTA\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01947", "output": "{\"person\": [\"Stephen Cito\"], \"location\": [], \"organization\": [], \"else\": [\"Cito\"]}"}
+{"instance_id": "ie-00202", "output": "{\"person\": [\"Brett Liddle\", \"Hugh Baiocchi\", \"Adilson da Silva\", \"Sammy Daniels\"], \"location\": [\"Brazil\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00412", "output": "{\"person\": [], \"location\": [\"NEW YORK\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01204", "output": "{\"person\": [\"Pope\"], \"location\": [], \"organization\": [], \"else\": [\"Polish\"]}"}
+{"instance_id": "ie-00110", "output": "{\"person\": [], \"location\": [\"Cairns\", \" Vaughan\", \" Harris\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00077", "output": "{\"person\": [\"Nader Jokhadar\"], \"location\": [\"Syria\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01066", "output": "{\"person\": [], \"location\": [\"Santa Fe\"], \"organization\": [\"Newmont\"], \"else\": []}"}
+{"instance_id": "ie-02116", "output": "{\"person\": [], \"location\": [\"Yangon\", \"Rangoon\"], \"organization\": [\"Yangon Institute of Technology ( YIT )\", \"University of Yangon\"], \"else\": [\"Burmese\"]}"}
+{"instance_id": "ie-00180", "output": "{\"person\": [], \"location\": [\"Italy\"], \"organization\": [\"Kinder Bologna\"], \"else\": []}"}
+{"instance_id": "ie-02488", "output": "{\"person\": [\"Woolmer\"], \"location\": [\"India\"], \"organization\": [], \"else\": [\"South African\"]}"}
+{"instance_id": "ie-01621", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03161", "output": "{\"person\": [], \"location\": [], \"organization\": [\"PSV\", \"Volendam\"], \"else\": []}"}
+{"instance_id": "ie-00980", "output": "{\"person\": [\"John Major\", \"Sir John Gorst\"], \"location\": [], \"organization\": [], \"else\": [\"British\"]}"}
+{"instance_id": "ie-00789", "output": "{\"person\": [], \"location\": [], \"organization\": [\"EUROLEAGUE\"], \"else\": []}"}
+{"instance_id": "ie-00473", "output": "{\"person\": [], \"location\": [\"SEATTLE\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00290", "output": "{\"person\": [\"Lara\", \"Ian Healy\"], \"location\": [\"Australia\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00266", "output": "{\"person\": [\"R. Ponting\", \"McLean\"], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-03030", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Hapoel Kfar Sava\"], \"else\": []}"}
+{"instance_id": "ie-02756", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Brechin\"], \"else\": []}"}
+{"instance_id": "ie-02204", "output": "{\"person\": [\"Desmond Supple\"], \"location\": [\"Singapore\"], \"organization\": [\"I.D.E.A\"], \"else\": []}"}
+{"instance_id": "ie-00174", "output": "{\"person\": [], \"location\": [\"Croatia\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-01385", "output": "{\"person\": [\"Alatas\"], \"location\": [\"East Timor\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02822", "output": "{\"person\": [], \"location\": [], \"organization\": [\"Burnley\"], \"else\": []}"}
+{"instance_id": "ie-01953", "output": "{\"person\": [], \"location\": [], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-02565", "output": "{\"person\": [\"Shimizu Hiroyasu\"], \"location\": [\"Japan\"], \"organization\": [], \"else\": []}"}
+{"instance_id": "ie-00090", "output": "{\"person\": [], \"location\": [\"SIALKOT\", \"Pakistan\"], \"organization\": [], \"else\": []}"}

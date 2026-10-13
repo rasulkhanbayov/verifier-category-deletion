@@ -1,0 +1,298 @@
+### CHECK calc_annotation_final_consistent
+RATIONALE: A correct final answer that is the result of a `<<expr=val>>` annotation should have an expression that actually evaluates to val, allowing 1% for rounding. This rejects outputs whose final answer comes from a mis-evaluated annotation.
+```python
+def check(output, ctx):
+    import re
+    try:
+        fa = final_answer(output)
+        if fa is None:
+            return True
+        f = float(fa.replace(',', '').replace('$', ''))
+        for m in re.finditer(r'<<([0-9\.\+\-\*/\(\) ]+)=([\-0-9\.,]+)>>', output):
+            expr, val = m.group(1), m.group(2).replace(',', '')
+            try:
+                v = float(val)
+            except Exception:
+                continue
+            if abs(v - f) > 1e-9:
+                continue
+            try:
+                e = eval(expr, {"__builtins__": {}})
+            except Exception:
+                continue
+            if abs(e - v) > max(0.01 * abs(v), 0.01) + 1e-9:
+                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK last_equation_matches_final_is_correct
+RATIONALE: If the last explicit `a op b = c` before the answer line has c equal to the final answer, the arithmetic must hold within rounding. This catches answers taken from a botched final computation.
+```python
+def check(output, ctx):
+    import re
+    try:
+        fa = final_answer(output)
+        if fa is None:
+            return True
+        f = float(fa.replace(',', '').replace('$', ''))
+        body = output.split('####')[0]
+        body = body.replace('\\times', '*').replace('×', '*').replace('÷', '/').replace('\\div', '/').replace('$', '').replace(',', '')
+        num = r'(\d+(?:\.\d+)?)'
+        eqs = list(re.finditer(num + r'\s*([\+\-\*/xX])\s*' + num + r'\s*=\s*' + num + r'(?![\d\.]*\s*[\+\-\*/])', body))
+        if not eqs:
+            return True
+        m = eqs[-1]
+        a, op, b, c = float(m.group(1)), m.group(2), float(m.group(3)), float(m.group(4))
+        if abs(c - f) > 1e-9:
+            return True
+        if op in 'xX*':
+            r = a * b
+        elif op == '+':
+            r = a + b
+        elif op == '-':
+            r = a - b
+        else:
+            if b == 0:
+                return True
+            r = a / b
+        if abs(r - c) > max(0.01 * abs(c), 0.01) + 1e-9:
+            return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK nonnegative_answer
+RATIONALE: GSM8K answers are essentially never negative unless the problem mentions losses or below-zero quantities. This catches sign errors from reversed subtraction.
+```python
+def check(output, ctx):
+    import re
+    try:
+        fa = final_answer(output)
+        if fa is None:
+            return True
+        f = float(fa.replace(',', '').replace('$', ''))
+        if f >= 0:
+            return True
+        q = ctx['question'].lower()
+        if re.search(r'loss|lose|lost|below|negative|minus|debt|owe|temperature|degree|change|differ', q):
+            return True
+        return False
+    except Exception:
+        return True
+```
+
+### CHECK countable_integer_answer
+RATIONALE: When the question asks "how many" of a discrete object and gives no decimals or fractions, the correct count is an integer. This catches outputs that forgot to finish a division or leaked a fractional intermediate.
+```python
+def check(output, ctx):
+    import re
+    try:
+        fa = final_answer(output)
+        if fa is None:
+            return True
+        f = float(fa.replace(',', '').replace('$', ''))
+        if abs(f - round(f)) < 1e-9:
+            return True
+        q = ctx['question'].lower()
+        if re.search(r'\d\.\d|\d/\d|half|percent|%|average|third|quarter', q):
+            return True
+        m = re.search(r'how many (\w+)', q)
+        if not m:
+            return True
+        countables = {'people', 'students', 'eggs', 'apples', 'cookies', 'books', 'cars', 'toys', 'snails', 'penguins', 'trees', 'logs', 'planks', 'tables', 'crickets', 'jellybeans', 'coins', 'children', 'kids', 'balls', 'marbles', 'cards', 'stickers', 'pencils', 'candies', 'boxes', 'bags', 'animals', 'dogs', 'cats', 'birds', 'chickens', 'cows', 'pieces', 'slices', 'cupcakes', 'flowers', 'shirts', 'tickets', 'friends', 'players', 'pages', 'houses', 'bottles', 'cans', 'oranges', 'bananas', 'ducks', 'fish', 'sheep', 'horses', 'pens', 'games', 'puppies', 'chairs', 'plates', 'seats', 'buses', 'baskets', 'boys', 'girls', 'questions', 'problems', 'times'}
+        if m.group(1) in countables:
+            return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK money_two_decimals
+RATIONALE: Money answers in GSM8K have at most cents precision, so an answer with three or more nonzero decimals is unrounded and wrong. This catches leaked repeating decimals.
+```python
+def check(output, ctx):
+    import re
+    try:
+        fa = final_answer(output)
+        if fa is None:
+            return True
+        f = float(fa.replace(',', '').replace('$', ''))
+        q = ctx['question'].lower()
+        if not ('$' in q or 'money' in q or 'dollar' in q or 'cost' in q):
+            return True
+        if abs(f * 100 - round(f * 100)) > 1e-6:
+            return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK magnitude_bound
+RATIONALE: A correct answer cannot exceed the product of all numbers in the question times a generous slack factor (covering implicit constants like days or weeks). This catches runaway multiplication errors.
+```python
+def check(output, ctx):
+    import re, math
+    try:
+        fa = final_answer(output)
+        if fa is None:
+            return True
+        f = abs(float(fa.replace(',', '').replace('$', '')))
+        nums = [float(x.replace(',', '')) for x in re.findall(r'\d[\d,]*(?:\.\d+)?', ctx['question'])]
+        nums = [n for n in nums if n > 1]
+        logp = sum(math.log10(n) for n in nums)
+        if f > 10 ** (logp + 6) and f > 1e7:
+            return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK annotation_result_reused_correctly
+RATIONALE: If every `<<expr=val>>` annotation in the output is wrong by more than 1% and the final answer equals the last such annotation, the result is almost surely wrong. This catches systematic miscalculation in calculator-style outputs.
+```python
+def check(output, ctx):
+    import re
+    try:
+        fa = final_answer(output)
+        if fa is None:
+            return True
+        f = float(fa.replace(',', '').replace('$', ''))
+        anns = re.findall(r'<<([0-9\.\+\-\*/\(\) ]+)=([\-0-9\.,]+)>>', output)
+        if not anns:
+            return True
+        expr, val = anns[-1]
+        v = float(val.replace(',', ''))
+        if abs(v - f) > 1e-9:
+            return True
+        e = eval(expr, {"__builtins__": {}})
+        if abs(e - v) > max(0.01 * abs(v), 0.01):
+            return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK verbal_arithmetic_final
+RATIONALE: Phrases like "a times b is c" whose c is the final answer must be arithmetically valid within rounding. This catches wrong answers stated in prose rather than symbols.
+```python
+def check(output, ctx):
+    import re
+    try:
+        fa = final_answer(output)
+        if fa is None:
+            return True
+        f = float(fa.replace(',', '').replace('$', ''))
+        t = output.replace(',', '').replace('$', '')
+        pat = r'(\d+(?:\.\d+)?)\s+(times|plus|minus|divided by)\s+(\d+(?:\.\d+)?)\s+(?:is|equals|gives|makes)\s+(\d+(?:\.\d+)?)'
+        for m in re.finditer(pat, t):
+            a, op, b, c = float(m.group(1)), m.group(2), float(m.group(3)), float(m.group(4))
+            if abs(c - f) > 1e-9:
+                continue
+            if op == 'times':
+                r = a * b
+            elif op == 'plus':
+                r = a + b
+            elif op == 'minus':
+                r = a - b
+            else:
+                if b == 0:
+                    continue
+                r = a / b
+            if abs(r - c) > max(0.01 * abs(c), 0.01):
+                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK latex_frac_final
+RATIONALE: A LaTeX `\frac{a}{b} = c` whose c is the final answer must satisfy a/b ≈ c. This catches wrong divisions written in LaTeX.
+```python
+def check(output, ctx):
+    import re
+    try:
+        fa = final_answer(output)
+        if fa is None:
+            return True
+        f = float(fa.replace(',', '').replace('$', ''))
+        t = output.replace(',', '').replace('\\$', '').replace('$', '')
+        for m in re.finditer(r'\\frac\{\s*(\d+(?:\.\d+)?)\s*\}\{\s*(\d+(?:\.\d+)?)\s*\}\s*=\s*(\d+(?:\.\d+)?)', t):
+            a, b, c = float(m.group(1)), float(m.group(2)), float(m.group(3))
+            if abs(c - f) > 1e-9 or b == 0:
+                continue
+            if abs(a / b - c) > max(0.01 * abs(c), 0.01):
+                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK percent_of_bound
+RATIONALE: When the question asks for a percentage, the answer must stay within a plausible range unless the problem involves growth or increase. This catches answers given as a fraction scaled 100× too large, or similar.
+```python
+def check(output, ctx):
+    import re
+    try:
+        fa = final_answer(output)
+        if fa is None:
+            return True
+        f = float(fa.replace(',', '').replace('$', ''))
+        q = ctx['question'].lower()
+        if not re.search(r'what percent(age)?\b', q):
+            return True
+        if re.search(r'increase|more|growth|grow|profit|return|markup|higher|times', q):
+            return True
+        if f < 0 or f > 100:
+            return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK final_equation_chain_answer
+RATIONALE: If the final answer line is preceded by "total = c" with an explicit sum of numbers before it, and c equals the final answer, the sum must be correct within rounding. This catches addition slips in the concluding total.
+```python
+def check(output, ctx):
+    import re
+    try:
+        fa = final_answer(output)
+        if fa is None:
+            return True
+        f = float(fa.replace(',', '').replace('$', ''))
+        body = output.split('####')[0].replace(',', '').replace('$', '')
+        ms = list(re.finditer(r'((?:\d+(?:\.\d+)?\s*\+\s*){2,}\d+(?:\.\d+)?)\s*=\s*(\d+(?:\.\d+)?)', body))
+        if not ms:
+            return True
+        m = ms[-1]
+        c = float(m.group(2))
+        if abs(c - f) > 1e-9:
+            return True
+        s = sum(float(x) for x in re.findall(r'\d+(?:\.\d+)?', m.group(1)))
+        if abs(s - c) > max(0.01 * abs(c), 0.01):
+            return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK how_many_more_positive
+RATIONALE: "How many more/fewer" questions ask for a positive difference, so a correct answer is greater than zero. This catches reversed subtraction and zero results.
+```python
+def check(output, ctx):
+    import re
+    try:
+        fa = final_answer(output)
+        if fa is None:
+            return True
+        f = float(fa.replace(',', '').replace('$', ''))
+        q = ctx['question'].lower()
+        if re.search(r'how (many|much) (more|fewer|less|longer|older|farther|further)', q):
+            if f <= 0:
+                return False
+        return True
+    except Exception:
+        return True
+```

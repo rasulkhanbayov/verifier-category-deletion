@@ -1,0 +1,126 @@
+{
+ "task": "ie",
+ "pool": "data/pilot/pool_ie_test_seed0.jsonl",
+ "results": {
+  "handwritten": {
+   "precision": 0.45930361499223776,
+   "recall": 0.9997586290127927,
+   "kept": 9018,
+   "coverage": 1.0,
+   "lost": 0,
+   "n": 174,
+   "subgroups": {
+    "no_entities": {
+     "n": 43,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "plain": {
+     "n": 94,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "entity_3plus_tokens": {
+     "n": 22,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "4plus_entities": {
+     "n": 9,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "has_else_type": {
+     "n": 13,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "entity_with_lowercase_token": {
+     "n": 2,
+     "lost": 0,
+     "coverage": 1.0
+    }
+   }
+  },
+  "tau=0.02": {
+   "precision": 0.5876980162694448,
+   "recall": 0.9939657253198165,
+   "kept": 7007,
+   "coverage": 0.9885057471264368,
+   "lost": 2,
+   "n": 174,
+   "subgroups": {
+    "no_entities": {
+     "n": 43,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "plain": {
+     "n": 94,
+     "lost": 2,
+     "coverage": 0.9787234042553191
+    },
+    "entity_3plus_tokens": {
+     "n": 22,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "4plus_entities": {
+     "n": 9,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "has_else_type": {
+     "n": 13,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "entity_with_lowercase_token": {
+     "n": 2,
+     "lost": 0,
+     "coverage": 1.0
+    }
+   }
+  },
+  "f1_baseline": {
+   "precision": 0.585109406081273,
+   "recall": 0.9939657253198165,
+   "kept": 7038,
+   "coverage": 0.9885057471264368,
+   "lost": 2,
+   "n": 174,
+   "subgroups": {
+    "no_entities": {
+     "n": 43,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "plain": {
+     "n": 94,
+     "lost": 2,
+     "coverage": 0.9787234042553191
+    },
+    "entity_3plus_tokens": {
+     "n": 22,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "4plus_entities": {
+     "n": 9,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "has_else_type": {
+     "n": 13,
+     "lost": 0,
+     "coverage": 1.0
+    },
+    "entity_with_lowercase_token": {
+     "n": 2,
+     "lost": 0,
+     "coverage": 1.0
+    }
+   }
+  }
+ }
+}

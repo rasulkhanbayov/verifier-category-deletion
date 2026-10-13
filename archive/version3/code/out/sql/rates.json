@@ -1,0 +1,82 @@
+[
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "subset": [
+      "parses",
+      "schema_valid",
+      "executes"
+    ],
+    "n_base": 1000,
+    "n_cand": 32000,
+    "p0": 0.664,
+    "p": 0.6265625,
+    "delta": 0.0010620836149464131,
+    "eps": 0.7396223343643171,
+    "delta_base": 0.0,
+    "delta_cand": 0.0010972568578553616,
+    "eps_base": 0.8035714285714286,
+    "eps_cand": 0.7378242677824268,
+    "ceiling_pts": NaN
+  },
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-8b-instruct",
+    "subset": [
+      "parses",
+      "schema_valid",
+      "executes"
+    ],
+    "n_base": 1000,
+    "n_cand": 32000,
+    "p0": 0.598,
+    "p": 0.57696875,
+    "delta": 0.0038298095587849536,
+    "eps": 0.6313939306980415,
+    "delta_base": 0.0033444816053511705,
+    "delta_cand": 0.003845528895629096,
+    "eps_base": 0.664179104477612,
+    "eps_cand": 0.6304203294673857,
+    "ceiling_pts": NaN
+  },
+  {
+    "task": "sql",
+    "model": "openai/gpt-4o-2024-11-20",
+    "subset": [
+      "parses",
+      "schema_valid",
+      "executes"
+    ],
+    "n_base": 999,
+    "n_cand": 31968,
+    "p0": 0.7247247247247247,
+    "p": 0.7202827827827828,
+    "delta": 0.0032842105263157896,
+    "eps": 0.9525876098513616,
+    "delta_base": 0.0013812154696132596,
+    "delta_cand": 0.003344045861200382,
+    "eps_base": 0.9527272727272728,
+    "eps_cand": 0.9525833146946991,
+    "ceiling_pts": NaN
+  },
+  {
+    "task": "sql",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "subset": [
+      "parses",
+      "schema_valid",
+      "executes"
+    ],
+    "n_base": 1000,
+    "n_cand": 32000,
+    "p0": 0.707,
+    "p": 0.70559375,
+    "delta": 0.0019754358842222794,
+    "eps": 0.8585546633724521,
+    "delta_base": 0.0014144271570014145,
+    "delta_cand": 0.001993002347313876,
+    "eps_base": 0.8532423208191127,
+    "eps_cand": 0.8587198811166543,
+    "ceiling_pts": NaN
+  }
+]

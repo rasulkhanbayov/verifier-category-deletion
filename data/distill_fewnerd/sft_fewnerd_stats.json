@@ -1,0 +1,93 @@
+{
+ "certified_selection": "itau=0.05",
+ "handwritten": {
+  "examples": 6838,
+  "correct": 1272,
+  "precision": 0.18601930389002633,
+  "inputs_covered": 1952,
+  "correct_examples_by_subgroup": {
+   "no_entities": 212,
+   "has_organization": 307,
+   "has_location": 409,
+   "4plus_entities": 228,
+   "has_person": 425,
+   "has_art": 127,
+   "has_building": 105,
+   "has_other": 103,
+   "has_event": 50,
+   "has_product": 87
+  }
+ },
+ "f1_baseline": {
+  "examples": 5930,
+  "correct": 1278,
+  "precision": 0.21551433389544689,
+  "inputs_covered": 1915,
+  "correct_examples_by_subgroup": {
+   "no_entities": 212,
+   "has_organization": 309,
+   "has_location": 411,
+   "4plus_entities": 228,
+   "has_person": 425,
+   "has_art": 128,
+   "has_building": 105,
+   "has_other": 104,
+   "has_event": 50,
+   "has_product": 87
+  }
+ },
+ "certified": {
+  "examples": 5804,
+  "correct": 1257,
+  "precision": 0.21657477601654032,
+  "inputs_covered": 1907,
+  "correct_examples_by_subgroup": {
+   "no_entities": 209,
+   "has_organization": 305,
+   "has_location": 403,
+   "4plus_entities": 225,
+   "has_person": 425,
+   "has_art": 127,
+   "has_building": 105,
+   "has_other": 101,
+   "has_event": 50,
+   "has_product": 83
+  }
+ },
+ "none": {
+  "examples": 8253,
+  "correct": 1281,
+  "precision": 0.15521628498727735,
+  "inputs_covered": 2000,
+  "correct_examples_by_subgroup": {
+   "no_entities": 213,
+   "has_organization": 311,
+   "has_location": 411,
+   "4plus_entities": 228,
+   "has_person": 425,
+   "has_art": 128,
+   "has_building": 105,
+   "has_other": 105,
+   "has_event": 51,
+   "has_product": 87
+  }
+ },
+ "oracle": {
+  "examples": 1281,
+  "correct": 1281,
+  "precision": 1.0,
+  "inputs_covered": 973,
+  "correct_examples_by_subgroup": {
+   "no_entities": 213,
+   "has_organization": 311,
+   "has_location": 411,
+   "4plus_entities": 228,
+   "has_person": 425,
+   "has_art": 128,
+   "has_building": 105,
+   "has_other": 105,
+   "has_event": 51,
+   "has_product": 87
+  }
+ }
+}

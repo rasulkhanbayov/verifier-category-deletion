@@ -1,0 +1,170 @@
+[
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "rule": "gated",
+    "acc": 0.6975397973950795,
+    "delta_pts": 3.1928798842257597,
+    "ci": [
+      1.881331403762665,
+      4.630969609261937
+    ],
+    "p": 9.999000099990002e-05,
+    "degenerate": false,
+    "gate_fired_frac": 0.05499276410998553
+  },
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "rule": "homogeneous",
+    "acc": 0.6888567293777135,
+    "delta_pts": 2.3054848046309697,
+    "ci": [
+      -0.5788712011577379,
+      5.209840810419686
+    ],
+    "p": 0.1386861313868613,
+    "degenerate": false,
+    "gate_fired_frac": 0.05499276410998553
+  },
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "rule": "ungated",
+    "acc": 0.6541244573082489,
+    "delta_pts": -1.1774095513748188,
+    "ci": [
+      -4.196816208393628,
+      1.736613603473236
+    ],
+    "p": 0.5147485251474853,
+    "degenerate": false,
+    "gate_fired_frac": 0.05499276410998553
+  },
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-8b-instruct",
+    "rule": "gated",
+    "acc": 0.6425470332850941,
+    "delta_pts": 4.3458176555716355,
+    "ci": [
+      2.894356005788712,
+      5.933429811866853
+    ],
+    "p": 9.999000099990002e-05,
+    "degenerate": false,
+    "gate_fired_frac": 0.1287988422575977
+  },
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-8b-instruct",
+    "rule": "homogeneous",
+    "acc": 0.6396526772793053,
+    "delta_pts": 4.078929088277858,
+    "ci": [
+      1.302460202604916,
+      6.94645441389291
+    ],
+    "p": 0.006199380061993801,
+    "degenerate": false,
+    "gate_fired_frac": 0.1287988422575977
+  },
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-8b-instruct",
+    "rule": "ungated",
+    "acc": 0.5832127351664255,
+    "delta_pts": -1.5661215629522431,
+    "ci": [
+      -4.196816208393628,
+      1.013024602026058
+    ],
+    "p": 0.27817218278172184,
+    "degenerate": false,
+    "gate_fired_frac": 0.1287988422575977
+  },
+  {
+    "task": "sql",
+    "model": "openai/gpt-4o-2024-11-20",
+    "rule": "gated",
+    "acc": 0.7192474674384949,
+    "delta_pts": 0.2872358900144718,
+    "ci": [
+      0.0,
+      0.723589001447178
+    ],
+    "p": 0.5025497450254974,
+    "degenerate": false,
+    "gate_fired_frac": 0.011577424023154847
+  },
+  {
+    "task": "sql",
+    "model": "openai/gpt-4o-2024-11-20",
+    "rule": "homogeneous",
+    "acc": 0.723589001447178,
+    "delta_pts": 0.7232127351664256,
+    "ci": [
+      -0.5788712011577379,
+      2.026049204052105
+    ],
+    "p": 0.39366063393660633,
+    "degenerate": false,
+    "gate_fired_frac": 0.011577424023154847
+  },
+  {
+    "task": "sql",
+    "model": "openai/gpt-4o-2024-11-20",
+    "rule": "ungated",
+    "acc": 0.7192474674384949,
+    "delta_pts": 0.28968162083936316,
+    "ci": [
+      -0.868306801736618,
+      1.447178002894356
+    ],
+    "p": 0.8208179182081792,
+    "degenerate": false,
+    "gate_fired_frac": 0.011577424023154847
+  },
+  {
+    "task": "sql",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "rule": "gated",
+    "acc": 0.7192474674384949,
+    "delta_pts": 1.1491172214182344,
+    "ci": [
+      0.434153400868309,
+      2.026049204052094
+    ],
+    "p": 0.007399260073992601,
+    "degenerate": false,
+    "gate_fired_frac": 0.03762662807525326
+  },
+  {
+    "task": "sql",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "rule": "homogeneous",
+    "acc": 0.7163531114327062,
+    "delta_pts": 0.8609696092619391,
+    "ci": [
+      -0.4341534008682979,
+      2.170767004341534
+    ],
+    "p": 0.2586741325867413,
+    "degenerate": false,
+    "gate_fired_frac": 0.03762662807525326
+  },
+  {
+    "task": "sql",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "rule": "ungated",
+    "acc": 0.7047756874095513,
+    "delta_pts": -0.28746743849493483,
+    "ci": [
+      -1.302460202604916,
+      0.723589001447178
+    ],
+    "p": 0.7749225077492251,
+    "degenerate": false,
+    "gate_fired_frac": 0.03762662807525326
+  }
+]

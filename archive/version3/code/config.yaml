@@ -1,0 +1,36 @@
+# Configuration for the missing experiments.
+# Fill `models` with the SNAPSHOT strings OpenRouter actually served (B9);
+# "openai/gpt-4o" is a moving endpoint and is not reproducible.
+models:
+  - openai/gpt-4o-2024-11-20        # <-- REPLACE with the served snapshot
+  - openai/gpt-4o-mini-2024-07-18   # <-- REPLACE
+  - meta-llama/llama-3.1-8b-instruct
+  - meta-llama/llama-3.1-70b-instruct
+
+tasks:
+  sql:   {split: spider_dev,          n_instances: 200, metric: test_suite_accuracy}
+  ie:    {split: conll2003_test,      n_instances: 200, metric: field_value_match}
+  morph: {split: sigmorphon2022_en,   n_instances: 200, metric: gold_segmentation_match}
+
+decoding:
+  base_temperature: 0.0     # greedy
+  cand_temperature: 0.7
+  budgets: [1, 2, 4, 8, 16, 32]
+
+# B4: at minimum 5 seeds. One draw per cell is not a measurement.
+seeds: [0, 1, 2, 3, 4]
+
+# B8-V2: five prompt variants, fixed BEFORE the numbers are seen.
+prompts:
+  - base              # the prompt used in the current draft
+  - paraphrase_a      # independent rewrite, author A
+  - paraphrase_b      # independent rewrite, author B
+  - no_fewshot        # exemplars removed
+  - format_reminder   # explicit output-format reminder (ADVERSARIAL to our claim)
+
+# B8-V1: label validation on epsilon events.
+label_audit:
+  n_per_task: 150
+  annotators: 2
+  adjudicator: true
+  alpha_floor: 0.67   # below this the exercise is VOID, not "weak"

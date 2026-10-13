@@ -1,0 +1,314 @@
+### CHECK only_allowed_chars
+RATIONALE: Canonical morphemes are spelled with letters, plus any punctuation the word itself has, so every correct output passes. This rejects outputs containing digits, spaces or stray symbols.
+```python
+def check(output, ctx):
+    try:
+        s = ctx['surface']
+        for seg in segments(output):
+            for c in seg:
+                if not (c.isalpha() or c in s):
+                    return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_whitespace_in_segments
+RATIONALE: A morpheme never contains whitespace unless the word does. This rejects explanations or prose leaking into segments.
+```python
+def check(output, ctx):
+    try:
+        s = ctx['surface']
+        if any(c.isspace() for c in s):
+            return True
+        return not any(any(c.isspace() for c in seg) for seg in segments(output))
+    except Exception:
+        return True
+```
+
+### CHECK lowercase_if_surface_lowercase
+RATIONALE: Gold morphemes for a lowercase word are themselves lowercase. This rejects outputs with spurious capitalisation.
+```python
+def check(output, ctx):
+    try:
+        s = ctx['surface']
+        if s != s.lower():
+            return True
+        return all(seg == seg.lower() for seg in segments(output))
+    except Exception:
+        return True
+```
+
+### CHECK seg_count_le_length
+RATIONALE: There cannot be more morphemes than letters in the word. This catches degenerate, over-split outputs.
+```python
+def check(output, ctx):
+    try:
+        return len(segments(output)) <= len(ctx['surface'])
+    except Exception:
+        return True
+```
+
+### CHECK first_char_matches
+RATIONALE: Canonical restoration changes stem endings, not the first letter of the word. This catches outputs whose first segment is unrelated to the word.
+```python
+def check(output, ctx):
+    try:
+        s = ctx['surface']; seg = segments(output)
+        if not seg or not s or not seg[0]:
+            return True
+        return seg[0][0].lower() == s[0].lower()
+    except Exception:
+        return True
+```
+
+### CHECK total_length_bounded
+RATIONALE: Canonical forms add only a few letters per boundary. This catches wildly bloated or hallucinated outputs.
+```python
+def check(output, ctx):
+    try:
+        s = ctx['surface']; seg = segments(output)
+        return sum(map(len, seg)) <= 2 * len(s) + 6
+    except Exception:
+        return True
+```
+
+### CHECK total_length_lower_bound
+RATIONALE: Canonicalisation rarely removes more than a few letters. This catches truncated outputs.
+```python
+def check(output, ctx):
+    try:
+        s = ctx['surface']; seg = segments(output)
+        return sum(map(len, seg)) >= 0.5 * len(s) - 2
+    except Exception:
+        return True
+```
+
+### CHECK segment_not_too_long
+RATIONALE: No single morpheme greatly exceeds the length of the whole word. This catches run-on segments.
+```python
+def check(output, ctx):
+    try:
+        s = ctx['surface']
+        return all(len(x) <= len(s) + 5 for x in segments(output))
+    except Exception:
+        return True
+```
+
+### CHECK similarity_to_surface
+RATIONALE: The joined morphemes stay very close to the surface string. This catches outputs that segment a different word.
+```python
+def check(output, ctx):
+    try:
+        import difflib
+        s = ctx['surface']; j = ''.join(segments(output))
+        if len(s) < 4:
+            return True
+        return difflib.SequenceMatcher(None, s.lower(), j.lower()).ratio() >= 0.4
+    except Exception:
+        return True
+```
+
+### CHECK single_segment_equals_surface
+RATIONALE: A word left unsegmented is its own canonical morpheme. This catches altered single-morpheme outputs.
+```python
+def check(output, ctx):
+    try:
+        seg = segments(output)
+        if len(seg) != 1:
+            return True
+        return seg[0] == ctx['surface']
+    except Exception:
+        return True
+```
+
+### CHECK no_digits_unless_surface
+RATIONALE: Digits cannot appear in morphemes unless the word contains them. This catches numbering artefacts such as "1. mis".
+```python
+def check(output, ctx):
+    try:
+        s = ctx['surface']
+        if any(c.isdigit() for c in s):
+            return True
+        return not any(c.isdigit() for c in ''.join(segments(output)))
+    except Exception:
+        return True
+```
+
+### CHECK no_quotes_unless_surface
+RATIONALE: Quote characters belong in a morpheme only when the word itself contains them. This catches quoted output formatting.
+```python
+def check(output, ctx):
+    try:
+        s = ctx['surface']; j = ''.join(segments(output))
+        for q in '"`\'':
+            if q in j and q not in s:
+                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK each_seg_shares_letter
+RATIONALE: Every real morpheme overlaps the word's letters. Even inserted canonical vowels like 'y' or 'e' usually appear in the word. This catches junk segments.
+```python
+def check(output, ctx):
+    try:
+        s = set(ctx['surface'].lower())
+        for x in segments(output):
+            if len(x) >= 3 and not (set(x.lower()) & s):
+                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK first_seg_prefix_match
+RATIONALE: The first morpheme's opening letters copy the word's start. This catches misaligned first segments.
+```python
+def check(output, ctx):
+    try:
+        s = ctx['surface'].lower(); seg = segments(output)
+        f = seg[0].lower()
+        k = min(2, len(f), len(s))
+        if len(seg) == 1 or k == 0:
+            return True
+        return f[:k] == s[:k] or f[:1] == s[:1]
+    except Exception:
+        return True
+```
+
+### CHECK no_markdown
+RATIONALE: Markdown characters never occur in morphemes. This catches formatting leakage.
+```python
+def check(output, ctx):
+    try:
+        s = ctx['surface']; j = ''.join(segments(output))
+        return not any(c in j and c not in s for c in '*_#[]()<>{}|')
+    except Exception:
+        return True
+```
+
+### CHECK no_arrow
+RATIONALE: Arrows and equals signs are explanation syntax, not morpheme content. This catches outputs like "word -> ...".
+```python
+def check(output, ctx):
+    try:
+        j = ''.join(segments(output))
+        return '->' not in j and '=' not in j
+    except Exception:
+        return True
+```
+
+### CHECK seg_count_reasonable
+RATIONALE: English words have at most about one morpheme per two letters. This catches character-level splits.
+```python
+def check(output, ctx):
+    try:
+        return len(segments(output)) <= len(ctx['surface']) // 2 + 2
+    except Exception:
+        return True
+```
+
+### CHECK no_all_single_letters
+RATIONALE: A correct segmentation of a long word is never all one-letter pieces. This catches spelled-out outputs.
+```python
+def check(output, ctx):
+    try:
+        seg = segments(output)
+        if len(ctx['surface']) < 5 or len(seg) < 4:
+            return True
+        return not all(len(x) == 1 for x in seg)
+    except Exception:
+        return True
+```
+
+### CHECK no_surface_repeat
+RATIONALE: The full word never appears in its own segmentation alongside other morphemes. This catches outputs like "word+s" for "word".
+```python
+def check(output, ctx):
+    try:
+        seg = segments(output); s = ctx['surface']
+        if len(seg) < 2:
+            return True
+        return s not in seg
+    except Exception:
+        return True
+```
+
+### CHECK ascii_if_surface_ascii
+RATIONALE: For an ASCII word, the canonical morphemes are ASCII. This catches encoding artefacts and odd glyphs.
+```python
+def check(output, ctx):
+    try:
+        s = ctx['surface']
+        if not s.isascii():
+            return True
+        return ''.join(segments(output)).isascii()
+    except Exception:
+        return True
+```
+
+### CHECK no_internal_hyphen_unless_surface
+RATIONALE: A hyphen inside a morpheme is valid only if the word has one. This catches outputs that use '-' as the separator.
+```python
+def check(output, ctx):
+    try:
+        if '-' in ctx['surface']:
+            return True
+        return not any('-' in x for x in segments(output))
+    except Exception:
+        return True
+```
+
+### CHECK no_slash
+RATIONALE: A slash marks alternative answers, which are never part of the gold. This catches hedged outputs.
+```python
+def check(output, ctx):
+    try:
+        if '/' in ctx['surface']:
+            return True
+        return not any('/' in x for x in segments(output))
+    except Exception:
+        return True
+```
+
+### CHECK no_comma_semicolon
+RATIONALE: Commas, semicolons and colons are list or explanation punctuation, not morphemes. This catches outputs that use them as separators.
+```python
+def check(output, ctx):
+    try:
+        s = ctx['surface']; j = ''.join(segments(output))
+        return not any(c in j and c not in s for c in ',;:')
+    except Exception:
+        return True
+```
+
+### CHECK no_period
+RATIONALE: A full stop inside segments is sentence punctuation, unless the word contains one. This catches trailing-period outputs.
+```python
+def check(output, ctx):
+    try:
+        if '.' in ctx['surface']:
+            return True
+        return '.' not in ''.join(segments(output))
+    except Exception:
+        return True
+```
+
+### CHECK letters_coverage
+RATIONALE: Most of the word's letters must reappear in the morphemes, since canonicalisation edits only boundaries. This catches outputs that drop large chunks of the word.
+```python
+def check(output, ctx):
+    try:
+        from collections import Counter
+        s = Counter(ctx['surface'].lower())
+        j = Counter(''.join(segments(output)).lower())
+        n = sum(s.values())
+        if n < 5:
+            return True
+        cov = sum(min(s[c], j[c]) for c in s)
+        return cov >= 0.5 * n
+    except Exception:
+        return True
+```

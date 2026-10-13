@@ -1,0 +1,74 @@
+[
+  {
+    "task": "ie",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "eps_seq": [
+      0.9903354178510517,
+      0.9903354178510517,
+      0.9903354178510517,
+      0.9192723138146675
+    ],
+    "acc_seq": [
+      0.51,
+      0.51,
+      0.51,
+      0.52
+    ],
+    "eps_monotone": true,
+    "acc_monotone": true
+  },
+  {
+    "task": "ie",
+    "model": "meta-llama/llama-3.1-8b-instruct",
+    "eps_seq": [
+      0.991304347826087,
+      0.9902932254802831,
+      0.9902932254802831,
+      0.7733063700707785
+    ],
+    "acc_seq": [
+      0.23,
+      0.23,
+      0.23,
+      0.25
+    ],
+    "eps_monotone": true,
+    "acc_monotone": true
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "eps_seq": [
+      1.0,
+      1.0,
+      1.0,
+      0.9182750301568154
+    ],
+    "acc_seq": [
+      0.485,
+      0.485,
+      0.485,
+      0.49
+    ],
+    "eps_monotone": true,
+    "acc_monotone": true
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "eps_seq": [
+      0.9997755331088665,
+      0.9997755331088665,
+      0.9997755331088665,
+      0.8769921436588103
+    ],
+    "acc_seq": [
+      0.305,
+      0.305,
+      0.305,
+      0.315
+    ],
+    "eps_monotone": true,
+    "acc_monotone": true
+  }
+]

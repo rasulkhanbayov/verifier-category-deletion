@@ -1,0 +1,1753 @@
+\documentclass[11pt]{article}
+
+% ---- VENUE TEMPLATE ----------------------------------------------------
+% Official ACL/ARR template. acl.sty supplies its own geometry, fontenc,
+% inputenc, times and review-mode line numbers, so none of those are
+% loaded manually here. Use the [review] option for submission (anonymous,
+% line numbers) and switch to [final] only for the camera-ready.
+\usepackage[review]{acl}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{soundver}
+
+\title{\vspace{-2.0em}\textbf{Soundness Is a Measurement, Not an Argument:\\ Auditing Free Verifiers in Structured NLP}}
+\author{Anonymous ARR submission}
+% VENUE: retargeted to COLING 2027 Main Track (ARR October 2026 cycle,
+% deadline 12 Oct 2026). Long paper limit: 8 pages main body; references and
+% appendix unlimited; Limitations mandatory, AFTER the conclusion, excluded
+% from the page count. Appendices must be double-column or desk reject.
+
+\date{}
+
+\begin{document}
+\maketitle
+
+
+
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=12.6cm,y=1.42cm,font=\footnotesize]
+% ---- axes: x spans 0.55-1.02 (0.47 units x 12.6cm = 5.9cm), y 0 to -1.5 -----
+\draw[->,gray!55!black,line width=0.6pt] (0.55,-1.50) -- (1.025,-1.50)
+  node[right=-1pt,font=\scriptsize,text=black]{$\varepsilon$};
+\draw[->,gray!55!black,line width=0.6pt] (0.55,-1.50) -- (0.55,0.24);
+\foreach \x/\l in {0.6/0.6,0.7/0.7,0.8/0.8,0.9/0.9,1.0/1.0}
+  \draw[gray!55!black] (\x,-1.50)--(\x,-1.545)
+    node[below=-1pt,font=\scriptsize,text=black]{\l};
+\foreach \y/\l in {0/0,-0.6/0.10,-1.2/0.20}
+  \draw[gray!55!black] (0.55,\y)--(0.5435,\y)
+    node[left=-1pt,font=\scriptsize,text=black]{\l};
+\node[rotate=90,font=\scriptsize] at (0.5215,-0.72) {$\delta$};
+
+% ---- the sound edge --------------------------------------------------------
+\draw[grn!65!black,line width=1.1pt] (0.55,0)--(1.015,0);
+\node[font=\scriptsize,text=grn!50!black,anchor=east] at (1.012,0.155)
+  {$\delta=0$: nominal soundness};
+
+% ---- measured cells, from Tables~\ref{tab:params} and \ref{tab:params-morph}
+% SQL (Llama-3.1-70B, Llama-3.1-8B, GPT-4o, GPT-4o-mini, Qwen2.5-7B, Qwen2.5-72B):
+% eps 0.832/0.690/0.991/0.918/0.717/0.874,
+% delta 0.0000/0.0007/0.0013/0.0017/0.0042/0.0002 -- all near y=0 at this scale.
+\node[circle,fill=blu,inner sep=1.35pt] at (0.832,-0.0000) {};
+\node[circle,fill=blu,inner sep=1.35pt] at (0.690,-0.0044) {};
+\node[circle,fill=blu,inner sep=1.35pt] at (0.991,-0.0076) {};
+\node[circle,fill=blu,inner sep=1.35pt] at (0.918,-0.0103) {};
+\node[circle,fill=blu,inner sep=1.35pt] at (0.717,-0.0252) {};
+\node[circle,fill=blu,inner sep=1.35pt] at (0.874,-0.0012) {};
+% IE (Llama-3.1-70B, Llama-3.1-8B, GPT-4o, GPT-4o-mini, Qwen2.5-7B, Qwen2.5-72B):
+% eps 0.919/0.773/0.918/0.877/0.927/0.894,
+% delta 0.0010/0.0103/0.0000/0.0000/0.0103/0.0000.
+\node[diamond,fill=org,inner sep=1.5pt] at (0.919,-0.0058) {};
+\node[diamond,fill=org,inner sep=1.5pt] at (0.773,-0.0616) {};
+\node[diamond,fill=org,inner sep=1.5pt] at (0.918,-0.0000) {};
+\node[diamond,fill=org,inner sep=1.5pt] at (0.877,-0.0000) {};
+\node[diamond,fill=org,inner sep=1.5pt] at (0.927,-0.0618) {};
+\node[diamond,fill=org,inner sep=1.5pt] at (0.894,-0.0000) {};
+% morphology (Llama-3.1-70B, Llama-3.1-8B, GPT-4o, GPT-4o-mini, Qwen2.5-7B, Qwen2.5-72B):
+% eps 0.575/0.613/0.739/0.806/0.557/0.771,
+% delta 0.1780/0.1472/0.1581/0.1099/0.1798/0.1503.
+\node[rectangle,fill=ver,inner sep=1.4pt] at (0.575,-1.0680) {};
+\node[rectangle,fill=ver,inner sep=1.4pt] at (0.613,-0.8832) {};
+\node[rectangle,fill=ver,inner sep=1.4pt] at (0.739,-0.9487) {};
+\node[rectangle,fill=ver,inner sep=1.4pt] at (0.806,-0.6595) {};
+\node[rectangle,fill=ver,inner sep=1.4pt] at (0.557,-1.0788) {};
+\node[rectangle,fill=ver,inner sep=1.4pt] at (0.771,-0.9018) {};
+
+% ---- direct labels, placed where nothing else sits -------------------------
+\node[font=\scriptsize,text=blu!65!black,anchor=north] at (0.832,-0.045) {SQL};
+\node[font=\scriptsize,text=org!55!black,anchor=west] at (0.919,-0.045) {IE};
+\node[font=\scriptsize,text=ver!60!black,anchor=west] at (0.828,-0.75)
+  {morphology};
+\end{tikzpicture}
+\captionof{figure}{\textbf{Where the task argument puts a check, and where it
+measures.} Each point is one (task, model) cell at its measured false-rejection
+rate $\delta$ and false-acceptance rate $\varepsilon$
+(Tables~\ref{tab:params},~\ref{tab:params-morph}). All eighteen checks are
+\emph{nominally} sound, so the argument places every one of them on the green
+edge; three land there at seed 0 (SQL/Llama-3.1-70B, IE/GPT-4o,
+IE/GPT-4o-mini), though 5-seed replication (\S\ref{sec:results}, B4) shows
+only the two IE cells hold up under resampling, joined by a third, IE/Qwen2.5-72B, which measures sound at every seed on its own
+replication run. SQL/Qwen2.5-72B, unlike Llama-3.1-70B, is not even on the
+edge at seed 0 (its own seed-0 $\delta$ is already nonzero). The other
+three IE cells sit
+just below the edge and all six morphology cells sit far below, because
+SIGMORPHON's gold segmentations
+are canonical while the check tests a surface property. The horizontal spread is
+the second finding: $\varepsilon$ never falls below $0.557$, so a wrong output is
+almost always well formed.}
+\label{fig:two-rates}
+\end{figure}
+
+\begin{abstract}
+Structured NLP tasks hand you a verifier for free. A gold SQL query parses and
+executes and a gold record validates against its schema, so a check built from
+those conditions cannot reject a correct output. That argument is why such
+checks are trusted without examination as selectors in test-time scaling, as
+rewards in RLVR, and as filters for synthetic data. But the argument is about a
+task, while the check runs against an implementation and a dataset. Measuring
+that gap is harder than it looks, because a correctness label that entails a
+check cannot estimate that check's error rate, a circularity that holds silently
+for text-to-SQL under its standard metric. We state the condition a label must
+meet, give a three-step audit built on it, and run it over three tasks and six
+models. All three tasks have a cell where a check rejects correct outputs. Separating failures a better implementation would avoid from those none can,
+one is confirmed of the second kind and belongs to the benchmark, not to any
+model: $27\%$ (95\% CI $[21\%,34\%]$) of SIGMORPHON 2022
+English gold segmentations do not concatenate to their own surface form, because
+the annotations are canonical rather than surface
+\citep{cotterell2016canonical}. That distinction is the audit's main output: applied to our own text-to-SQL
+checkers it reclassified two apparent findings as bugs of ours. A single
+seed is not enough to trust either: one of our own three seed-0
+soundness certifications, on text-to-SQL, is itself a false
+positive, exposed only by 5-seed replication, which we take as
+evidence for the paper's own thesis rather than bury as a correction.
+Where soundness survives replication, across three models from two
+vendor families, a wrong output is well
+formed $88$--$92\%$ of the time ($81$--$85\%$ for the two cells a blind
+two-annotator label audit covers, once the automatic label's own errors are
+removed), bounding what any such check can add to a few accuracy points. Anyone
+using a structural check as a reward, filter or selector is relying on a
+property nobody has measured.
+\end{abstract}
+
+% ============================ intro ============================
+\section{Introduction}\label{sec:intro}
+Structured NLP output spaces are defined by constraints as much as by content. A
+SQL query must parse and name real columns. A schema-constrained extraction must
+validate. A surface morphological segmentation must concatenate back to the word
+it segments. These well-formedness conditions are decidable in microseconds from
+the output alone, and a correct output satisfies them by definition of the task,
+which makes them \emph{sound} verifiers. That has made them attractive for
+test-time scaling, where sampling several candidates and selecting among them
+improves accuracy \citep{snell2024scaling,brown2024monkeys,wang2023self} but the
+ceiling is set by the verifier rather than the budget
+\citep{stroebl2024verifier,dorner2025rocnreroll}. Learned verifiers
+\citep{lightman2024verify} cost labels, training, and a correctness assumption
+nobody can discharge. A well-formedness check costs none of that.
+
+The argument for trusting such a check is short enough to be invisible. A
+correct output satisfies the task's constraints by definition, so the check
+cannot reject a correct output. It is \emph{sound}, and soundness is what makes
+it safe to put in a loop.
+
+The argument is about a task; the check runs against an implementation and a
+dataset, and this paper is about the gap. Work on verifier error has
+concentrated on false acceptance
+\citep{stroebl2024verifier,dorner2025rocnreroll,variationverif2026}, with
+\citet{stroebl2024verifier} calling it unclear whether a verifier ever rejects
+every correct solution in practice. We measure it: a nominally sound check
+rejects correct outputs somewhere on all three tasks, though only one of
+those failures survives as a genuine property of the task rather than of
+our own implementation (\S\ref{sec:results}).
+
+The question has an exact form, because the two error rates separate cleanly.
+Soundness fixes the false-rejection rate
+$\delta=\Pr[\text{reject}\mid\text{correct}]$ at zero and says nothing about the
+false-acceptance rate $\varepsilon=\Pr[\text{accept}\mid\text{incorrect}]$. And
+$\varepsilon$ has a linguistic reading. It is the rate at which a semantically
+wrong output is nonetheless well formed, so a syntactically valid query that
+executes cleanly and returns the wrong rows is an $\varepsilon$ event
+(Figure~\ref{fig:two-rates}). Measuring $\varepsilon$ is measuring how far the
+structure of an output space constrains its meaning.
+
+\paragraph{Soundness has to be measured, and measuring it is not
+straightforward.} We distinguish \emph{nominal} soundness, what the task argument
+establishes, from \emph{realised} soundness, the measured $\delta$. The gap opens
+two ways. The implementation adds steps the argument never covered, such as
+extracting a query from prose or normalising an equivalent form. Among responses a rule-based math verifier
+marked incorrect, 38.5\% were in fact correct
+\citep{tinyv2025}. And the argument can be scoped to a phenomenon the data does not instantiate,
+as with the surface/canonical contrast in segmentation
+\citep{cotterell2016canonical} that the abstract sketches and
+\S\ref{sec:results} measures.
+
+Measuring $\delta$ runs into a trap that is easy to miss. A correctness label can
+entail the very check it is used to audit, in which case $\delta=0$ comes out
+whatever the check does, and text-to-SQL's standard metric does exactly this for
+its whole stack.
+
+\paragraph{So audit it.} Name the check's soundness argument and the phenomenon
+it is scoped to, measure $\delta$ against a label that does not already assume
+the check, and set aside any cell where $\delta>0$. Such a failure is either a
+bug or a limit of the argument's reach, and only the second says anything about
+the check. \S\ref{sec:setup} makes each step precise; \S\ref{sec:exp} runs it.
+
+\paragraph{Why the two rates have to be separated.} Soundness appears nowhere in
+the gain, which decomposes into headroom, catch rate and replacement quality
+(Cor.~\ref{cor:gain}); only the catch rate $(1-\varepsilon)$ involves the
+verifier. The rate a task lets you \emph{guarantee} is therefore not the rate
+that \emph{pays}, which is why a single number for verifier quality is the wrong
+summary. Two consequences follow and we use both. Conjoining sound checks cannot
+raise $\varepsilon$ (Prop.~\ref{prop:stack}) and the gain falls as $\varepsilon$
+rises, so the full conjunction bounds what any subset of a task's checks can buy
+(Cor.~\ref{cor:ceiling}). And gating on the base output before ranking cannot
+lower accuracy below it (Prop.~\ref{prop:floor}), a protection extending to any
+scorer behind the gate (Prop.~\ref{prop:floor}). None of this is difficult and we
+do not present it as a finding. It is what makes $\varepsilon$ the quantity to
+measure, and what turns ``this check buys almost nothing'' into ``use it as a
+guard instead''.
+
+\paragraph{Where soundness holds, it buys little.} In the three cells that
+survive 5-seed replication (all information extraction, across two vendor
+families) the bound is
+$0.94\pm0.70$ accuracy points for GPT-4o, $1.41\pm0.97$ for
+GPT-4o-mini, and $2.15\pm0.40$ for Qwen2.5-72B, out of base accuracies of $48.5\%$, $30.5\%$
+and $51.0\%$ respectively at
+seed 0. What separates them is $\varepsilon$, not
+headroom: GPT-4o-mini's larger bound than GPT-4o's comes from a lower measured
+$\varepsilon$ ($0.877$ against GPT-4o's $0.918$ at seed 0) despite the
+weaker base model, because the bound tracks how often a wrong output slips
+the check, not how much room for improvement exists. Qwen2.5-72B's bound is
+larger still despite a base accuracy close to GPT-4o's, for the same
+reason: its measured $\varepsilon$ ($0.894$ at seed 0, $0.917\pm0.015$
+across seeds) is the lowest, and the lowest-SD, of the three.
+These bounds use the automatic label, which errs in the direction that
+shrinks them. A blind two-annotator audit (\S\ref{sec:exp}, Appendix~\ref{app:validity})
+finds that label wrong on $7.4\%$ (95\% CI $[4.2\%,12.8\%]$) of IE's accepted,
+labelled-incorrect outputs; correcting $\varepsilon$ for it raises the 5-seed
+bound to $2.88\pm0.72$ points for GPT-4o and $3.20\pm1.02$ for GPT-4o-mini
+(Qwen2.5-72B was not in the audited sample). That is still a few points
+against $51.5$ and $69.5$ points of headroom, but it is not the near-zero
+bound the uncorrected numbers suggest, and we do not claim near-exhaustion.
+
+\paragraph{What is new, and against what.} Three lines of work bound closely on
+this one. \citet{dorner2025rocnreroll} characterise the accuracy of best-of-$N$
+and rejection sampling for a \emph{given} verifier across the whole ROC curve. We
+ask instead what the \emph{best} verifier obtainable from a fixed set of task
+constraints can achieve, a maximum over a design space and not the evaluation of
+a point, so their result is an input to ours rather than a competitor.
+\citet{stroebl2024verifier} bound achievable accuracy by a given verifier's
+false-acceptance rate, setting false rejection aside as a nuisance one can sample
+around. We show that false rejection is the side carrying the guarantee, measure
+that it is violated somewhere on all three of our tasks, and turn the false-acceptance side
+into a bound needing one measurement and no verifier. Work on constrained decoding
+\citep{geng2023grammar,park2024grammar,tam2024format} studies how to
+\emph{enforce} well-formedness, whereas we ask whether having it is sound and
+what it is worth. We claim no new selection algorithm.
+
+\paragraph{Contributions.} \textbf{(i)} \emph{A condition for measuring verifier
+error at all} (Def.~\ref{def:admissible}), with the three-step audit it implies.
+Text-to-SQL's standard metric fails it for the whole stack, so the soundness
+that benchmark appears to confirm is a tautology. \textbf{(ii)} \emph{The audit, run.} On all three tasks a check the task
+definition appears to license rejects correct outputs at least somewhere,
+answering the question
+\citet{stroebl2024verifier} leave open. It also separates bugs from limits of the argument's reach, a distinction
+\S\ref{sec:results} applies to our own checkers: only one of the three
+survives that separation as a finding about the task rather than about our
+implementation.
+\textbf{(iii)} \emph{A benchmark that fails its own task's constraint.} $27\%$ (95\% CI $[21\%,34\%]$, $n{=}200$) of
+SIGMORPHON 2022 English gold segmentations do not concatenate to their own
+surface form, because the annotations are canonical, not surface. That is
+a property of the data, not of any model, and it is invisible to an evaluation
+that trusts its gold standard. \textbf{(iv)} \emph{What soundness buys where it
+holds.} Cor.~\ref{cor:ceiling} turns the measured $\varepsilon$ into a bound on
+what any verifier built from these constraints can add.
+\citet{variationverif2026} report the same direction for \emph{learned}
+verifiers on reasoning. We give the deterministic structural case, where
+$\delta=0$ holds by construction and $\varepsilon$ is the only free error rate.
+\textbf{(v)} \emph{A single seed can falsely certify soundness.} At seed
+0, three cells measured exactly sound; 5-seed replication shows one of
+them, on text-to-SQL, was a lucky
+zero count on a leak rate the other seeds expose (\S\ref{sec:results},
+B4). A fourth model's text-to-SQL stack never certified at all, at any
+seed, once every seed is considered (\S\ref{sec:results}) -- a milder but
+related caution: a single draw can also make an unsound cell look worse
+or better than its true rate by chance, not only flip a genuinely
+unsound cell to a false zero. The measured $\delta=0$ that a single draw
+reports is not the same claim as a $\delta=0$ that survives resampling,
+and the gap between them is a result in its own right, not only a
+correction to an earlier number.
+
+The consequence reaches past test-time scaling. The same checks gate reward in
+RLVR and filter synthetic training data. There, a check that quietly rejects
+correct outputs removes the examples a model has not yet learned to produce.
+
+\paragraph{Scope, stated up front.} The checks audited here are
+\emph{syntactic and schema} well-formedness conditions -- a query parses
+and executes, a record validates against its schema, a segmentation
+concatenates -- not semantic well-formedness, and the theory in
+\S\ref{sec:theory} makes no claim about open-ended generation, where no
+sound verifier of this kind exists. All three tasks and every prompt are
+English; \S\ref{sec:limitations} states the typological prediction this
+implies and the cross-lingual test that would check it, which we have not
+run. We narrow the claim here rather than let a reader infer a broader
+one from the title.
+
+% ============================ related ============================
+\section{Related Work}\label{sec:related}
+\paragraph{Verifier-bounded test-time scaling.} The false-acceptance side has
+been studied carefully and the false-rejection side has not, an asymmetry visible
+in the closest work. \citet{stroebl2024verifier} show that a nonzero
+false-acceptance rate upper-bounds resampling irrespective of budget. The quantity they measure is $\Pr[\text{correct}\mid\text{accepted}]$,
+which rises with the generator's strength. Ours is
+$\Pr[\text{accepted}\mid\text{incorrect}]$, which rises too. Both can, because
+they are different conditionals, and no result here contradicts theirs. What
+their model does not do is let the verifier's own rates vary. Their Appendix~C
+fixes soundness and completeness as constants of the verifier. Whether those
+rates are properties of the verifier or of the generator paired with it is the
+question we take up. \citet{variationverif2026} answer it for \emph{learned}
+verifiers on reasoning, reporting that a verifier's true-negative rate falls as
+generator capability rises, because stronger generators produce well-structured
+but incorrect solutions. We study \emph{deterministic structural} checks, where the distinction matters.
+A check derived from a task's well-formedness
+conditions has $\delta=0$ by construction, so $\varepsilon$ is its only free
+error rate, whereas a learned verifier has two. \citet{stroebl2024verifier} also
+observe that
+whether a verifier ever rejects every correct solution is unclear in practice,
+and \S\ref{sec:results} answers that it does.
+\citet{setlur2025vbvf} argue that verifier-based search dominates verifier-free
+alternatives at matched budget. \citet{dorner2025rocnreroll} prove that the
+instance-level accuracy of rejection sampling and best-of-$N$ is characterised by
+the verifier's ROC geometry. Their result is more general than ours and we do not
+restate it. Our gated rule is rejection sampling with the greedy output as first draw, so it
+is not a new algorithm. What differs is that this draw comes from a different
+distribution, with $p_0\neq p$, whereas their analysis assumes a single policy.
+That difference does not buy accuracy at our measured rates, as
+\S\ref{sec:results} shows the theory predicts. What the gate buys is a floor that
+holds for \emph{any} scorer (Prop.~\ref{prop:floor}), the property E5 tests.
+
+\paragraph{Selection in structured generation.} That verifiers fail in both
+directions is established \citep{cai2025noisy,tinyv2025,onetoken2025}, but that
+literature asks which direction matters for \emph{training} a policy. For gated
+selection, false negatives are the only direction that can cost accuracy at all.
+On the selection side, \citet{gradesql2026} train outcome reward models from
+execution-labelled candidates and report that they outperform execution-based
+best-of-$N$ and majority voting on BIRD and Spider, with self-consistency
+\citep{wang2023self} the frequency-based special case. \citet{dpc2026} attack the same gap without training, cross-checking candidate
+execution against a parallel imperative implementation on a synthesised
+minimal distinguishing database. Their check is a strong
+\emph{discriminator} but not sound in our sense, since a correct query can
+disagree with an imperfect reference. We run their released implementation
+as a baseline (Table~\ref{tab:main}, note m) rather than take the reported
+ordering on faith, and it is not a competitor to the ceiling: a
+discriminator's measured gain is a point on the design space our bound
+covers, not a rival maximum over it.
+
+\paragraph{Combining verifiers, cascades, and constrained decoding.}
+\citet{saadfalcon2025weaver} ensemble weak verifiers by a learned weighted score,
+which cannot preserve $\delta=0$ since any positive weight on an unsound member
+can outvote a sound one. Conjunction (Prop.~\ref{prop:stack}) preserves it by
+construction. The gated rule is structurally a cascade
+\citep{chow1957recognition,elyaniv2010foundations,geifman2017selective,chen2023frugalgpt}.
+Cascades gate on a calibrated confidence and inherit any miscalibration, whereas
+a sound rejection needs no threshold. Grammar-constrained decoding
+\citep{geng2023grammar,park2024grammar} guarantees well-formedness in one pass,
+but needs logit access and a prefix-decidable constraint, whereas verification
+needs only a finished output and whether a query executes is not
+prefix-decidable. Where a constraint \emph{is} decodable, enforcing it is the
+better choice, though it can distort the conditional distribution over
+well-formed outputs \citep{park2024grammar}. Both lines assume well-formedness is
+worth enforcing and we measure what it is worth, and neither direction is free:
+\citet{tam2024format} find that imposing format restrictions at generation time
+degrades reasoning accuracy. That the assumption needs checking is also not new
+to computational linguistics. The canonical/surface contrast in segmentation
+\citep{cotterell2016canonical} exists precisely because the concatenation
+property some annotation schemes guarantee, others do not. Analyses of when
+scaling pays off usually study the generator \citep{brown2024monkeys}. We hold it
+fixed and vary the verifier.
+
+% ============================ setup ============================
+\section{Setup and the Audit}\label{sec:setup}
+This section makes that audit precise, beginning with the two rates it
+separates. Fix a task instance. A model produces a base output $y_0$ by greedy decoding
+and, on demand, candidates $y_1,\dots,y_N$ sampled i.i.d.\ at fixed temperature.
+Let $C(y)\in\{0,1\}$ indicate correctness under the task metric. $C$ is
+available only at evaluation time. Write $p_0=\Pr[C(y_0)=1]$ and
+$p=\Pr[C(y_i)=1]$, noting $p_0\neq p$ in general. A \emph{verifier} is a function $V:\mathcal{Y}\to\{0,1\}$ computable from a
+candidate alone, with no labels and no reference, with error rates
+$\delta=\Pr[V(y)=0\mid C(y)=1]$ and $\varepsilon=\Pr[V(y)=1\mid C(y)=0]$. When
+$V$ tests well-formedness, $\varepsilon$ measures how loosely the structure of
+the output space constrains its meaning.\footnote{A terminological warning,
+since our closest antecedent uses the opposite convention.
+\citet{stroebl2024verifier} call $1-\varepsilon$ the verifier's
+\emph{soundness} and $1-\delta$ its \emph{completeness}. We follow the usage standard in program analysis, where a sound check never
+rejects a correct object, so our ``sound'' is their ``complete''. The
+distinction matters here, since the point below is that pinning $\delta$ pins
+the rate that does not pay.}
+
+\begin{definition}[Nominal and realised soundness]\label{def:sound}
+A check is \emph{nominally sound} for a task if the task definition entails that
+a gold output satisfies it. It is \emph{realised sound} on a deployment
+distribution if its measured $\delta$ is zero, that is, $C(y)=1\Rightarrow
+V(y)=1$ holds for the check as implemented.
+\end{definition}
+
+Every result in \S\ref{sec:theory} requires realised soundness and none follows
+from nominal soundness alone. Neither notion constrains $\varepsilon$, which must
+be measured independently.
+
+Testing realised soundness means testing $\{C{=}1\}\subseteq\{V{=}1\}$. The
+trap is that the label can force it.
+
+\begin{definition}[Admissible label]\label{def:admissible}
+A correctness label $C$ is \emph{admissible} for auditing $V$ if the inclusion
+$\{C{=}1\}\subseteq\{V{=}1\}$ is not entailed by the definition of $C$.
+\end{definition}
+
+If $C$ is inadmissible then $\delta_V=\Pr[V{=}0\mid C{=}1]=0$ identically,
+whatever $V$ does, so a measured $\delta=0$ is a tautology,
+not evidence.
+Text-to-SQL's standard execution-match metric is inadmissible for its own stack,
+and for all of it: $C{=}1$ requires the predicted query to run and match, running
+requires its columns to resolve, and resolving requires it to parse, so
+execution match entails \texttt{parses}, \texttt{schema-valid} and
+\texttt{executes} together. We therefore label SQL with test-suite accuracy
+\citep{zhong2020testsuite}, which decides correctness by behaviour on a
+distilled database suite and entails none of the three.
+
+\paragraph{The audit.} Three steps, per (task, model, check).
+\textbf{(1)} State the nominal soundness argument and the phenomenon it is
+scoped to. A check whose argument names a phenomenon the data does not
+instantiate is already suspect (Table~\ref{tab:stacks}).
+\textbf{(2)} Fix an admissible label by Def.~\ref{def:admissible} and estimate
+$\delta$ on it.
+\textbf{(3)} A check with $\delta>0$ is not realised sound: exclude that cell
+from every claim in \S\ref{sec:theory}, report $\delta$ rather than repairing
+the check silently, and classify the failure. An \emph{implementation} defect is one some correct implementation would not
+make; a \emph{scope} failure is one none avoids, because the check's argument
+does not cover the data. Only scope failures are findings about the check. A cell whose $\delta$ measures zero is certified only up to the rule-of-three
+bound $3/n$ on the $n$ correct outputs tested, which we report with it: on a
+finite sample $\delta=0$ is a zero count, not a zero rate. Only certified cells
+carry an $\varepsilon$ or a bound.
+
+We assume $\delta$ and $\varepsilon$ are the same for the base output and the
+samples; Appendix~\ref{app:protocol} reports both separately and finds the
+idealisation exact for $\delta$ and measurably violated for $\varepsilon$.
+
+The rule we analyse consults sampled candidates only once the base output has
+been rejected. Definition~\ref{def:rule} states it. The gate is what makes the
+analysis unconditional.
+% ============================ theory ============================
+\section{Why $\varepsilon$ Is the Quantity}\label{sec:theory}
+The audit decides which cells we may speak about; this section says what there
+is to say about them. Two results, separated by what they assume. Prop.~\ref{prop:floor} and
+Cor.~\ref{cor:ceiling}a hold instance by instance and need only realised
+soundness. The accuracy formula needs a model of how candidates and verdicts are
+generated (A1--A3). Proofs are in Appendix~\ref{app:proofs}, the auxiliary lemma in
+Appendix~\ref{app:lemma}, the machine check in Appendix~\ref{app:numeric}.
+
+\begin{definition}[Reject-gated selection]\label{def:rule}
+Given a verifier $V$, a scoring function $S$ and a budget $N$: return the base
+output $y_0$ if $V$ accepts it. Otherwise draw $y_1,\dots,y_N$ and return the
+accepted candidate that $S$ ranks highest, breaking ties uniformly; if none is
+accepted, return $y_0$.
+\end{definition}
+
+\subsection{The guarantee}
+\begin{proposition}[Instance-wise floor]\label{prop:floor}
+Fix any instance $x$ and let $V$ be realised sound at $x$ (Definition~\ref{def:sound}), meaning $C(y)=1\Rightarrow V(y)=1$ for outputs at $x$. Under Definition~\ref{def:rule},
+\[
+\Pr\bigl[C(\hat y)=1 \,\bigm|\, x\bigr]\;\ge\;\Pr\bigl[C(y_0)=1 \,\bigm|\, x\bigr]
+\]
+for every budget $N\ge0$, every candidate distribution, every false-acceptance
+rate, and every scoring function $S$ whatever, learned or heuristic, calibrated
+or not, sound or not. Averaging over $x$ gives $\Pr[C(\hat y)=1]\ge p_0$.
+\end{proposition}
+
+The reason is one line. If a sound check rejects the base output, the base output
+was wrong. The gate therefore enters the sampling branch only where the base is
+already incorrect, so a correct base output is never replaced. Nothing about the
+candidates, the scorer or $\varepsilon$ enters, so the
+guarantee holds
+for any of them, and why \S\ref{sec:exp} audits $\delta$ before anything else.
+Ungated best-of-$N$ has no such guarantee, since it scores the whole pool. This
+is the deployment recommendation. A reward model used as an unguarded
+best-of-$N$ scorer can fall below greedy decoding, whereas the same model
+consulted only after a sound check has certified the base incorrect cannot.
+
+Soundness is therefore not a binary property but a design budget. Cheap checks
+accumulate, each weakly lowering $\varepsilon$, with nothing risked. One caution.
+The bound is $\min_i\varepsilon_i$; the stronger product $\prod_i\varepsilon_i$
+would need the conjuncts to fail independently on incorrect outputs, implausible
+for checks sharing a parse, and we never report it.
+
+This qualifies Prop.~\ref{prop:stack}. The checks one reaches for to drive
+$\varepsilon$ down are disproportionately those whose soundness argument fails,
+because what makes a check discriminative is what makes it liable to rule out a
+gold output. The proposition licenses accumulating only checks that survive the
+audit; Prop.~\ref{prop:floor} puts the rest in the scorer, where a nonzero
+$\delta$ costs nothing because the gate has already run.
+
+\subsection{The quantity}
+Quantifying the gain, unlike guaranteeing the floor, requires a model.
+
+\begin{assumption}\label{ass:model}
+The $N$ candidates are i.i.d.\ with accuracy $p$ while the base output has
+accuracy $p_0$, and $p_0\neq p$ is allowed \textbf{(A1)}. Verdicts are
+conditionally independent given correctness, with the same $\delta$ and
+$\varepsilon$ for the base output and the samples \textbf{(A2)}. All four rates
+are constant across instances \textbf{(A3)}.
+\end{assumption}
+
+These hold for the rest of this section and nowhere else. Appendix~\ref{app:proofs} gives the general
+accuracy formula for any $\delta$ (Thm.~\ref{thm:master}); the sound case is
+what the paper uses, and it is short enough to state directly.
+
+\begin{corollary}[Gain decomposition]\label{cor:gain}
+Under Assumption~\ref{ass:model} with $\delta=0$, write $q=p+(1-p)\varepsilon$
+for the chance a sampled candidate is accepted. Then
+\[
+A_N=p_0+\underbrace{(1-p_0)}_{\text{headroom}}\underbrace{(1-\varepsilon)}_{\text{caught}}\underbrace{\bigl(1-(1-q)^N\bigr)\tfrac{p}{q}}_{\text{replacement}} ,
+\]
+which is non-decreasing in $N$, equals $p_0$ at $N=0$, and tends to
+$A_\infty-p_0=(1-p_0)(1-\varepsilon)\,p/q$, an expression strictly decreasing in
+$\varepsilon$.
+\end{corollary}
+
+Read the three factors left to right. There is $(1-p_0)$ headroom to recover; the
+verifier catches a $(1-\varepsilon)$ fraction of it; and of the candidates it
+accepts, a $p/q$ fraction are actually correct. For GPT-4o on text-to-SQL the
+measured rates give $0.280\times0.012\times0.730=0.25$ accuracy points, and the
+middle factor is doing all the work. Soundness appears in none of the three. It
+appears only in Prop.~\ref{prop:floor}, which is the whole asymmetry the paper
+turns on: the rate you can guarantee is not the rate that pays. As
+$\varepsilon\to1$ the gain vanishes at every budget, because a check that almost
+every wrong answer passes cannot help however cheap or sound it is.
+
+
+
+
+Conjoining every sound check a task supplies gives the lowest $\varepsilon$
+available, and the gain falls as $\varepsilon$ rises. So that one conjunction
+bounds what every other one can do, and measuring its $\varepsilon$ prices the
+whole design space at once.
+
+\begin{corollary}[Soundness ceiling]\label{cor:ceiling}\label{prop:stack}
+Let $V_1,\dots,V_k$ be realised sound at $x$, let $V$ be their conjunction and
+$V_S$ the conjunction of any subset. $V$ is realised sound with
+$\varepsilon_V\le\min_i\varepsilon_i$, needing no independence assumption, and:
+\textbf{(a) Dominance.} At every instance and every budget, the gain of $V_S$ is
+at most the asymptotic gain of $V$. This needs only $\delta=0$ and the fact that
+anything $V$ accepts, $V_S$ accepts. No part of Assumption~\ref{ass:model} is
+used and the rates may vary freely across instances.
+\textbf{(b) Evaluation.} Under Assumption~\ref{ass:model} that bound is
+\[
+A_N(V_S)-p_0\;\le\;(1-p_0)(1-\varepsilon_V)\,p/q_V ,
+\]
+with $q_V=p+(1-p)\varepsilon_V$:
+a function of three measured rates.
+\end{corollary}
+
+Both parts follow from two facts already on the page. Anything the full
+conjunction accepts, every sub-conjunction accepts, so $\varepsilon$ can only go
+down as checks are added; and the gain of Cor.~\ref{cor:gain} strictly decreases
+in $\varepsilon$. Part (a) is the design-space claim and needs nothing else:
+whatever the rates do across instances, adding every sound check you have is
+never worse than adding a subset. Part (b) turns that ordering into a number and
+inherits A3, false in practice; \S\ref{sec:limitations} gives the
+direction of the resulting error and its size.
+
+An unsound verifier costs accuracy when the correct outputs it discards outweigh
+the incorrect ones it catches; Cor.~\ref{cor:degrade} in Appendix~\ref{app:proofs}
+gives the exact condition, which E5 tests. Confidence-based selection is exposed,
+because a confidently wrong model carries high $\delta$ and high $\varepsilon$ at
+once. So is a nominally sound check with a leaky implementation, whose users
+believe Prop.~\ref{prop:floor} protects them. The loss is first-order in
+$\delta$.
+
+\paragraph{Dropping homogeneity.}
+A3 is false in practice, since difficulty varies by instance. It can be removed
+from the gain accounting exactly, at the cost of one covariance term, and the
+floor of Prop.~\ref{prop:floor} survives instance heterogeneity pointwise
+because it never uses A1--A3 at all. Appendix~\ref{app:hetero} states both
+results with proofs: the exact heterogeneous gain, and the fact that evaluating
+Cor.~\ref{cor:gain} at pooled rates \emph{under}-predicts the realised gain when
+$p$ is constant, so a measured gain above prediction is the expected direction, not evidence
+against the decomposition.
+
+\section{Experiments}\label{sec:exp}
+The design follows the audit. Cor.~\ref{cor:ceiling} turns ``how much can sound
+verification buy here?'' into ``what is $\varepsilon$ for the full sound
+stack?'', which is a rate measurement and not a comparison of selection rules.
+That matters for power. At $n=200$ a rate is resolved to well within an accuracy
+point, whereas a difference between two selection rules is not, the minimum
+detectable effect being $7.5$--$9.3$ points at 80\% power. We therefore make the
+rate measurement the headline and use the selection runs to validate the closed
+form that converts rates into a bound. Six models across three vendor
+families (GPT-4o-mini, GPT-4o, Llama-3.1-8B-Instruct, Llama-3.1-70B-Instruct,
+Qwen2.5-7B-Instruct, Qwen2.5-72B-Instruct, via OpenRouter) cross three tasks
+whose well-formedness conditions differ in kind: a formal grammar plus a database
+schema (Spider dev, \citealp{yu2018spider}), a record schema over
+natural-language spans (CoNLL2003), and a string-identity condition over morphs
+(SIGMORPHON 2022 English). We use 200 instances per cell, greedy decoding for the
+base output, temperature 0.7 for candidates, and $N\in\{1,\dots,32\}$. Protocol,
+versions and licences are in Appendix~\ref{app:protocol}.
+
+\paragraph{E0, does the label matter?} We measure $\delta$ for the SQL stack
+under both labels, using the schema validator as it stood before this study's
+own parsing defects were repaired: execution match certifies that checker and
+test-suite accuracy does not. Any nonzero $\delta$ under execution match would
+refute Def.~\ref{def:admissible}. Run on 200 instances per model, all six
+models: $\delta=0.0000$ under execution match in every cell, exactly as the
+definition requires by construction, since a query the buggy validator rejects
+also fails to execute. Under test-suite accuracy the same buggy validator
+measures $\delta=0.19$--$0.34$ across the six models -- the false rejections
+this study's own checker audit later traced to specific parsing defects and
+repaired. Execution match could not have exposed them; that is the sharpness
+Def.~\ref{def:admissible} is stated to buy.
+
+\paragraph{E1, the soundness audit.} This runs first because it can void
+everything else. We run the three-step audit of \S\ref{sec:setup} for every check
+claimed sound, per model and task, which decides which cells the paper may speak
+about and answers the question \citet{stroebl2024verifier} leave open of whether
+a verifier rejecting correct solutions is a real phenomenon. The admissible
+labels are test-suite accuracy \citep{zhong2020testsuite} for SQL, field-value
+match for IE, and gold segmentation match for morphology; none entails its
+task's checks.
+
+\paragraph{E2 to E4, the bound and the form it rests on.} E2 estimates $p_0$, $p$ and $\varepsilon$ for the full stack in the certified
+cells and evaluates Cor.~\ref{cor:ceiling}; no selection is run and no verifier
+trained. E3
+tests the corollary the bound rests on instead of assuming it, comparing
+Cor.~\ref{cor:gain} at the E2 rates against measured accuracy across the budget
+grid. E4 adds checks one at a time and recomputes the bound: a bound still falling at
+the last check would mean our check set, not the task, is binding. Run
+exhaustively over every non-empty subset of the three IE cells' stacks that
+survive replication (15 subsets each, all three certified at seed 0), no
+subset's bound exceeds the full stack's: it is already at its full value
+($2.19$/$3.04$/$2.69$ points for GPT-4o/GPT-4o-mini/Qwen2.5-72B at seed 0) from
+\texttt{no\_overlap} alone, with the other three checks contributing nothing
+further on this sample, for all three. SQL/Llama-3.1-70B's stack was run through the
+exhaustive check at seed 0 (7 subsets, rising monotonically from
+$0.17$ points at \texttt{parses} alone to the full $3.72$) before replication
+showed that cell is not actually sound (B4, above); its exhaustive result
+is not reported as a finding for that reason, only as a consistency check
+on the seed-0 numbers it was computed from. SQL/Qwen2.5-72B's own seed-0
+$\delta$ was already nonzero, so it was excluded from the exhaustive check
+from the start, at seed 0, with no intermediate false-positive stage to
+report. None of the surviving patterns are a
+violation of the corollary -- it says a subset cannot exceed the full
+stack, not that every check must bind -- so our check set is not the thing
+keeping either IE bound down.
+
+\paragraph{E5, the floor, with controls.} E5 runs a deliberately unsound scorer, the mean log-probability with the bottom
+quartile rejected, both ungated and gated. Cor.~\ref{cor:degrade} predicts when
+the ungated rule degrades and Prop.~\ref{prop:floor} that the gated one cannot,
+so the informative cells are those where an ungated scorer measurably degrades. Two controls run alongside: a negative one (a vacuous check, predicted to yield
+zero gain) and a positive one (oracle selection, $5.0$--$18.0$ points above
+base). E3 also runs a variant that changes only the selection rule. That is a control
+on the design, not a comparison: the E2 rates put the gated and homogeneous
+rules within $3.1$ points, far inside the $7.5$--$9.3$ this sample resolves, so
+finding no separation is the expected outcome and a separation would indicate a
+confound.
+
+\paragraph{Validity of the rates.} Two things move $\varepsilon$ in the
+direction that flatters us: a correct output mislabelled incorrect is counted as
+a false acceptance, and $\varepsilon$ depends on an error distribution the prompt
+shapes. Appendix~\ref{app:validity} designs a human label validation and a five-variant
+prompt sweep, each reading fixed in advance. An LLM judge is not used as the
+label: a judge is itself a verifier with unmeasured rates, which
+Def.~\ref{def:admissible} forbids. The prompt sweep is run: at the full $n{=}200$ sample, both certified IE cells stay
+sound ($\delta=0.000$) under every one of the five prompts (base, two
+independent paraphrases, exemplars removed, an adversarial format reminder),
+and the ceiling moves within a modest band across them --
+$1.03$--$2.29$ points for GPT-4o, $1.40$--$3.04$ for GPT-4o-mini -- never
+approaching an order-of-magnitude swing. The pre-registered reading (survives
+if the maximum stays under one point) technically fails for both, but that
+threshold was fixed before either cell's real ceiling was known to already sit
+above one point under its own base prompt; a threshold set relative to the
+base value, rather than an absolute one, would read this as what it is: the
+soundness result is prompt-robust, and the ceiling's exact size is not. SQL has
+no certified cell to evaluate by this sweep (B4 above): GPT-4o-mini is
+unsound under every prompt tried, base included -- consistent with, not
+contradicting, the main result that no SQL cell survives replication. The label validation (V1) is also run: two annotators, blind to each other,
+to the automatic label and to gold, judged 444 $\varepsilon$ events (148 per
+task, 37 per model, original four models). Agreement passes the pre-registered
+floor (Krippendorff's $\alpha=0.783$; 400/444 identical). Counting an output as
+mislabelled only when both annotators call it correct, the automatic label is
+wrong on $7.4\%$ of IE events (95\% CI $[4.2\%,12.8\%]$), against $33.8\%$ for
+SQL and $32.4\%$ for morphology. For the two certified IE cells this lowers
+$\varepsilon$ at seed 0 from $0.918$ to $0.850$ (GPT-4o) and $0.877$ to
+$0.812$ (GPT-4o-mini) and raises the 5-seed ceiling to $2.88\pm0.72$ and
+$3.20\pm1.02$ points. Soundness is untouched: every audited output was
+accepted by the stack, so the correction moves $\varepsilon$, never $\delta$.
+Appendix~\ref{app:validity} gives the deviations from the design and the
+pooled and per-cell alternatives.
+
+\paragraph{Baselines and statistics.} Ungated best-of-$N$ and homogeneous
+rejection sampling, with the same verifier, scorer and pool, isolate the gate.
+Execution-clustered self-consistency, an LLM-as-judge scorer and a trained
+outcome reward model (logistic regression over task features, trained on each
+benchmark's own \emph{training} split, AUROC $0.713$--$0.780$) stand in for
+current practice. \citet{dpc2026}, the strongest training-free selection method we know for
+text-to-SQL, is run using the authors' own released implementation against
+the same 200-instance, 8-candidate GPT-4o pool as this table's other rows: an
+ungated selection accuracy of $73.0\%$ against a paired greedy baseline of
+$71.0\%$ ($+2.0$ points, 95\% CI $[-1.5, 5.5]$, not distinguishable from
+zero at this sample size), comparable to but not
+exceeding the trained reward model's own ungated gain on this pool. We report
+paired bootstrap intervals over instances \citep{efron1994bootstrap} and a paired
+permutation test throughout. The ceiling rests on no comparison, and the rule
+comparisons are reported as bounded rather than as established nulls.
+
+% ============================ results ============================
+
+\begin{table}[t]\centering\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}ll S[table-format=1.4] S[table-format=1.3] r@{}}
+\toprule
+Task & Model & {$\delta$} & {$\varepsilon$} & {Bound (pts)} \\
+\midrule
+\multirow{6}{*}{SQL}
+ & GPT-4o-mini   & 0.0017 & 0.918 & {--} \\
+ & GPT-4o        & 0.0013 & 0.991 & {--} \\
+ & Llama-3.1-8B  & 0.0007 & 0.690 & {--} \\
+ & Llama-3.1-70B & 0.0000$^{\dagger}$ & 0.832 & (3.72)$^{\dagger}$ \\
+ & Qwen2.5-7B    & 0.0042 & 0.717 & {--} \\
+ & Qwen2.5-72B   & 0.0002 & 0.874 & {--} \\
+\addlinespace[2pt]
+\multirow{6}{*}{IE}
+ & GPT-4o-mini   & \bfseries 0.0000 & 0.877 & \bfseries 3.04 \\
+ & GPT-4o        & \bfseries 0.0000 & 0.918 & \bfseries 2.19 \\
+ & Llama-3.1-8B  & 0.0103 & 0.773 & {--} \\
+ & Llama-3.1-70B & 0.0010 & 0.919 & {--} \\
+ & Qwen2.5-7B    & 0.0103 & 0.927 & {--} \\
+ & Qwen2.5-72B   & \bfseries 0.0000 & 0.894 & \bfseries 2.69 \\
+\addlinespace[2pt]
+\multirow{6}{*}{Morph.}
+ & GPT-4o-mini   & 0.1099 & 0.806 & {--} \\
+ & GPT-4o        & 0.1581 & 0.739 & {--} \\
+ & Llama-3.1-8B  & 0.1472 & 0.613 & {--} \\
+ & Llama-3.1-70B & 0.1780 & 0.575 & {--} \\
+ & Qwen2.5-7B    & 0.1798 & 0.557 & {--} \\
+ & Qwen2.5-72B   & 0.1503 & 0.771 & {--} \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{The audit, and what survives it.} $\delta$ is the rate at which
+a check rejects a correct output and $\varepsilon$ the rate at which it accepts a
+wrong one, both recomputed directly from per-instance records (200 base
+outputs, 6{,}144--6{,}400 sampled candidates per cell, seed 0). Every
+check here is nominally sound, so the task argument predicts $\delta=0$ in
+all eighteen cells. At seed 0 it holds in three (SQL/Llama-3.1-70B,
+IE/GPT-4o, IE/GPT-4o-mini), marked $^\dagger$; 5-seed replication (B4,
+\S\ref{sec:results}) shows Llama-3.1-70B's zero does not survive resampling
+($\delta=0.0005$--$0.0027$ at the other four seeds: not a
+certification, and its bound in parentheses is not evaluated), while
+IE/GPT-4o and IE/GPT-4o-mini stay sound at every seed. SQL/Qwen2.5-72B is
+not sound even at seed 0 ($\delta=0.0002$, a genuinely nonzero rate, not a
+rounding artifact of a later-failing zero); we report it here as a real
+data point, not a fourth seed-0 certification. IE/Qwen2.5-72B, by
+contrast, measures exactly sound at every one of its 5 seeds on its own
+replication run (\S\ref{sec:results}) and joins the two surviving IE
+cells. Three cells survive, all IE, across two vendor
+families (OpenAI, Alibaba) -- no Llama/Meta cell has certified on any
+task, at any seed. A cell with $\delta>0$ forfeits every claim in
+\S\ref{sec:theory}, so no bound is computed for it ({--}). A measured
+$\delta=0$ is a zero count, not a zero rate: the rule-of-three bound
+$3/n$ on the $n$ correct outputs tested is $0.00091$--$0.00140$ for the
+three cells that actually survive. That range straddles the smallest nonzero
+$\delta$ reported in this table (0.0002, SQL/Qwen2.5-72B): IE/GPT-4o's
+bound (0.00091) and IE/GPT-4o-mini's (0.00140) are both \emph{looser} than
+that leak's point estimate, so a cell certified sound here is not
+categorically more reliable than a cell measured to leak at the smallest
+rate this audit found -- the certification is a real ceiling on how
+unsound the cell could be, not evidence it is meaningfully sounder than
+its unsound neighbours. The
+$\varepsilon$ column decides the rest: a wrong output is well formed
+$56$--$99\%$ of the time.}
+\label{tab:ceiling}
+\end{table}
+
+\section{Findings}\label{sec:results}
+The audit voids more than it certifies. Tables~\ref{tab:params} and
+\ref{tab:ceiling} carry the numbers; all SQL figures come from a twice-corrected
+checker, discussed below.
+
+\paragraph{E1: the soundness audit.} E0 (above) demonstrates contribution~(i)
+rather than merely arguing for it. One of three
+tasks has a check that rejects correct outputs for a reason no implementation
+avoids, and applying the classification honestly to our own checkers is
+itself part of the finding. SQL's six measured leaks at seed 0 (Llama-3.1-8B
+$0.07\%$, GPT-4o $0.13\%$, GPT-4o-mini $0.17\%$, Qwen2.5-7B $0.42\%$,
+Qwen2.5-72B $0.02\%$; Llama-3.1-70B measured
+exactly sound at seed 0, though not under replication)
+trace, on inspection, to a residual class of query patterns
+our reference checker resolves incompletely rather than to any property of
+the task -- an \emph{implementation} defect, in the sense \S3 defines, not a
+finding about the check. IE's small residual leaks (Llama-3.1-70B $0.10\%$,
+Llama-3.1-8B $1.03\%$, Qwen2.5-7B $1.03\%$; GPT-4o, GPT-4o-mini and
+Qwen2.5-72B measured
+exactly sound) were
+investigated the same way: every one of Llama-3.1-8B's and Qwen2.5-7B's traces to the model
+omitting empty-list fields from its own output rather than misclassifying
+an entity, a real but narrow disagreement between output \emph{content} and
+output \emph{format} that does not qualify as a failure no implementation
+avoids either. IE is therefore \textbf{not} counted as a second scope-failure
+finding. Morphology's \texttt{concatenates} check is the one confirmed
+\emph{scope} failure: it leaked for every model, $11$--$18\%$
+(Table~\ref{tab:params-morph}). Applying \texttt{concatenates} to the
+\emph{gold} segmentations themselves, on the same 200-item sample every
+morphology cell uses (seed 0, the E1/E2 sample, not an independent draw), $27\%$ (95\% CI $[21\%,34\%]$, $54/200$) fail. The cause
+is that SIGMORPHON English annotations are canonical rather than surface
+segmentations (\S\ref{sec:intro}). It needs no model, and the same one-line check applies to any benchmark whose
+task definition implies a structural property of its outputs.
+English is largely concatenative, so the annotation scheme puts this benchmark
+outside the argument's scope.
+
+\paragraph{B4: what replication changes.} Seed 0's zero for SQL/Llama-3.1-70B
+does not survive: at the other four seeds it shows the
+same residual query-pattern defect that leaks for every other SQL model
+($\delta=0.0005$--$0.0027$), so seed 0
+was a lucky zero count on a rate that low, not a genuine
+certification. SQL/Qwen2.5-72B never certified in the first place: its
+own seed-0 $\delta$ is already nonzero ($0.0002$), and it stays small but
+nonzero at two of the other four seeds while landing on exact zero at
+the remaining two ($\delta=0.0000$--$0.0007$ across all five) -- the same
+leak class, just distributed differently across seeds, with no single
+draw among these five happening to hit zero at seed 0 specifically. No
+SQL cell is sound under replication, and no SQL cell was ever soundly
+certified once every seed is considered, in either model family. The three IE cells that
+measured sound at seed 0 (GPT-4o, GPT-4o-mini, Qwen2.5-72B) all stay sound
+at every one of the four other seeds ($\delta=0.000$ throughout, 15/15
+model-seed pairs across all three), so that half of the finding
+replicates; what does not replicate is the
+\emph{ceiling's size}, which moves with the sample: GPT-4o's ranges $0.50$--$2.19$
+points across the five seeds (mean $0.94$, SD $0.70$), GPT-4o-mini's $0.59$--$3.04$
+(mean $1.41$, SD $0.97$), Qwen2.5-72B's $1.64$--$2.69$ (mean $2.15$, SD $0.40$,
+the tightest of the three). An SD this close to the mean for the first two
+means a single-seed ceiling number, on its own, overstates precision; we
+report the mean and SD
+together for exactly this reason rather than the seed-0 figure alone. Three
+cells survive replication (IE/GPT-4o, IE/GPT-4o-mini, IE/Qwen2.5-72B), not
+four, all IE and spanning two vendor families, not one from each
+task as the seed-0 draw suggested.
+
+\paragraph{Is five seeds enough?} The running mean as seeds accumulate
+(seed 0 alone, then 0-1, 0-2, 0-3, 0-4) is still moving at $n{=}5$:
+GPT-4o's mean ceiling goes $2.19\to1.40\to1.10\to0.99\to0.94$ points and
+GPT-4o-mini's $3.04\to1.88\to1.45\to1.43\to1.41$. GPT-4o-mini looks close
+to settled between the last two steps; GPT-4o does not, still moving by
+a twentieth of its own value from $n{=}4$ to $n{=}5$. The standard error
+of the mean falls as expected ($0.79\to0.54\to0.40\to0.31$ points for
+GPT-4o across $n{=}2..5$), but at $0.31$ points on a $0.94$-point mean it
+is not small enough to call the estimate settled. Qwen2.5-72B, the third
+certified cell, looks the closest to settled of the three: its running
+mean goes $2.69\to2.29\to2.27\to2.28\to2.15$ points, essentially flat from
+$n{=}2$ onward, and its standard error at $n{=}5$ ($0.18$ points on a
+$2.15$-point mean) is tighter than either OpenAI cell's. Five seeds narrows the
+ceiling from a single noisy draw to a usable range; it does not yet
+pin every cell's range down to a stable number, and the three certified
+cells do not converge at the same rate, which we report honestly rather
+than average away.
+
+\paragraph{What a rejected-correct output looks like (B15).} Concretely, not
+just as a rate: the first three gold segmentations in the same seed-0,
+200-item sample that \texttt{concatenates} rejects, in iteration order (no
+selection beyond that) --
+\emph{East Indian}~$\to$~\texttt{East+Indies+ian},
+\emph{swordsman}~$\to$~\texttt{sword+man}, and
+\emph{bummiest}~$\to$~\texttt{bum+y+est}. Each is the dataset's own gold
+label, not a model output, and each fails the check's plain string
+concatenation under any normalisation it allows: joining the first gives
+\texttt{eastindiesian} against a surface with a space and a different
+root spelling (\emph{Indian} vs. \emph{Indies}); the second gives
+\texttt{swordman}, one letter short of \emph{swordsman}; the third gives
+\texttt{bumyest}, missing the doubled consonant \emph{bummiest} has before
+its suffix. All three are genuinely correct
+segmentations under SIGMORPHON's own canonical annotation scheme --
+\texttt{concatenates} is checking a property (surface concatenation) that
+scheme does not promise, which is exactly the scope failure \S\ref{sec:results}
+reports. SQL and IE's own residual leaks are not shown here: \S\ref{sec:results}
+above already traces each to a checker-implementation limit rather than a
+finding about the task, so no further example is owed for them.
+
+\paragraph{Inter-implementer agreement (B17).} The SQL schema-validity
+check has two genuinely independent implementations: this paper's own
+(rewritten to a sqlglot-based scope resolver during this study's own
+checker audit, after four real parsing defects were found in an earlier
+version) and a second, separately-written codebase built for an earlier
+version of this project before that rewrite. Run on a fresh 100-instance
+sample per model (500 candidates each, 2{,}000 total), the two
+implementations agree on the schema-validity verdict for all but 4 of
+2{,}000 candidates ($0.2\%$ disagreement). The one model-level difference
+worth reporting: GPT-4o's measured $\delta$ under this paper's checker is
+$0.61\%$ on this sample (versus $0.00\%$ under the second implementation)
+-- consistent with the same narrow, residual class of query patterns this
+paper's own checker audit already reports as an accepted limitation
+(\S\ref{sec:results}), not a new disagreement. The other three models show
+zero measured $\delta$ under both implementations. IE's \texttt{no\_overlap} check
+has the same two-implementation comparison, chosen because it is the one
+check this session found and fixed a real bug in (the original resolved
+each entity string to its first occurrence in the text via
+\texttt{str.find}, producing false overlaps for entities whose text is a
+substring of another extracted entity; \S\ref{sec:results}). The second
+implementation predates that fix and was confirmed, by direct
+inspection, to have the identical \texttt{str.find} bug. Run on the same
+100-instance-per-model design (500 candidates each, 2{,}000 total), the
+two implementations disagree more than SQL's pair did: $25$ of $2{,}000$
+candidates ($1.25\%$), still small but six times SQL's rate. The one
+model-level difference worth reporting is the reverse of SQL's: for
+Llama-3.1-8B, this paper's checker measures $\delta=2.38\%$ against the
+second implementation's $0.00\%$ on the same candidates, the other three
+models showing zero under both. This is not the \texttt{no\_overlap} bug
+resurfacing in a new form; it is IE's already-documented, model-specific
+disagreement between output \emph{content} and output \emph{format}
+(\S\ref{sec:results}): this paper's \texttt{required\_fields} check
+verifies the parsed object has all four top-level keys present, while
+the second implementation's own required-fields check operates on its
+own converted entity-list representation and is vacuously satisfied by
+an empty list, so it never sees a bare \texttt{\{\}} for what should be
+an all-empty-fields object as a failure at all. Two structurally
+different checks answering two different questions about the same
+underlying leak, not a disagreement about what the leak is.
+
+\paragraph{E2: the bound.} Table~\ref{tab:ceiling} evaluates
+Cor.~\ref{cor:ceiling} at seed 0 in what that single draw certified as four
+sound cells; replication (B4, above) leaves three, all IE: $0.94\pm0.70$
+points across five seeds for GPT-4o, $1.41\pm0.97$ for GPT-4o-mini,
+$2.15\pm0.40$ for Qwen2.5-72B, or $2.88\pm0.72$ and $3.20\pm1.02$ for the
+two OpenAI cells once the human label audit (V1) corrects $\varepsilon$. No
+conjunction of these tasks' structural checks can buy more, at any budget
+and with any scorer, in the seeds where the stack is actually sound. The ordering needs no homogeneity assumption, while these figures evaluate it
+under one (\S\ref{sec:limitations}).
+
+\paragraph{E3 and E4: the bound's premise, and where it has converged.}
+Cor.~\ref{cor:gain} only makes a prediction where $\delta=0$: at seed 0 that
+appeared to include SQL/Llama-3.1-70B along with the
+three IE cells (SQL/Qwen2.5-72B's own seed-0 $\delta$ was already nonzero,
+so it never qualified even before replication), but
+replication (above) shows SQL/Llama-3.1-70B is not actually sound either, so the
+seed-0 SQL evaluation below tested a precondition that did not hold on
+resampling; only the three IE cells' predictions stand. There, the prediction
+fell inside the observed 95\% interval at all six budgets
+$N\in\{1,2,4,8,16,32\}$ for all three cells (18 of 18 (cell, budget) checks at
+seed 0). Every cell whose full stack measured unsound -- all SQL cells at seed 0 or under
+replication, the other three IE cells, and all six morphology cells -- has no
+prediction to evaluate at all under Cor.~\ref{cor:gain}'s own precondition,
+rather than a prediction that failed; morphology's stacking
+step still shows the direction the theory flags when a gate is unsound:
+$\varepsilon$ fell monotonically for every model, but accuracy at $N=32$
+\emph{decreased} when \texttt{concatenates} was added for two of six models
+(GPT-4o: $44.0\%\to42.0\%$; GPT-4o-mini: $40.5\%\to40.0\%$), violating
+Prop.~\ref{prop:stack}'s gain-monotonicity direction exactly where its own
+soundness precondition does not hold. On SQL, adding checks in the order \texttt{parses} $\to$ \texttt{+schema-valid} $\to$
+\texttt{+executes} moved $\varepsilon$ hardly at all for the OpenAI models
+($1.00\to0.99$ GPT-4o, $0.97\to0.92$ GPT-4o-mini), for Qwen2.5-72B
+($1.00\to0.87$), and
+substantially for the Llama models and Qwen2.5-7B ($0.99\to0.83$ Llama-3.1-70B,
+$0.99\to0.69$ Llama-3.1-8B, $1.00\to0.72$ Qwen2.5-7B) at seed 0, but no SQL cell licenses a bound at
+seed 0 or under replication: Llama-3.1-70B's apparent
+seed-0 certification does
+not survive resampling (above), Qwen2.5-72B never certified at any seed, and the OpenAI models', Llama models', and Qwen models' small
+$\varepsilon$ movements are each a real property of their own stacks but were never
+sound to begin with.
+
+\paragraph{E5: the floor, and the controls.} The unsound confidence
+scorer -- mean log-probability, bottom quartile rejected, on a fresh
+8-candidate draw per model per task -- degraded ungated best-of-$N$ for
+three of four SQL models (Llama-3.1-70B $72.0\%\to71.5\%$, Llama-3.1-8B
+$74.7\%\to73.7\%$, GPT-4o $72.5\%\to72.0\%$) and one of four IE models
+(GPT-4o-mini $32.0\%\to31.5\%$). Gating restored or exceeded base accuracy in
+every one of those cases, and in every SQL and IE cell overall: the floor
+held for all eight, confirming Prop.~\ref{prop:floor} regardless of whether
+Cor.~\ref{cor:degrade}'s own degradation prediction fired for a given
+model. Morphology is the informative negative case: the same scorer
+degraded two of four models and, gated behind morphology's own (unsound)
+stack, the floor \emph{failed} for three of four (Llama-3.1-70B
+$36.0\%\to35.0\%$, Llama-3.1-8B $17.4\%\to16.7\%$, GPT-4o
+$44.5\%\to44.0\%$) -- exactly what Prop.~\ref{prop:floor} predicts once its
+own soundness precondition does not hold, and not a counterexample to it.
+Self-consistency, LLM-as-judge and the trained reward-model scorers
+(Table~\ref{tab:main}, Table~\ref{tab:main-extra}) are a separate,
+larger baseline sweep, run directly against the corrected checker module
+(the same \texttt{soundver.checks} the rest of this paper's numbers
+come from, not a separate or earlier copy), so no further reconciliation
+is owed. E5 itself is not extended to the two Qwen models added
+elsewhere in this paper: neither returns per-token logprobs from any
+provider OpenRouter routes them through (checked directly --
+Qwen2.5-7B's only available provider and both of Qwen2.5-72B's return
+no logprobs content at all), so the confidence scorer this experiment
+needs cannot be constructed for either model on this infrastructure,
+unlike Llama-3.1's models, which do have a logprob-capable provider.
+E5 therefore remains scoped to the original four models.
+
+\section{Conclusion}
+Structured tasks appear to hand you a sound verifier for free, but the argument
+is about the task while the check runs against an implementation and a dataset.
+Measuring the gap needs a label that does not entail the check, which the
+standard text-to-SQL metric fails for its whole stack. Audited, one of three
+tasks rejects correct outputs for a reason no implementation avoids; the other
+two tasks' own leaks, on inspection, traced to our checkers rather than to the
+tasks, which is itself a finding about how easily the first kind is mistaken
+for the second.
+
+% ============================ limitations ============================
+\section*{Limitations}\label{sec:limitations}
+\paragraph{One team's judgement decides which failures count.} Step~(3)
+separates implementation defects from scope failures, and only the second are
+findings about a check. We made that call on checkers we wrote ourselves, and we
+had already fixed two defects in one of them, so the classification is exactly
+where a reader should be most sceptical of us. The criterion is stated so it can
+be disagreed with, but it has not been applied by anyone else, and a second
+independent implementation of even one stack would test it. That is the single
+cheapest thing that would strengthen this paper.
+
+\paragraph{One language, and a prediction about others.} All three tasks are
+English, which is this study's sharpest limitation and one the theory itself says
+should matter. The soundness of a concatenation check is a typological claim: it
+holds for surface segmentation of concatenative morphology and fails for
+templatic root-and-pattern morphology, where an Arabic or Hebrew gold analysis is
+not a substring decomposition of its surface form at all. The prediction is that measured $\delta$ for a concatenation check should be near
+zero for agglutinative languages under surface annotation and large for templatic
+root-and-pattern ones, independently of model quality, so the ceiling would
+differ across languages for grammatical rather than statistical reasons.
+SIGMORPHON 2022 does \emph{not}, on inspection, ship a templatic case: its
+nine languages (Czech, English, French, Hungarian, Italian, Latin,
+Mongolian, Russian, Spanish) are agglutinative or fusional, and testing
+only the agglutinative half of the prediction -- holding the check, the
+models and the instance count fixed and varying the language among
+English, Hungarian and similarly-annotated others -- would confirm only
+that $\delta$ stays low where the theory already expects it to. A genuine
+templatic test needs a different task definition, not just different
+data: a templatic root-and-pattern gold analysis (for example the
+Quranic Arabic Corpus's \citep{dukes2010morphological} derivational \texttt{ROOT} annotation) is not a
+surface segmentation of the word at all, so the templatic prediction has
+to be tested against a check built for that annotation: whether a
+root's consonant skeleton, orthographically normalised, is a subsequence
+of the word's, the templatic analogue of \texttt{concatenates}. Applied
+to that corpus's own gold root annotations (50{,}269 word-root pairs,
+no model involved, the same gold-only design as the SIGMORPHON result), it fails
+$27.2\%$ of the time (Wilson 95\% CI $[26.8\%,27.6\%]$) -- within noise of
+SIGMORPHON's own $27\%$ for a completely different check, language and
+phenomenon, which is consistent with, not proof of, the typological
+account: both are scope failures on gold data, not on any model's
+output, and a single matching number across two unrelated corpora could
+be coincidence at this stage. What we have not run is the model-facing
+half: whether an LLM asked to give a templatic root for an Arabic word
+shows the corresponding $\delta$ pattern the SQL/IE/morphology audit
+runs for English, which needs its own admissible label and is the
+natural next study. The same caution applies to the SQL and IE results, whose
+$\varepsilon$ estimates reflect English prompts and English-language schemas.
+
+\paragraph{What the bound does and does not cover.} Cor.~\ref{cor:ceiling}
+bounds every verifier obtainable by conjunction from the checks we tested. It
+does not bound a sound check nobody has written. A constraint with a genuinely
+lower $\varepsilon$, if one exists for these tasks, would raise the bound, and
+the corollary gives no reason to think the check sets we used are optimal. E4 is
+the relevant evidence and it cuts two ways: for the OpenAI models the bound
+stops moving once the strongest available check is added, which suggests the
+task rather than our check set is binding, whereas for the Llama models it is
+still falling at the last check and those figures should be read as loose. Second, and more sharply, the reported figures evaluate
+Cor.~\ref{cor:ceiling}b, which assumes homogeneous rates. A3 is false in practice
+and Cor.~\ref{cor:jensen} gives the direction: at pooled rates the plug-in
+\emph{under}-states the heterogeneous gain, and our released checker finds
+populations where it does so by a factor above $1.7$. The dominance in
+Cor.~\ref{cor:ceiling}a is unaffected, so the ordering stands and only the
+numbers are model-dependent. Recovering a heterogeneity-robust figure needs the
+per-instance distribution of $\varepsilon$, which we did not measure; binning
+instances by difficulty and re-estimating $\varepsilon$ per bin would give it,
+and is the first thing we would run next. A2's conditional-independence clause
+also fails for a stack whose conjuncts share a parse; Prop.~\ref{prop:floor} and
+Prop.~\ref{prop:stack} are unaffected, Thm.~\ref{thm:master} is not, and the
+pairwise verdict correlation within each stack was not computed.
+
+
+\paragraph{Scope of the theory.} It does not predict $\varepsilon$ for any verifier, which is an empirical property of the model's error distribution. It does not recover the general ROC characterisation of \citet{dorner2025rocnreroll}, which is the right tool away from the top edge, nor their finding that low-compute behaviour need not extrapolate; that finding applies here and is why E3 measures the whole budget curve instead of extrapolating from its low end. It does not cover adaptive budgets in which $N$ depends on observed scores, and it says nothing about $\varepsilon$ for a verifier that is not a well-formedness check.
+
+The theory is elementary: short arguments about conditional probabilities, not a deep result, and the general characterisation of verifier imperfection already exists in \citet{dorner2025rocnreroll}. What we add is the ceiling (Cor.~\ref{cor:ceiling}) and the fact that it is estimable from one measurement, the behaviour of one distinguished point under one gated rule, the closure and composition properties, and the observation that the guarantee is routinely forfeited by implementations. Reviewers should weigh the paper on those, not on technical difficulty;
+Table~\ref{tab:claims} in Appendix~\ref{app:claims} sets out what carries each
+claim, including the one claim we do not make.
+
+The constancy assumption on $\delta$ and $\varepsilon$ across instances is false in practice, since both vary with difficulty; Prop.~\ref{prop:hetero} removes it exactly, at the cost of a covariance term that must itself be measured. The analysis covers a fixed budget with i.i.d.\ sampling and does not cover adaptive or sequential allocation, which is how a deployed system would spend compute. Soundness is argued rather than measured, and an argument can be wrong: a check believed sound but actually violated by some gold outputs has $\delta>0$ and forfeits the floor, which is why E1 measures $\delta$ instead of assuming it. The floor is a floor on expected accuracy over the evaluation distribution and says nothing about any individual instance. None of the six evaluated models discloses its training corpus in enough detail to rule out contamination on Spider or CoNLL2003, both old and public, so every reported $p_0$ is an upper bound on true base accuracy, and $p_0$ is the quantity contamination inflates. That cuts against us rather than for us: the ceiling increases in $(1-p_0)$, so an inflated $p_0$ makes it look smaller, and contamination could in principle manufacture the smallness we report. What rules that out is the size of $(1-\varepsilon)$ and not a membership test. The ceiling is at most $100(1-p_0)(1-\varepsilon)$ points, so at any $p_0$, including $p_0=0$, it cannot exceed $100(1-\varepsilon)$. For the three cells that survive 5-seed replication (B4, \S\ref{sec:results}), at the lowest $\varepsilon$ any of their seeds measured (seed 0 in each case: GPT-4o $0.918$, Qwen2.5-72B $0.894$, GPT-4o-mini $0.877$), that caps the ceiling at $8.2$, $10.6$ and $12.3$ points, whatever contamination has done to $p_0$; with the V1 label correction applied to the two audited cells (Appendix~\ref{app:validity}), the caps for GPT-4o and GPT-4o-mini are $15.0$ and $18.8$ points. Total experiment cost was not tracked per-experiment from the start (exploratory calls made while building the harness are mixed in with the measurements finally reported), so this paper reports no single total-spend figure rather than substitute an estimate that could not be verified. Finally, all three tasks are structured-generation tasks in which the notion of a well-formed output is unusually crisp; we make no claim about open-ended generation, where no sound verifier is available and the entire analysis is silent.
+
+% ============================ ethics ============================
+\section*{Ethical considerations}
+The work uses public benchmarks and introduces no new data collection or human subjects. The floor guarantee of Prop.~\ref{prop:floor} concerns expected accuracy and should not be read as a safety property: a system that never degrades on average can still fail badly on individual inputs, and the method must not be presented to downstream users as a correctness guarantee. Sound checks encode assumptions about what a well-formed output looks like, and those assumptions can fail differently across models and tasks; E1 reports $\delta$ per model and per task for exactly this reason, and a nonzero $\delta$ concentrated in a particular model or task (as morphology's is, \S\ref{sec:results}) is a finding to report and explain, not a nuisance to tune away. AI tools assisted drafting and the derivations; the human authors verified every proposition independently and take full responsibility for all content.
+
+\bibliography{soundver_refs}
+
+\appendix
+
+\section{Full experimental protocol}\label{app:protocol}
+\paragraph{Models and access.} All models via OpenRouter, accessed
+2026-09-02 through 2026-09-04 for the original four models (seed-0
+collection, 5-seed replication, prompt sweep, DPC baseline comparison)
+and 2026-09-28 through 2026-09-30 for the two Qwen2.5 models added as a
+third vendor family. Pinned
+dated snapshots were used for both OpenAI
+models: \texttt{openai/gpt-4o-2024-11-20} and
+\texttt{openai/gpt-4o-mini-2024-07-18}. Meta's Llama-3.1 models and
+Alibaba's Qwen2.5 models both have no
+dated snapshot on OpenRouter at all -- \texttt{meta-llama/llama-3.1-8b-instruct},
+\texttt{meta-llama/llama-3.1-70b-instruct}, \texttt{qwen/qwen-2.5-7b-instruct}
+and \texttt{qwen/qwen-2.5-72b-instruct} are the only routable ids
+and are moving targets by construction, since OpenRouter can and does
+serve the same nominal model from different backend providers on
+different requests (observed directly: candidates for the same Llama
+instance
+routed across Novita, DeepInfra and Groq within a single generation
+pass; Qwen2.5-7B served exclusively by Phala and Qwen2.5-72B by a
+mix of DeepInfra and Novita in the runs reported here). This is a real limit on
+reproducibility we could not remove, only mitigate: the actual serving
+\texttt{provider} (and \texttt{system\_fingerprint}, where returned) is
+logged per request alongside every record, so a discrepancy on
+replication is at least attributable rather than silent. Neither Qwen
+model returns per-token logprobs from any provider it was routed
+through (checked directly against every available provider for
+each), which is why E5 is not extended to them (\S\ref{sec:results}). The
+constrained-decoding reference point uses Qwen2.5-1.5B-Instruct run locally
+(\texttt{transformers}+\texttt{outlines}), since no API-hosted model here
+exposes logit-level access; this is a separate, smaller Qwen model used
+only for that one reference point and should not be confused with the
+two Qwen2.5-7B/72B-Instruct models evaluated throughout the rest of the
+paper.
+
+\paragraph{Data.} Text-to-SQL: Spider validation split (1{,}034 examples, CC
+BY-SA 4.0), with the official Spider \texttt{database.zip} (Yale LILY lab) for
+execution and test-suite accuracy rather than a community mirror. Information
+extraction: CoNLL2003 \citep{tjongkimsang2003conll} via the \texttt{zjunlp/iepile} release; the
+English data derives from the Reuters Corpus, distributed under a restrictive
+LDC user agreement rather than an open licence, which we state here rather
+than leave implicit. Morphological
+segmentation: SIGMORPHON 2022 English word-segmentation split
+\citep{batsuren2022sigmorphon}, released under CC BY-SA 3.0. 200 instances per
+task per model, seed 0. Greedy decoding for the base output, temperature 0.7 for
+sampled candidates, $N\in\{1,2,4,8,16,32\}$.
+
+\paragraph{Metrics, and the circularity check per task.} SQL uses test-suite
+accuracy \citep{zhong2020testsuite}. For IE we use exact match on extracted
+field values, which does not presuppose any sound-column check: a label built
+from field-value match says nothing about whether the output parsed as JSON or
+validated against the schema, so those checks remain free to have nonzero
+measured $\delta$. For morphology we use exact match against the gold
+segmentation, \emph{not} a conjunction with ``concatenates to the surface
+form'', which would make that check's $\delta$ zero by construction for the same
+reason execution match breaks SQL.
+
+\paragraph{Base versus sample rates.} Experiment~2 measures $\delta$ and
+$\varepsilon$ separately for the base output and for sampled candidates.
+$\delta$ agrees exactly for both in all four SQL models. $\varepsilon$ does not:
+Llama-3.1-8B, for instance, gives 0.81 for the base against 0.70 for the
+samples. The direction and size of the gap vary by model rather than following a
+single pattern, so A2's constancy assumption is measurably violated for
+$\varepsilon$.
+
+\paragraph{Sample sizes actually achieved.} OpenRouter rate-limiting dropped
+instances in two cells: 145 of 200 for Llama-3.1-8B in Experiment~4, and 184 of
+200 for Llama-3.1-8B in Experiment~5. Dropped instances were not verified to be
+missing at random, which is a limitation.
+
+\paragraph{Compute cost.} Total OpenRouter spend was not tracked per experiment
+from the start, since exploratory calls made while building the harness are
+mixed in with the measurements finally reported. We therefore report no total
+rather than substitute an estimate that could not be verified.
+
+\paragraph{Constrained-decoding reference point.} The regex covers a
+subquery-free SQL subset (single or doubly composed
+\texttt{SELECT}/\texttt{INTERSECT}/\texttt{UNION}/\texttt{EXCEPT}, no nested
+queries), verified to match 100\% of the 875 subquery-free Spider dev gold
+queries (84.6\% of the 1{,}034-query set) and to reject malformed SQL in spot
+checks. The 15.4\% requiring a subquery are out of scope for a regex constraint
+by construction, which is a real coverage limit of the reference point.
+
+\section{What each claim rests on}\label{app:claims}
+\begin{table}[!htbp]\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}p{3.15cm}p{1.5cm}p{2.5cm}@{}}
+\toprule
+Claim & Status & Evidence \\
+\midrule
+$\varepsilon$ is high on all three tasks & measured & E2; a rate at $n{=}200$, interval well under a point \\[2pt]
+Ceiling $=0.94\pm0.70$/$1.41\pm0.97$/$2.15\pm0.40$ pts, IE GPT-4o/GPT-4o-mini/Qwen2.5-72B (5 seeds); $2.88\pm0.72$/$3.20\pm1.02$ for the two OpenAI cells after V1 label correction & derived & Cor.~\ref{cor:ceiling}b at E2 rates; V1 correction uses IE's $\hat\lambda=0.074$ (Qwen2.5-72B not in the audited sample); assumes A3 (\S\ref{sec:limitations}); SQL/Llama-3.1-70B's seed-0 $3.72$ did not replicate (B4) and is not claimed; SQL/Qwen2.5-72B never certified at any seed \\[2pt]
+Cor.~\ref{cor:ceiling}a dominance & proved & assumption-free; machine-checked \\[2pt]
+Cor.~\ref{cor:gain} predicts accuracy & measured & 18/18 (cell, budget) checks at seed 0, the 3 cells certified sound under 5-seed replication only \\[2pt]
+\dots\ has no prediction where $\delta$ is large & by construction & the other 15 SQL/IE cells and all 6 morphology cells are unsound; the corollary's own precondition excludes them rather than being tested and failing \\[2pt]
+Prop.~\ref{prop:stack} monotonicity & measured & $\varepsilon$: 6/6 SQL, 6/6 IE, 6/6 morphology; accuracy: 6/6 SQL, 6/6 IE, 3/6 morphology (3 violations -- GPT-4o, GPT-4o-mini, Qwen2.5-72B -- exactly where that stack is unsound) \\[2pt]
+Cor.~\ref{cor:degrade} degradation & measured & 3/4 SQL, 1/4 IE, 2/4 morphology degrade ungated (original four models only: neither Qwen model returns per-token logprobs from any OpenRouter provider, checked directly, so E5 was not extended to them); which model is unstable across re-runs \\[2pt]
+Prop.~\ref{prop:floor} composition & measured & floor holds 8/8 SQL+IE cells (sound gates); fails 3/4 morphology cells, consistent with that gate being unsound rather than a counterexample (original four models only, same E5 scope limit) \\[2pt]
+$\delta>0$ on all three tasks, one confirmed scope failure & measured & E1 \\[2pt]
+$27\%$ of SIGMORPHON gold fails its own check & measured & 200-item E1/E2 sample; Wilson 95\% CI $[21\%,34\%]$ \\[2pt]
+The gate has an accuracy edge over homogeneous rejection sampling & \textbf{not claimed} & measured negative (gated below homogeneous) in 6 of 12 (task, model) cells at the primary budget; one pairwise difference reached significance (morphology/Llama-3.1-70B, gated below homogeneous, $p=0.023$) on an unsound gate, so it is not evidence for or against the claim either \\
+\bottomrule
+\end{tabular}
+\captionof{table}{Every claim in the paper against what carries it. \emph{Derived}
+means computed from measured rates inside a stated model rather than observed.
+Rows drawing on E5 (degradation, floor composition) are scoped to the
+original four models, stated explicitly, since neither Qwen model exposes
+per-token logprobs on OpenRouter. The last row is a claim we do \emph{not} make and record here so that it is not
+read into the rest.}
+\label{tab:claims}
+\end{table}
+
+\section{Validity of the measured rates}\label{app:validity}
+Three checks bear on $\varepsilon$ and $\delta$ directly, and one does not and is
+therefore declined. The designs of the first two were fixed here before either
+was run; both have since been run, and each result follows its design.
+
+\paragraph{V1: human validation of the correctness label.} The risk is
+one-directional. A correct output mislabelled incorrect joins the incorrect pool,
+passes the structural checks because it is well formed, and is counted as a
+false acceptance, so label false negatives inflate $\varepsilon$ and understate
+the ceiling. \emph{Design.} Draw 150 $\varepsilon$ events per task, stratified by
+model (approximately 38 per model), that is, outputs the sound stack accepted and
+the automatic label called incorrect. Two annotators judge each against the task
+definition and the gold answer, blind to the automatic label and to each other,
+with a third adjudicating disagreements. Report Krippendorff's $\alpha$; a value
+below $0.67$ voids the exercise rather than being reported as a weak result.
+\emph{Estimator.} Let $\hat\lambda$ be the estimated rate at which the automatic
+label was wrong on this stratum. The corrected false-acceptance rate is
+$\varepsilon' = \varepsilon(1-\hat\lambda)$ to first order, and the corrected
+ceiling follows by substitution, with $\hat\lambda$'s binomial interval
+propagated. \emph{Pre-registered reading.} The paper's conclusion survives if the
+corrected ceiling for both OpenAI models stays below one accuracy point; if it
+does not, the claim of near-exhaustion is withdrawn for the affected task rather
+than rescoped. IE is the highest-risk task, since exact match on field values
+will penalise span-boundary and normalisation variants that a human would accept.
+\emph{Result.} 444 events (148 per task, 37 per model, the original four
+models; Qwen was added after the sample was drawn). Overall $\alpha=0.783$,
+above the floor; per task, $\alpha=0.857$ (SQL), $0.759$ (morphology) and
+$0.661$ (IE), the last just under the floor on its own stratum, which we
+report rather than hide. Three deviations from the design: annotators saw
+the task input and candidate output but \emph{not} gold, which is stricter;
+no third annotator adjudicated the 44 disagreements, so an event counts as
+mislabelled only when both annotators call the output correct, which
+understates $\hat\lambda$; and the risk ranking was wrong, since IE has the
+lowest error rate, not the highest. $\hat\lambda$ is $0.074$
+$[0.042,0.128]$ for IE (11/148), $0.338$ for SQL and $0.324$ for morphology
+(Wilson intervals). Using IE's $\hat\lambda$, the seed-0 ceiling rises from
+$2.19$ to $4.16$ $[3.28,5.68]$ points for GPT-4o and from $3.04$ to $4.88$
+$[4.05,6.33]$ for GPT-4o-mini; applied per seed, the 5-seed means rise from
+$0.94\pm0.70$ to $2.88\pm0.72$ and from $1.41\pm0.97$ to $3.20\pm1.02$.
+Two alternatives bracket this. Pooling $\hat\lambda$ across tasks ($0.245$)
+gives $7.94$ and $8.11$, but imports SQL's and morphology's label errors into
+IE, which the per-stratum design rules out. Per-cell estimates ($0.216$ and
+$0.000$, $n{=}37$ each) give $7.01$ and $1.41$, too noisy to rank the two
+models. The pre-registered reading is therefore met in the negative: the
+corrected ceiling exceeds one point for both OpenAI cells, as the uncorrected
+one already did, and the near-exhaustion claim for IE is withdrawn. What
+stands is a measured bound of roughly three points, and soundness itself,
+which the audit cannot move.
+
+\paragraph{V2: prompt sensitivity.} $\varepsilon$ is a property of the model's
+error distribution, and the prompt shapes it, so a bound computed under one
+prompt is a bound under one prompt. \emph{Design.} Five variants per task, fixed
+in advance: the prompt used here; two independent paraphrases written by
+different authors; one with the few-shot exemplars removed; and one with an
+explicit output-format reminder added. Re-estimate $p_0$, $p$ and $\varepsilon$
+under each for all four models, holding the check stack, the decoding
+temperature and the instance sample fixed, and report the full range of the
+resulting ceiling rather than its mean. \emph{Pre-registered reading.} The
+headline survives if the \emph{maximum} ceiling across prompts remains under one
+point for both OpenAI models. A format reminder should lower $\varepsilon$ by
+removing malformed outputs, so it is the adversarial variant for our claim and is
+included for that reason.
+
+\paragraph{V3: contamination.} Spider (2018) and CoNLL2003 are old and public.
+The bias runs against us: contamination inflates $p_0$, the ceiling decreases in
+$p_0$, so the measured ceiling understates the truth. The analytic bound in
+\S\ref{sec:exp} closes this without a membership test. The ceiling cannot
+exceed $100(1-p_0)(1-\varepsilon)$ points, hence $100(1-\varepsilon)$ at any
+$p_0$ whatever. All three cells that survive 5-seed replication
+(IE/GPT-4o, IE/GPT-4o-mini, IE/Qwen2.5-72B) have $\varepsilon\ge0.877$ at
+every seed, so none can exceed $12.3$ points even at $p_0=0$ ($8.2$ for
+GPT-4o, $10.6$ for Qwen2.5-72B). Under the V1 correction these caps rise
+to $15.0$ (GPT-4o) and $18.8$ (GPT-4o-mini). The caps are loose by design,
+since they assume contamination explains all of $p_0$. They show that
+contamination cannot turn a bound of a few points into a large one; they
+are not a tighter estimate than the measured ceiling. No SQL cell survives replication
+(\S\ref{sec:results}, B4), so no SQL contamination argument is load-bearing
+here either way.
+
+\paragraph{V4, declined: LLM-as-a-judge as evaluator.} We use an LLM judge as a
+\emph{scorer} baseline and do not use one to produce the correctness label. A
+judge is a verifier with its own unmeasured $\delta$ and $\varepsilon$, and
+\S\ref{sec:exp}'s circularity condition applies with full force: a label produced
+by a verifier cannot be used to measure a verifier's error rate. Substituting a
+judge for the task metric would make every $\delta$ in this paper a statement
+about the judge rather than about the check.
+
+\section{Full result tables}\label{app:fulltables}
+\begin{table*}[t]\centering\small
+\begin{threeparttable}
+\scriptsize
+\setlength{\tabcolsep}{1.6pt}
+\begin{tabular}{@{}ll cccc c cc c@{}}
+\toprule
+& & \multicolumn{4}{c}{Measured rates} & & \multicolumn{2}{c}{Accuracy at $N{=}32$} & \\
+\cmidrule(lr){3-6}\cmidrule(lr){8-9}
+Task & Model & $p_0$ & $p$ & $\delta$\tnote{a} & $\varepsilon$\tnote{b} & &
+  predicted\tnote{c} & observed\tnote{e}  \\
+\midrule
+\multirow{6}{*}{SQL (full sound stack)}
+  & GPT-4o-mini   & 0.700 & 0.707 & 0.0017 & 0.918 & & {--} & {--} \\
+  & GPT-4o        & 0.739 & 0.718 & 0.0013 & 0.991 & & {--} & {--} \\
+  & Llama-3.1-8B  & 0.675 & 0.622 & 0.0007 & 0.690 & & {--} & {--} \\
+  & Llama-3.1-70B & 0.685 & 0.665 & 0.0000\tnote{u} & 0.832 & & (0.722) & (0.705~[0.640, 0.765]) \\
+  & Qwen2.5-7B    & 0.635 & 0.620 & 0.0042 & 0.717 & & {--} & {--} \\
+  & Qwen2.5-72B   & 0.735 & 0.747 & 0.0002 & 0.874 & & {--} & {--} \\
+\addlinespace
+\multirow{6}{*}{IE (full sound stack)}
+  & GPT-4o-mini   & 0.305 & 0.326 & 0.0000 & 0.877 & & 0.335 & 0.315~[0.250, 0.380] \\
+  & GPT-4o        & 0.485 & 0.498 & 0.0000 & 0.918 & & 0.507 & 0.490~[0.420, 0.560] \\
+  & Llama-3.1-8B  & 0.230 & 0.251 & 0.0103 & 0.773 & & {--} & {--} \\
+  & Llama-3.1-70B & 0.510 & 0.466 & 0.0010 & 0.919 & & {--} & {--} \\
+  & Qwen2.5-7B    & 0.405 & 0.397 & 0.0103 & 0.927 & & {--} & {--} \\
+  & Qwen2.5-72B   & 0.510 & 0.492 & 0.0000 & 0.894 & & 0.537 & 0.520~[0.450, 0.590] \\
+\addlinespace
+\multirow{6}{*}{Morph.\ (full sound stack)}
+  & GPT-4o-mini   & 0.405 & 0.397 & 0.1099 & 0.806 & & {--} & {--} \\
+  & GPT-4o        & 0.440 & 0.443 & 0.1581 & 0.739 & & {--} & {--} \\
+  & Llama-3.1-8B  & 0.165 & 0.159 & 0.1472 & 0.613 & & {--} & {--} \\
+  & Llama-3.1-70B & 0.255 & 0.263 & 0.1780 & 0.575 & & {--} & {--} \\
+  & Qwen2.5-7B    & 0.275 & 0.271 & 0.1798 & 0.557 & & {--} & {--} \\
+  & Qwen2.5-72B   & 0.385 & 0.372 & 0.1503 & 0.771 & & {--} & {--} \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{\columnwidth}\begin{tablenotes}[flushleft]\footnotesize
+\item[a] Realised false-rejection rate $\Pr[V{=}0\mid C{=}1]$, pooled over base and samples, recomputed directly from per-instance records (this is the only measured $\delta$; see Table~\ref{tab:ceiling} and \S\ref{sec:results}).
+\item[b] Realised false-acceptance rate $\Pr[V{=}1\mid C{=}0]$. \textbf{This column decides the paper}: it is high (0.56--0.99) across all three tasks and every model.
+\item[c] From Cor.~\ref{cor:gain} at the measured rates in the same row, at $N{=}32$ -- only defined where $\delta=0$; {--} marks a cell excluded by the corollary's own precondition, not a prediction that failed.
+\item[e] Paired bootstrap 95\% CI over 200 instances.
+\item[u] Seed-0-only: 5-seed replication (\S\ref{sec:results}, B4) shows this
+cell is not actually sound ($\delta=0.0005$--$0.0027$ at the other four
+seeds), so the prediction/observed pair in parentheses is a seed-0
+consistency check, not a certified result -- do not cite it as one of the
+cells where Cor.~\ref{cor:gain} was confirmed.
+\end{tablenotes}\end{minipage}
+\end{threeparttable}
+\captionof{table}{\textbf{Verifier rates and the gain they predict} (Experiments~2 and~3), measured across all three tasks (200 instances per task per model, 6 models across three vendor families, OpenRouter). Predicted/observed gain columns (Experiment 3) are evaluated only where the full stack measures sound: at seed 0 that appeared to be three cells, but 5-seed replication shows only three survive (IE/GPT-4o, IE/GPT-4o-mini, IE/Qwen2.5-72B; note u marks the one seed-0 cell that did not survive), all three confirming Cor.~\ref{cor:gain}'s prediction across the full budget grid (\S\ref{sec:results}). The other cells have no prediction to evaluate under the corollary's own precondition, which is why {--} appears rather than a number that failed.}
+\label{tab:params}
+\end{table*}
+
+\begin{table}[!htbp]\centering\footnotesize
+\begin{threeparttable}
+\scriptsize
+\setlength{\tabcolsep}{1.6pt}
+\begin{tabular}{@{}l@{\hskip 4pt}cccc@{}}
+\toprule
+Rule & Acc. & $\Delta$ vs.\ base\tnote{a} & Gen.\tnote{b} & Floor\tnote{c} \\
+     & (\%)  & (pts, 95\,\% CI)              & $\bar n$      &                \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Reference}}\\
+Greedy\tnote{h}                    & 73.9 & ---            & 1.0  & --- \\
+\addlinespace
+\multicolumn{5}{@{}l}{\textit{Ungated selection}}\\
+Rejection sampl.\tnote{e}        & 73.4 & $-0.5$~[$-3.0$, $2.0$] & $\sim$9 & no \\
+BoN, sound scorer                  & 73.4 & $-0.5$~[$-3.0$, $2.0$]  & $\sim$9 & no \\
+BoN, confidence scorer\tnote{f} & 72.0\tnote{i} & $-0.5$~[$-3.0$, $1.5$] & $\sim$9 & no \\
+BoN, self-consistency\tnote{j}     & 68.5\tnote{k} & $+1.5$~[$-0.5$, $4.0$] & $\sim$9 & \textbf{yes} \\
+BoN, LLM-as-judge\tnote{j}         & 67.5\tnote{k} & $+0.5$~[$-1.5$, $3.0$] & $\sim$9 & \textbf{yes} \\
+BoN, reward model\tnote{l} & 73.5\tnote{k} & $+6.5$~[$+3.5$, $10.0$] & $\sim$9 & \textbf{yes} \\
+DPC\tnote{m}                        & 73.0\tnote{m} & $+2.0$~[$-1.5$, $5.5$] & 8.0  & \textbf{yes} \\
+\addlinespace
+\multicolumn{5}{@{}l}{\textit{Reject-gated (ours)}}\\
+Sound stack                        & 73.9 & $0.0$~[$0.0$, $0.0$]  & $\sim$9 & \textbf{yes} \\
+$+$ confidence scorer\tnote{f} & 72.5\tnote{i} & $0.0$~[$0.0$, $0.0$] & $\sim$9 & \textbf{yes} \\
+$+$ self-consistency\tnote{j} & 67.5\tnote{k} & $+0.5$~[$0.0$, $1.5$] & $\sim$9 & \textbf{yes} \\
+$+$ LLM-as-judge\tnote{j} & 67.5\tnote{k} & $+0.5$~[$0.0$, $1.5$] & $\sim$9 & \textbf{yes} \\
+$+$ reward model\tnote{l} & 67.5\tnote{k} & $+0.5$~[$0.0$, $1.5$] & $\sim$9 & \textbf{yes} \\
+\addlinespace
+\addlinespace
+\multicolumn{5}{@{}l}{\textit{Constrained decoding}}\\
+Regex-constrained\tnote{n} & 28.0\tnote{o} & --- & 1.0 & --- \\
+\addlinespace
+\multicolumn{5}{@{}l}{\textit{Upper bound}}\\
+Oracle selection                   & 78.5 & $+6.0$~[$+3.0$, $9.5$] & $\sim$9 & --- \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{\columnwidth}\begin{tablenotes}[flushleft]\footnotesize
+\item[a] Paired bootstrap 95\% CI over 200 instances, GPT-4o, Spider dev.
+\item[b] Mean generations per instance. One gated row (Sound stack) has CI
+$[0,0]$: the sound stack's gate never fired on this 200-instance draw
+(\S\ref{sec:results}), so that row's floor is trivially satisfied rather
+than evidence of anything the gate did.
+\item[c] Whether accuracy stayed at or above that row's own greedy baseline,
+recomputed directly from records for every row in this table.
+\item[e] Homogeneous rejection sampling: no distinguished first draw. The
+contrast with the gated rows isolates the gate.
+\item[f] Mean log-probability of the completion, rejecting the bottom quartile
+per instance: the paper's deliberately unsound scorer.
+\item[h] Experiment 1/2 sample.
+\item[i] Experiment 5/6 sample, with the log-probability scorer.
+\item[m] \citet{dpc2026}'s own released implementation
+(github.com/HKUSTDial/DPC), run on a separately-drawn 200-instance,
+8-candidate GPT-4o pool with its own paired greedy baseline (71.0\%, not
+this table's 73.9\%): dual-paradigm consistency, cross-checking SQL
+execution against a synthesised Python solution on a minimal
+distinguishing database. A strong training-free \emph{discriminator}, not
+sound in our sense (Def.~\ref{def:admissible}); we report its measured
+gain here rather than take its published ordering on faith.
+\item[j] Execution-clustered self-consistency and an LLM-as-judge
+(GPT-4o, no gold access), both run as scorers.
+\item[k] Self-consistency/LLM-judge/reward-model baselines sample, drawn
+together from the same 200-instance pool so the three scorers are
+compared on identical candidates within a model.
+\item[l] A trained outcome reward model: logistic regression over
+interpretable SQL features, trained on 2{,}700 execution-labelled
+candidates from Spider's \emph{training} split (disjoint from the dev
+split used for every other row), 0.704 validation AUROC.
+\item[n] Constrained decoding: Qwen2.5-1.5B-Instruct run locally, since no
+API-hosted model here exposes the logit access it needs. Regex over a
+subquery-free SQL subset covering $84.6\%$ of Spider dev, greedy only, so
+no $\Delta$ or interval columns. One row, not a fifth model.
+\item[o] Test-suite accuracy (same metric as every other row).
+\item[] Rows come from separately drawn 200-instance samples with their own
+greedy baselines; extended per-row provenance is in
+Appendix~\ref{app:tabnotes}.
+\end{tablenotes}\end{minipage}
+\end{threeparttable}
+\caption*{\textbf{SQL, GPT-4o} (Spider dev split; sound stack $=$ \texttt{parses}\,$\wedge$\allowbreak\,\texttt{schema\_valid}\,$\wedge$\allowbreak\,\texttt{executes}).}
+
+
+\captionof{table}{\textbf{Main comparison, text-to-SQL, GPT-4o} (Spider dev; sound stack $=$ \texttt{parses}\,$\wedge$\allowbreak\,\texttt{schema\_valid}\,$\wedge$\allowbreak\,\texttt{executes}). Rows come from separately drawn 200-instance samples with their own greedy baselines (notes h, i, k, m). The IE and morphology blocks, and the full six-model picture, are in Appendix~\ref{app:fulltables}.}
+\label{tab:main}
+\end{table}
+
+\begin{table}[!htbp]\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}l cccc c cc c@{}}
+\toprule
+Model & $p_0$ & $p$ & $\delta$ & $\varepsilon$ & & pred. & observed \\
+\midrule
+
+
+GPT-4o-mini   & 0.405 & 0.397 & 0.1099 & 0.806 & & {--} & {--} \\
+GPT-4o        & 0.440 & 0.443 & 0.1581 & 0.739 & & {--} & {--} \\
+Llama-3.1-8B  & 0.165 & 0.159 & 0.1472 & 0.613 & & {--} & {--} \\
+Llama-3.1-70B & 0.255 & 0.263 & 0.1780 & 0.575 & & {--} & {--} \\
+Qwen2.5-7B    & 0.275 & 0.271 & 0.1798 & 0.557 & & {--} & {--} \\
+Qwen2.5-72B   & 0.385 & 0.372 & 0.1503 & 0.771 & & {--} & {--} \\
+\bottomrule
+\end{tabular}}
+\captionof{table}{Morphological segmentation rates (SIGMORPHON 2022 English, 200 instances per model). Companion to Table~\ref{tab:params}. The \texttt{concatenates} check is measured substantially unsound for every model ($\delta=0.11$--$0.18$ including the two Qwen models), so Cor.~\ref{cor:gain}'s closed form is outside the regime it is derived for in all six cells and no prediction is evaluated ({--}), rather than a prediction that failed.}
+\label{tab:params-morph}
+\end{table}
+
+\begin{table}[!htbp]\centering\footnotesize
+
+\begin{threeparttable}
+\scriptsize
+\setlength{\tabcolsep}{1.6pt}
+\begin{tabular}{@{}l@{\hskip 4pt}cccc@{}}
+\toprule
+Rule & Acc. & $\Delta$ vs.\ base\tnote{p} & Gen.\tnote{b} & Floor\tnote{c} \\
+     & (\%)  & (pts, 95\,\% CI)              & $\bar n$      &                \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Reference}}\\
+Greedy\tnote{q}                    & 49.0 & ---            & 1.0  & --- \\
+\addlinespace
+\multicolumn{5}{@{}l}{\textit{Ungated selection}}\\
+Rejection sampl.\tnote{e}        & 49.5 & $+1.0$~[$-2.5$, $4.5$] & $\sim$9 & \textbf{yes} \\
+BoN, sound scorer                  & 49.0 & $+0.5$~[$-3.0$, $4.0$] & $\sim$9 & \textbf{yes} \\
+BoN, confidence scorer\tnote{f} & 51.0\tnote{r} & $+2.0$~[$-1.0$, $5.0$] & $\sim$9 & \textbf{yes} \\
+BoN, self-consistency\tnote{j}     & 51.5\tnote{s} & $+1.5$~[$-1.5$, $5.0$] & $\sim$9 & \textbf{yes} \\
+BoN, LLM-as-judge\tnote{j}         & 52.0\tnote{s} & $+2.0$~[$-1.5$, $5.5$] & $\sim$9 & \textbf{yes} \\
+BoN, reward model\tnote{l} & 53.5\tnote{s} & $+3.5$~[$0.0$, $7.5$] & $\sim$9 & \textbf{yes} \\
+\addlinespace
+\multicolumn{5}{@{}l}{\textit{Reject-gated (ours)}}\\
+Sound stack                        & 49.0 & $0.0$~[$0.0$, $1.5$] & $\sim$9 & \textbf{yes} \\
+$+$ confidence scorer\tnote{f} & 49.5\tnote{r} & $+0.5$~[$0.0$, $1.5$] & $\sim$9 & \textbf{yes} \\
+$+$ self-consistency\tnote{j} & 50.0\tnote{s} & $0.0$~[$0.0$, $0.0$] & $\sim$9 & \textbf{yes} \\
+$+$ LLM-as-judge\tnote{j} & 50.0\tnote{s} & $0.0$~[$0.0$, $0.0$] & $\sim$9 & \textbf{yes} \\
+$+$ reward model\tnote{l} & 50.5\tnote{s} & $+0.5$~[$0.0$, $1.5$] & $\sim$9 & \textbf{yes} \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{\columnwidth}\begin{tablenotes}[flushleft]\footnotesize
+\item[b] Mean generations per instance.
+\item[c] Whether accuracy stayed at or above the greedy baseline used for that row's own experiment (see notes q, r, s: rows come from separately-drawn 200-instance samples with slightly different greedy baselines). Prop.~\ref{prop:floor} guarantees this only for the gated rows; every ungated row also happened to stay at or above its own baseline in this measurement, but the ungated rows carry no such guarantee in general.
+\item[e] Homogeneous rejection sampling: no distinguished first draw. The contrast with the gated rows isolates the gate.
+\item[f] Mean log-probability of the completion, thresholded to reject the bottom quartile per instance -- the same deliberately unsound scorer used for SQL (\S\ref{sec:exp}).
+\item[j] Execution-clustered self-consistency (here: clustered by the predicted entity set) and an LLM-as-judge (GPT-4o, no gold access), both run as scorers.
+\item[l] A trained outcome reward model (note s).
+\item[p] Paired bootstrap 95\% CI over 200 instances, GPT-4o, CoNLL2003 test split.
+\item[q] From the Experiment 1/2 sample. IE's stack measures exactly sound for GPT-4o ($\delta=0.0000$), so this block reads as a direct test of Cor.~\ref{cor:degrade} and Prop.~\ref{prop:floor}, not a near-approximation.
+\item[r] From the Experiment 5/6 sample, a separate draw with greedy baseline 49.0\%. Degradation was correctly predicted \emph{not} to occur and none was observed ($49.0\%\to51.0\%$ ungated), the prediction matching for this model.
+\item[s] A third separate draw, greedy baseline 50.0\%. The reward model is a logistic regression over IE features (entity count, span length, schema-check outcomes) trained on 2{,}700 candidates from CoNLL2003's own \emph{training} split, disjoint from the test split (0.822 validation AUROC). Every scorer's ungated rule stayed at or above base in this measurement; the reward model shows the largest ungated gain ($+3.5$ pts) and the only gated row with a nonzero, still-positive shift ($+0.5$ pts).
+\end{tablenotes}\end{minipage}
+\end{threeparttable}
+\caption*{\textbf{IE, GPT-4o} (CoNLL2003 test split; sound stack $=$ \texttt{parses}\,$\wedge$\allowbreak\,\texttt{required\_fields}\,$\wedge$\allowbreak\,\texttt{schema\_valid}\,$\wedge$\allowbreak\,\texttt{no\_overlap}). All three deferred baselines are floor-safe here on GPT-4o (6 of 6 ungated/gated cells; the four-model picture for the confidence scorer alone is in Table~\ref{tab:params}).}
+
+\captionof{table}{\textbf{Main comparison, information extraction, GPT-4o.}
+Companion to Table~\ref{tab:main}. The morphology block is omitted: that task's
+stack is measured unsound, so none of its floor outcomes tests
+Prop.~\ref{prop:floor}, and the rates that do carry a finding are in
+Table~\ref{tab:params-morph}.}
+\label{tab:main-extra}
+\end{table}
+
+\begin{table}[h]\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}l ccc ccc@{}}
+\toprule
+& \multicolumn{3}{c}{$\varepsilon$} & \multicolumn{3}{c}{$\delta$ (cumulative)} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+Model & parses & +schema & +exec. & parses & +schema & +exec. \\
+\midrule
+GPT-4o-mini    & 0.968 & 0.922 & 0.918 & 0.0000 & 0.0017 & 0.0017 \\
+GPT-4o         & 1.000 & 0.992 & 0.991 & 0.0000 & 0.0013 & 0.0013 \\
+Llama-3.1-8B   & 0.994 & 0.719 & 0.690 & 0.0002 & 0.0007 & 0.0007 \\
+Llama-3.1-70B  & 0.992 & 0.839 & 0.832 & 0.0000 & 0.0000 & 0.0000 \\
+Qwen2.5-7B     & 0.996 & 0.748 & 0.717 & 0.0000 & 0.0042 & 0.0042 \\
+Qwen2.5-72B    & 1.000 & 0.875 & 0.874 & 0.0000 & 0.0002 & 0.0002 \\
+\bottomrule
+\end{tabular}}
+\captionof{table}{Per-check breakdown for Experiment 4 (200 instances per model, Spider dev split), recomputed directly from per-instance records -- these are the SAME numbers Table~\ref{tab:params} and Table~\ref{tab:ceiling} report for the full stack, not a second, disagreeing measurement. $\delta$ is cumulative under the stack's short-circuit evaluation (schema-valid is only checked when parses passes, executes only when schema-valid passes), so a step's $\delta$ cannot decrease from the previous step's; it can only stay flat (the added check contributes no new false rejections) or rise (it does). $\delta$ rises at the schema-valid step for GPT-4o-mini, GPT-4o, Llama-3.1-8B and both Qwen models and stays flat afterward for all six models: schema validation is where this session's residual leaks appear (traced, on inspection, to a narrow class of query patterns this checker still resolves incompletely, \S\ref{sec:results}), and execution adds nothing further for any model. Llama-3.1-70B's stack measures exactly sound at every step at seed 0; 5-seed
+replication (\S\ref{sec:results}, B4) shows this does not hold at the other
+four seeds, so this breakdown is a seed-0 diagnostic of where the leak
+enters, not a certified cell. Qwen2.5-72B's own seed-0 $\delta$ is already
+nonzero ($0.0002$, entering at the same schema-valid step), so it was
+never a seed-0 certification to begin with; no SQL model in this table
+certifies once every seed is considered.}
+\label{tab:stack-breakdown}
+\end{table}
+
+\section{Row provenance}\label{app:tabnotes}
+Rows in Tables~\ref{tab:main} and \ref{tab:main-extra} come from four separately
+drawn 200-instance samples at seed 0, each with its own greedy baseline, so
+$\Delta$ is only comparable within a draw.
+
+\begin{description}\setlength\itemsep{0.15em}
+\item[h] Experiment 1/2 sample.
+\item[i] Experiment 5/6 sample, with the log-probability scorer.
+\item[k] Self-consistency and LLM-judge baselines sample.
+\item[m] Reward-model sample.
+\item[n] Constrained decoding: Qwen2.5-1.5B-Instruct run locally, since no
+  API-hosted model here exposes the logit access it needs. Regex over a
+  subquery-free SQL subset covering $84.6\%$ of Spider dev, greedy only, so no
+  $\Delta$ or interval columns. One row, not a fifth model.
+\end{description}
+
+The stacks are listed in Appendix~\ref{app:checks}; definitions and tolerances
+are in the supplementary archive, to which \S\ref{sec:results} traces every
+measured $\delta>0$.
+
+\section{Heterogeneous rates}\label{app:hetero}
+
+A3 is false in practice, since difficulty varies by instance. It can be removed from the gain accounting exactly, at the cost of one covariance term.
+
+\begin{proposition}[Heterogeneous gain]\label{prop:hetero}
+Let A1--A2 hold conditionally on each instance with rates $p_0(x),p(x),\varepsilon(x)$ and $\delta(x)=0$, and drop A3. Write $h(x)=(1-\varepsilon(x))\,p(x)/q(x)$ for the per-instance asymptotic replacement term. Then
+\[
+A_\infty-\bar p_0 \;=\; (1-\bar p_0)\,\mathbb{E}[h] \;+\; \operatorname{Cov}\bigl(1-p_0(x),\,h(x)\bigr),
+\]
+where $\bar p_0=\mathbb{E}[p_0(x)]$. No independence or convexity hypothesis is used.
+\end{proposition}
+
+\begin{corollary}[Pooled rates are conservative]\label{cor:jensen}
+Assume in addition that $p(x)\equiv p$ is constant. Then $h$ depends on $x$ only through $\varepsilon(x)$ and is convex in it, so $\mathbb{E}[h]\ge h(\bar\varepsilon)$ and
+\[
+A_\infty-\bar p_0\;\ge\;\widehat{G}\;+\;\operatorname{Cov}\bigl(1-p_0(x),h(x)\bigr),
+\]
+where $\widehat{G}=(1-\bar p_0)(1-\bar\varepsilon)\bar p/\bar q$ is Cor.~\ref{cor:gain} evaluated at pooled rates.
+\end{corollary}
+
+The constancy of $p$ is required, not cosmetic: $h$ is convex in $\varepsilon$
+at fixed $p$ but not jointly, and Appendix~\ref{app:numeric} exhibits a
+population with varying $p$ in which the inequality reverses. The consequence for
+\S\ref{sec:exp} is that pooled rates \emph{under}-predict the gain, so a measured
+gain above prediction is the expected direction rather than evidence of a broken
+model.
+
+
+
+
+
+\section{Proofs}\label{app:proofs}
+Throughout, $C(y)\in\{0,1\}$ is correctness against the gold answer and $V(y)\in\{0,1\}$ is the verifier verdict, as in \S\ref{sec:setup}. All statements refer to Definition~\ref{def:rule}.
+
+\paragraph{Proposition~\ref{prop:floor} (instance-wise floor).}
+Fix $x$; every probability below is conditional on $x$. Realised soundness at $x$ says $C(y)=1\Rightarrow V(y)=1$, whose contrapositive is $V(y_0)=0\Rightarrow C(y_0)=0$. Let $E=\{C(y_0)=1\}$. On $E$ we have $V(y_0)=1$, so the first step of Definition~\ref{def:rule} returns $\hat y=y_0$ and therefore $C(\hat y)=1$. Hence $E\subseteq\{C(\hat y)=1\}$ and
+\[\Pr[C(\hat y){=}1\mid x]\ge\Pr[E\mid x]=\Pr[C(y_0){=}1\mid x].\]
+The argument never refers to $N$, to $S$, to $\varepsilon$, or to the law of $y_1,\dots,y_N$, so no part of Assumption~\ref{ass:model} is used. Taking expectations over $x$ and applying the tower rule gives $\Pr[C(\hat y)=1]\ge\mathbb{E}[\Pr[C(y_0)=1\mid x]]=p_0$. \hfill$\square$
+
+\paragraph{Corollary~\ref{cor:ceiling}(a) (dominance, no model assumption).}
+Fix an instance $x$ and $S\subseteq[k]$; all rates below are conditional on $x$.
+Acceptance by $V$ implies acceptance by every conjunct, so
+$\{V{=}1\}\subseteq\{V_S{=}1\}$ and hence
+$\varepsilon_V(x)\le\varepsilon_{V_S}(x)$. Applying Cor.~\ref{cor:gain}
+conditionally on $x$, the asymptotic gain at $x$ is
+$\bigl(1-p_0(x)\bigr)h\bigl(\varepsilon(x)\bigr)$ with
+$h(\varepsilon)=(1-\varepsilon)p(x)/\bigl(p(x)+(1-p(x))\varepsilon\bigr)$, and
+$h$ is strictly decreasing (shown below), so the gain of $V_S$ at $x$ is at most
+that of $V$ at $x$. Since this holds at every $x$, it holds after averaging over
+$x$, with no homogeneity assumption and no requirement that the rates be
+constant. \hfill$\square$
+
+\paragraph{Corollary~\ref{cor:ceiling}(b) (evaluation under A1--A3).}
+Fix $S\subseteq[k]$. As above $\varepsilon_V\le\varepsilon_{V_S}$. Each $V_S$ is
+realised sound by Prop.~\ref{prop:stack}, so Cor.~\ref{cor:gain} applies to it and
+$A_N(V_S)-p_0=(1-p_0)(1-\varepsilon_{V_S})\bigl(1-(1-q_{V_S})^N\bigr)p/q_{V_S}
+\le(1-p_0)(1-\varepsilon_{V_S})p/q_{V_S}=g(\varepsilon_{V_S})$, the last step
+because $0\le 1-(1-q)^N\le 1$. Writing $q(\varepsilon)=p+(1-p)\varepsilon$,
+\[
+\begin{aligned}
+g'(\varepsilon)&=(1-p_0)p\,\frac{-q(\varepsilon)-(1-\varepsilon)(1-p)}{q(\varepsilon)^2}\\[2pt]
+&=-\frac{(1-p_0)\,p}{q(\varepsilon)^2}\;<\;0
+\end{aligned}
+\]
+for $p>0$, since $q+(1-\varepsilon)(1-p)=p+(1-p)\varepsilon+(1-p)-(1-p)\varepsilon=1$
+after dividing through. Hence $g$ is strictly decreasing, and
+$\varepsilon_V\le\varepsilon_{V_S}$ gives $g(\varepsilon_{V_S})\le g(\varepsilon_V)$.
+Combining, $A_N(V_S)-p_0\le g(\varepsilon_V)$ for every $S$ and every $N$. If
+$p=0$ both sides are $0$ and the bound holds trivially. \hfill$\square$
+
+\paragraph{Remark (what (b) does and does not bound).}
+Part (b) bounds the accuracy of the homogeneous model at rates
+$(p_0,p,\varepsilon_V)$. It is \emph{not} an upper bound on the heterogeneous
+$\mathbb{E}[\text{gain}]$: by Cor.~\ref{cor:jensen}, with $p$ constant the
+plug-in at pooled rates satisfies $g(\bar\varepsilon)\le\mathbb{E}[h]$, so the
+heterogeneous gain can exceed it, and the released checker exhibits populations
+where it does so by a factor above $1.7$. Part (a) is what survives
+heterogeneity, and it is an ordering rather than a number.
+
+\paragraph{Proposition~\ref{prop:floor}, composition clause.}
+The proof above never evaluates $S$: the scoring function is consulted only inside the sampling branch, which is reached only when $C(y_0)=0$. The bound is therefore uniform over $S$. \hfill$\square$
+
+\paragraph{Proposition~\ref{prop:stack} (stacking).}
+\emph{Soundness.} Let $C(y)=1$. Realised soundness of each $V_i$ gives $V_i(y)=1$ for every $i$, hence $V(y)=\bigwedge_iV_i(y)=1$, so $\delta_V=0$.
+\emph{False acceptance.} Fix $j$. As events, $\{V=1\}=\bigcap_i\{V_i=1\}\subseteq\{V_j=1\}$. Conditioning on $\{C=0\}$ and using monotonicity of probability,
+\[\varepsilon_V=\Pr[V{=}1\mid C{=}0]\le\Pr[V_j{=}1\mid C{=}0]=\varepsilon_j.\]
+Since $j$ was arbitrary, $\varepsilon_V\le\min_j\varepsilon_j$. Applying the same bound to the conjunction of the first $k$ conjuncts shows $\varepsilon$ is non-increasing as conjuncts are added. No independence is used anywhere; the stronger identity $\varepsilon_V=\prod_i\varepsilon_i$ would additionally require the conjuncts to be conditionally independent given $C=0$, which we do not assume and do not report. \hfill$\square$
+
+\begin{theorem}[Accuracy of reject-gated selection]\label{thm:master}
+Under Definition~\ref{def:rule}, Assumption~\ref{ass:model} and constant $S$,
+write $q=p(1-\delta)+(1-p)\varepsilon$ for the chance a sampled candidate is
+accepted and $r=p(1-\delta)/q$ for the chance an accepted one is correct. If
+$q=0$ no candidate is ever accepted and $A_N=p_0$ for every $N$; otherwise
+\[
+\begin{aligned}
+A_N \;=\;& p_0(1-\delta) \;+\; p_0\delta\,(1-q)^N \\
+&+\bigl[p_0\delta+(1-p_0)(1-\varepsilon)\bigr]\\
+&\qquad\times\bigl(1-(1-q)^N\bigr)\,r .
+\end{aligned}
+\]
+Cor.~\ref{cor:gain} is the case $\delta=0$, and setting $N=0$ returns $A_0=p_0$.
+\end{theorem}
+
+\paragraph{Theorem~\ref{thm:master} (accuracy).}
+Assume A1--A3 and constant $S$, so that the $\arg\max$ in Definition~\ref{def:rule} is a uniform draw from $\mathcal{A}$. Partition on the gate.
+
+\emph{(i) Gate passes, base correct.} $\Pr[C(y_0){=}1,V(y_0){=}1]=p_0(1-\delta)$ by A2. The rule returns $y_0$, which is correct. Contribution $p_0(1-\delta)$.
+
+\emph{(ii) Gate passes, base incorrect.} $\Pr[C(y_0){=}0,V(y_0){=}1]=(1-p_0)\varepsilon$. The rule returns $y_0$, which is incorrect. Contribution $0$.
+
+\emph{(iii) Gate fails.} $\beta:=\Pr[V(y_0){=}0]=p_0\delta+(1-p_0)(1-\varepsilon)$, and within this event $\Pr[C(y_0){=}1\mid V(y_0){=}0]=p_0\delta/\beta$. By A1 the $N$ candidates are independent of $y_0$, and by A2 each is accepted with probability $q=p(1-\delta)+(1-p)\varepsilon$ independently, so $\Pr[\mathcal{A}=\emptyset]=(1-q)^N$.
+If $\mathcal{A}\neq\emptyset$, Lemma~\ref{lem:precision} gives that the returned candidate is correct with probability $r=p(1-\delta)/q$, contributing $\beta\bigl(1-(1-q)^N\bigr)r$.
+If $\mathcal{A}=\emptyset$ the rule returns $y_0$, correct with probability $p_0\delta/\beta$, contributing $\beta(1-q)^N\cdot p_0\delta/\beta=p_0\delta(1-q)^N$.
+
+Summing (i)--(iii) gives the stated expression. Setting $N=0$ yields $p_0(1-\delta)+p_0\delta=p_0$, as required. \hfill$\square$
+
+\paragraph{Corollary~\ref{cor:gain} (gain decomposition).}
+Put $\delta=0$ in Theorem~\ref{thm:master}. Then $q=p+(1-p)\varepsilon$, $r=p/q$, the term $p_0\delta(1-q)^N$ vanishes, and $\beta=(1-p_0)(1-\varepsilon)$, giving the displayed form.
+\emph{Monotone in $N$:} $1-(1-q)^N$ is non-decreasing in $N$ because $0\le1-q\le1$, and every other factor is a non-negative constant.
+\emph{Monotone in $\varepsilon$:} write $A_\infty-p_0=(1-p_0)h(\varepsilon)$ with $h(\varepsilon)=(1-\varepsilon)p/\bigl(p+(1-p)\varepsilon\bigr)$. Differentiating and using $p+(1-p)=1$,
+\[
+\begin{aligned}
+h'(\varepsilon)&=\frac{-p\bigl(p+(1-p)\varepsilon\bigr)-p(1-\varepsilon)(1-p)}{\bigl(p+(1-p)\varepsilon\bigr)^{2}}\\[2pt]
+&=\frac{-p}{\bigl(p+(1-p)\varepsilon\bigr)^{2}}\;<\;0
+\end{aligned}
+\]
+\hfill$\square$
+
+\begin{corollary}[Degradation]\label{cor:degrade}
+Under Assumption~\ref{ass:model} with $\delta>0$, write
+$q=p(1-\delta)+(1-p)\varepsilon$ and let $r=p(1-\delta)/q$ be the chance an
+accepted candidate is correct. Accuracy falls below the base exactly when
+\[
+\underbrace{p_0\,\delta\,(1-r)}_{\text{correct outputs thrown away}}\;>\;
+\underbrace{(1-p_0)(1-\varepsilon)\,r}_{\text{incorrect ones caught}} .
+\]
+At $\delta=0$ the left side vanishes and Cor.~\ref{cor:gain} is recovered.
+\end{corollary}
+
+\paragraph{Corollary~\ref{cor:degrade} (degradation).}
+Let $N\to\infty$ in Theorem~\ref{thm:master}. If $q>0$ then $(1-q)^N\to0$ and $A_\infty=p_0(1-\delta)+\beta r$. Hence
+\[
+\begin{aligned}
+A_\infty-p_0&=-p_0\delta+\bigl[p_0\delta+(1-p_0)(1-\varepsilon)\bigr]r\\[2pt]
+&=-p_0\delta(1-r)+(1-p_0)(1-\varepsilon)r,
+\end{aligned}
+\]
+and $A_\infty<p_0$ iff $p_0\delta(1-r)>(1-p_0)(1-\varepsilon)r$. If $q=0$ then no candidate is ever accepted, the rule always returns $y_0$, and $A_\infty=p_0$. \hfill$\square$
+
+\paragraph{Proposition~\ref{prop:hetero} (heterogeneous gain).}
+Assume A1--A2 conditionally on each instance with rates $p_0(x),p(x),\varepsilon(x)$ and $\delta(x)=0$, and drop A3. Corollary~\ref{cor:gain} applied conditionally on $x$ at $N=\infty$ gives
+\[
+\begin{aligned}
+\Pr[C(\hat y){=}1\mid x]&=p_0(x)+\bigl(1-p_0(x)\bigr)h(x),\\
+h(x)&=\tfrac{(1-\varepsilon(x))p(x)}{q(x)} .
+\end{aligned}
+\]
+Taking expectations and using $\mathbb{E}[UW]=\mathbb{E}[U]\mathbb{E}[W]+\operatorname{Cov}(U,W)$ with $U=1-p_0(x)$ and $W=h(x)$,
+\[A_\infty=\bar p_0+(1-\bar p_0)\mathbb{E}[h]+\operatorname{Cov}\bigl(1-p_0(x),h(x)\bigr).\]
+Only the covariance identity is used, so no independence or convexity hypothesis enters. \hfill$\square$
+
+\paragraph{Corollary~\ref{cor:jensen} (pooled rates are conservative).}
+Assume in addition $p(x)\equiv p\in(0,1)$, so $h(x)=h(\varepsilon(x))$ with $h$ as in Corollary~\ref{cor:gain}. Differentiating $h'$ above,
+\[h''(\varepsilon)=\frac{2p(1-p)}{\bigl(p+(1-p)\varepsilon\bigr)^{3}}>0 ,\]
+so $h$ is strictly convex on $[0,1]$ and Jensen's inequality gives $\mathbb{E}[h(\varepsilon)]\ge h(\bar\varepsilon)$. Since $\widehat G=(1-\bar p_0)h(\bar\varepsilon)$, substituting into Proposition~\ref{prop:hetero} yields the claim. \hfill$\square$
+
+\paragraph{Remark (the hypothesis in Corollary~\ref{cor:jensen} is necessary).}
+If $p$ also varies, $h$ is a function of two arguments and is \emph{not} jointly convex, so $\mathbb{E}[h(p,\varepsilon)]\ge h(\bar p,\bar\varepsilon)$ may fail and with it the inequality. Appendix~\ref{app:numeric} exhibits a heterogeneous population with varying $p$ in which the direction reverses. We therefore state Corollary~\ref{cor:jensen} under constant $p$ rather than patching it.
+
+\section{Auxiliary lemma}\label{app:lemma}
+\begin{lemma}[Acceptance precision]\label{lem:precision}
+Under A1--A2, let $\mathcal{A}=\{i\in[N]:V(y_i)=1\}$ and let $I$ be uniform on $\mathcal{A}$. Then, with $q=p(1-\delta)+(1-p)\varepsilon$ and $r=p(1-\delta)/q$,
+\[\Pr\bigl[C(y_I)=1 \bigm| \mathcal{A}\neq\emptyset\bigr]=r .\]
+\end{lemma}
+\begin{proof}
+Under A1--A2 the pairs $\bigl(C(y_i),V(y_i)\bigr)$ are i.i.d.\ across $i$, with $\Pr[V{=}1]=q$ and $\Pr[C{=}1,V{=}1]=p(1-\delta)$, hence $\Pr[C{=}1\mid V{=}1]=r$. Fix a non-empty $A\subseteq[N]$ and condition on $\{\mathcal{A}=A\}$. This event constrains $V(y_i)=1$ for $i\in A$ and $V(y_i)=0$ for $i\notin A$, and by independence across $i$ it leaves $\{C(y_i)\}_{i\in A}$ i.i.d.\ with law $\Pr[C{=}1\mid V{=}1]$. Therefore $\Pr[C(y_I){=}1\mid\mathcal{A}=A]=r$ for every such $A$, and averaging over non-empty $A$ preserves the value.
+\end{proof}
+
+\section{Numerical verification}\label{app:numeric}
+
+Every statement in \S\ref{sec:theory} was checked against Monte Carlo simulation of Definition~\ref{def:rule}, and Cor.~\ref{cor:ceiling} additionally by symbolic differentiation and by exhaustive enumeration over random sound-check systems. This checks the algebra, not the modelling assumptions, and is not evidence about any language model. The checkers are in the anonymised supplementary archive.
+
+\begin{center}\small
+\begin{tabular}{@{}p{3.2cm}p{4.2cm}@{}}
+\toprule
+Statement & Check \\
+\midrule
+Thm.~\ref{thm:master} & closed form vs.\ simulation over 8 settings spanning $\delta\in[0,0.4]$, $\varepsilon\in[0.2,0.95]$, $N\le32$, $3\times10^5$ trials each: max absolute discrepancy $0.0013$ \\[2pt]
+Thm.~\ref{thm:master}, $N{=}0$ & returns $p_0$ exactly in all settings \\[2pt]
+Cor.~\ref{cor:gain} & agrees with Thm.~\ref{thm:master} at $\delta=0$ to machine precision over an $81$-point grid \\[2pt]
+Cor.~\ref{cor:gain} monotonicity & non-decreasing in $N$ and non-increasing in $\varepsilon$ on the grid \\[2pt]
+Cor.~\ref{cor:degrade} & predicted degradation matched observed degradation in $4/4$ test settings \\[2pt]
+$h$ strictly convex & minimum second difference $>2\times10^{-6}$ for $p\in\{0.2,0.5,0.8\}$ \\[2pt]
+Prop.~\ref{prop:hetero} & exact identity reproduced to $<10^{-6}$ with $p$ constant and with $p$ varying \\[2pt]
+Cor.~\ref{cor:jensen} & holds in $6/6$ populations with $p$ constant; \textbf{reverses} in $2/2$ populations with $p$ varying and $\varepsilon$ correlated with $p_0$, confirming the hypothesis is necessary \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Verifier stack definitions}\label{app:checks}
+\begin{table}[!htbp]\centering\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}p{1.55cm}p{3.05cm}p{2.15cm}@{}}
+\toprule
+Task & Nominally sound & \emph{Not} sound: fails on a gold output \\
+\midrule
+Text-to-SQL & parses; schema-valid; executes; operators type-check against column types; every projected non-aggregate appears in \textsc{group by} & non-empty result; question entities appear in predicates; projected type matches expected answer type \\[2pt]
+Schema-con\-strained IE & parses as JSON; validates against schema; required fields present; no schema-forbidden overlap & every span is a literal substring \emph{(sound only if the task is purely extractive)} \\[2pt]
+Morph.\ segmentation & segments concatenate to the surface form \emph{(surface segmentation of concatenative morphology only)}; no empty segment; tags in the inventory & segment count in attested range \\
+\bottomrule
+\end{tabular}
+\captionof{table}{Candidate checks, separated by whether the soundness argument actually holds. Left column: a gold output satisfies the check by definition of the task, so Prop.~\ref{prop:stack} applies and any subset may be conjoined into the gate. Right column: checks in common use for which we could construct a gold counterexample, so they have $\delta>0$ and must \emph{not} enter the gate; by Prop.~\ref{prop:floor} they remain usable as the scorer $S$. The italicised parentheses mark scope conditions under which a left-column check stops being sound. Per-check definitions, tolerances and the extraction and normalisation steps are in the supplementary archive rather than reproduced here.}
+\label{tab:stacks}
+\end{table}
+
+\paragraph{Implementations.} Per-check definitions, numerical tolerances, and the extraction and normalisation steps are in the anonymised supplementary archive (\texttt{spider\_task.py}, \texttt{ie\_task.py}, \texttt{morphology\_task.py}). Those steps matter: \S\ref{sec:results} traces every measured $\delta>0$ in this paper to exactly them.
+
+\end{document}

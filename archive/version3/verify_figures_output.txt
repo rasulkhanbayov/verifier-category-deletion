@@ -1,0 +1,29 @@
+  TEXT-TEXT  p5: '(ˆ' x 'y' area=40.2
+  TEXT-TEXT  p5: '(ˆ' x 'y' area=40.2
+  TEXT-TEXT  p6: '|' x 'headroom' area=12.3
+  TEXT-TEXT  p6: '{z' x 'headroom' area=42.4
+  TEXT-TEXT  p6: '}' x 'headroom' area=12.4
+  TEXT-TEXT  p6: '{z' x 'caught' area=42.4
+  TEXT-TEXT  p6: '{z' x 'replacement' area=42.4
+  TEXT-TEXT  p14: 'ˆ' x 'λ' area=29.1
+  TEXT-TEXT  p14: 'ˆ' x 'λ' area=29.1
+  TEXT-TEXT  p14: 'ˆ' x 'λ' area=29.1
+  TEXT-TEXT  p15: 'Realised' x 'Realised' area=12.8
+  TEXT-TEXT  p15: 'is' x 'From' area=2.8
+
+==================================================================
+FIGURE / PAGE GEOMETRY SUMMARY
+==================================================================
+  text-vs-text overlaps ........ 80
+  stroke-through-label hits .... 0
+  margin bleeds ................ 0
+
+  worst pages (tt / stroke / margin):
+    p16:   27 /    0 /   0
+    p15:   25 /    0 /   0
+    p18:   16 /    0 /   0
+    p 6:    5 /    0 /   0
+    p14:    3 /    0 /   0
+    p 5:    2 /    0 /   0
+    p17:    1 /    0 /   0
+    p19:    1 /    0 /   0

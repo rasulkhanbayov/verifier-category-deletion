@@ -1,0 +1,58 @@
+[
+  {
+    "task": "morph",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "eps_seq": [
+      1.0,
+      0.5752467105263158
+    ],
+    "acc_seq": [
+      0.255,
+      0.265
+    ],
+    "eps_monotone": true,
+    "acc_monotone": true
+  },
+  {
+    "task": "morph",
+    "model": "meta-llama/llama-3.1-8b-instruct",
+    "eps_seq": [
+      1.0,
+      0.6125833784027402
+    ],
+    "acc_seq": [
+      0.165,
+      0.175
+    ],
+    "eps_monotone": true,
+    "acc_monotone": true
+  },
+  {
+    "task": "morph",
+    "model": "openai/gpt-4o-2024-11-20",
+    "eps_seq": [
+      1.0,
+      0.7389885807504079
+    ],
+    "acc_seq": [
+      0.44,
+      0.42
+    ],
+    "eps_monotone": true,
+    "acc_monotone": false
+  },
+  {
+    "task": "morph",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "eps_seq": [
+      1.0,
+      0.8062814070351759
+    ],
+    "acc_seq": [
+      0.405,
+      0.4
+    ],
+    "eps_monotone": true,
+    "acc_monotone": false
+  }
+]

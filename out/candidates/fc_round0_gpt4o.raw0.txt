@@ -1,0 +1,257 @@
+### CHECK required_arguments_match_user_request
+RATIONALE: A correct output must include all arguments explicitly mentioned in the user request; missing such arguments results in incorrect outputs.
+```python
+def check(output, ctx):
+    try:
+        call = parse_call(output)
+        if not call:
+            return True
+        args = call.get("arguments", {})
+        user_request = ctx["request"].lower()
+        for key, value in args.items():
+            if str(value).lower() not in user_request:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK function_name_relevance_to_request
+RATIONALE: The function name chosen must be relevant to the user request. For example, a request about finding books should not map to a tip calculation function.
+```python
+def check(output, ctx):
+    try:
+        call = parse_call(output)
+        if not call:
+            return True
+        function_name = call.get("name", "")
+        user_request = ctx["request"].lower()
+        relevant_function = any(function_name in func["name"] for func in ctx["functions"] if func["description"].lower() in user_request)
+        return relevant_function
+    except:
+        return True
+```
+
+### CHECK argument_values_match_request_context
+RATIONALE: Arguments must match the details provided in the user request (e.g., the specified location or food item).
+```python
+def check(output, ctx):
+    try:
+        call = parse_call(output)
+        if not call:
+            return True
+        args = call.get("arguments", {})
+        for arg_value in args.values():
+            if isinstance(arg_value, str) and arg_value.lower() not in ctx["request"].lower():
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK all_required_arguments_present
+RATIONALE: Correct outputs must include all required arguments for the chosen function, even if the value is implied in the user request.
+```python
+def check(output, ctx):
+    try:
+        call = parse_call(output)
+        if not call:
+            return True
+        function = next((f for f in ctx["functions"] if f["name"] == call["name"]), None)
+        if not function:
+            return True
+        required_args = function["parameters"]["required"]
+        return all(arg in call.get("arguments", {}) for arg in required_args)
+    except:
+        return True
+```
+
+### CHECK no_extra_arguments_in_output
+RATIONALE: A correct output will not contain arguments that the schema does not define for the chosen function.
+```python
+def check(output, ctx):
+    try:
+        call = parse_call(output)
+        if not call:
+            return True
+        function = next((f for f in ctx["functions"] if f["name"] == call["name"]), None)
+        if not function:
+            return True
+        valid_args = function["parameters"]["properties"].keys()
+        return all(arg in valid_args for arg in call.get("arguments", {}))
+    except:
+        return True
+```
+
+### CHECK argument_types_match_schema
+RATIONALE: Argument values should match the types specified in the function schema (e.g., strings for names, numbers for prices).
+```python
+def check(output, ctx):
+    try:
+        call = parse_call(output)
+        if not call:
+            return True
+        function = next((f for f in ctx["functions"] if f["name"] == call["name"]), None)
+        if not function:
+            return True
+        schema = function["parameters"]["properties"]
+        for key, value in call.get("arguments", {}).items():
+            expected_type = schema[key]["type"]
+            if expected_type == "number" and not isinstance(value, (int, float)):
+                return False
+            if expected_type == "string" and not isinstance(value, str):
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK numeric_values_match_request
+RATIONALE: Numeric arguments (e.g., bill totals, weights) must match the values specified in the user request.
+```python
+def check(output, ctx):
+    try:
+        call = parse_call(output)
+        if not call:
+            return True
+        args = call.get("arguments", {})
+        user_request = ctx["request"].lower()
+        for value in args.values():
+            if isinstance(value, (int, float)) and str(value) not in user_request:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK date_format_in_arguments
+RATIONALE: Dates in arguments must follow the expected format (e.g., "YYYY-MM-DD" for birthdates).
+```python
+def check(output, ctx):
+    import re
+    try:
+        call = parse_call(output)
+        if not call:
+            return True
+        args = call.get("arguments", {})
+        date_pattern = re.compile(r"\d{4}-\d{2}-\d{2}")
+        for value in args.values():
+            if isinstance(value, str) and "birthdate" in value.lower() and not date_pattern.fullmatch(value):
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK consistent_units_in_arguments
+RATIONALE: Argument values must use consistent units (e.g., kilograms for weight, meters for height).
+```python
+def check(output, ctx):
+    try:
+        call = parse_call(output)
+        if not call:
+            return True
+        args = call.get("arguments", {})
+        if "weight" in args and not isinstance(args["weight"], (int, float)):
+            return False
+        if "height" in args and not isinstance(args["height"], (int, float)):
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK argument_enums_match_schema
+RATIONALE: If a schema specifies enumerated values for an argument, the output must respect those values.
+```python
+def check(output, ctx):
+    try:
+        call = parse_call(output)
+        if not call:
+            return True
+        function = next((f for f in ctx["functions"] if f["name"] == call["name"]), None)
+        if not function:
+            return True
+        schema = function["parameters"]["properties"]
+        for key, value in call.get("arguments", {}).items():
+            if "enum" in schema[key] and value not in schema[key]["enum"]:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK user_request_keywords_in_arguments
+RATIONALE: User-provided keywords in the request should appear in the arguments for functions like "search_books" or "search_restaurants."
+```python
+def check(output, ctx):
+    try:
+        call = parse_call(output)
+        if not call:
+            return True
+        user_request = ctx["request"].lower()
+        args = call.get("arguments", {})
+        for key in args.values():
+            if isinstance(key, str) and key.lower() not in user_request:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK function_name_fits_request_intent
+RATIONALE: The function name must align with the intent of the user request, based on keywords in the request and the function description.
+```python
+def check(output, ctx):
+    try:
+        call = parse_call(output)
+        if not call:
+            return True
+        user_request = ctx["request"].lower()
+        function_name = call["name"]
+        for func in ctx["functions"]:
+            if func["name"] == function_name and func["description"].lower() in user_request:
+                return True
+        return False
+    except:
+        return True
+```
+
+### CHECK no_conflicting_arguments
+RATIONALE: Correct outputs will not contain conflicting arguments (e.g., mutually exclusive options or contradictory values).
+```python
+def check(output, ctx):
+    try:
+        call = parse_call(output)
+        if not call:
+            return True
+        args = call.get("arguments", {})
+        if "start_date" in args and "end_date" in args:
+            if args["start_date"] > args["end_date"]:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK argument_values_consistent_with_schema
+RATIONALE: Argument values must be consistent with constraints in the schema (e.g., ranges for numeric values).
+```python
+def check(output, ctx):
+    try:
+        call = parse_call(output)
+        if not call:
+            return True
+        function = next((f for f in ctx["functions"] if f["name"] == call["name"]), None)
+        if not function:
+            return True
+        schema = function["parameters"]["properties"]
+        for key, value in call.get("arguments", {}).items():
+            if "minimum" in schema[key] and value < schema[key]["minimum"]:
+                return False
+            if "maximum" in schema[key] and value > schema[key]["maximum"]:
+                return False
+        return True
+    except:
+        return True
+```

@@ -1,0 +1,170 @@
+[
+  {
+    "task": "morph",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "rule": "gated",
+    "acc": 0.31786074672048437,
+    "delta_pts": 0.39478304742684156,
+    "ci": [
+      -1.109989909182646,
+      1.9172552976791102
+    ],
+    "p": 0.6866313368663134,
+    "degenerate": false,
+    "gate_fired_frac": 0.32088799192734613
+  },
+  {
+    "task": "morph",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "rule": "homogeneous",
+    "acc": 0.3249243188698285,
+    "delta_pts": 1.0991321897073663,
+    "ci": [
+      -1.0090817356205872,
+      3.329969727547927
+    ],
+    "p": 0.35926407359264073,
+    "degenerate": false,
+    "gate_fired_frac": 0.32088799192734613
+  },
+  {
+    "task": "morph",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "rule": "ungated",
+    "acc": 0.30978809283551967,
+    "delta_pts": -0.41260343087790113,
+    "ci": [
+      -2.421796165489404,
+      1.614530776992934
+    ],
+    "p": 0.7668233176682332,
+    "degenerate": false,
+    "gate_fired_frac": 0.32088799192734613
+  },
+  {
+    "task": "morph",
+    "model": "meta-llama/llama-3.1-8b-instruct",
+    "rule": "gated",
+    "acc": 0.21796165489404642,
+    "delta_pts": 1.0127850655903128,
+    "ci": [
+      -0.10090817356205872,
+      2.219979818365286
+    ],
+    "p": 0.11748825117488251,
+    "degenerate": false,
+    "gate_fired_frac": 0.2613521695257316
+  },
+  {
+    "task": "morph",
+    "model": "meta-llama/llama-3.1-8b-instruct",
+    "rule": "homogeneous",
+    "acc": 0.20080726538849647,
+    "delta_pts": -0.7022401614530778,
+    "ci": [
+      -2.522704339051465,
+      1.109989909182643
+    ],
+    "p": 0.5206479352064793,
+    "degenerate": false,
+    "gate_fired_frac": 0.2613521695257316
+  },
+  {
+    "task": "morph",
+    "model": "meta-llama/llama-3.1-8b-instruct",
+    "rule": "ungated",
+    "acc": 0.19475277497477295,
+    "delta_pts": -1.3030171543895055,
+    "ci": [
+      -3.128153380423815,
+      0.6054490413723496
+    ],
+    "p": 0.21037896210378962,
+    "degenerate": false,
+    "gate_fired_frac": 0.2613521695257316
+  },
+  {
+    "task": "morph",
+    "model": "openai/gpt-4o-2024-11-20",
+    "rule": "gated",
+    "acc": 0.43592330978809285,
+    "delta_pts": -1.215196770938446,
+    "ci": [
+      -2.1190716448032276,
+      -0.30272452068617617
+    ],
+    "p": 0.012798720127987202,
+    "degenerate": false,
+    "gate_fired_frac": 0.20686175580222
+  },
+  {
+    "task": "morph",
+    "model": "openai/gpt-4o-2024-11-20",
+    "rule": "homogeneous",
+    "acc": 0.43491422805247226,
+    "delta_pts": -1.3204339051463168,
+    "ci": [
+      -2.623612512613521,
+      0.0
+    ],
+    "p": 0.070992900709929,
+    "degenerate": false,
+    "gate_fired_frac": 0.20686175580222
+  },
+  {
+    "task": "morph",
+    "model": "openai/gpt-4o-2024-11-20",
+    "rule": "ungated",
+    "acc": 0.45610494450050454,
+    "delta_pts": 0.7946821392532796,
+    "ci": [
+      -0.4036326942482349,
+      1.9172552976791157
+    ],
+    "p": 0.23717628237176283,
+    "degenerate": false,
+    "gate_fired_frac": 0.20686175580222
+  },
+  {
+    "task": "morph",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "rule": "gated",
+    "acc": 0.40060544904137235,
+    "delta_pts": -0.10311806256306762,
+    "ci": [
+      -0.8072653884964698,
+      0.6054490413723523
+    ],
+    "p": 1.0,
+    "degenerate": false,
+    "gate_fired_frac": 0.15136226034308778
+  },
+  {
+    "task": "morph",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "rule": "homogeneous",
+    "acc": 0.40161453077699294,
+    "delta_pts": -0.004672048435923344,
+    "ci": [
+      -1.2108980827447047,
+      1.3118062563067578
+    ],
+    "p": 1.0,
+    "degenerate": false,
+    "gate_fired_frac": 0.15136226034308778
+  },
+  {
+    "task": "morph",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "rule": "ungated",
+    "acc": 0.4046417759838547,
+    "delta_pts": 0.29649848637739656,
+    "ci": [
+      -0.9081735620585285,
+      1.5136226034308753
+    ],
+    "p": 0.7455254474552545,
+    "degenerate": false,
+    "gate_fired_frac": 0.15136226034308778
+  }
+]

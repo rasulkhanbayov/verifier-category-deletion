@@ -1,0 +1,366 @@
+[
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "subset": [
+      "parses"
+    ],
+    "eps": 1.0,
+    "delta": 0.0,
+    "gain_pts": 0.0,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "subset": [
+      "required_fields"
+    ],
+    "eps": 1.0,
+    "delta": 0.0,
+    "gain_pts": 0.0,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "subset": [
+      "schema_valid"
+    ],
+    "eps": 1.0,
+    "delta": 0.0,
+    "gain_pts": 0.0,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "subset": [
+      "no_overlap"
+    ],
+    "eps": 0.9182750301568154,
+    "delta": 0.0,
+    "gain_pts": 2.1855381008651036,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "subset": [
+      "parses",
+      "required_fields"
+    ],
+    "eps": 1.0,
+    "delta": 0.0,
+    "gain_pts": 0.0,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "subset": [
+      "parses",
+      "schema_valid"
+    ],
+    "eps": 1.0,
+    "delta": 0.0,
+    "gain_pts": 0.0,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "subset": [
+      "parses",
+      "no_overlap"
+    ],
+    "eps": 0.9182750301568154,
+    "delta": 0.0,
+    "gain_pts": 2.1855381008651036,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "subset": [
+      "required_fields",
+      "schema_valid"
+    ],
+    "eps": 1.0,
+    "delta": 0.0,
+    "gain_pts": 0.0,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "subset": [
+      "required_fields",
+      "no_overlap"
+    ],
+    "eps": 0.9182750301568154,
+    "delta": 0.0,
+    "gain_pts": 2.1855381008651036,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "subset": [
+      "schema_valid",
+      "no_overlap"
+    ],
+    "eps": 0.9182750301568154,
+    "delta": 0.0,
+    "gain_pts": 2.1855381008651036,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "subset": [
+      "parses",
+      "required_fields",
+      "schema_valid"
+    ],
+    "eps": 1.0,
+    "delta": 0.0,
+    "gain_pts": 0.0,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "subset": [
+      "parses",
+      "required_fields",
+      "no_overlap"
+    ],
+    "eps": 0.9182750301568154,
+    "delta": 0.0,
+    "gain_pts": 2.1855381008651036,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "subset": [
+      "parses",
+      "schema_valid",
+      "no_overlap"
+    ],
+    "eps": 0.9182750301568154,
+    "delta": 0.0,
+    "gain_pts": 2.1855381008651036,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "subset": [
+      "required_fields",
+      "schema_valid",
+      "no_overlap"
+    ],
+    "eps": 0.9182750301568154,
+    "delta": 0.0,
+    "gain_pts": 2.1855381008651036,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "subset": [
+      "parses",
+      "required_fields",
+      "schema_valid",
+      "no_overlap"
+    ],
+    "eps": 0.9182750301568154,
+    "delta": 0.0,
+    "gain_pts": 2.1855381008651036,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "subset": [
+      "parses"
+    ],
+    "eps": 0.9997755331088665,
+    "delta": 0.0,
+    "gain_pts": 0.0050806652690546525,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "subset": [
+      "required_fields"
+    ],
+    "eps": 0.9997755331088665,
+    "delta": 0.0,
+    "gain_pts": 0.0050806652690546525,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "subset": [
+      "schema_valid"
+    ],
+    "eps": 0.9997755331088665,
+    "delta": 0.0,
+    "gain_pts": 0.0050806652690546525,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "subset": [
+      "no_overlap"
+    ],
+    "eps": 0.8769921436588103,
+    "delta": 0.0,
+    "gain_pts": 3.0355962053070153,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "subset": [
+      "parses",
+      "required_fields"
+    ],
+    "eps": 0.9997755331088665,
+    "delta": 0.0,
+    "gain_pts": 0.0050806652690546525,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "subset": [
+      "parses",
+      "schema_valid"
+    ],
+    "eps": 0.9997755331088665,
+    "delta": 0.0,
+    "gain_pts": 0.0050806652690546525,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "subset": [
+      "parses",
+      "no_overlap"
+    ],
+    "eps": 0.8769921436588103,
+    "delta": 0.0,
+    "gain_pts": 3.0355962053070153,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "subset": [
+      "required_fields",
+      "schema_valid"
+    ],
+    "eps": 0.9997755331088665,
+    "delta": 0.0,
+    "gain_pts": 0.0050806652690546525,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "subset": [
+      "required_fields",
+      "no_overlap"
+    ],
+    "eps": 0.8769921436588103,
+    "delta": 0.0,
+    "gain_pts": 3.0355962053070153,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "subset": [
+      "schema_valid",
+      "no_overlap"
+    ],
+    "eps": 0.8769921436588103,
+    "delta": 0.0,
+    "gain_pts": 3.0355962053070153,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "subset": [
+      "parses",
+      "required_fields",
+      "schema_valid"
+    ],
+    "eps": 0.9997755331088665,
+    "delta": 0.0,
+    "gain_pts": 0.0050806652690546525,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "subset": [
+      "parses",
+      "required_fields",
+      "no_overlap"
+    ],
+    "eps": 0.8769921436588103,
+    "delta": 0.0,
+    "gain_pts": 3.0355962053070153,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "subset": [
+      "parses",
+      "schema_valid",
+      "no_overlap"
+    ],
+    "eps": 0.8769921436588103,
+    "delta": 0.0,
+    "gain_pts": 3.0355962053070153,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "subset": [
+      "required_fields",
+      "schema_valid",
+      "no_overlap"
+    ],
+    "eps": 0.8769921436588103,
+    "delta": 0.0,
+    "gain_pts": 3.0355962053070153,
+    "exceeds_full": false
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "subset": [
+      "parses",
+      "required_fields",
+      "schema_valid",
+      "no_overlap"
+    ],
+    "eps": 0.8769921436588103,
+    "delta": 0.0,
+    "gain_pts": 3.0355962053070153,
+    "exceeds_full": false
+  }
+]

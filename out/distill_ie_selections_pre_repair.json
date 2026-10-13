@@ -1,0 +1,33 @@
+{
+ "f1_pre_repair": [
+  "ie-r1_opus-839a3d6be0",
+  "ie-r0-84f7d14832",
+  "hw:no_overlap",
+  "ie-r1_opus-6fc5fa50b8",
+  "ie-r0-991f4a3e41",
+  "ie-r1_opus-29e40fddf9",
+  "ie-r1_opus-8e77397838",
+  "ie-r1_opus-f6da3d7afc",
+  "ie-r0-193b309274",
+  "ie-r0-42af166ffa",
+  "ie-r1_opus-b51baea2b5"
+ ],
+ "certified_pre_repair": [
+  "ie-r1_opus-839a3d6be0",
+  "hw:no_overlap",
+  "ie-r1_opus-29e40fddf9",
+  "ie-r1_opus-6fc5fa50b8",
+  "ie-r1_opus-f6da3d7afc",
+  "ie-r0-991f4a3e41",
+  "ie-r0-42af166ffa",
+  "ie-r1_opus-8e77397838",
+  "ie-r1_opus-b1f68dbc93",
+  "ie-r0-6a1b9bb5ae",
+  "ie-r0-f4f7c1dfc5",
+  "ie-r0-193b309274",
+  "ie-r1_opus-f0d9416dea",
+  "ie-r0-7bec4232c5",
+  "ie-r1_opus-38b81e9257",
+  "ie-r1_opus-b51baea2b5"
+ ]
+}

@@ -1,0 +1,54 @@
+{
+  "model": "openai/gpt-4o-2024-11-20",
+  "judge_model": "openai/gpt-4o-2024-11-20",
+  "n": 200,
+  "base_pct": 50.0,
+  "sc": {
+    "ungated_pct": 51.5,
+    "gated_pct": 50.0,
+    "ungated_diff_ci": [
+      1.5198500000000001,
+      -1.5000000000000013,
+      4.999999999999993
+    ],
+    "gated_diff_ci": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "ungated_floor_holds": true,
+    "gated_floor_holds": true
+  },
+  "judge": {
+    "ungated_pct": 52.0,
+    "gated_pct": 50.0,
+    "ungated_diff_ci": [
+      2.00435,
+      -1.5000000000000013,
+      5.500000000000005
+    ],
+    "gated_diff_ci": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "ungated_floor_holds": true,
+    "gated_floor_holds": true
+  },
+  "rm": {
+    "ungated_pct": 53.5,
+    "gated_pct": 50.5,
+    "ungated_diff_ci": [
+      3.5067,
+      0.0,
+      7.499999999999996
+    ],
+    "gated_diff_ci": [
+      0.505,
+      0.0,
+      1.5000000000000013
+    ],
+    "ungated_floor_holds": true,
+    "gated_floor_holds": true
+  }
+}

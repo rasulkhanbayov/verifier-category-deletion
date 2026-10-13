@@ -1,0 +1,11 @@
+# GPU training of students (SFT) and policies (GRPO); used on one NVIDIA P100 (16 GB), fp32.
+# Install torch for your CUDA version first, e.g.
+#   pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cu121
+-r requirements.txt
+torch==2.5.1
+transformers==4.53.3
+peft==0.15.2
+trl==0.19.1
+accelerate==1.8.1
+safetensors==0.8.0
+tokenizers==0.21.4

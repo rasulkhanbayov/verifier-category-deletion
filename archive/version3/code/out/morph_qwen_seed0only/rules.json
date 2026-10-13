@@ -1,0 +1,86 @@
+[
+  {
+    "task": "morph",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "rule": "gated",
+    "acc": 0.37,
+    "delta_pts": -1.4971,
+    "ci": [
+      -3.9999999999999982,
+      0.5000000000000004
+    ],
+    "p": 0.3678632136786321,
+    "degenerate": false,
+    "gate_fired_frac": 0.185
+  },
+  {
+    "task": "morph",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "rule": "homogeneous",
+    "acc": 0.36,
+    "delta_pts": -2.50025,
+    "ci": [
+      -6.5,
+      1.4999999999999958
+    ],
+    "p": 0.30216978302169784,
+    "degenerate": false,
+    "gate_fired_frac": 0.185
+  },
+  {
+    "task": "morph",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "rule": "ungated",
+    "acc": 0.345,
+    "delta_pts": -4.0141,
+    "ci": [
+      -8.000000000000002,
+      0.0
+    ],
+    "p": 0.0795920407959204,
+    "degenerate": false,
+    "gate_fired_frac": 0.185
+  },
+  {
+    "task": "morph",
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "rule": "gated",
+    "acc": 0.285,
+    "delta_pts": 0.99145,
+    "ci": [
+      -0.9999999999999953,
+      3.0000000000000027
+    ],
+    "p": 0.6203379662033797,
+    "degenerate": false,
+    "gate_fired_frac": 0.355
+  },
+  {
+    "task": "morph",
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "rule": "homogeneous",
+    "acc": 0.28,
+    "delta_pts": 0.48875,
+    "ci": [
+      -2.4999999999999996,
+      3.4999999999999973
+    ],
+    "p": 1.0,
+    "degenerate": false,
+    "gate_fired_frac": 0.355
+  },
+  {
+    "task": "morph",
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "rule": "ungated",
+    "acc": 0.285,
+    "delta_pts": 0.99535,
+    "ci": [
+      -1.4999999999999958,
+      3.5000000000000004
+    ],
+    "p": 0.682031796820318,
+    "degenerate": false,
+    "gate_fired_frac": 0.355
+  }
+]

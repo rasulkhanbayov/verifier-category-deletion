@@ -1,0 +1,86 @@
+[
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "rule": "gated",
+    "acc": 0.52,
+    "delta_pts": 0.9975,
+    "ci": [
+      0.0,
+      2.500000000000002
+    ],
+    "p": 0.5041495850414959,
+    "degenerate": false,
+    "gate_fired_frac": 0.065
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "rule": "homogeneous",
+    "acc": 0.5,
+    "delta_pts": -1.0042,
+    "ci": [
+      -4.5000000000000036,
+      2.500000000000002
+    ],
+    "p": 0.7925207479252074,
+    "degenerate": false,
+    "gate_fired_frac": 0.065
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "rule": "ungated",
+    "acc": 0.49,
+    "delta_pts": -2.0017,
+    "ci": [
+      -5.499999999999999,
+      1.5000000000000013
+    ],
+    "p": 0.38036196380361964,
+    "degenerate": false,
+    "gate_fired_frac": 0.065
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "rule": "gated",
+    "acc": 0.405,
+    "delta_pts": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "p": 1.0,
+    "degenerate": true,
+    "gate_fired_frac": 0.04
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "rule": "homogeneous",
+    "acc": 0.4,
+    "delta_pts": -0.51805,
+    "ci": [
+      -3.4999999999999973,
+      2.4999999999999964
+    ],
+    "p": 1.0,
+    "degenerate": false,
+    "gate_fired_frac": 0.04
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "rule": "ungated",
+    "acc": 0.4,
+    "delta_pts": -0.51805,
+    "ci": [
+      -3.4999999999999973,
+      2.4999999999999964
+    ],
+    "p": 1.0,
+    "degenerate": false,
+    "gate_fired_frac": 0.04
+  }
+]

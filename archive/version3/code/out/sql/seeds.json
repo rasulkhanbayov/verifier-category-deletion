@@ -1,0 +1,62 @@
+[
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "eps_mean": 0.7431959787795547,
+    "eps_sd": 0.07766026090410712,
+    "ceiling_mean": 3.720782026355584,
+    "ceiling_sd": NaN
+  },
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-8b-instruct",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "eps_mean": 0.6338953763856934,
+    "eps_sd": 0.03880835014761024,
+    "ceiling_mean": NaN,
+    "ceiling_sd": NaN
+  },
+  {
+    "task": "sql",
+    "model": "openai/gpt-4o-2024-11-20",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "eps_mean": 0.9529200353589656,
+    "eps_sd": 0.0231960377604738,
+    "ceiling_mean": NaN,
+    "ceiling_sd": NaN
+  },
+  {
+    "task": "sql",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "eps_mean": 0.8582250695396807,
+    "eps_sd": 0.03535706101451122,
+    "ceiling_mean": NaN,
+    "ceiling_sd": NaN
+  }
+]

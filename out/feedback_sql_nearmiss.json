@@ -1,0 +1,1484 @@
+{
+ "feedback": [
+  {
+   "name": "check_limit_for_top_k_requests",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    if 'top' in ctx['question'].lower() or 'limit' in ctx['question'].lower():\n        return 'limit' in extract_sql(output).lower()\n    return True",
+   "n_rejected_correct": 6,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "Give the songs included in volumes that have more than 1 week on top.",
+      "db_id": "music_4"
+     },
+     "output": "SELECT song FROM volume WHERE weeks_on_top > 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Give the songs included in volumes that have more than 1 week on top.",
+      "db_id": "music_4"
+     },
+     "output": "SELECT DISTINCT volume.song FROM volume WHERE volume.weeks_on_top > 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Give the songs included in volumes that have more than 1 week on top.",
+      "db_id": "music_4"
+     },
+     "output": "SELECT song FROM volume WHERE weeks_on_top > 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Give the songs included in volumes that have more than 1 week on top.",
+      "db_id": "music_4"
+     },
+     "output": "SELECT song FROM volume WHERE weeks_on_top > 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the names of the workshop groups that have bookings with status code \"stop\"?",
+      "db_id": "cre_Drama_Workshop_Groups"
+     },
+     "output": "SELECT T2.Store_Name FROM Bookings AS T1 JOIN Drama_Workshop_Groups AS T2 ON T1.Workshop_Group_ID  =  T2.Workshop_Group_ID WHERE T1.Status_Code  =  \"stop\"",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "question": "Give the songs included in volumes that have more than 1 week on top.",
+      "db_id": "music_4"
+     },
+     "output": "SELECT Song FROM volume WHERE Weeks_on_Top  >  1",
+     "is_gold": true
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0033
+  },
+  {
+   "name": "check_date_filter_for_temporal_questions",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    question = ctx['question'].lower()\n    if any(keyword in question for keyword in ['after', 'before', 'between', 'date']):\n        return any(keyword in extract_sql(output).lower() for keyword in ['>', '<', 'between', 'date'])\n    return True",
+   "n_rejected_correct": 13,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "List the first name of all employees with job code PROF ordered by their date of birth.",
+      "db_id": "college_1"
+     },
+     "output": "SELECT emp_fname FROM employee WHERE emp_jobcode = 'PROF' ORDER BY emp_dob",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "List the first name of all employees with job code PROF ordered by their date of birth.",
+      "db_id": "college_1"
+     },
+     "output": "SELECT emp_fname FROM employee WHERE emp_jobcode = 'PROF' ORDER BY emp_dob",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "List the first name of all employees with job code PROF ordered by their date of birth.",
+      "db_id": "college_1"
+     },
+     "output": "SELECT emp_fname FROM employee WHERE emp_jobcode = 'PROF' ORDER BY emp_dob",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "List the first name of all employees with job code PROF ordered by their date of birth.",
+      "db_id": "college_1"
+     },
+     "output": "SELECT emp_fname FROM employee WHERE emp_jobcode = 'PROF' ORDER BY emp_dob;",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What is the list of program names, sorted by the order of launch date?",
+      "db_id": "program_share"
+     },
+     "output": "SELECT name FROM program ORDER BY launch",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What is the list of program names, sorted by the order of launch date?",
+      "db_id": "program_share"
+     },
+     "output": "SELECT name FROM program ORDER BY launch",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What is the list of program names, sorted by the order of launch date?",
+      "db_id": "program_share"
+     },
+     "output": "SELECT name FROM program ORDER BY launch",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What is the list of program names, sorted by the order of launch date?",
+      "db_id": "program_share"
+     },
+     "output": "SELECT name FROM program ORDER BY launch",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0066
+  },
+  {
+   "name": "check_except_for_exclusion_questions",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    if 'except' in ctx['question'].lower():\n        return 'except' in extract_sql(output).lower()\n    return True",
+   "n_rejected_correct": 4,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "Show the names of all the donors except those whose donation amount less than 9.",
+      "db_id": "school_finance"
+     },
+     "output": "SELECT donator_name FROM endowment WHERE amount >= 9",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Show the names of all the donors except those whose donation amount less than 9.",
+      "db_id": "school_finance"
+     },
+     "output": "SELECT donator_name FROM endowment WHERE amount >= 9",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Show the names of all the donors except those whose donation amount less than 9.",
+      "db_id": "school_finance"
+     },
+     "output": "SELECT donator_name FROM endowment WHERE amount >= 9",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Show the names of all the donors except those whose donation amount less than 9.",
+      "db_id": "school_finance"
+     },
+     "output": "SELECT donator_name FROM endowment WHERE amount >= 9",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0033
+  },
+  {
+   "name": "check_min_max_for_extreme_values",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    question = ctx['question'].lower()\n    if 'minimum' in question or 'maximum' in question:\n        return any(keyword in extract_sql(output).lower() for keyword in ['min(', 'max('])\n    return True",
+   "n_rejected_correct": 25,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "What are the dates with a maximum temperature higher than 85?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT date FROM weather WHERE max_temperature_f > 85",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the dates with a maximum temperature higher than 85?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT date FROM weather WHERE max_temperature_f > 85",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the dates with a maximum temperature higher than 85?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT date FROM weather WHERE max_temperature_f > 85",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the dates with a maximum temperature higher than 85?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT date FROM weather WHERE max_temperature_f > 85",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What is the maximum total amount paid by a customer? List the customer id and amount.",
+      "db_id": "products_for_hire"
+     },
+     "output": "SELECT customer_id, SUM(amount_paid) AS total_amount_paid FROM payments GROUP BY customer_id ORDER BY total_amount_paid DESC LIMIT 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What is the maximum total amount paid by a customer? List the customer id and amount.",
+      "db_id": "products_for_hire"
+     },
+     "output": "SELECT customer_id, SUM(amount_paid) AS total_amount_paid FROM payments GROUP BY customer_id ORDER BY total_amount_paid DESC LIMIT 1;",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What is the maximum total amount paid by a customer? List the customer id and amount.",
+      "db_id": "products_for_hire"
+     },
+     "output": "SELECT customer_id, SUM(amount_paid) AS total_amount_paid FROM payments GROUP BY customer_id ORDER BY total_amount_paid DESC LIMIT 1;",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What is the maximum total amount paid by a customer? List the customer id and amount.",
+      "db_id": "products_for_hire"
+     },
+     "output": "SELECT customer_id, SUM(amount_paid) AS total_amount_paid FROM payments GROUP BY customer_id ORDER BY total_amount_paid DESC LIMIT 1",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0057
+  },
+  {
+   "name": "check_no_hardcoded_values",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    sql = extract_sql(output).lower()\n    question = ctx['question'].lower()\n    return all(value not in sql for value in ['123', 'abc', 'test', 'example'])\n    return True",
+   "n_rejected_correct": 20,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "How many tests have result \"Fail\"?",
+      "db_id": "e_learning"
+     },
+     "output": "SELECT COUNT(*) FROM student_tests_taken WHERE test_result = 'Fail'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "How many tests have result \"Fail\"?",
+      "db_id": "e_learning"
+     },
+     "output": "SELECT COUNT(*) FROM student_tests_taken WHERE test_result = 'Fail'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "How many tests have result \"Fail\"?",
+      "db_id": "e_learning"
+     },
+     "output": "SELECT COUNT(*) FROM student_tests_taken WHERE test_result = 'Fail'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "How many tests have result \"Fail\"?",
+      "db_id": "e_learning"
+     },
+     "output": "SELECT COUNT(*) FROM student_tests_taken WHERE test_result = 'Fail'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the dates on which more than one revisions were made.",
+      "db_id": "product_catalog"
+     },
+     "output": "SELECT date_of_latest_revision FROM catalogs GROUP BY date_of_latest_revision HAVING COUNT(*) > 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the dates on which more than one revisions were made.",
+      "db_id": "product_catalog"
+     },
+     "output": "SELECT date_of_latest_revision FROM catalogs GROUP BY date_of_latest_revision HAVING COUNT(*) > 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the dates on which more than one revisions were made.",
+      "db_id": "product_catalog"
+     },
+     "output": "SELECT date_of_latest_revision FROM catalogs GROUP BY date_of_latest_revision HAVING COUNT(*) > 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the dates on which more than one revisions were made.",
+      "db_id": "product_catalog"
+     },
+     "output": "SELECT date_of_latest_revision FROM catalogs GROUP BY date_of_latest_revision HAVING COUNT(*) > 1",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0066
+  },
+  {
+   "name": "where_clause_for_filtering_questions",
+   "source": "def check(output, ctx):\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    if any(keyword in question for keyword in ['greater than', 'less than', 'equal to', 'not', 'except']) and 'where' not in sql:\n        return False\n    return True",
+   "n_rejected_correct": 18,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "Show the locations that have both performances with more than 2000 attendees and performances with less than 1000 attendees.",
+      "db_id": "performance_attendance"
+     },
+     "output": "SELECT location FROM performance GROUP BY location HAVING SUM(CASE WHEN attendance > 2000 THEN 1 ELSE 0 END) > 0 AND SUM(CASE WHEN attendance < 1000 THEN 1 ELSE 0 END) > 0;",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Which contact channel codes were used less than 5 times?",
+      "db_id": "customers_and_addresses"
+     },
+     "output": "SELECT channel_code FROM customer_contact_channels GROUP BY channel_code HAVING COUNT(*) < 5",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Which contact channel codes were used less than 5 times?",
+      "db_id": "customers_and_addresses"
+     },
+     "output": "SELECT channel_code FROM customer_contact_channels GROUP BY channel_code HAVING COUNT(*) < 5",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Which contact channel codes were used less than 5 times?",
+      "db_id": "customers_and_addresses"
+     },
+     "output": "SELECT channel_code FROM customer_contact_channels GROUP BY channel_code HAVING COUNT(*) < 5",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Which contact channel codes were used less than 5 times?",
+      "db_id": "customers_and_addresses"
+     },
+     "output": "SELECT channel_code FROM customer_contact_channels GROUP BY channel_code HAVING COUNT(*) < 5",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "List title of albums have the number of tracks greater than 10.",
+      "db_id": "store_1"
+     },
+     "output": "SELECT a.title FROM albums a JOIN tracks t ON a.id = t.album_id GROUP BY a.id HAVING COUNT(t.id) > 10",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "List title of albums have the number of tracks greater than 10.",
+      "db_id": "store_1"
+     },
+     "output": "SELECT a.title FROM albums a JOIN tracks t ON a.id = t.album_id GROUP BY a.id HAVING COUNT(t.id) > 10",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "List title of albums have the number of tracks greater than 10.",
+      "db_id": "store_1"
+     },
+     "output": "SELECT a.title FROM albums a JOIN tracks t ON a.id = t.album_id GROUP BY a.id HAVING COUNT(t.id) > 10",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0066
+  },
+  {
+   "name": "aggregation_for_summary_questions",
+   "source": "def check(output, ctx):\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    if any(keyword in question for keyword in ['average', 'sum', 'maximum', 'minimum']) and not any(func in sql for func in ['avg(', 'sum(', 'max(', 'min(']):\n        return False\n    return True",
+   "n_rejected_correct": 22,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "What are the dates with a maximum temperature higher than 85?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT date FROM weather WHERE max_temperature_f > 85",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the dates with a maximum temperature higher than 85?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT date FROM weather WHERE max_temperature_f > 85",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the dates with a maximum temperature higher than 85?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT date FROM weather WHERE max_temperature_f > 85",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the dates with a maximum temperature higher than 85?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT date FROM weather WHERE max_temperature_f > 85",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the id and local authority of the station whose maximum precipitation is higher than 50.",
+      "db_id": "station_weather"
+     },
+     "output": "SELECT id, local_authority FROM station WHERE id IN (SELECT station_id FROM weekly_weather WHERE precipitation > 50)",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What is the most common maximum page size?",
+      "db_id": "store_product"
+     },
+     "output": "SELECT max_page_size FROM product GROUP BY max_page_size ORDER BY COUNT(*) DESC LIMIT 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What is the most common maximum page size?",
+      "db_id": "store_product"
+     },
+     "output": "SELECT max_page_size FROM product GROUP BY max_page_size ORDER BY COUNT(*) DESC LIMIT 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What is the most common maximum page size?",
+      "db_id": "store_product"
+     },
+     "output": "SELECT max_page_size FROM product GROUP BY max_page_size ORDER BY COUNT(*) DESC LIMIT 1",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0066
+  },
+  {
+   "name": "order_by_for_sorting_questions",
+   "source": "def check(output, ctx):\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    if any(keyword in question for keyword in ['order by', 'sorted by', 'highest', 'lowest']) and 'order by' not in sql:\n        return False\n    return True",
+   "n_rejected_correct": 8,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "Give the name of the department with the lowest budget.",
+      "db_id": "college_2"
+     },
+     "output": "SELECT dept_name FROM department WHERE budget = (SELECT MIN(budget) FROM department)",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Give the id and product type of the product with the lowest price.",
+      "db_id": "department_store"
+     },
+     "output": "SELECT product_id, product_type_code FROM products WHERE product_price = (SELECT MIN(product_price) FROM products)",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Give the id and product type of the product with the lowest price.",
+      "db_id": "department_store"
+     },
+     "output": "SELECT product_id, product_type_code FROM products WHERE product_price = (SELECT MIN(product_price) FROM products)",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Give the id and product type of the product with the lowest price.",
+      "db_id": "department_store"
+     },
+     "output": "SELECT product_id, product_type_code FROM products WHERE product_price = (SELECT MIN(product_price) FROM products)",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Give the id and product type of the product with the lowest price.",
+      "db_id": "department_store"
+     },
+     "output": "SELECT product_id, product_type_code FROM products WHERE product_price = (SELECT MIN(product_price) FROM products)",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What is the country of the airport with the highest elevation?",
+      "db_id": "flight_4"
+     },
+     "output": "SELECT country FROM airports WHERE elevation = (SELECT MAX(elevation) FROM airports)",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What is the country of the airport with the highest elevation?",
+      "db_id": "flight_4"
+     },
+     "output": "SELECT country FROM airports WHERE elevation = (SELECT MAX(elevation) FROM airports)",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the employee ids, full names, and job ids for employees who make more than the highest earning employee with title PU_MAN?",
+      "db_id": "hr_1"
+     },
+     "output": "SELECT employee_id ,  first_name ,  last_name ,  job_id FROM employees WHERE salary  >  ( SELECT max(salary) FROM employees WHERE job_id  =  'PU_MAN' )",
+     "is_gold": true
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0106
+  },
+  {
+   "name": "group_by_for_aggregation_with_multiple_columns",
+   "source": "def check(output, ctx):\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    if 'group by' not in sql and 'count(' in sql and ',' in sql.split('select')[1].split('from')[0]:\n        return False\n    return True",
+   "n_rejected_correct": 6,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "Find the numbers of different majors and cities.",
+      "db_id": "dorm_1"
+     },
+     "output": "SELECT COUNT(DISTINCT major) AS different_majors, COUNT(DISTINCT city_code) AS different_cities FROM student",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the numbers of different majors and cities.",
+      "db_id": "dorm_1"
+     },
+     "output": "SELECT COUNT(DISTINCT major) AS distinct_majors, COUNT(DISTINCT city_code) AS distinct_cities FROM student",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the numbers of different majors and cities.",
+      "db_id": "dorm_1"
+     },
+     "output": "SELECT COUNT(DISTINCT major) AS different_majors, COUNT(DISTINCT city_code) AS different_cities FROM student",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the numbers of different majors and cities.",
+      "db_id": "dorm_1"
+     },
+     "output": "SELECT COUNT(DISTINCT major) AS different_majors, COUNT(DISTINCT city_code) AS different_cities FROM student",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the number and averaged salary of all instructors who are in the department with the highest budget.",
+      "db_id": "college_2"
+     },
+     "output": "SELECT avg(T1.salary) ,  count(*) FROM instructor AS T1 JOIN department AS T2 ON T1.dept_name  =  T2.dept_name ORDER BY T2.budget DESC LIMIT 1",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "question": "Find the numbers of different majors and cities.",
+      "db_id": "dorm_1"
+     },
+     "output": "SELECT count(DISTINCT major) ,  count(DISTINCT city_code) FROM student",
+     "is_gold": true
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0033
+  },
+  {
+   "name": "check_where_clause_presence_for_filtering",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    if 'where' in ctx['question'].lower() or 'filter' in ctx['question'].lower():\n        sql = extract_sql(output).lower()\n        return 'where' in sql\n    return True",
+   "n_rejected_correct": 11,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "Find employee with ID and name of the country presently where (s)he is working.",
+      "db_id": "hr_1"
+     },
+     "output": "SELECT employees.employee_id, countries.country_name FROM employees JOIN departments ON employees.department_id = departments.department_id JOIN locations ON departments.location_id = locations.location_id JOIN countries ON locations.country_id = countries.country_id;",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Show all the locations where no cinema has capacity over 800.",
+      "db_id": "cinema"
+     },
+     "output": "SELECT location FROM cinema GROUP BY location HAVING MAX(capacity) <= 800",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Show all the locations where no cinema has capacity over 800.",
+      "db_id": "cinema"
+     },
+     "output": "SELECT location FROM cinema GROUP BY location HAVING MAX(capacity) <= 800",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Show all the locations where no cinema has capacity over 800.",
+      "db_id": "cinema"
+     },
+     "output": "SELECT location FROM cinema GROUP BY location HAVING MAX(capacity) <= 800",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Show all the locations where no cinema has capacity over 800.",
+      "db_id": "cinema"
+     },
+     "output": "SELECT location FROM cinema GROUP BY location HAVING MAX(capacity) <= 800",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "List the names of departments where some physicians are primarily affiliated with.",
+      "db_id": "hospital_1"
+     },
+     "output": "SELECT DISTINCT d.name FROM department d JOIN affiliated_with a ON d.departmentid = a.department;",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "List the names of departments where some physicians are primarily affiliated with.",
+      "db_id": "hospital_1"
+     },
+     "output": "SELECT DISTINCT d.name FROM department d JOIN affiliated_with a ON d.departmentid = a.department;",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "List the names of departments where some physicians are primarily affiliated with.",
+      "db_id": "hospital_1"
+     },
+     "output": "SELECT DISTINCT d.name FROM department d JOIN affiliated_with a ON d.departmentid = a.department;",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0123
+  },
+  {
+   "name": "check_negation_for_exclusion",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    if 'not' in ctx['question'].lower() or 'exclude' in ctx['question'].lower():\n        sql = extract_sql(output).lower()\n        return any(op in sql for op in ['!=', 'not in', 'not like'])\n    return True",
+   "n_rejected_correct": 22,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "What are the census rankings of cities that do not have the status \"Village\"?",
+      "db_id": "farm"
+     },
+     "output": "SELECT census_ranking FROM city WHERE status <> 'Village'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the name of tracks which are in Movies playlist but not in music playlist.",
+      "db_id": "store_1"
+     },
+     "output": "SELECT t.name FROM tracks t \nJOIN playlist_tracks pt1 ON t.id = pt1.track_id \nJOIN playlists p1 ON pt1.playlist_id = p1.id \nLEFT JOIN playlist_tracks pt2 ON t.id = pt2.track_id \nLEFT JOIN playlists p2 ON pt2.playlist_id = p2.id \nWHERE p1.name = 'Movies' AND p2.name IS NULL;",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the name of tracks which are in Movies playlist but not in music playlist.",
+      "db_id": "store_1"
+     },
+     "output": "SELECT t.name FROM tracks t \nJOIN playlist_tracks pt1 ON t.id = pt1.track_id \nJOIN playlists p1 ON pt1.playlist_id = p1.id \nLEFT JOIN playlist_tracks pt2 ON t.id = pt2.track_id \nLEFT JOIN playlists p2 ON pt2.playlist_id = p2.id \nWHERE p1.name = 'Movies' AND p2.name IS NULL;",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the first name and office of history professor who did not get a Ph.D. degree.",
+      "db_id": "college_1"
+     },
+     "output": "SELECT emp_fname, prof_office FROM professor JOIN employee ON professor.emp_num = employee.emp_num WHERE professor.prof_high_degree <> 'Ph.D.' AND professor.dept_code = (SELECT dept_code FROM department WHERE dept_name = 'History')",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the first name and office of history professor who did not get a Ph.D. degree.",
+      "db_id": "college_1"
+     },
+     "output": "SELECT emp_fname, prof_office FROM professor JOIN employee ON professor.emp_num = employee.emp_num WHERE professor.prof_high_degree <> 'Ph.D.' AND professor.dept_code = (SELECT dept_code FROM department WHERE dept_name = 'History')",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the first name and office of history professor who did not get a Ph.D. degree.",
+      "db_id": "college_1"
+     },
+     "output": "SELECT emp_fname, prof_office FROM professor JOIN employee ON professor.emp_num = employee.emp_num WHERE professor.prof_high_degree <> 'Ph.D.' AND professor.dept_code = (SELECT dept_code FROM department WHERE dept_name = 'History')",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the name of tracks which are in Movies playlist but not in music playlist.",
+      "db_id": "store_1"
+     },
+     "output": "SELECT T1.name FROM tracks AS T1 JOIN playlist_tracks AS T2 ON T1.id  =  T2.track_id JOIN playlists AS T3 ON T2.playlist_id  =  T3.id WHERE T3.name  =  'Movies' EXCEPT SELECT T1.name FROM tracks AS T1 JOIN playlist_tracks AS T2 ON T1.id  =  T2.track_id JOIN playlists AS T3 ON T2.playlist_id  =  T3.id WHERE T3.name  =  'Music'",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "question": "Give the names of tracks that do not have a race in the class 'GT'.",
+      "db_id": "race_track"
+     },
+     "output": "SELECT name FROM track EXCEPT SELECT T2.name FROM race AS T1 JOIN track AS T2 ON T1.track_id  =  T2.track_id WHERE T1.class  =  'GT'",
+     "is_gold": true
+    }
+   ],
+   "catch_rate_on_incorrect": 0.018
+  },
+  {
+   "name": "check_having_for_aggregated_conditions",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    if 'having' in ctx['question'].lower():\n        return 'having' in extract_sql(output).lower()\n    return True",
+   "n_rejected_correct": 1,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "Show all home cities except for those having a driver older than 40.",
+      "db_id": "school_bus"
+     },
+     "output": "SELECT home_city FROM driver EXCEPT SELECT home_city FROM driver WHERE age  >  40",
+     "is_gold": true
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0033
+  },
+  {
+   "name": "check_case_when_for_conditional_logic",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    if 'case' in ctx['question'].lower() or 'when' in ctx['question'].lower():\n        return 'case when' in extract_sql(output).lower()\n    return True",
+   "n_rejected_correct": 16,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "What are the names of the tourist attractions and the dates when the tourists named Vincent or Vivian visited there?",
+      "db_id": "cre_Theme_park"
+     },
+     "output": "SELECT ta.name, v.visit_date FROM tourist_attractions ta JOIN visits v ON ta.tourist_attraction_id = v.tourist_attraction_id JOIN visitors vi ON v.tourist_id = vi.tourist_id WHERE vi.tourist_details IN ('Vincent', 'Vivian')",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the names of the tourist attractions and the dates when the tourists named Vincent or Vivian visited there?",
+      "db_id": "cre_Theme_park"
+     },
+     "output": "SELECT ta.name, v.visit_date FROM tourist_attractions ta JOIN visits v ON ta.tourist_attraction_id = v.tourist_attraction_id JOIN visitors vi ON v.tourist_id = vi.tourist_id WHERE vi.tourist_details IN ('Vincent', 'Vivian')",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the names of the tourist attractions and the dates when the tourists named Vincent or Vivian visited there?",
+      "db_id": "cre_Theme_park"
+     },
+     "output": "SELECT ta.name, v.visit_date FROM tourist_attractions ta JOIN visits v ON ta.tourist_attraction_id = v.tourist_attraction_id JOIN visitors vi ON v.tourist_id = vi.tourist_id WHERE vi.tourist_details IN ('Vincent', 'Vivian')",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the names of the tourist attractions and the dates when the tourists named Vincent or Vivian visited there?",
+      "db_id": "cre_Theme_park"
+     },
+     "output": "SELECT ta.name, v.visit_date FROM tourist_attractions ta JOIN visits v ON ta.tourist_attraction_id = v.tourist_attraction_id JOIN visitors vi ON v.tourist_id = vi.tourist_id WHERE vi.tourist_details IN ('Vincent', 'Vivian')",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "When is the last day any resident moved in?",
+      "db_id": "local_govt_and_lot"
+     },
+     "output": "SELECT MAX(date_moved_in) FROM residents;",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "When is the last day any resident moved in?",
+      "db_id": "local_govt_and_lot"
+     },
+     "output": "SELECT MAX(date_moved_in) FROM residents;",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "When is the last day any resident moved in?",
+      "db_id": "local_govt_and_lot"
+     },
+     "output": "SELECT MAX(date_moved_in) FROM residents;",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "When is the last day any resident moved in?",
+      "db_id": "local_govt_and_lot"
+     },
+     "output": "SELECT MAX(date_moved_in) FROM residents;",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0074
+  },
+  {
+   "name": "check_min_for_lowest_value",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    if 'lowest' in ctx['question'].lower() or 'minimum' in ctx['question'].lower():\n        return 'min(' in extract_sql(output).lower()\n    return True",
+   "n_rejected_correct": 20,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "What is the zip code in which the average mean sea level pressure is the lowest?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT zip_code FROM weather GROUP BY zip_code ORDER BY AVG(mean_sea_level_pressure_inches) ASC LIMIT 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What is the zip code in which the average mean sea level pressure is the lowest?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT zip_code FROM weather GROUP BY zip_code ORDER BY AVG(mean_sea_level_pressure_inches) ASC LIMIT 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What is the zip code in which the average mean sea level pressure is the lowest?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT zip_code FROM weather GROUP BY zip_code ORDER BY AVG(mean_sea_level_pressure_inches) ASC LIMIT 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What is the zip code in which the average mean sea level pressure is the lowest?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT zip_code FROM weather GROUP BY zip_code ORDER BY AVG(mean_sea_level_pressure_inches) ASC LIMIT 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Give the name of the department with the lowest budget.",
+      "db_id": "college_2"
+     },
+     "output": "SELECT dept_name FROM department ORDER BY budget ASC LIMIT 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Give the name of the department with the lowest budget.",
+      "db_id": "college_2"
+     },
+     "output": "SELECT dept_name FROM department ORDER BY budget ASC LIMIT 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Give the name of the department with the lowest budget.",
+      "db_id": "college_2"
+     },
+     "output": "SELECT dept_name FROM department ORDER BY budget ASC LIMIT 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Give the name of the lowest earning instructor in the Statistics department.",
+      "db_id": "college_2"
+     },
+     "output": "SELECT name FROM instructor WHERE dept_name = 'Statistics' ORDER BY salary ASC LIMIT 1",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0033
+  },
+  {
+   "name": "check_not_null_for_present_values",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    if 'not null' in ctx['question'].lower() or 'present' in ctx['question'].lower():\n        return 'is not null' in extract_sql(output).lower()\n    return True",
+   "n_rejected_correct": 24,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "Find employee with ID and name of the country presently where (s)he is working.",
+      "db_id": "hr_1"
+     },
+     "output": "SELECT employees.employee_id, countries.country_name FROM employees JOIN departments ON employees.department_id = departments.department_id JOIN locations ON departments.location_id = locations.location_id JOIN countries ON locations.country_id = countries.country_id;",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What parties have at least three representatives?",
+      "db_id": "election_representative"
+     },
+     "output": "SELECT party FROM representative GROUP BY party HAVING COUNT(representative_id) >= 3",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What parties have at least three representatives?",
+      "db_id": "election_representative"
+     },
+     "output": "SELECT party FROM representative GROUP BY party HAVING COUNT(representative_id) >= 3",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What parties have at least three representatives?",
+      "db_id": "election_representative"
+     },
+     "output": "SELECT party FROM representative GROUP BY party HAVING COUNT(representative_id) >= 3",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What parties have at least three representatives?",
+      "db_id": "election_representative"
+     },
+     "output": "SELECT party FROM representative GROUP BY party HAVING COUNT(representative_id) >= 3",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the names of representatives and the dates of elections they participated in.",
+      "db_id": "election_representative"
+     },
+     "output": "SELECT representative.name, election.date FROM representative JOIN election ON representative.representative_id = election.representative_id",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the names of representatives and the dates of elections they participated in.",
+      "db_id": "election_representative"
+     },
+     "output": "SELECT representative.name, election.date FROM representative JOIN election ON representative.representative_id = election.representative_id",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the names of representatives and the dates of elections they participated in.",
+      "db_id": "election_representative"
+     },
+     "output": "SELECT representative.name, election.date FROM representative JOIN election ON representative.representative_id = election.representative_id",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0057
+  },
+  {
+   "name": "check_is_null_for_missing_values",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    if 'null' in ctx['question'].lower():\n        return 'is null' in extract_sql(output).lower()\n    return True",
+   "n_rejected_correct": 3,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "Return the full names and salaries of employees with null commissions.",
+      "db_id": "hr_1"
+     },
+     "output": "SELECT first_name ,  last_name ,  salary FROM  employees WHERE commission_pct  =  \"null\"",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "question": "What are the emails of employees with null commission, salary between 7000 and 12000, and who work in department 50?",
+      "db_id": "hr_1"
+     },
+     "output": "SELECT email FROM employees WHERE commission_pct  =  \"null\" AND salary BETWEEN 7000 AND 12000 AND department_id = 50",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "question": "What is the average salary of employees who have a commission percentage that is not null?",
+      "db_id": "hr_1"
+     },
+     "output": "SELECT department_id ,  AVG(salary) FROM employees WHERE commission_pct != \"null\" GROUP BY department_id",
+     "is_gold": true
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0033
+  },
+  {
+   "name": "check_min_max_for_extreme_values",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    if 'highest' in ctx['question'].lower() or 'lowest' in ctx['question'].lower():\n        return 'max(' in extract_sql(output).lower() or 'min(' in extract_sql(output).lower()\n    return True",
+   "n_rejected_correct": 68,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "What is the zip code in which the average mean sea level pressure is the lowest?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT zip_code FROM weather GROUP BY zip_code ORDER BY AVG(mean_sea_level_pressure_inches) ASC LIMIT 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What is the zip code in which the average mean sea level pressure is the lowest?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT zip_code FROM weather GROUP BY zip_code ORDER BY AVG(mean_sea_level_pressure_inches) ASC LIMIT 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What is the zip code in which the average mean sea level pressure is the lowest?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT zip_code FROM weather GROUP BY zip_code ORDER BY AVG(mean_sea_level_pressure_inches) ASC LIMIT 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What is the zip code in which the average mean sea level pressure is the lowest?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT zip_code FROM weather GROUP BY zip_code ORDER BY AVG(mean_sea_level_pressure_inches) ASC LIMIT 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Return the title and director of the movie released in the year 2000 or earlier that had the highest worldwide gross.",
+      "db_id": "culture_company"
+     },
+     "output": "SELECT title, director FROM movie WHERE year <= 2000 ORDER BY gross_worldwide DESC LIMIT 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Return the title and director of the movie released in the year 2000 or earlier that had the highest worldwide gross.",
+      "db_id": "culture_company"
+     },
+     "output": "SELECT title, director FROM movie WHERE year <= 2000 ORDER BY gross_worldwide DESC LIMIT 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Return the title and director of the movie released in the year 2000 or earlier that had the highest worldwide gross.",
+      "db_id": "culture_company"
+     },
+     "output": "SELECT title, director FROM movie WHERE year <= 2000 ORDER BY gross_worldwide DESC LIMIT 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Return the title and director of the movie released in the year 2000 or earlier that had the highest worldwide gross.",
+      "db_id": "culture_company"
+     },
+     "output": "SELECT title, director FROM movie WHERE year <= 2000 ORDER BY gross_worldwide DESC LIMIT 1",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0057
+  },
+  {
+   "name": "check_join_conditions",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    sql = extract_sql(output).lower()\n    if 'join' in sql:\n        return ' on ' in sql\n    return True",
+   "n_rejected_correct": 7,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "What are the names and year of joining for artists that do not have the country \"United States\"?",
+      "db_id": "theme_gallery"
+     },
+     "output": "SELECT name, year_join FROM artist WHERE country != 'United States'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the names and year of joining for artists that do not have the country \"United States\"?",
+      "db_id": "theme_gallery"
+     },
+     "output": "SELECT name, year_join FROM artist WHERE country != 'United States'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the names and year of joining for artists that do not have the country \"United States\"?",
+      "db_id": "theme_gallery"
+     },
+     "output": "SELECT name, year_join FROM artist WHERE country != 'United States'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the names and year of joining for artists that do not have the country \"United States\"?",
+      "db_id": "theme_gallery"
+     },
+     "output": "SELECT name, year_join FROM artist WHERE country != 'United States'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the names and year of joining for artists that do not have the country \"United States\"?",
+      "db_id": "theme_gallery"
+     },
+     "output": "SELECT name ,  year_join FROM artist WHERE country != 'United States'",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "question": "What is the joined year of the pilot of the highest rank?",
+      "db_id": "pilot_record"
+     },
+     "output": "SELECT Join_Year FROM pilot ORDER BY Rank ASC LIMIT 1",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "question": "Find the players' first name and last name who won award both in 1960 and in 1961.",
+      "db_id": "baseball_1"
+     },
+     "output": "SELECT T1.name_first , T1.name_last FROM player AS T1 JOIN player_award AS T2 WHERE T2.year  =  1960 INTERSECT SELECT T1.name_first , T1.name_last FROM player AS T1 JOIN player_award AS T2 WHERE T2.year  =  1961",
+     "is_gold": true
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0033
+  },
+  {
+   "name": "check_where_clause_for_filtering",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    if any(keyword in question for keyword in ['where', 'filter', 'with condition', 'less than']):\n        return 'where' in sql\n    return True",
+   "n_rejected_correct": 18,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "Find employee with ID and name of the country presently where (s)he is working.",
+      "db_id": "hr_1"
+     },
+     "output": "SELECT employees.employee_id, countries.country_name FROM employees JOIN departments ON employees.department_id = departments.department_id JOIN locations ON departments.location_id = locations.location_id JOIN countries ON locations.country_id = countries.country_id;",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Show the locations that have both performances with more than 2000 attendees and performances with less than 1000 attendees.",
+      "db_id": "performance_attendance"
+     },
+     "output": "SELECT location FROM performance GROUP BY location HAVING SUM(CASE WHEN attendance > 2000 THEN 1 ELSE 0 END) > 0 AND SUM(CASE WHEN attendance < 1000 THEN 1 ELSE 0 END) > 0;",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Show all the locations where no cinema has capacity over 800.",
+      "db_id": "cinema"
+     },
+     "output": "SELECT location FROM cinema GROUP BY location HAVING MAX(capacity) <= 800",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Show all the locations where no cinema has capacity over 800.",
+      "db_id": "cinema"
+     },
+     "output": "SELECT location FROM cinema GROUP BY location HAVING MAX(capacity) <= 800",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Show all the locations where no cinema has capacity over 800.",
+      "db_id": "cinema"
+     },
+     "output": "SELECT location FROM cinema GROUP BY location HAVING MAX(capacity) <= 800",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Show all the locations where no cinema has capacity over 800.",
+      "db_id": "cinema"
+     },
+     "output": "SELECT location FROM cinema GROUP BY location HAVING MAX(capacity) <= 800",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "List the names of departments where some physicians are primarily affiliated with.",
+      "db_id": "hospital_1"
+     },
+     "output": "SELECT DISTINCT d.name FROM department d JOIN affiliated_with a ON d.departmentid = a.department;",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "List the names of departments where some physicians are primarily affiliated with.",
+      "db_id": "hospital_1"
+     },
+     "output": "SELECT DISTINCT d.name FROM department d JOIN affiliated_with a ON d.departmentid = a.department;",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0123
+  },
+  {
+   "name": "check_order_by_for_sorting",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    if any(keyword in question for keyword in ['order by', 'sorted', 'highest', 'lowest', 'top', 'ranked']):\n        return 'order by' in sql\n    return True",
+   "n_rejected_correct": 14,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "Give the songs included in volumes that have more than 1 week on top.",
+      "db_id": "music_4"
+     },
+     "output": "SELECT song FROM volume WHERE weeks_on_top > 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Give the songs included in volumes that have more than 1 week on top.",
+      "db_id": "music_4"
+     },
+     "output": "SELECT DISTINCT volume.song FROM volume WHERE volume.weeks_on_top > 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Give the songs included in volumes that have more than 1 week on top.",
+      "db_id": "music_4"
+     },
+     "output": "SELECT song FROM volume WHERE weeks_on_top > 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Give the songs included in volumes that have more than 1 week on top.",
+      "db_id": "music_4"
+     },
+     "output": "SELECT song FROM volume WHERE weeks_on_top > 1",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Give the name of the department with the lowest budget.",
+      "db_id": "college_2"
+     },
+     "output": "SELECT dept_name FROM department WHERE budget = (SELECT MIN(budget) FROM department)",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Give the id and product type of the product with the lowest price.",
+      "db_id": "department_store"
+     },
+     "output": "SELECT product_id, product_type_code FROM products WHERE product_price = (SELECT MIN(product_price) FROM products)",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Give the id and product type of the product with the lowest price.",
+      "db_id": "department_store"
+     },
+     "output": "SELECT product_id, product_type_code FROM products WHERE product_price = (SELECT MIN(product_price) FROM products)",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Give the id and product type of the product with the lowest price.",
+      "db_id": "department_store"
+     },
+     "output": "SELECT product_id, product_type_code FROM products WHERE product_price = (SELECT MIN(product_price) FROM products)",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0139
+  },
+  {
+   "name": "check_having_for_aggregates",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    if 'having' in question or 'filtered by total' in question:\n        return 'having' in sql\n    return True",
+   "n_rejected_correct": 1,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "Show all home cities except for those having a driver older than 40.",
+      "db_id": "school_bus"
+     },
+     "output": "SELECT home_city FROM driver EXCEPT SELECT home_city FROM driver WHERE age  >  40",
+     "is_gold": true
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0033
+  },
+  {
+   "name": "literal_case_mismatch",
+   "source": "def check(output, ctx):\n    try:\n        import re\n        sql = extract_sql(output)\n        pairs = re.findall(r'([A-Za-z_][A-Za-z0-9_]*)\\.?([A-Za-z_][A-Za-z0-9_]*)?\\s*=\\s*\\'([^\\']*)\\'', sql)\n        for a, b, lit in pairs:\n            col = (b or a).lower()\n            tables = [t for t, cols in ctx['schema'].items() if col in [c.lower() for c in cols]]\n            if not tables or lit == '':\n                continue\n            exact_any = False\n            ci_any = False\n            for t in tables:\n                try:\n                    r1 = execute('SELECT 1 FROM \"%s\" WHERE \"%s\" = ? LIMIT 1' % (t, col)) if False else execute(\"SELECT 1 FROM \\\"%s\\\" WHERE \\\"%s\\\" = '%s' LIMIT 1\" % (t, col, lit.replace(\"'\", \"''\")))\n                    if r1:\n                        exact_any = True\n                    r2 = execute(\"SELECT 1 FROM \\\"%s\\\" WHERE lower(\\\"%s\\\") = lower('%s') LIMIT 1\" % (t, col, lit.replace(\"'\", \"''\")))\n                    if r2:\n                        ci_any = True\n                except Exception:\n                    return True\n            if not exact_any and ci_any:\n                return False\n        return True\n    except Exception:\n        return True\n",
+   "n_rejected_correct": 13,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "What are the headquarters with at least two companies in the banking industry?",
+      "db_id": "gas_company"
+     },
+     "output": "SELECT headquarters FROM company WHERE main_industry = 'banking' GROUP BY headquarters HAVING COUNT(company_id) >= 2",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the headquarters with at least two companies in the banking industry?",
+      "db_id": "gas_company"
+     },
+     "output": "SELECT headquarters FROM company WHERE main_industry = 'banking' GROUP BY headquarters HAVING COUNT(company_id) >= 2",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the headquarters with at least two companies in the banking industry?",
+      "db_id": "gas_company"
+     },
+     "output": "SELECT headquarters FROM company WHERE main_industry = 'banking' GROUP BY headquarters HAVING COUNT(company_id) >= 2",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the headquarters with at least two companies in the banking industry?",
+      "db_id": "gas_company"
+     },
+     "output": "SELECT headquarters FROM company WHERE main_industry = 'banking' GROUP BY headquarters HAVING COUNT(company_id) >= 2",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Return the full name of the staff who provided a customer with the first name April and the last name Burns with a film rental.",
+      "db_id": "sakila_1"
+     },
+     "output": "SELECT s.first_name || ' ' || s.last_name AS full_name \nFROM staff s \nJOIN rental r ON s.staff_id = r.staff_id \nJOIN customer c ON r.customer_id = c.customer_id \nWHERE c.first_name = 'April' AND c.last_name = 'Burns'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Return the full name of the staff who provided a customer with the first name April and the last name Burns with a film rental.",
+      "db_id": "sakila_1"
+     },
+     "output": "SELECT s.first_name || ' ' || s.last_name FROM staff s JOIN rental r ON s.staff_id = r.staff_id JOIN customer c ON r.customer_id = c.customer_id WHERE c.first_name = 'April' AND c.last_name = 'Burns'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Return the full name of the staff who provided a customer with the first name April and the last name Burns with a film rental.",
+      "db_id": "sakila_1"
+     },
+     "output": "SELECT s.first_name || ' ' || s.last_name AS full_name FROM staff s JOIN rental r ON s.staff_id = r.staff_id JOIN customer c ON r.customer_id = c.customer_id WHERE c.first_name = 'April' AND c.last_name = 'Burns'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Return the full name of the staff who provided a customer with the first name April and the last name Burns with a film rental.",
+      "db_id": "sakila_1"
+     },
+     "output": "SELECT s.first_name || ' ' || s.last_name AS full_name \nFROM staff s \nJOIN rental r ON s.staff_id = r.staff_id \nJOIN customer c ON r.customer_id = c.customer_id \nWHERE c.first_name = 'April' AND c.last_name = 'Burns';",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0631
+  },
+  {
+   "name": "quoted_question_literal_present",
+   "source": "def check(output, ctx):\n    try:\n        import re\n        q = ctx['question']\n        sql = extract_sql(output)\n        norm = lambda s: re.sub(r'[^a-z0-9]', '', s.lower())\n        ns = norm(sql)\n        for m in re.findall(r'\"([^\"]{2,60})\"|\\'([^\\']{2,60})\\'', q):\n            lit = m[0] or m[1]\n            nl = norm(lit)\n            if len(nl) < 2:\n                continue\n            if nl not in ns:\n                return False\n        return True\n    except Exception:\n        return True\n",
+   "n_rejected_correct": 17,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "List all the scientists' names, their projects' names, and the hours worked by that scientist on each project, in alphabetical order of project name, and then scientist name.",
+      "db_id": "scientist_1"
+     },
+     "output": "SELECT scientists.name, projects.name, projects.hours FROM scientists JOIN assignedto ON scientists.ssn = assignedto.scientist JOIN projects ON assignedto.project = projects.code ORDER BY projects.name, scientists.name",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "List all the scientists' names, their projects' names, and the hours worked by that scientist on each project, in alphabetical order of project name, and then scientist name.",
+      "db_id": "scientist_1"
+     },
+     "output": "SELECT s.name, p.name, p.hours FROM scientists s JOIN assignedto a ON s.ssn = a.scientist JOIN projects p ON a.project = p.code ORDER BY p.name, s.name",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Select the average price of each manufacturer's products, showing the manufacturer's name.",
+      "db_id": "manufactory_1"
+     },
+     "output": "SELECT m.name, AVG(p.price) AS average_price FROM manufacturers m JOIN products p ON m.code = p.manufacturer GROUP BY m.name",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Select the average price of each manufacturer's products, showing the manufacturer's name.",
+      "db_id": "manufactory_1"
+     },
+     "output": "SELECT m.name, AVG(p.price) AS average_price FROM manufacturers m JOIN products p ON m.code = p.manufacturer GROUP BY m.name",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Select the average price of each manufacturer's products, showing the manufacturer's name.",
+      "db_id": "manufactory_1"
+     },
+     "output": "SELECT m.name, AVG(p.price) AS average_price FROM manufacturers m JOIN products p ON m.code = p.manufacturer GROUP BY m.name",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Select the average price of each manufacturer's products, showing the manufacturer's name.",
+      "db_id": "manufactory_1"
+     },
+     "output": "SELECT m.name, AVG(p.price) AS average_price FROM manufacturers m JOIN products p ON m.code = p.manufacturer GROUP BY m.name",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the titles of the papers the author \"Stephanie Weirich\" wrote.",
+      "db_id": "icfp_1"
+     },
+     "output": "SELECT papers.title FROM papers JOIN authorship ON papers.paperid = authorship.paperid JOIN authors ON authorship.authid = authors.authid WHERE authors.fname = 'Stephanie' AND authors.lname = 'Weirich'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Show the residences that have both a player of gender \"M\" and a player of gender \"F\".",
+      "db_id": "riding_club"
+     },
+     "output": "SELECT residence FROM player WHERE gender = 'M' AND residence IN (SELECT residence FROM player WHERE gender = 'F') GROUP BY residence;",
+     "is_gold": false
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0041
+  },
+  {
+   "name": "how_many_single_row",
+   "source": "def check(output, ctx):\n    try:\n        import re\n        q = ctx['question'].lower().strip()\n        if not q.startswith('how many'):\n            return True\n        if re.search(r'\\b(each|per|every|by|for all|respectively|different|and what|list|show|which)\\b', q):\n            return True\n        rows = execute(extract_sql(output))\n        return len(rows) <= 1\n    except Exception:\n        return True\n",
+   "n_rejected_correct": 2,
+   "n_correct": 3774,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "how many degrees were conferred between 1998 and 2002?",
+      "db_id": "csu_1"
+     },
+     "output": "SELECT T1.campus ,  sum(T2.degrees) FROM campuses AS T1 JOIN degrees AS T2 ON T1.id  =  T2.campus WHERE T2.year  >=  1998 AND T2.year  <=  2002 GROUP BY T1.campus",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "question": "How many male and female assistant professors do we have?",
+      "db_id": "activity_1"
+     },
+     "output": "SELECT sex ,  count(*) FROM Faculty WHERE rank  =  \"AsstProf\" GROUP BY sex",
+     "is_gold": true
+    }
+   ],
+   "catch_rate_on_incorrect": 0.0049
+  }
+ ]
+}

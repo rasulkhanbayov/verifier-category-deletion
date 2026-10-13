@@ -1,0 +1,66 @@
+[
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "eps_seq": [
+      0.9918441323062981,
+      0.839148164929769,
+      0.8323516085183507
+    ],
+    "acc_seq": [
+      0.685,
+      0.705,
+      0.705
+    ],
+    "eps_monotone": true,
+    "acc_monotone": true
+  },
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-8b-instruct",
+    "eps_seq": [
+      0.9939613526570048,
+      0.7194041867954911,
+      0.6896135265700483
+    ],
+    "acc_seq": [
+      0.675,
+      0.7,
+      0.705
+    ],
+    "eps_monotone": true,
+    "acc_monotone": true
+  },
+  {
+    "task": "sql",
+    "model": "openai/gpt-4o-2024-11-20",
+    "eps_seq": [
+      1.0,
+      0.9924242424242424,
+      0.9913419913419913
+    ],
+    "acc_seq": [
+      0.7386934673366834,
+      0.7386934673366834,
+      0.7386934673366834
+    ],
+    "eps_monotone": true,
+    "acc_monotone": true
+  },
+  {
+    "task": "sql",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "eps_seq": [
+      0.9674586776859504,
+      0.9225206611570248,
+      0.9183884297520661
+    ],
+    "acc_seq": [
+      0.705,
+      0.705,
+      0.705
+    ],
+    "eps_monotone": true,
+    "acc_monotone": true
+  }
+]

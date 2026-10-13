@@ -1,0 +1,86 @@
+[
+  {
+    "task": "morph",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "rule": "gated",
+    "acc": 0.3895055499495459,
+    "delta_pts": -1.1153683148335016,
+    "ci": [
+      -2.219979818365286,
+      0.0
+    ],
+    "p": 0.07129287071292871,
+    "degenerate": false,
+    "gate_fired_frac": 0.18970736629667004
+  },
+  {
+    "task": "morph",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "rule": "homogeneous",
+    "acc": 0.3874873864783047,
+    "delta_pts": -1.310484359233098,
+    "ci": [
+      -3.027245206861756,
+      0.40363269424822934
+    ],
+    "p": 0.15448455154484553,
+    "degenerate": false,
+    "gate_fired_frac": 0.18970736629667004
+  },
+  {
+    "task": "morph",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "rule": "ungated",
+    "acc": 0.39455095862764883,
+    "delta_pts": -0.6048637739656911,
+    "ci": [
+      -2.219979818365286,
+      1.0090817356205817
+    ],
+    "p": 0.5278472152784721,
+    "degenerate": false,
+    "gate_fired_frac": 0.18970736629667004
+  },
+  {
+    "task": "morph",
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "rule": "gated",
+    "acc": 0.3148335015136226,
+    "delta_pts": 1.4193239152371342,
+    "ci": [
+      0.5045408678102936,
+      2.421796165489404
+    ],
+    "p": 0.005099490050994901,
+    "degenerate": false,
+    "gate_fired_frac": 0.3481331987891019
+  },
+  {
+    "task": "morph",
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "rule": "homogeneous",
+    "acc": 0.3087790110998991,
+    "delta_pts": 0.8129767911200807,
+    "ci": [
+      -0.6054490413723468,
+      2.219979818365286
+    ],
+    "p": 0.31956804319568044,
+    "degenerate": false,
+    "gate_fired_frac": 0.3481331987891019
+  },
+  {
+    "task": "morph",
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "rule": "ungated",
+    "acc": 0.3007063572149344,
+    "delta_pts": 0.0010696266397578185,
+    "ci": [
+      -1.109989909182646,
+      1.2108980827446991
+    ],
+    "p": 1.0,
+    "degenerate": false,
+    "gate_fired_frac": 0.3481331987891019
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "N": 1,
+    "predicted": 0.7201181468056186,
+    "observed": 0.695,
+    "observed_lo": 0.63,
+    "observed_hi": 0.7551249999999982,
+    "inside": true
+  },
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "N": 2,
+    "predicted": 0.7220904595815842,
+    "observed": 0.7,
+    "observed_lo": 0.635,
+    "observed_hi": 0.765,
+    "inside": true
+  },
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "N": 4,
+    "predicted": 0.7222074500852016,
+    "observed": 0.705,
+    "observed_lo": 0.64,
+    "observed_hi": 0.765,
+    "inside": true
+  },
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "N": 8,
+    "predicted": 0.722207820259873,
+    "observed": 0.705,
+    "observed_lo": 0.64,
+    "observed_hi": 0.765,
+    "inside": true
+  },
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "N": 16,
+    "predicted": 0.7222078202635559,
+    "observed": 0.705,
+    "observed_lo": 0.64,
+    "observed_hi": 0.765,
+    "inside": true
+  },
+  {
+    "task": "sql",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "N": 32,
+    "predicted": 0.7222078202635559,
+    "observed": 0.705,
+    "observed_lo": 0.64,
+    "observed_hi": 0.765,
+    "inside": true
+  }
+]

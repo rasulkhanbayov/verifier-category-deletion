@@ -1,0 +1,395 @@
+### CHECK_no_nonexistent_tokens
+RATIONALE: Every correct entity must consist of tokens that appear in the text. This catches outputs where entities contain words not present in the input context.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        text_tokens = set(ctx['text'].split())
+        for field in data.values():
+            for entity in field:
+                if not set(entity.split()).issubset(text_tokens):
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_duplicate_entities_across_fields
+RATIONALE: Correct outputs do not duplicate the same entity across multiple fields. This catches outputs where an entity is mistakenly assigned to more than one category.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        seen = set()
+        for field in data.values():
+            for entity in field:
+                if entity in seen:
+                    return False
+                seen.add(entity)
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_partial_span_matches
+RATIONALE: Correct entities match full spans in the text, not partial ones. This catches outputs where only part of a gold entity is extracted.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        text_tokens = ctx['text'].split()
+        for field in data.values():
+            for entity in field:
+                if ' '.join(entity.split()) not in ' '.join(text_tokens):
+                    return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_person_field_with_non_names
+RATIONALE: The "person" field should only contain proper names, not generic nouns like "person" or "people." This catches outputs where such generic terms are incorrectly labeled as persons.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        for person in data.get("person", []):
+            if person.lower() in {"person", "people", "man", "woman", "child"}:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_building_field_with_generic_structures
+RATIONALE: Buildings must be named entities, not generic terms like "headquarters" or "house." This catches outputs where generic terms are labeled as buildings.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        for building in data.get("building", []):
+            if building.lower() in {"headquarters", "house", "office", "store"}:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_organization_field_with_generic_terms
+RATIONALE: Organizations must be named entities, not generic terms like "company" or "team." This catches outputs where such generic terms are labeled as organizations.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        for org in data.get("organization", []):
+            if org.lower() in {"company", "team", "group", "organization"}:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_empty_strings_in_fields
+RATIONALE: Correct outputs do not have empty strings as entities. This catches outputs where an entity is mistakenly an empty string.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        for field in data.values():
+            if "" in field:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_location_field_with_generic_places
+RATIONALE: Locations should be specific entities, not generic terms like "city" or "place." This catches outputs with such generic terms in the "location" field.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        for location in data.get("location", []):
+            if location.lower() in {"city", "place", "country", "area"}:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_art_field_contains_titles
+RATIONALE: The "art" field should contain titles of works (e.g., books, films), not generic terms or non-title entities. This catches misclassifications in the "art" field.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        for art in data.get("art", []):
+            if not any(c.isalpha() for c in art):
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_overlap_within_field
+RATIONALE: Correct outputs have no duplicate entities within a single field. This catches outputs where entities are mistakenly repeated within the same field.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        for field in data.values():
+            if len(field) != len(set(field)):
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_location_field_with_directional_terms
+RATIONALE: Locations should not contain standalone directional terms like "north" or "south." This catches misclassifications of such terms as locations.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        for location in data.get("location", []):
+            if location.lower() in {"north", "south", "east", "west"}:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_event_field_with_generic_terms
+RATIONALE: Events should refer to specific named occurrences, not generic terms like "event" or "meeting." This catches such generic terms in the "event" field.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        for event in data.get("event", []):
+            if event.lower() in {"event", "meeting", "conference"}:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_product_field_with_generic_terms
+RATIONALE: Products should refer to specific named items, not generic terms like "device" or "tool." This catches such generic terms in the "product" field.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        for product in data.get("product", []):
+            if product.lower() in {"device", "tool", "object"}:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_other_field_with_generic_terms
+RATIONALE: The "other" field should not contain overly generic terms like "thing" or "item." This catches such terms in the "other" field.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        for other in data.get("other", []):
+            if other.lower() in {"thing", "item", "object"}:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_miscategorized_buildings
+RATIONALE: Generic places like "headquarters" or "office" should not be misclassified as "building." This enforces accurate categorization.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        for building in data.get("building", []):
+            if building.lower() in {"headquarters", "office"}:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_miscategorized_persons
+RATIONALE: Non-person entities such as professions (e.g., "doctor," "lawyer") should not be misclassified as "person." This ensures proper categorization.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        for person in data.get("person", []):
+            if person.lower() in {"doctor", "lawyer"}:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_empty_fields
+RATIONALE: All fields in correct outputs should be present, even if they are empty lists. This ensures proper JSON structure and catches outputs missing fields.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None or len(data) != 8:
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_field_values_are_lists
+RATIONALE: All field values must be lists in correct outputs. This ensures proper formatting and catches outputs with non-list field values.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        for value in data.values():
+            if not isinstance(value, list):
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_duplicate_across_fields_and_case
+RATIONALE: Entities are unique across fields, regardless of case differences. This ensures case-insensitive uniqueness across fields.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        seen = set()
+        for field in data.values():
+            for entity in field:
+                if entity.lower() in seen:
+                    return False
+                seen.add(entity.lower())
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_misclassified_speakers
+RATIONALE: Titles or roles like "Dr." or "Professor" should not be labeled as "person" unless accompanied by a name. This ensures proper labeling of named individuals.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        for person in data.get("person", []):
+            if person.lower() in {"dr.", "professor"}:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_event_field_with_artifacts
+RATIONALE: Artifacts like "World Cup" belong in the "event" or "art" field but not both. This ensures proper classification of events and artifacts.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        event_entities = set(data.get("event", []))
+        art_entities = set(data.get("art", []))
+        if event_entities & art_entities:
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_location_field_with_products
+RATIONALE: Product names should not be classified as locations. This ensures correct categorization of products.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        for location in data.get("location", []):
+            if any(char.isdigit() for char in location):  # Products often have numbers
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_event_field_with_dates_only
+RATIONALE: Dates or years alone (e.g., "2016") should not be labeled as events. This ensures events are more specific than just dates.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        for event in data.get("event", []):
+            if event.isdigit():
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK_no_other_field_with_named_entities
+RATIONALE: Named entities (e.g., persons, locations) should not be misclassified as "other." This ensures proper categorization of named entities.
+```python
+def check(output, ctx):
+    try:
+        data = parse_json(output)
+        if data is None:
+            return True
+        named_entity_fields = ["person", "location", "organization", "art", "building", "event", "product"]
+        named_entities = set()
+        for field in named_entity_fields:
+            named_entities.update(data.get(field, []))
+        for other in data.get("other", []):
+            if other in named_entities:
+                return False
+        return True
+    except:
+        return True
+```

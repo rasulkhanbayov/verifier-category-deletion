@@ -1,0 +1,34 @@
+[
+  {
+    "task": "sql",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "eps_seq": [
+      1.0,
+      0.8754491017964072,
+      0.874251497005988
+    ],
+    "acc_seq": [
+      0.735,
+      0.745,
+      0.745
+    ],
+    "eps_monotone": true,
+    "acc_monotone": true
+  },
+  {
+    "task": "sql",
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "eps_seq": [
+      0.9956070287539937,
+      0.7480031948881789,
+      0.71685303514377
+    ],
+    "acc_seq": [
+      0.635,
+      0.67,
+      0.67
+    ],
+    "eps_monotone": true,
+    "acc_monotone": true
+  }
+]

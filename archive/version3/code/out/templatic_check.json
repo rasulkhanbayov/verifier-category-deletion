@@ -1,0 +1,54 @@
+{
+  "n": 50269,
+  "holds": 36613,
+  "fails": 13656,
+  "delta": 0.271658477391633,
+  "wilson_ci": [
+    0.26778757938238373,
+    0.27556427156074514
+  ],
+  "examples_fail": [
+    [
+      "بِسْمِ",
+      "سمو"
+    ],
+    [
+      "لِلَّهِ",
+      "أله"
+    ],
+    [
+      "رَبِّ",
+      "ربب"
+    ],
+    [
+      "نَسْتَعِينُ",
+      "عون"
+    ],
+    [
+      "ٱهْدِنَا",
+      "هدي"
+    ],
+    [
+      "ٱلْمُسْتَقِيمَ",
+      "قوم"
+    ],
+    [
+      "ٱلضَّآلِّينَ",
+      "ضلل"
+    ],
+    [
+      "لِّلْمُتَّقِينَ",
+      "وقي"
+    ],
+    [
+      "يُؤْمِنُونَ",
+      "أمن"
+    ],
+    [
+      "وَيُقِيمُونَ",
+      "قوم"
+    ]
+  ],
+  "source": "Quranic Arabic Corpus morphological layer, github.com/mustafa0x/quran-morphology (GPL)",
+  "check": "root consonant skeleton is a subsequence of the orthographically normalised, diacritic-stripped surface word"
+}

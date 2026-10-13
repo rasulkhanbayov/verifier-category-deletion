@@ -1,0 +1,1 @@
+{"id": "inj:multi_segment", "task": "morph", "round": -1, "name": "inj:multi_segment", "rationale": "stress test: rejects every single-segment output", "source": "def check(output, ctx):\n    return len(segments(output)) > 1\n"}

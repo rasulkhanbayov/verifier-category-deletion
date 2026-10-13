@@ -1,0 +1,183 @@
+% ============================================================
+% AV-TTS references.
+% NOTE: BibTeX does NOT treat % as a comment inside an entry, so all
+% verification notes are kept on comment lines BETWEEN entries (here),
+% never inside the entry { } blocks. Lines flagged VERIFY must be confirmed
+% against the source before submission. Real author names are used only
+% where confirmed from the source; otherwise a placeholder corporate
+% author in double braces is used. No author names are invented.
+% ============================================================
+
+% VERIFIED: authors, arXiv id, claim.
+@article{snell2024scaling,
+  title   = {Scaling {LLM} Test-Time Compute Optimally Can Be More Effective Than Scaling Model Parameters},
+  author  = {Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},
+  journal = {arXiv preprint arXiv:2408.03314},
+  year    = {2024}
+}
+
+% VERIFIED: authors (Princeton), arXiv id 2411.17501; thesis: a nonzero
+% verifier false-positive rate upper-bounds resampling-based scaling.
+@article{stroebl2024verifier,
+  title   = {Inference Scaling f{L}aws: The Limits of {LLM} Resampling with Imperfect Verifiers},
+  author  = {Stroebl, Benedikt and Kapoor, Sayash and Narayanan, Arvind},
+  journal = {arXiv preprint arXiv:2411.17501},
+  year    = {2024}
+}
+
+% VERIFY exact title/venue/full author list; surname "Setlur" (Amrith
+% Setlur, CMU) attested via secondary sources for the robustness claim.
+@article{setlur2025verifier,
+  title   = {On the Robustness of Verifier-Based Test-Time Scaling},
+  author  = {Setlur, Amrith and others},
+  journal = {arXiv preprint},
+  year    = {2025}
+}
+
+% VERIFIED: authors and arXiv id 2407.21787; coverage scales log-linearly.
+@article{brown2024monkeys,
+  title   = {Large Language Monkeys: Scaling Inference Compute with Repeated Sampling},
+  author  = {Brown, Bradley and Juravsky, Jordan and Ehrlich, Ryan and Clark, Ronald and Le, Quoc V. and Re, Christopher and Mirhoseini, Azalia},
+  journal = {arXiv preprint arXiv:2407.21787},
+  year    = {2024}
+}
+
+% VERIFY exact author list/venue (Lightman et al., "Let's Verify Step by Step").
+@inproceedings{lightman2024verify,
+  title     = {Let's Verify Step by Step},
+  author    = {{Lightman and colleagues}},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2024}
+}
+
+% VERIFIED: authors and venue (TENT, ICLR 2021).
+@inproceedings{wang2021tent,
+  title     = {Tent: Fully Test-Time Adaptation by Entropy Minimization},
+  author    = {Wang, Dequan and Shelhamer, Evan and Liu, Shaoteng and Olshausen, Bruno and Darrell, Trevor},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2021}
+}
+
+% VERIFIED: authors and venue (CoTTA, CVPR 2022).
+@inproceedings{wang2022cotta,
+  title     = {Continual Test-Time Domain Adaptation},
+  author    = {Wang, Qin and Fink, Olga and Van Gool, Luc and Dai, Dengxin},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages     = {7201--7211},
+  year      = {2022}
+}
+
+% VERIFIED: authors and venue (TTT, ICML 2020).
+@inproceedings{sun2020ttt,
+  title     = {Test-Time Training with Self-Supervision for Generalization under Distribution Shifts},
+  author    = {Sun, Yu and Wang, Xiaolong and Liu, Zhuang and Miller, John and Efros, Alexei A. and Hardt, Moritz},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  pages     = {9229--9248},
+  year      = {2020}
+}
+
+% VERIFIED: authors and venue (SAR, ICLR 2023 Oral).
+@inproceedings{niu2023sar,
+  title     = {Towards Stable Test-Time Adaptation in Dynamic Wild World},
+  author    = {Niu, Shuaicheng and Wu, Jiaxiang and Zhang, Yifan and Wen, Zhiquan and Chen, Yaofo and Zhao, Peilin and Tan, Mingkui},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2023}
+}
+
+% VERIFY full author list beyond first author; CONFIRMED: ICCV 2025, tubular
+% structures, topology-as-consistency-loss parameter update.
+@inproceedings{zhou2025topotta,
+  title     = {{TopoTTA}: Topology-Enhanced Test-Time Adaptation for Tubular Structure Segmentation},
+  author    = {Zhou and others},
+  booktitle = {IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year      = {2025}
+}
+
+% VERIFIED: authors and arXiv id 2512.02497 (MedSeg-TTA benchmark, four paradigms).
+@article{yu2025medsegtta,
+  title   = {A Large Scale Benchmark for Test Time Adaptation Methods in Medical Image Segmentation},
+  author  = {Yu, Wenjing and Jiang, Shuo and Chen, Yifei and Chang, Shuo and Wang, Yuanhan and Wu, Beining and Dong, Jie and Liu, Mingxuan and Zhu, Shenghao and Qin, Feiwei and Wang, Changmiao and Tian, Qiyuan},
+  journal = {arXiv preprint arXiv:2512.02497},
+  year    = {2025}
+}
+
+% VERIFY author list; CONFIRMED: arXiv 2506.05221; selects via SAM's intrinsic IoU.
+@article{samtta2026,
+  title   = {{SAM}-Aware Test-Time Adaptation for Universal Medical Image Segmentation},
+  author  = {{SAM-TTA authors}},
+  journal = {arXiv preprint arXiv:2506.05221},
+  year    = {2026}
+}
+
+% VERIFY exact authors/bibliographic details; CONFIRMED: TEDS-Net exists (MedIA),
+% topology-preserving deformation of a prior.
+@article{tedsnet2022,
+  title   = {{TEDS-Net}: Enforcing Anatomically Plausible Segmentations via Topology-Preserving Deformations},
+  author  = {{TEDS-Net authors}},
+  journal = {Medical Image Analysis},
+  year    = {2022}
+}
+
+% VERIFY author list; CONFIRMED: arXiv 2107.12689 (persistent-homology topological loss, cardiac MR).
+@article{phloss2021,
+  title   = {A Persistent Homology-Based Topological Loss for Multi-Class Segmentation of Cardiac {MR}},
+  author  = {{Persistent-homology-loss authors}},
+  journal = {arXiv preprint arXiv:2107.12689},
+  year    = {2021}
+}
+
+% VERIFY author list; CONFIRMED: arXiv 2507.23763 (fast Euler-characteristic topology correction).
+@article{eulerchar2025,
+  title   = {Topology Optimization in Medical Image Segmentation with Fast Euler Characteristic},
+  author  = {{Euler-characteristic authors}},
+  journal = {arXiv preprint arXiv:2507.23763},
+  year    = {2025}
+}
+
+% VERIFY author list; CONFIRMED: Atlas-ISTN performs test-time atlas refinement (single prediction).
+@article{atlasistn2021,
+  title   = {{Atlas-ISTN}: Joint Segmentation, Registration and Atlas Construction},
+  author  = {{Atlas-ISTN authors}},
+  journal = {Medical Image Analysis},
+  year    = {2021}
+}
+
+% VERIFY exact author list/venue (self-consistency).
+@inproceedings{wang2023self,
+  title     = {Self-Consistency Improves Chain-of-Thought Reasoning in Language Models},
+  author    = {{Self-consistency authors}},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2023}
+}
+
+% VERIFY exact volume/pages (STAPLE).
+@article{warfield2004staple,
+  title   = {Simultaneous Truth and Performance Level Estimation ({STAPLE})},
+  author  = {Warfield, Simon K. and Zou, Kelly H. and Wells, William M.},
+  journal = {IEEE Transactions on Medical Imaging},
+  year    = {2004}
+}
+
+% VERIFIED: standard reference.
+@book{efron1994bootstrap,
+  title     = {An Introduction to the Bootstrap},
+  author    = {Efron, Bradley and Tibshirani, Robert J.},
+  publisher = {Chapman and Hall/CRC},
+  year      = {1994}
+}
+
+% VERIFY exact volume/pages (nnU-Net, Nature Methods 2021).
+@article{isensee2021nnunet,
+  title   = {{nnU-Net}: A Self-Configuring Method for Deep Learning-Based Biomedical Image Segmentation},
+  author  = {Isensee, Fabian and Jaeger, Paul F. and Kohl, Simon A. A. and Petersen, Jens and Maier-Hein, Klaus H.},
+  journal = {Nature Methods},
+  year    = {2021}
+}
+
+% VERIFY full author list (Segment Anything, ICCV 2023).
+@inproceedings{kirillov2023sam,
+  title     = {Segment Anything},
+  author    = {Kirillov, Alexander and Mintun, Eric and Ravi, Nikhila and others},
+  booktitle = {IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year      = {2023}
+}

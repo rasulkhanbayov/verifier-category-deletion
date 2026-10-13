@@ -1,0 +1,384 @@
+### CHECK question_numbers_present
+RATIONALE: A correct query must use every multi-digit number that the question states, such as a threshold, a year or an amount. To allow off-by-one forms like `>= 1501`, a nearby number or a substring match also counts. The check catches outputs that drop the filter or use a wrong constant.
+```python
+def check(output, ctx):
+    try:
+        import re
+        q = ctx['question']; sql = extract_sql(output)
+        low = sql.lower()
+        snums = []
+        for t in re.findall(r'\d+(?:\.\d+)?', sql):
+            try: snums.append(float(t))
+            except: pass
+        for tok in re.findall(r'(?<![\w.])(\d[\d,]*(?:\.\d+)?)(?![\w])', q):
+            t = tok.replace(',', '')
+            try: v = float(t)
+            except: continue
+            if v < 10: continue
+            if t in low or tok in low: continue
+            if t.endswith('.0') and t[:-2] in low: continue
+            if any(abs(s - v) <= 1 or abs(s - v/100.0) < 1e-9 for s in snums): continue
+            return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK double_quoted_literal_used
+RATIONALE: Values the question puts in double quotes (e.g. "Russia", "stop") must appear in any correct query. A match on any significant word of the quote, after normalisation, is enough. The check catches outputs that omit the quoted filter.
+```python
+def check(output, ctx):
+    try:
+        import re
+        q = ctx['question']; sql = extract_sql(output)
+        norm = lambda s: re.sub(r'[^a-z0-9]', '', s.lower())
+        ns = norm(sql)
+        for lit in re.findall(r'"([^"]{1,40})"', q):
+            nl = norm(lit)
+            if not nl or nl in ns: continue
+            words = [norm(w) for w in re.split(r'\W+', lit) if len(norm(w)) >= 3]
+            if any(w in ns for w in words): continue
+            return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_contradictory_range
+RATIONALE: A top-level AND that requires one column to be both above a and below b, with a >= b, is always empty. Such a query is used only when it actually returns no rows. This catches "population > 1500 AND population < 500", where the question really needs INTERSECT.
+```python
+def check(output, ctx):
+    try:
+        import sqlglot
+        from sqlglot import exp
+        sql = extract_sql(output)
+        tree = sqlglot.parse_one(sql, read='sqlite')
+        def conj(e):
+            if isinstance(e, exp.And):
+                return conj(e.left) + conj(e.right)
+            if isinstance(e, exp.Paren):
+                return conj(e.this)
+            return [e]
+        bad = False
+        for sel in tree.find_all(exp.Select):
+            w = sel.args.get('where')
+            if not w: continue
+            lo = {}; hi = {}
+            for c in conj(w.this):
+                if type(c) not in (exp.GT, exp.GTE, exp.LT, exp.LTE): continue
+                l, r = c.left, c.right
+                if not (isinstance(l, exp.Column) and isinstance(r, exp.Literal) and not r.is_string): continue
+                v = float(r.this); k = l.sql().lower()
+                if type(c) in (exp.GT, exp.GTE):
+                    lo[k] = max(lo.get(k, -1e300), v)
+                else:
+                    hi[k] = min(hi.get(k, 1e300), v)
+            for k in lo:
+                if k in hi and lo[k] >= hi[k]:
+                    bad = True
+        if not bad: return True
+        rows = execute(sql)
+        return len(rows) > 0
+    except Exception:
+        return True
+```
+
+### CHECK no_contradictory_equalities
+RATIONALE: A top-level AND that sets one column equal to two different constants can never match a row. The check catches this misuse of AND where INTERSECT or OR was needed, but only when the query really returns nothing.
+```python
+def check(output, ctx):
+    try:
+        import sqlglot
+        from sqlglot import exp
+        sql = extract_sql(output)
+        tree = sqlglot.parse_one(sql, read='sqlite')
+        def conj(e):
+            if isinstance(e, exp.And):
+                return conj(e.left) + conj(e.right)
+            if isinstance(e, exp.Paren):
+                return conj(e.this)
+            return [e]
+        bad = False
+        for sel in tree.find_all(exp.Select):
+            w = sel.args.get('where')
+            if not w: continue
+            vals = {}
+            for c in conj(w.this):
+                if isinstance(c, exp.EQ) and isinstance(c.left, exp.Column) and isinstance(c.right, exp.Literal):
+                    vals.setdefault(c.left.sql().lower(), set()).add(c.right.this)
+            if any(len(s) > 1 for s in vals.values()):
+                bad = True
+        if not bad: return True
+        return len(execute(sql)) > 0
+    except Exception:
+        return True
+```
+
+### CHECK no_equals_null
+RATIONALE: `= NULL` or `!= NULL` is never true in SQLite, so the filter silently empties the result. A correct query would use IS NULL. The check rejects only when the result is empty.
+```python
+def check(output, ctx):
+    try:
+        import re
+        sql = extract_sql(output)
+        if re.search(r'(?<![<>!])(=|!=|<>)\s*null\b', sql, re.I):
+            return len(execute(sql)) > 0
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_limit_zero
+RATIONALE: LIMIT 0 always returns nothing, which no question asks for.
+```python
+def check(output, ctx):
+    try:
+        import re
+        sql = extract_sql(output)
+        return not re.search(r'\blimit\s+0\b(?!\s*,)', sql, re.I)
+    except Exception:
+        return True
+```
+
+### CHECK no_random_order
+RATIONALE: ORDER BY RANDOM() makes the result nondeterministic. A deterministic gold answer would not be matched reliably across the perturbed databases.
+```python
+def check(output, ctx):
+    try:
+        return 'random()' not in extract_sql(output).lower().replace(' ', '')
+    except Exception:
+        return True
+```
+
+### CHECK simple_how_many_single_row
+RATIONALE: A plain "How many ...?" question with no grouping words (each, per, by, and, list, ...) has one count as its answer. A result with several rows is therefore wrong.
+```python
+def check(output, ctx):
+    try:
+        import re
+        q = ctx['question'].lower().strip()
+        if not q.startswith('how many'): return True
+        if re.search(r'\b(each|per|every|by|and|respectively|list|show|also|group|along|both|or|their)\b', q): return True
+        rows = execute(extract_sql(output))
+        return len(rows) <= 1
+    except Exception:
+        return True
+```
+
+### CHECK simple_how_many_single_column
+RATIONALE: Under the same strict filter, the answer is exactly one value. Extra columns would make the result set differ from the gold.
+```python
+def check(output, ctx):
+    try:
+        import re
+        q = ctx['question'].lower().strip()
+        if not q.startswith('how many'): return True
+        if re.search(r'\b(each|per|every|by|and|respectively|list|show|also|group|along|both|or|their|name|names)\b', q): return True
+        rows = execute(extract_sql(output))
+        if len(rows) != 1: return True
+        return len(rows[0]) == 1
+    except Exception:
+        return True
+```
+
+### CHECK simple_how_many_numeric
+RATIONALE: The single value answering a simple "How many" question must be numeric. A text value means the wrong column was selected.
+```python
+def check(output, ctx):
+    try:
+        import re
+        q = ctx['question'].lower().strip()
+        if not q.startswith('how many'): return True
+        if re.search(r'\b(each|per|every|by|and|respectively|list|show|also|group|along|both|or|their|name|names)\b', q): return True
+        rows = execute(extract_sql(output))
+        if len(rows) != 1 or len(rows[0]) != 1: return True
+        v = rows[0][0]
+        if isinstance(v, str):
+            try:
+                float(v.replace(',', '').strip()); return True
+            except Exception:
+                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK simple_aggregate_single_row
+RATIONALE: "What is the average/maximum/minimum/total ...?" with no grouping words asks for one value. A query that returns many rows has grouped wrongly.
+```python
+def check(output, ctx):
+    try:
+        import re
+        q = ctx['question'].lower().strip()
+        if not re.match(r"(what is|what's|find|return|give) the (average|maximum|minimum|total|sum|mean)\b", q): return True
+        if re.search(r'\b(each|per|every|by|and|respectively|list|group|along|their|different)\b', q): return True
+        return len(execute(extract_sql(output))) <= 1
+    except Exception:
+        return True
+```
+
+### CHECK distinct_question_no_duplicate_rows
+RATIONALE: When the question asks for distinct, different or unique values, the correct result has no repeated rows. The check catches a missing DISTINCT.
+```python
+def check(output, ctx):
+    try:
+        import re
+        q = ctx['question'].lower()
+        if not re.search(r'\b(distinct|different|unique)\b', q): return True
+        rows = execute(extract_sql(output))
+        if len(rows) >= 200: return True
+        return len(set(map(tuple, rows))) == len(rows)
+    except Exception:
+        return True
+```
+
+### CHECK limit_count_mentioned_in_question
+RATIONALE: A LIMIT of n >= 2 is only justified when the question states n, as a digit or a word ("top 3", "five most"). The check catches invented limits.
+```python
+def check(output, ctx):
+    try:
+        import re
+        q = ctx['question'].lower(); sql = extract_sql(output)
+        words = {2:'two',3:'three',4:'four',5:'five',6:'six',7:'seven',8:'eight',9:'nine',10:'ten',11:'eleven',12:'twelve',15:'fifteen',20:'twenty'}
+        for m in re.finditer(r'\blimit\s+(\d+)(?:\s*,\s*(\d+))?', sql, re.I):
+            n = int(m.group(2) or m.group(1))
+            if n < 2: continue
+            if re.search(r'(?<!\d)%d(?!\d)' % n, q): continue
+            if n in words and re.search(r'\b%s\b' % words[n], q): continue
+            return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK descending_requested_has_desc
+RATIONALE: A question asking for descending or decreasing order needs DESC somewhere in a query that sorts. The check catches outputs that sort the wrong way.
+```python
+def check(output, ctx):
+    try:
+        import re
+        q = ctx['question'].lower(); sql = extract_sql(output).lower()
+        if not re.search(r'\b(descending|decreasing)\b', q): return True
+        if 'order by' not in sql: return True
+        return re.search(r'\bdesc\b', sql) is not None
+    except Exception:
+        return True
+```
+
+### CHECK ascending_requested_no_toplevel_desc
+RATIONALE: Some questions ask only for ascending or increasing order and do not mention descending, reverse or top. For those, the outermost ORDER BY, when there is no top-level LIMIT, must not use DESC.
+```python
+def check(output, ctx):
+    try:
+        import re, sqlglot
+        q = ctx['question'].lower()
+        if not re.search(r'\b(ascending|increasing)\b', q): return True
+        if re.search(r'\b(descending|decreasing|reverse|desc|top)\b', q): return True
+        tree = sqlglot.parse_one(extract_sql(output), read='sqlite')
+        if tree.args.get('limit'): return True
+        o = tree.args.get('order')
+        if not o: return True
+        return not any(e.args.get('desc') for e in o.expressions)
+    except Exception:
+        return True
+```
+
+### CHECK alphabetical_no_toplevel_desc
+RATIONALE: Alphabetical order, with no mention of reverse or descending, is ascending. A top-level ORDER BY DESC without a LIMIT is wrong.
+```python
+def check(output, ctx):
+    try:
+        import re, sqlglot
+        q = ctx['question'].lower()
+        if 'alphabetic' not in q: return True
+        if re.search(r'\b(descending|decreasing|reverse|desc|top|most|highest|largest)\b', q): return True
+        tree = sqlglot.parse_one(extract_sql(output), read='sqlite')
+        if tree.args.get('limit'): return True
+        o = tree.args.get('order')
+        if not o: return True
+        return not any(e.args.get('desc') for e in o.expressions)
+    except Exception:
+        return True
+```
+
+### CHECK oldest_youngest_age_direction
+RATIONALE: For "oldest", sorting an `age` column ascending with a LIMIT picks the youngest; for "youngest", sorting descending picks the oldest. Either way the selection is the opposite of what was asked.
+```python
+def check(output, ctx):
+    try:
+        import sqlglot
+        from sqlglot import exp
+        q = ctx['question'].lower()
+        old = 'oldest' in q; young = 'youngest' in q
+        if old == young: return True
+        tree = sqlglot.parse_one(extract_sql(output), read='sqlite')
+        if not tree.args.get('limit'): return True
+        o = tree.args.get('order')
+        if not o or len(o.expressions) != 1: return True
+        e = o.expressions[0]
+        if not (isinstance(e.this, exp.Column) and e.this.name.lower() == 'age'): return True
+        desc = bool(e.args.get('desc'))
+        if old and not desc: return False
+        if young and desc: return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK first_last_name_two_columns
+RATIONALE: The question may ask for first and last name, or id and name, without asking for a full name. Every correct result then has at least two columns.
+```python
+def check(output, ctx):
+    try:
+        import re
+        q = ctx['question'].lower()
+        if 'full name' in q: return True
+        pats = [r'first name and last name', r'first and last name', r'last name and first name', r'\bid and (the )?name', r'\bname and (the )?id\b', r'first names? and last names?']
+        if not any(re.search(p, q) for p in pats): return True
+        rows = execute(extract_sql(output))
+        if not rows: return True
+        return len(rows[0]) >= 2
+    except Exception:
+        return True
+```
+
+### CHECK names_question_not_bare_count
+RATIONALE: A question asking for names, with no count/number/how-many/aggregate wording, cannot be answered by a single COUNT(...) column.
+```python
+def check(output, ctx):
+    try:
+        import re, sqlglot
+        from sqlglot import exp
+        q = ctx['question'].lower()
+        if not re.match(r'(what are|list|show|give|find|return|which)\b', q): return True
+        if 'name' not in q: return True
+        if re.search(r'\b(count|number|how many|total|average|sum|maximum|minimum|amount|many)\b', q): return True
+        tree = sqlglot.parse_one(extract_sql(output), read='sqlite')
+        if not isinstance(tree, exp.Select): return True
+        ex = tree.expressions
+        if len(ex) != 1: return True
+        e = ex[0].this if isinstance(ex[0], exp.Alias) else ex[0]
+        return not isinstance(e, exp.Count)
+    except Exception:
+        return True
+```
+
+### CHECK limit_without_order_is_determined
+RATIONALE: A top-level LIMIT with no ORDER BY anywhere picks an arbitrary row whenever the unlimited query yields several distinct rows. A correct answer would not depend on that choice.
+```python
+def check(output, ctx):
+    try:
+        import sqlglot
+        from sqlglot import exp
+        sql = extract_sql(output)
+        tree = sqlglot.parse_one(sql, read='sqlite')
+        if not isinstance(tree, exp.Select): return True
+        if not tree.args.get('limit'): return True
+        if list(tree.find_all(exp.Order)): return True
+        if tree.args.get('offset'): return True
+        t2 = tree.copy(); t2.set('limit', None)
+        rows = execute(t2.sql(dialect='sqlite'))
+        return len(set(map(tuple, rows))) <= 1
+    except Exception:
+        return True
+```

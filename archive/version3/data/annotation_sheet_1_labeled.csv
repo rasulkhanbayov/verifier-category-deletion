@@ -1,0 +1,651 @@
+row_id,task,task_input,candidate_output,human_label(correct|incorrect|unsure),notes
+0,morph,Gisclair,Gis+clair,incorrect,"Surname, a single morpheme; any internal split is spurious"
+1,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix') AND isofficial = 'T',incorrect,"Scalar '= (subquery)' keeps only one of the three countries Beatrix heads (Aruba, Netherlands Antilles, Netherlands), so Papiamento and the repeated Dutch rows are lost; needs IN or a join"
+2,sql,What are the countries that have cartoons on TV that were written by Todd Casey?,SELECT DISTINCT tv_channel.country FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.written_by = 'Todd Casey',incorrect,"Joins tv_channel.id to cartoon.id; the link is cartoon.channel = tv_channel.id, so it returns the wrong rows (none)"
+3,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"Text: Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .
+
+{
+  ""person"": [],
+  ""location"": [],
+  ""organization"": [""Internet companies""],
+  ""else"": [""copyright-based industries"", ""soccer results"", ""stock prices""]
+}",incorrect,"Lists common nouns or generic phrases (soccer, stock prices, pacts, Internet companies...) as entities; at most ""Internet"" alone qualifies"
+4,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,SELECT DISTINCT model FROM model_list WHERE maker IN (SELECT id FROM car_makers WHERE fullname = 'General Motors') OR modelid IN (SELECT id FROM cars_data WHERE weight > 3500);,incorrect,"Treats model_list.modelid as cars_data.id; a car is linked to its model through car_names (makeid = cars_data.id, model = model_list.model)"
+5,ie,Gaulieder 's family was sleeping in a bedroom at the back of the house and were unharmed by the blast .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",incorrect,"Misses the person ""Gaulieder"""
+6,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,SELECT DISTINCT model FROM model_list WHERE maker IN (SELECT id FROM car_makers WHERE fullname = 'General Motors') OR modelid IN (SELECT id FROM cars_data WHERE weight > 3500);,incorrect,"Treats model_list.modelid as cars_data.id; a car is linked to its model through car_names (makeid = cars_data.id, model = model_list.model)"
+7,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch');",incorrect,"Counts countries (or rows) with English OR Dutch, not both"
+8,ie,"Diplomats said General Joseph Garba of Nigeria , a U.N. General Assembly president in 1989-90 , was putting forth his own candidacy without being nominated by his country .","
+
+{""person"": [""Joseph Garba""], ""location"": [""Nigeria""], ""organization"": [""U.N.""], ""else"": [""General Assembly""]}",incorrect,"Person, Nigeria and U.N. are fine, but ""General Assembly"" is filed under else; it is part of the organization ""U.N. General Assembly"""
+9,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch');",incorrect,"Counts countries (or rows) with English OR Dutch, not both"
+10,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id = (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(*) DESC LIMIT 1),correct,Employee with the most evaluation rows; same result as gold
+11,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": [""Newsroom""]}",incorrect,"London is right, but ""Newsroom"" is a common noun, not a named entity"
+12,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch')",incorrect,"Counts countries (or rows) with English OR Dutch, not both"
+13,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id IN (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(employee_id) DESC LIMIT 1),correct,Employee with the most evaluation rows; same result as gold
+14,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",unsure,"No clear named entity in this sentence; the only arguable one is ""Internet"" (miscellaneous), so an empty answer is defensible but not certain"
+15,ie,"- 36 barges , two each week May-August , Illinois , offered at 130 percent of tariff , no bid or comparison .","{""person"": [], ""location"": [""Illinois""], ""organization"": [], ""else"": [""barges"", ""tariff""]}",incorrect,"Illinois is right, but the else list holds common nouns / month names (barges, tariff), which are not named entities"
+16,morph,nasheed,nash+eed,incorrect,"Arabic loanword, a single morpheme; nash/eed are not morphemes"
+17,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT T1.name FROM employee AS T1 INNER JOIN evaluation AS T2 ON T1.employee_id = T2.employee_id GROUP BY T1.name ORDER BY COUNT(T1.name) DESC LIMIT 1,correct,Employee with the most evaluation rows; same result as gold
+18,morph,swordsman,sword+sman,incorrect,Linking -s- is left glued to man; should be sword+s+man
+19,sql,How many people are there of each nationality?,"SELECT name, COUNT(*) FROM people GROUP BY name",incorrect,Groups by name instead of nationality
+20,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix') AND isofficial = 1,incorrect,"IsOfficial holds 'T'/'F', so isofficial = 1 matches nothing (empty result)"
+21,morph,observable,observ+able,correct,observe + -able (stem-final e dropped)
+22,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix') AND isofficial = 'T',incorrect,"Scalar '= (subquery)' keeps only one of the three countries Beatrix heads (Aruba, Netherlands Antilles, Netherlands), so Papiamento and the repeated Dutch rows are lost; needs IN or a join"
+23,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",incorrect,"Misses ""Canadian"" (nationality adjective, else/miscellaneous)"
+24,sql,How many people are there of each nationality?,"SELECT COUNT(name), nationality FROM people GROUP BY nationality",correct,Count per nationality with the nationality shown; matches gold
+25,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix') AND isofficial = 'T',incorrect,"Scalar '= (subquery)' keeps only one of the three countries Beatrix heads (Aruba, Netherlands Antilles, Netherlands), so Papiamento and the repeated Dutch rows are lost; needs IN or a join"
+26,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",unsure,"No clear named entity in this sentence; the only arguable one is ""Internet"" (miscellaneous), so an empty answer is defensible but not certain"
+27,morph,Gisclair,Gis+clair,incorrect,"Surname, a single morpheme; any internal split is spurious"
+28,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",unsure,"No clear named entity in this sentence; the only arguable one is ""Internet"" (miscellaneous), so an empty answer is defensible but not certain"
+29,morph,Gisclair,Gis+clair,incorrect,"Surname, a single morpheme; any internal split is spurious"
+30,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": [""Internet"", ""soccer""]}",incorrect,"Lists common nouns or generic phrases (soccer, stock prices, pacts, Internet companies...) as entities; at most ""Internet"" alone qualifies"
+31,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",unsure,"No clear named entity in this sentence; the only arguable one is ""Internet"" (miscellaneous), so an empty answer is defensible but not certain"
+32,sql,What is the name of the shop that is hiring the largest number of employees?,SELECT name FROM employee WHERE age > 20,incorrect,Unrelated query (employee names filtered by age); never touches shop or hiring
+33,morph,tetrachloroethane,tetra+chloro+ethan+e,incorrect,Final -e is not a morpheme; the suffix is -ane
+34,morph,observable,observ+able,correct,observe + -able (stem-final e dropped)
+35,morph,liposuctions,lipo+suct+ion+s,unsure,"lipo- and plural -s are right; suct+ion splits suction into a bound Latin root + -ion, which is finer than the safe lipo+suction+s"
+36,sql,What are the names of players who won in both 2013 and 2016?,"SELECT DISTINCT p.first_name, p.last_name 
+FROM players p 
+JOIN matches m2013 ON p.player_id = m2013.winner_id AND m2013.tourney_date LIKE '2013%' 
+JOIN matches m2016 ON p.player_id = m2016.winner_id AND m2016.tourney_date LIKE '2016%'",correct,"Requires a win in each year via two joins; equivalent to gold, though it returns first_name and last_name as two columns rather than winner_name"
+37,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",incorrect,"NYMEX as organization is right, but ""January"" is a date, not a named entity; expected organization NYMEX only"
+38,ie,"More than 14,000 people have lost their lives in over a decade of political turf wars between the ANC and Zulu Chief Mangosuthu Buthelezi 's Inkatha Freedom Party in the province .","{""person"": [""Mangosuthu Buthelezi""], ""location"": [], ""organization"": [""ANC"", ""Inkatha Freedom Party""], ""else"": []}",incorrect,"Person and both organizations are right, but it misses ""Zulu"" (ethnic-group adjective, else/miscellaneous)"
+39,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT car_makers.fullname, COUNT(model_list.modelid) AS model_count 
+FROM car_makers 
+JOIN model_list ON car_makers.id = model_list.maker 
+GROUP BY car_makers.fullname;",correct,Count of models per maker full name; matches gold
+40,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",incorrect,"Bristol City is a football club in a league-table row, so organization, not location"
+41,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(*) FROM countrylanguage WHERE language = 'English' AND isofficial = 1 INTERSECT SELECT COUNT(*) FROM countrylanguage WHERE language = 'Dutch' AND isofficial = 1,incorrect,Intersects two counts instead of two sets of countries; does not count countries with both languages
+42,morph,observable,ob+serv+able,unsure,"Finer, etymological split of observe into Latin ob- + serv-; fine if bound Latin roots count as morphemes, otherwise observ+able"
+43,morph,bummiest,bum+mi+est,correct,bum + -y (spelled i) + -est; the doubled m is attached to the suffix (bumm+i+est is the other common convention)
+44,morph,mayorship,may+or+ship,incorrect,mayor is one morpheme (not may + agentive -or); should be mayor+ship
+45,sql,What are the ids of documents that have 2 or more paragraphs?,SELECT T1.document_id FROM paragraphs AS T1 INNER JOIN documents AS T2 ON T1.document_id = T2.document_id GROUP BY T1.document_id HAVING COUNT(T1.paragraph_id) >= 2,correct,Documents with at least two paragraphs; same result as gold
+46,morph,bummiest,bum+mi+est,correct,bum + -y (spelled i) + -est; the doubled m is attached to the suffix (bumm+i+est is the other common convention)
+47,ie,-- London Newsroom +44 171 542-7768,"{""location"": [""London""], ""else"": [""Newsroom""], ""organization"": [], ""person"": []}",incorrect,"London is right, but ""Newsroom"" is a common noun, not a named entity"
+48,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT COUNT(DISTINCT model) , T1.fullname FROM car_makers AS T1 INNER JOIN model_list AS T2 ON T1.id = T2.maker",incorrect,"No GROUP BY, so it returns a single total with an arbitrary maker name"
+49,morph,observable,observ+able,correct,observe + -able (stem-final e dropped)
+50,sql,What is the name of the shop that is hiring the largest number of employees?,SELECT T2.name FROM hiring AS T1 INNER JOIN shop AS T2 ON T1.shop_id = T2.shop_id GROUP BY T2.name ORDER BY COUNT(T1.employee_id) DESC LIMIT 1,correct,Shop with the most hiring rows; same result as gold
+51,sql,What are the ids of documents that have 2 or more paragraphs?,"SELECT d.document_id 
+FROM documents d 
+JOIN paragraphs p ON d.document_id = p.document_id 
+GROUP BY d.document_id 
+HAVING COUNT(p.paragraph_id) >= 2;",correct,Documents with at least two paragraphs; same result as gold
+52,sql,How many people are there of each nationality?,SELECT COUNT(*) FROM people GROUP BY nationality,incorrect,"Counts per nationality but does not return the nationality, so the counts cannot be read"
+53,morph,tetrachloroethane,tetra+chloro+ethane,correct,tetra- + chloro- + ethane
+54,morph,observable,ob+serv+able,unsure,"Finer, etymological split of observe into Latin ob- + serv-; fine if bound Latin roots count as morphemes, otherwise observ+able"
+55,morph,nasheed,nash+eed,incorrect,"Arabic loanword, a single morpheme; nash/eed are not morphemes"
+56,morph,swordsman,sword+sman,incorrect,Linking -s- is left glued to man; should be sword+s+man
+57,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",correct,London is the only named entity
+58,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(*) FROM countrylanguage WHERE language = 'English' OR language = 'Dutch',incorrect,"Counts countries (or rows) with English OR Dutch, not both"
+59,morph,swordsman,sword+sman,incorrect,Linking -s- is left glued to man; should be sword+s+man
+60,morph,bummiest,bum+mi+est,correct,bum + -y (spelled i) + -est; the doubled m is attached to the suffix (bumm+i+est is the other common convention)
+61,morph,xynomyzithra,xy+no+myz+ithra,incorrect,"Greek cheese name; the only defensible boundary is xyno+myzithra, and this split does not follow it"
+62,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",incorrect,"Bristol City is a football club in a league-table row, so organization, not location"
+63,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",incorrect,"The three people are right, but UAE is a country (location), not else"
+64,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"
+
+{""person"": [], ""location"": [], ""organization"": [], ""else"": [""Internet"", ""pacts"", ""soccer"", ""stock prices""]}",incorrect,"Lists common nouns or generic phrases (soccer, stock prices, pacts, Internet companies...) as entities; at most ""Internet"" alone qualifies"
+65,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": [""Internet companies""]}",incorrect,"Lists common nouns or generic phrases (soccer, stock prices, pacts, Internet companies...) as entities; at most ""Internet"" alone qualifies"
+66,sql,What are the names of players who won in both 2013 and 2016?,"SELECT DISTINCT m1.winner_name 
+FROM matches m1 
+JOIN matches m2 ON m1.winner_id = m2.winner_id 
+WHERE strftime('%Y', m1.tourney_date) = '2013' 
+  AND strftime('%Y', m2.tourney_date) = '2016';",incorrect,"Logic is right, but it needs ISO dates; wta_1 stores tourney_date as YYYYMMDD (e.g. 20131021) as far as I can tell, so strftime('%Y', ...) yields NULL and nothing is returned. Flip to correct if your copy has ISO dates"
+67,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT cl.countrycode) FROM countrylanguage cl WHERE cl.language IN ('English', 'Dutch') GROUP BY cl.countrycode HAVING COUNT(DISTINCT cl.language) = 2",incorrect,"Right filter, but with GROUP BY it returns one row of 1 per country rather than a single count"
+68,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",incorrect,"NYMEX as organization is right, but ""January"" is a date, not a named entity; expected organization NYMEX only"
+69,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT COUNT(*) AS count, c.fullname FROM car_makers AS c JOIN model_list AS m ON c.fullname = m.maker GROUP BY c.fullname",incorrect,Joins car_makers.fullname to model_list.maker (an id); should join on car_makers.id
+70,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",incorrect,"The three people are right, but UAE is a country (location), not else"
+71,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",incorrect,"NYMEX as organization is right, but ""January"" is a date, not a named entity; expected organization NYMEX only"
+72,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",incorrect,"Bristol City is a football club in a league-table row, so organization, not location"
+73,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage AS T1 INNER JOIN country AS T2 ON T1.countrycode = T2.code WHERE T2.headofstate = 'Beatrix' AND isofficial = 1,incorrect,"IsOfficial holds 'T'/'F', so isofficial = 1 matches nothing (empty result)"
+74,morph,Gisclair,Gis+clair,incorrect,"Surname, a single morpheme; any internal split is spurious"
+75,sql,What are the names of players who won in both 2013 and 2016?,"SELECT DISTINCT m1.winner_name 
+FROM matches m1 
+JOIN matches m2 
+ON m1.winner_name = m2.winner_name 
+WHERE strftime('%Y', m1.tourney_date) = '2013' 
+AND strftime('%Y', m2.tourney_date) = '2016';",incorrect,"Logic is right, but it needs ISO dates; wta_1 stores tourney_date as YYYYMMDD (e.g. 20131021) as far as I can tell, so strftime('%Y', ...) yields NULL and nothing is returned. Flip to correct if your copy has ISO dates"
+76,ie,"More than 14,000 people have lost their lives in over a decade of political turf wars between the ANC and Zulu Chief Mangosuthu Buthelezi 's Inkatha Freedom Party in the province .","{""person"": [""Mangosuthu Buthelezi""], ""location"": [], ""organization"": [""Inkatha Freedom Party"", ""ANC""], ""else"": []}",incorrect,"Person and both organizations are right, but it misses ""Zulu"" (ethnic-group adjective, else/miscellaneous)"
+77,morph,bummiest,bum+mi+est,correct,bum + -y (spelled i) + -est; the doubled m is attached to the suffix (bumm+i+est is the other common convention)
+78,ie,NEW DELHI 1996-12-06,"{""location"": [""NEW DELHI""], ""else"": [""1996-12-06""], ""organization"": [], ""person"": []}",incorrect,"NEW DELHI is right, but the date 1996-12-06 is not a named entity; expected location only"
+79,sql,What are the names of players who won in both 2013 and 2016?,"SELECT T1.first_name, T1.last_name FROM players AS T1 INNER JOIN matches AS T2 ON T1.player_id = T2.winner_id WHERE T2.year IN (2013, 2016)",incorrect,"IN (2013, 2016) returns winners from either year, not players who won in both"
+80,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch');",incorrect,"Counts countries (or rows) with English OR Dutch, not both"
+81,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix') AND isofficial = 1,incorrect,"IsOfficial holds 'T'/'F', so isofficial = 1 matches nothing (empty result)"
+82,morph,observable,obser+v+able,incorrect,obser/v are not morphemes; should be observ+able
+83,morph,swordsman,sword+s+man,correct,sword + linking -s- + man
+84,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,SELECT COUNT(*) FROM car_makers AS t1 INNER JOIN model_list AS t2 ON t1.id = t2.maker GROUP BY t1.fullname,incorrect,"Counts are right but the maker full name is not returned, which the question asks for"
+85,sql,What are the countries that have cartoons on TV that were written by Todd Casey?,SELECT DISTINCT tv_channel.country FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.written_by = 'Todd Casey',incorrect,"Joins tv_channel.id to cartoon.id; the link is cartoon.channel = tv_channel.id, so it returns the wrong rows (none)"
+86,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",incorrect,"NYMEX as organization is right, but ""January"" is a date, not a named entity; expected organization NYMEX only"
+87,morph,Gisclair,Gis+clair,incorrect,"Surname, a single morpheme; any internal split is spurious"
+88,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": [""Newsroom""]}",incorrect,"London is right, but ""Newsroom"" is a common noun, not a named entity"
+89,morph,mayorship,mayo+r+ship,incorrect,mayo/r are not morphemes; should be mayor+ship
+90,sql,How many people are there of each nationality?,"SELECT COUNT(*) as people_count, nationality FROM people GROUP BY nationality",correct,Count per nationality with the nationality shown; matches gold
+91,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","Text: They lost 2.21 percent , depressed by a wave of new Canadian supply .
+
+JSON: {""person"": [], ""location"": [""Canada""], ""organization"": [], ""else"": []}",incorrect,"Outputs ""Canada"" as a location; the text says ""Canadian"", a nationality adjective that belongs under else"
+92,morph,Gisclair,Gis+clair,incorrect,"Surname, a single morpheme; any internal split is spurious"
+93,morph,bummiest,bum+mi+est,correct,bum + -y (spelled i) + -est; the doubled m is attached to the suffix (bumm+i+est is the other common convention)
+94,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",correct,London is the only named entity
+95,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(T1.countrycode) FROM countrylanguage AS T1 INNER JOIN countrylanguage AS T2 ON T1.countrycode = T2.countrycode WHERE T1.language = 'English' AND T2.language = 'Dutch',correct,Self-join keeps countries that have both languages; matches gold
+96,morph,swordsman,sword+sman,incorrect,Linking -s- is left glued to man; should be sword+s+man
+97,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": [""Internet companies"", ""copyright-based industries"", ""soccer"", ""stock prices""]}",incorrect,"Lists common nouns or generic phrases (soccer, stock prices, pacts, Internet companies...) as entities; at most ""Internet"" alone qualifies"
+98,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch');",incorrect,"Counts countries (or rows) with English OR Dutch, not both"
+99,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.",SELECT T2.channel FROM cartoon AS T1 INNER JOIN tv_series AS T2 ON T1.id = T2.channel WHERE T1.title = 'The Rise of the Blue Beetle!',incorrect,"Joins cartoon to tv_series on the wrong columns and returns a channel id, not the series name"
+100,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT car_makers.fullname, COUNT(model_list.modelid) AS model_count 
+FROM car_makers 
+JOIN model_list ON car_makers.id = model_list.maker 
+GROUP BY car_makers.fullname;",correct,Count of models per maker full name; matches gold
+101,morph,bummiest,bum+mi+est,correct,bum + -y (spelled i) + -est; the doubled m is attached to the suffix (bumm+i+est is the other common convention)
+102,morph,Gisclair,Gis+clair,incorrect,"Surname, a single morpheme; any internal split is spurious"
+103,morph,xynomyzithra,xy+nom+y+zithra,incorrect,"Greek cheese name; the only defensible boundary is xyno+myzithra, and this split does not follow it"
+104,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",correct,London is the only named entity
+105,morph,jaggier,jag+gi+er,correct,jag + -y (spelled i) + -er; the doubled g is attached to the suffix (jagg+i+er is the other common convention)
+106,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT COUNT(*) ,  fullname FROM car_makers GROUP BY maker",incorrect,"Never joins model_list, so it counts makers, not models"
+107,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","Text: They lost 2.21 percent , depressed by a wave of new Canadian supply .
+
+{
+  ""person"": [],
+  ""location"": [""Canada""],
+  ""organization"": [],
+  ""else"": [""percent"", ""Canadian supply""]
+}",incorrect,"Outputs ""Canada"" as a location; the text says ""Canadian"", a nationality adjective that belongs under else"
+108,ie,"- 36 barges , two each week May-August , Illinois , offered at 130 percent of tariff , no bid or comparison .","{""person"": [], ""location"": [""Illinois""], ""organization"": [], ""else"": [""May-August"", ""barges""]}",incorrect,"Illinois is right, but the else list holds common nouns / month names (May-August, barges), which are not named entities"
+109,morph,mayorship,may+or+ship,incorrect,mayor is one morpheme (not may + agentive -or); should be mayor+ship
+110,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": [""copyright-based industries"", ""Internet"", ""soccer""]}",incorrect,"Lists common nouns or generic phrases (soccer, stock prices, pacts, Internet companies...) as entities; at most ""Internet"" alone qualifies"
+111,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE isofficial = 'T' AND countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix'),incorrect,"Scalar '= (subquery)' keeps only one of the three countries Beatrix heads (Aruba, Netherlands Antilles, Netherlands), so Papiamento and the repeated Dutch rows are lost; needs IN or a join"
+112,morph,Gisclair,Gi+S+clair,incorrect,"Surname, a single morpheme; any internal split is spurious"
+113,morph,nasheed,nash+eed,incorrect,"Arabic loanword, a single morpheme; nash/eed are not morphemes"
+114,ie,Welsh division one,"{""location"": [""Welsh""], ""else"": [""division one""], ""organization"": [], ""person"": []}",incorrect,"""Welsh"" is a nationality adjective (else), not a location, and ""division one"" is not a named entity"
+115,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage AS T1 INNER JOIN country AS T2 ON T1.countrycode = T2.code WHERE T2.headofstate = 'Beatrix' AND isofficial = 1,incorrect,"IsOfficial holds 'T'/'F', so isofficial = 1 matches nothing (empty result)"
+116,morph,liposuctions,lipo+suct+ion+s,unsure,"lipo- and plural -s are right; suct+ion splits suction into a bound Latin root + -ion, which is finer than the safe lipo+suction+s"
+117,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",incorrect,"NYMEX as organization is right, but ""January"" is a date, not a named entity; expected organization NYMEX only"
+118,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT T1.name FROM employee AS T1 INNER JOIN evaluation AS T2 ON T1.employee_id = T2.employee_id GROUP BY T1.name ORDER BY COUNT(T2.year_awarded) DESC LIMIT 1,correct,Employee with the most evaluation rows; same result as gold
+119,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": [""January"", ""NYMEX""]}",incorrect,"NYMEX is an organization (exchange), not else; ""January"" is a date, not a named entity"
+120,sql,What are the names of players who won in both 2013 and 2016?,"SELECT DISTINCT m1.winner_name 
+FROM matches m1
+JOIN matches m2 ON m1.winner_id = m2.winner_id
+WHERE strftime('%Y', m1.tourney_date) = '2013' AND strftime('%Y', m2.tourney_date) = '2016';",incorrect,"Logic is right, but it needs ISO dates; wta_1 stores tourney_date as YYYYMMDD (e.g. 20131021) as far as I can tell, so strftime('%Y', ...) yields NULL and nothing is returned. Flip to correct if your copy has ISO dates"
+121,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT car_makers.fullname, COUNT(model_list.modelid) AS model_count FROM car_makers JOIN model_list ON car_makers.id = model_list.maker GROUP BY car_makers.fullname",correct,Count of models per maker full name; matches gold
+122,morph,tetrachloroethane,tetra+chlor+o+eth+an+e,incorrect,"Splits the suffix -ane into an+e, which are not morphemes"
+123,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(T1.countrycode) FROM countrylanguage AS T1 INNER JOIN countrylanguage AS T2 ON T1.countrycode = T2.countrycode WHERE T1.language = 'English' AND T2.language = 'Dutch',correct,Self-join keeps countries that have both languages; matches gold
+124,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.","SELECT T1.series_name FROM tv_channel AS T1 INNER JOIN cartoon AS T2 ON T1.content = T2.channel WHERE T2.title = ""The Rise of the Blue Beetle!""",incorrect,Joins tv_channel.content to cartoon.channel; the link is tv_channel.id = cartoon.channel
+125,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT T1.name) FROM country AS T1 INNER JOIN countrylanguage AS T2 ON T1.code = T2.countrycode WHERE T2.language IN ('English', 'Dutch')",incorrect,"Counts countries (or rows) with English OR Dutch, not both"
+126,sql,What are the countries that have cartoons on TV that were written by Todd Casey?,SELECT DISTINCT tv_channel.country FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.written_by = 'Todd Casey',incorrect,"Joins tv_channel.id to cartoon.id; the link is cartoon.channel = tv_channel.id, so it returns the wrong rows (none)"
+127,sql,What is the name of the shop that is hiring the largest number of employees?,"
+
+SELECT T1.name FROM shop AS T1 INNER JOIN hiring AS T2 ON T1.shop_id = T2.shop_id GROUP BY T1.name ORDER BY COUNT(T2.employee_id) DESC LIMIT 1",correct,Shop with the most hiring rows; same result as gold
+128,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""location"": [""Canada""], ""else"": [], ""organization"": [], ""person"": []}",incorrect,"Outputs ""Canada"" as a location; the text says ""Canadian"", a nationality adjective that belongs under else"
+129,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",incorrect,"Bristol City is a football club in a league-table row, so organization, not location"
+130,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT T2.name FROM evaluation AS T1 INNER JOIN employee AS T2 ON T1.employee_id = T2.employee_id GROUP BY T2.name ORDER BY COUNT(bonus) DESC LIMIT 1,correct,Employee with the most evaluation rows; same result as gold
+131,morph,swordsman,"
+
+sword+s+man",correct,sword + linking -s- + man
+132,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{
+  ""person"": [],
+  ""location"": [],
+  ""organization"": [],
+  ""else"": [""Internet companies"", ""soccers"", ""stock prices""]
+}",incorrect,"Lists common nouns or generic phrases (soccer, stock prices, pacts, Internet companies...) as entities; at most ""Internet"" alone qualifies"
+133,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,"
+
+SELECT T3.model FROM car_makers AS T1 INNER JOIN model_list AS T2 ON T1.id = T2.maker INNER JOIN car_names AS T3 ON T2.model = T3.makeid INNER JOIN cars_data AS T4 ON T3.makeid = T4.id WHERE T1.fullname = 'General Motors' OR T4.weight > 3500",incorrect,Joins model_list.model (a name) to car_names.makeid (a number); should join on car_names.model
+134,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch');",incorrect,"Counts countries (or rows) with English OR Dutch, not both"
+135,morph,Gisclair,Gis+clair,incorrect,"Surname, a single morpheme; any internal split is spurious"
+136,sql,What grade is Kyle in?,SELECT T1.grade FROM highschooler AS T1 INNER JOIN friend AS T2 ON T1.id = T2.student_id INNER JOIN highschooler AS T3 ON T2.friend_id = T3.id WHERE T3.name = 'Kyle',incorrect,"Returns the grades of students who list Kyle as a friend, not Kyle's own grade (SELECT grade FROM highschooler WHERE name = 'Kyle')"
+137,sql,What are the countries that have cartoons on TV that were written by Todd Casey?,SELECT DISTINCT tv_channel.country FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.written_by = 'Todd Casey',incorrect,"Joins tv_channel.id to cartoon.id; the link is cartoon.channel = tv_channel.id, so it returns the wrong rows (none)"
+138,morph,jaggier,"
+
+jag+gi+er",correct,jag + -y (spelled i) + -er; the doubled g is attached to the suffix (jagg+i+er is the other common convention)
+139,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT COUNT(modelid), fullname FROM car_makers AS t1 INNER JOIN model_list AS t2 ON t1.maker = t2.maker GROUP BY t1.fullname",incorrect,Joins car_makers.maker (name) to model_list.maker (id); should join on car_makers.id
+140,morph,Gisclair,Gis+clair,incorrect,"Surname, a single morpheme; any internal split is spurious"
+141,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"Text: Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .
+
+{
+  ""person"": [],
+  ""location"": [],
+  ""organization"": [""Internet companies""],
+  ""else"": [""copyright-based industries"", ""pacts"", ""soccer results"", ""stock prices""]
+}",incorrect,"Lists common nouns or generic phrases (soccer, stock prices, pacts, Internet companies...) as entities; at most ""Internet"" alone qualifies"
+142,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",incorrect,"NYMEX as organization is right, but ""January"" is a date, not a named entity; expected organization NYMEX only"
+143,morph,swordsman,sword+s+man,correct,sword + linking -s- + man
+144,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch');",incorrect,"Counts countries (or rows) with English OR Dutch, not both"
+145,morph,nasheed,nash+eed,incorrect,"Arabic loanword, a single morpheme; nash/eed are not morphemes"
+146,morph,bummiest,"
+
+bum+mi+est",correct,bum + -y (spelled i) + -est; the doubled m is attached to the suffix (bumm+i+est is the other common convention)
+147,morph,snavel,sna+vel,incorrect,Single morpheme (Dutch word/surname); no valid internal boundary
+148,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT car_makers.fullname, COUNT(model_list.model) AS model_count FROM car_makers JOIN model_list ON car_makers.id = model_list.maker GROUP BY car_makers.fullname;",correct,Count of models per maker full name; matches gold
+149,sql,How many people are there of each nationality?,"SELECT COUNT(people_id), nationality FROM people GROUP BY nationality",correct,Count per nationality with the nationality shown; matches gold
+150,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": [""Newsroom""]}",incorrect,"London is right, but ""Newsroom"" is a common noun, not a named entity"
+151,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,SELECT COUNT(*) FROM car_makers WHERE country IN ( SELECT country FROM car_makers GROUP BY country HAVING COUNT(*) > 1 ),incorrect,Unrelated query (counts makers in countries with several makers)
+152,sql,What is the number of nations that use English and Dutch?,"
+
+SELECT COUNT(*) FROM countrylanguage WHERE language = 'English' OR language = 'Dutch'",incorrect,"Counts countries (or rows) with English OR Dutch, not both"
+153,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT car_makers.fullname, COUNT(model_list.modelid) AS model_count 
+FROM car_makers 
+JOIN model_list ON car_makers.id = model_list.maker 
+GROUP BY car_makers.fullname;",correct,Count of models per maker full name; matches gold
+154,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",incorrect,"Bristol City is a football club in a league-table row, so organization, not location"
+155,morph,liposuctions,lipo+suct+ion+s,unsure,"lipo- and plural -s are right; suct+ion splits suction into a bound Latin root + -ion, which is finer than the safe lipo+suction+s"
+156,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",incorrect,"NYMEX as organization is right, but ""January"" is a date, not a named entity; expected organization NYMEX only"
+157,morph,tetrachloroethane,tetra+chlor+o+eth+ane,unsure,"Finer split (chlor + linker -o- + eth- + -ane); every piece is a real chemical formative, so this depends on the granularity wanted"
+158,morph,jaggier,jag+gi+er,correct,jag + -y (spelled i) + -er; the doubled g is attached to the suffix (jagg+i+er is the other common convention)
+159,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",unsure,"No clear named entity in this sentence; the only arguable one is ""Internet"" (miscellaneous), so an empty answer is defensible but not certain"
+160,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",incorrect,"The three people are right, but UAE is a country (location), not else"
+161,morph,xynomyzithra,xy+nom+y+zithra,incorrect,"Greek cheese name; the only defensible boundary is xyno+myzithra, and this split does not follow it"
+162,morph,observable,observ+able,correct,observe + -able (stem-final e dropped)
+163,morph,bummiest,b+um+mi+est,incorrect,Spurious split of the root bum into b+um
+164,morph,jaggier,jag+gi+er,correct,jag + -y (spelled i) + -er; the doubled g is attached to the suffix (jagg+i+er is the other common convention)
+165,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",incorrect,"Bristol City is a football club in a league-table row, so organization, not location"
+166,morph,xynomyzithra,xy+nom+y+zithra,incorrect,"Greek cheese name; the only defensible boundary is xyno+myzithra, and this split does not follow it"
+167,morph,jaggier,jag+gi+er,correct,jag + -y (spelled i) + -er; the doubled g is attached to the suffix (jagg+i+er is the other common convention)
+168,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",unsure,"No clear named entity in this sentence; the only arguable one is ""Internet"" (miscellaneous), so an empty answer is defensible but not certain"
+169,morph,tetrachloroethane,tetra+chlor+o+eth+ane,unsure,"Finer split (chlor + linker -o- + eth- + -ane); every piece is a real chemical formative, so this depends on the granularity wanted"
+170,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": [""Newsroom""]}",incorrect,"London is right, but ""Newsroom"" is a common noun, not a named entity"
+171,ie,"- 36 barges , two each week May-August , Illinois , offered at 130 percent of tariff , no bid or comparison .","{
+  ""person"": [],
+  ""location"": [""Illinois""],
+  ""organization"": [],
+  ""else"": [""May"", ""August""]
+}",incorrect,"Illinois is right, but the else list holds common nouns / month names (May, August), which are not named entities"
+172,morph,Gisclair,Gis+clair,incorrect,"Surname, a single morpheme; any internal split is spurious"
+173,ie,"More than 14,000 people have lost their lives in over a decade of political turf wars between the ANC and Zulu Chief Mangosuthu Buthelezi 's Inkatha Freedom Party in the province .","
+
+{""person"": [""Mangosuthu Buthelezi""], ""location"": [], ""organization"": [""ANC"", ""Inkatha Freedom Party""], ""else"": []}",incorrect,"Person and both organizations are right, but it misses ""Zulu"" (ethnic-group adjective, else/miscellaneous)"
+174,sql,Which employee received the most awards in evaluations? Give me the employee name.,"
+
+SELECT T1.name FROM employee AS T1 INNER JOIN evaluation AS T2 ON T1.employee_id = T2.employee_id GROUP BY T1.name ORDER BY COUNT(T2.employee_id) DESC LIMIT 1",correct,Employee with the most evaluation rows; same result as gold
+175,morph,snavel,snav+el,incorrect,Single morpheme (Dutch word/surname); no valid internal boundary
+176,sql,What are the countries that have cartoons on TV that were written by Todd Casey?,SELECT DISTINCT tv_channel.country FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.written_by = 'Todd Casey',incorrect,"Joins tv_channel.id to cartoon.id; the link is cartoon.channel = tv_channel.id, so it returns the wrong rows (none)"
+177,morph,swordsman,"
+
+sword+s+man",correct,sword + linking -s- + man
+178,morph,tetrachloroethane,"
+
+tetra+chloro+ethan+e",incorrect,Final -e is not a morpheme; the suffix is -ane
+179,morph,tetrachloroethane,tetra+chloro+ethane,correct,tetra- + chloro- + ethane
+180,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": []}",incorrect,"The three people are right, but it misses UAE (location)"
+181,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.","SELECT tv_channel.series_name FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.title = ""The Rise of the Blue Beetle!"";",incorrect,"Joins tv_channel.id to cartoon.id; the link is cartoon.channel = tv_channel.id, so it returns the wrong rows (none)"
+182,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"Text: Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .
+
+{""person"": [], ""location"": [], ""organization"": [""Internet""], ""else"": [""copyright-based industries"", ""soccer results"", ""stock prices""]}",incorrect,"Lists common nouns or generic phrases (soccer, stock prices, pacts, Internet companies...) as entities; at most ""Internet"" alone qualifies"
+183,morph,minidistricts,mini+districts,incorrect,Under-segmented: plural -s not split off
+184,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",incorrect,"NYMEX as organization is right, but ""January"" is a date, not a named entity; expected organization NYMEX only"
+185,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [""Canadian""], ""organization"": [], ""else"": []}",incorrect,"""Canadian"" is a nationality adjective, so it belongs under else (miscellaneous), not location"
+186,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language = 'English' INTERSECT SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language = 'Dutch';,incorrect,Intersects two counts instead of two sets of countries; does not count countries with both languages
+187,morph,swordsman,sword+s+man,correct,sword + linking -s- + man
+188,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [""Canadian""], ""organization"": [], ""else"": []}",incorrect,"""Canadian"" is a nationality adjective, so it belongs under else (miscellaneous), not location"
+189,ie,NEW DELHI 1996-12-06,"{""location"": [""NEW DELHI""], ""else"": [""1996-12-06""], ""organization"": [], ""person"": []}",incorrect,"NEW DELHI is right, but the date 1996-12-06 is not a named entity; expected location only"
+190,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,"SELECT DISTINCT ml.model 
+FROM model_list ml 
+JOIN car_makers cm ON ml.maker = cm.id 
+JOIN cars_data cd ON ml.modelid = cd.id 
+WHERE cm.fullname = 'General Motors' OR cd.weight > 3500;",incorrect,"Treats model_list.modelid as cars_data.id; a car is linked to its model through car_names (makeid = cars_data.id, model = model_list.model)"
+191,morph,swordsman,sword+s+man,correct,sword + linking -s- + man
+192,morph,swordsman,sword+sman,incorrect,Linking -s- is left glued to man; should be sword+s+man
+193,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",incorrect,"Bristol City is a football club in a league-table row, so organization, not location"
+194,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [""Canadian""], ""organization"": [], ""else"": []}",incorrect,"""Canadian"" is a nationality adjective, so it belongs under else (miscellaneous), not location"
+195,ie,Bristol City 21 9 6 6 36 23 33,"{""location"": [""Bristol City""], ""else"": [], ""organization"": [], ""person"": []}",incorrect,"Bristol City is a football club in a league-table row, so organization, not location"
+196,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT country.code) FROM countrylanguage INNER JOIN country ON countrylanguage.countrycode = country.code WHERE countrylanguage.language IN ('English', 'Dutch') GROUP BY country.code HAVING COUNT(DISTINCT countrylanguage.language) = 2;",incorrect,"Right filter, but with GROUP BY it returns one row of 1 per country rather than a single count"
+197,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",correct,London is the only named entity
+198,sql,How many people are there of each nationality?,SELECT COUNT(*) FROM people GROUP BY nationality,incorrect,"Counts per nationality but does not return the nationality, so the counts cannot be read"
+199,morph,swordsman,sword+sman,incorrect,Linking -s- is left glued to man; should be sword+s+man
+200,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": [""copyright-based industries"", ""Internet"", ""soccer""]}",incorrect,"Lists common nouns or generic phrases (soccer, stock prices, pacts, Internet companies...) as entities; at most ""Internet"" alone qualifies"
+201,ie,"More than 14,000 people have lost their lives in over a decade of political turf wars between the ANC and Zulu Chief Mangosuthu Buthelezi 's Inkatha Freedom Party in the province .","{""person"": [""Mangosuthu Buthelezi""], ""location"": [], ""organization"": [""ANC"", ""Inkatha Freedom Party""], ""else"": []}",incorrect,"Person and both organizations are right, but it misses ""Zulu"" (ethnic-group adjective, else/miscellaneous)"
+202,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,"SELECT DISTINCT m.model 
+FROM car_makers cm 
+JOIN model_list m ON cm.maker = m.maker 
+JOIN cars_data cd ON m.modelid = cd.id 
+WHERE cm.fullname = 'General Motors' OR cd.weight > 3500;",incorrect,Joins car_makers.maker (name) to model_list.maker (id) and model_list.modelid to cars_data.id; neither is a valid link
+203,morph,snavel,snav+el,incorrect,Single morpheme (Dutch word/surname); no valid internal boundary
+204,sql,What is the name of the shop that is hiring the largest number of employees?,SELECT name FROM employee WHERE age > 20,incorrect,Unrelated query (employee names filtered by age); never touches shop or hiring
+205,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""location"": [], ""else"": [""January""], ""organization"": [], ""person"": []}",incorrect,"Misses the organization NYMEX; ""January"" is a date, not a named entity"
+206,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",incorrect,"NYMEX as organization is right, but ""January"" is a date, not a named entity; expected organization NYMEX only"
+207,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT COUNT(car_makers.id), car_makers.fullname FROM car_makers GROUP BY car_makers.fullname",incorrect,"Never joins model_list, so it counts makers, not models"
+208,morph,snavel,snav+el,incorrect,Single morpheme (Dutch word/surname); no valid internal boundary
+209,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",incorrect,"Misses ""Canadian"" (nationality adjective, else/miscellaneous)"
+210,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT T1.name FROM employee AS T1 INNER JOIN evaluation AS T2 ON T1.employee_id = T2.employee_id GROUP BY T1.name ORDER BY COUNT(T2.employee_id) DESC LIMIT 1,correct,Employee with the most evaluation rows; same result as gold
+211,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"Text: NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .
+JSON: {""person"": [], ""location"": [""NYMEX""], ""organization"": [], ""else"": [""January delivery"", ""light"", ""overall""]}",incorrect,"NYMEX typed as a location, and the else list holds non-entities"
+212,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",unsure,"No clear named entity in this sentence; the only arguable one is ""Internet"" (miscellaneous), so an empty answer is defensible but not certain"
+213,sql,What grade is Kyle in?,SELECT T1.grade FROM highschooler AS T1 INNER JOIN friend AS T2 ON T1.id = T2.student_id INNER JOIN highschooler AS T3 ON T3.id = T2.friend_id WHERE T3.name = 'Kyle',incorrect,"Returns the grades of students who list Kyle as a friend, not Kyle's own grade (SELECT grade FROM highschooler WHERE name = 'Kyle')"
+214,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id = (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(*) DESC LIMIT 1),correct,Employee with the most evaluation rows; same result as gold
+215,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"Text: Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .
+
+{
+  ""person"": [],
+  ""location"": [],
+  ""organization"": [""Internet companies""],
+  ""else"": [""copyright-based industries"", ""protests"", ""pacts"", ""soccer results"", ""stock prices""]
+}",incorrect,"Lists common nouns or generic phrases (soccer, stock prices, pacts, Internet companies...) as entities; at most ""Internet"" alone qualifies"
+216,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",incorrect,"NYMEX as organization is right, but ""January"" is a date, not a named entity; expected organization NYMEX only"
+217,ie,"The general did not mention these refugees , who are on the outer limit of the strip the planes have been checking .","The text is ""The general did not mention these refugees , who are on the outer limit of the strip the planes have been checking .""
+
+The JSON output is:
+{""person"": [""The general""], ""location"": [""the strip""], ""organization"": [], ""else"": [""refugees"", ""planes""]}",incorrect,"The sentence has no named entities; the output lists common nouns (the general, refugees, the strip, planes)"
+218,morph,Gisclair,Gis+clair,incorrect,"Surname, a single morpheme; any internal split is spurious"
+219,sql,How many people are there of each nationality?,SELECT COUNT(*) FROM people GROUP BY nationality,incorrect,"Counts per nationality but does not return the nationality, so the counts cannot be read"
+220,morph,observable,observ+able,correct,observe + -able (stem-final e dropped)
+221,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id IN (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(employee_id) DESC LIMIT 1),correct,Employee with the most evaluation rows; same result as gold
+222,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(DISTINCT T1.countrycode) FROM countrylanguage AS T1 INNER JOIN countrylanguage AS T2 ON T1.countrycode = T2.countrycode WHERE T1.language = 'English' AND T2.language = 'Dutch',correct,Self-join keeps countries that have both languages; matches gold
+223,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"
+
+{""person"": [], ""location"": [], ""organization"": [""Internet""], ""else"": [""soccer"", ""stock prices""]}",incorrect,"Lists common nouns or generic phrases (soccer, stock prices, pacts, Internet companies...) as entities; at most ""Internet"" alone qualifies"
+224,morph,tetrachloroethane,"
+
+tetra+chloro+ethan+e",incorrect,Final -e is not a morpheme; the suffix is -ane
+225,morph,bummiest,bum+miest,incorrect,Under-segmented: -y and -est are left fused as miest
+226,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",unsure,"No clear named entity in this sentence; the only arguable one is ""Internet"" (miscellaneous), so an empty answer is defensible but not certain"
+227,morph,bummiest,"
+
+bum+mi+est",correct,bum + -y (spelled i) + -est; the doubled m is attached to the suffix (bumm+i+est is the other common convention)
+228,sql,What are the names of players who won in both 2013 and 2016?,"SELECT winner_name 
+FROM matches 
+WHERE strftime('%Y', tourney_date) = '2013' 
+INTERSECT 
+SELECT winner_name 
+FROM matches 
+WHERE strftime('%Y', tourney_date) = '2016';",incorrect,"Logic is right, but it needs ISO dates; wta_1 stores tourney_date as YYYYMMDD (e.g. 20131021) as far as I can tell, so strftime('%Y', ...) yields NULL and nothing is returned. Flip to correct if your copy has ISO dates"
+229,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.","SELECT tv_channel.series_name FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.title = ""The Rise of the Blue Beetle!"";",incorrect,"Joins tv_channel.id to cartoon.id; the link is cartoon.channel = tv_channel.id, so it returns the wrong rows (none)"
+230,morph,jaggier,jag+gi+er,correct,jag + -y (spelled i) + -er; the doubled g is attached to the suffix (jagg+i+er is the other common convention)
+231,ie,-- London Newsroom +44 171 542-7768,"{""location"": [""London""], ""else"": [], ""organization"": [], ""person"": []}",correct,London is the only named entity
+232,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",incorrect,"Bristol City is a football club in a league-table row, so organization, not location"
+233,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,"SELECT DISTINCT ml.model 
+FROM model_list ml 
+JOIN car_makers cm ON ml.maker = cm.id 
+JOIN cars_data cd ON ml.modelid = cd.id 
+WHERE cm.fullname = 'General Motors' OR cd.weight > 3500;",incorrect,"Treats model_list.modelid as cars_data.id; a car is linked to its model through car_names (makeid = cars_data.id, model = model_list.model)"
+234,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix') AND isofficial = 'T',incorrect,"Scalar '= (subquery)' keeps only one of the three countries Beatrix heads (Aruba, Netherlands Antilles, Netherlands), so Papiamento and the repeated Dutch rows are lost; needs IN or a join"
+235,sql,What is the name of the shop that is hiring the largest number of employees?,SELECT T2.name FROM hiring AS T1 INNER JOIN shop AS T2 ON T1.shop_id = T2.shop_id GROUP BY T2.name ORDER BY COUNT(T1.employee_id) DESC LIMIT 1,correct,Shop with the most hiring rows; same result as gold
+236,morph,nasheed,nash+eed,incorrect,"Arabic loanword, a single morpheme; nash/eed are not morphemes"
+237,morph,xynomyzithra,xy+nom+y+zithra,incorrect,"Greek cheese name; the only defensible boundary is xyno+myzithra, and this split does not follow it"
+238,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [""Canada""], ""organization"": [], ""else"": []}",incorrect,"Outputs ""Canada"" as a location; the text says ""Canadian"", a nationality adjective that belongs under else"
+239,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id = (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(*) DESC LIMIT 1),correct,Employee with the most evaluation rows; same result as gold
+240,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",unsure,"No clear named entity in this sentence; the only arguable one is ""Internet"" (miscellaneous), so an empty answer is defensible but not certain"
+241,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",incorrect,"Bristol City is a football club in a league-table row, so organization, not location"
+242,sql,Which city has most number of departing flights?,SELECT sourceairport FROM flights GROUP BY sourceairport ORDER BY COUNT(*) DESC LIMIT 1,incorrect,"Returns the source airport code, not the city; needs a join to airports and grouping by city"
+243,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": [""Internet companies""]}",incorrect,"Lists common nouns or generic phrases (soccer, stock prices, pacts, Internet companies...) as entities; at most ""Internet"" alone qualifies"
+244,sql,What are the names of players who won in both 2013 and 2016?,"SELECT DISTINCT p.first_name, p.last_name 
+FROM players p 
+JOIN matches m1 ON p.player_id = m1.winner_id AND m1.tourney_date LIKE '2013%' 
+JOIN matches m2 ON p.player_id = m2.winner_id AND m2.tourney_date LIKE '2016%'",correct,"Requires a win in each year via two joins; equivalent to gold, though it returns first_name and last_name as two columns rather than winner_name"
+245,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",unsure,"No clear named entity in this sentence; the only arguable one is ""Internet"" (miscellaneous), so an empty answer is defensible but not certain"
+246,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",incorrect,"The three people are right, but UAE is a country (location), not else"
+247,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id = (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(*) DESC LIMIT 1),correct,Employee with the most evaluation rows; same result as gold
+248,sql,What grade is Kyle in?,SELECT T1.grade FROM highschooler AS T1 INNER JOIN friend AS T2 ON T1.id = T2.student_id INNER JOIN highschooler AS T3 ON T3.id = T2.friend_id WHERE T3.name = 'Kyle',incorrect,"Returns the grades of students who list Kyle as a friend, not Kyle's own grade (SELECT grade FROM highschooler WHERE name = 'Kyle')"
+249,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"Here is the JSON object:
+{
+  ""person"": [],
+  ""location"": [],
+  ""organization"": [],
+  ""else"": [
+    ""Internet companies"", ""soccer"", ""stock prices""
+  ]
+}",incorrect,"Lists common nouns or generic phrases (soccer, stock prices, pacts, Internet companies...) as entities; at most ""Internet"" alone qualifies"
+250,morph,nasheed,nash+eed,incorrect,"Arabic loanword, a single morpheme; nash/eed are not morphemes"
+251,morph,minidistricts,mini+dis+trict+s,incorrect,district is one morpheme in English (trict is not a root); should be mini+district+s
+252,morph,liposuctions,lipo+suct+ion+s,unsure,"lipo- and plural -s are right; suct+ion splits suction into a bound Latin root + -ion, which is finer than the safe lipo+suction+s"
+253,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": [""Newsroom""]}",incorrect,"London is right, but ""Newsroom"" is a common noun, not a named entity"
+254,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",incorrect,Misses the organization NYMEX
+255,morph,Gisclair,Gi+s+clair,incorrect,"Surname, a single morpheme; any internal split is spurious"
+256,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""location"": [], ""else"": [""January"", ""NYMEX""], ""organization"": [], ""person"": []}",incorrect,"NYMEX is an organization (exchange), not else; ""January"" is a date, not a named entity"
+257,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT T2.language FROM country AS T1 INNER JOIN countrylanguage AS T2 ON T1.code = T2.countrycode WHERE T1.headofstate = 'Beatrix' AND T2.isofficial = 1,incorrect,"IsOfficial holds 'T'/'F', so isofficial = 1 matches nothing (empty result)"
+258,morph,semicomas,semi+com+as,incorrect,Boundary in the wrong place; should be semi+coma+s
+259,morph,bummiest,bum+mi+est,correct,bum + -y (spelled i) + -est; the doubled m is attached to the suffix (bumm+i+est is the other common convention)
+260,morph,tetrachloroethane,tetra+chloro+ethan+e,incorrect,Final -e is not a morpheme; the suffix is -ane
+261,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{
+  ""person"": [], 
+  ""location"": [], 
+  ""organization"": [], 
+  ""else"": [""Internet companies"", ""online works"", ""soccer results"", ""stock prices""]
+}",incorrect,"Lists common nouns or generic phrases (soccer, stock prices, pacts, Internet companies...) as entities; at most ""Internet"" alone qualifies"
+262,ie,NEW DELHI 1996-12-06,"{""location"": [""NEW DELHI""], ""else"": [""1996-12-06""], ""organization"": [], ""person"": []}",incorrect,"NEW DELHI is right, but the date 1996-12-06 is not a named entity; expected location only"
+263,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""location"": [], ""else"": [""NYMEX""], ""organization"": [], ""person"": []}",incorrect,"NYMEX is an organization (exchange), not else"
+264,sql,How many people are there of each nationality?,"SELECT COUNT(*) ,  nationality FROM people GROUP BY nationality",correct,Count per nationality with the nationality shown; matches gold
+265,ie,"- 36 barges , two each week May-August , Illinois , offered at 130 percent of tariff , no bid or comparison .","{""location"": [""Illinois""], ""else"": [""May-August"", ""two each week""], ""organization"": [], ""person"": []}",incorrect,"Illinois is right, but the else list holds common nouns / month names (May-August, two each week), which are not named entities"
+266,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",incorrect,"The three people are right, but UAE is a country (location), not else"
+267,morph,snavel,sna+vel,incorrect,Single morpheme (Dutch word/surname); no valid internal boundary
+268,sql,Find the distinct breed type and size type combinations for dogs.,"SELECT DISTINCT b.breed_name, s.size_description 
+FROM dogs d
+JOIN breeds b ON d.breed_code = b.breed_code
+JOIN sizes s ON d.size_code = s.size_code;",unsure,"Returns breed_name and size_description through joins where gold returns breed_code and size_code from dogs; same combinations, different columns, so it depends on how ""type"" is read"
+269,morph,snavel,snav+el,incorrect,Single morpheme (Dutch word/surname); no valid internal boundary
+270,morph,observable,observ+able,correct,observe + -able (stem-final e dropped)
+271,morph,observable,observ+able,correct,observe + -able (stem-final e dropped)
+272,morph,bummiest,bum+mi+est,correct,bum + -y (spelled i) + -est; the doubled m is attached to the suffix (bumm+i+est is the other common convention)
+273,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [""Canadian""], ""organization"": [], ""else"": []}",incorrect,"""Canadian"" is a nationality adjective, so it belongs under else (miscellaneous), not location"
+274,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",incorrect,"Misses ""Canadian"" (nationality adjective, else/miscellaneous)"
+275,morph,Gisclair,Gis+clair,incorrect,"Surname, a single morpheme; any internal split is spurious"
+276,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT T2.name) FROM countrylanguage AS T1 INNER JOIN country AS T2 ON T1.countrycode = T2.code WHERE T1.language IN ('English', 'Dutch')",incorrect,"Counts countries (or rows) with English OR Dutch, not both"
+277,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",incorrect,"The three people are right, but UAE is a country (location), not else"
+278,ie,"More than 14,000 people have lost their lives in over a decade of political turf wars between the ANC and Zulu Chief Mangosuthu Buthelezi 's Inkatha Freedom Party in the province .","{""person"": [""Mangosuthu Buthelezi""], ""location"": [], ""organization"": [""ANC"", ""Inkatha Freedom Party""], ""else"": []}",incorrect,"Person and both organizations are right, but it misses ""Zulu"" (ethnic-group adjective, else/miscellaneous)"
+279,morph,observable,"
+
+ob+serv+able",unsure,"Finer, etymological split of observe into Latin ob- + serv-; fine if bound Latin roots count as morphemes, otherwise observ+able"
+280,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.",SELECT T1.series_name FROM tv_channel AS T1 INNER JOIN cartoon AS T2 ON T2.channel = T1.content WHERE T2.title = 'The Rise of the Blue Beetle!',incorrect,Joins tv_channel.content to cartoon.channel; the link is tv_channel.id = cartoon.channel
+281,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT car_makers.fullname, COUNT(model_list.modelid) AS model_count
+FROM car_makers
+JOIN model_list ON car_makers.id = model_list.maker
+GROUP BY car_makers.fullname;",correct,Count of models per maker full name; matches gold
+282,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE isofficial = 'T' AND countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix'),incorrect,"Scalar '= (subquery)' keeps only one of the three countries Beatrix heads (Aruba, Netherlands Antilles, Netherlands), so Papiamento and the repeated Dutch rows are lost; needs IN or a join"
+283,morph,swordsman,sword+s+man,correct,sword + linking -s- + man
+284,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": [""Newsroom""]}",incorrect,"London is right, but ""Newsroom"" is a common noun, not a named entity"
+285,morph,Gisclair,Gis+clair,incorrect,"Surname, a single morpheme; any internal split is spurious"
+286,morph,mayorship,mayo+r+ship,incorrect,mayo/r are not morphemes; should be mayor+ship
+287,sql,What are the countries that have cartoons on TV that were written by Todd Casey?,SELECT DISTINCT tv_channel.country FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.written_by = 'Todd Casey',incorrect,"Joins tv_channel.id to cartoon.id; the link is cartoon.channel = tv_channel.id, so it returns the wrong rows (none)"
+288,morph,swordsman,sword+sman,incorrect,Linking -s- is left glued to man; should be sword+s+man
+289,morph,bummiest,bum+miest,incorrect,Under-segmented: -y and -est are left fused as miest
+290,sql,Which city has most number of departing flights?,SELECT sourceairport FROM flights GROUP BY sourceairport ORDER BY COUNT(*) DESC LIMIT 1;,incorrect,"Returns the source airport code, not the city; needs a join to airports and grouping by city"
+291,morph,swordsman,"
+
+sword+s+man",correct,sword + linking -s- + man
+292,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"
+
+{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",incorrect,"NYMEX as organization is right, but ""January"" is a date, not a named entity; expected organization NYMEX only"
+293,ie,"More than 14,000 people have lost their lives in over a decade of political turf wars between the ANC and Zulu Chief Mangosuthu Buthelezi 's Inkatha Freedom Party in the province .","{""person"": [""Mangosuthu Buthelezi""], ""location"": [], ""organization"": [""ANC"", ""Inkatha Freedom Party""], ""else"": []}",incorrect,"Person and both organizations are right, but it misses ""Zulu"" (ethnic-group adjective, else/miscellaneous)"
+294,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch');",incorrect,"Counts countries (or rows) with English OR Dutch, not both"
+295,morph,swordsman,sword+s+man,correct,sword + linking -s- + man
+296,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT T1.name FROM employee AS T1 INNER JOIN evaluation AS T2 ON T1.employee_id = T2.employee_id GROUP BY T1.name ORDER BY COUNT(T2.employee_id) DESC LIMIT 1,correct,Employee with the most evaluation rows; same result as gold
+297,morph,mayorship,may+or+ship,incorrect,mayor is one morpheme (not may + agentive -or); should be mayor+ship
+298,morph,observable,o+bserv+able,incorrect,o/bserv are not morphemes; should be observ+able
+299,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [""Canadian""], ""organization"": [], ""else"": []}",incorrect,"""Canadian"" is a nationality adjective, so it belongs under else (miscellaneous), not location"
+300,morph,bummiest,bum+miest,incorrect,Under-segmented: -y and -est are left fused as miest
+301,sql,How many people are there of each nationality?,"SELECT COUNT(name), nationality FROM people GROUP BY nationality",correct,Count per nationality with the nationality shown; matches gold
+302,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": [""Newsroom""]}",incorrect,"London is right, but ""Newsroom"" is a common noun, not a named entity"
+303,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT T2.name FROM evaluation AS T1 INNER JOIN employee AS T2 ON T1.employee_id = T2.employee_id GROUP BY T2.name ORDER BY COUNT(T1.employee_id) DESC LIMIT 1,correct,Employee with the most evaluation rows; same result as gold
+304,morph,snavel,"
+
+s+nav+el",incorrect,Single morpheme (Dutch word/surname); no valid internal boundary
+305,sql,What is the name of the shop that is hiring the largest number of employees?,SELECT name FROM employee WHERE age > 30,incorrect,Unrelated query (employee names filtered by age); never touches shop or hiring
+306,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT car_makers.fullname, COUNT(model_list.modelid) AS model_count 
+FROM car_makers 
+JOIN model_list ON car_makers.id = model_list.maker 
+GROUP BY car_makers.fullname;",correct,Count of models per maker full name; matches gold
+307,morph,snavel,sna+vel,incorrect,Single morpheme (Dutch word/surname); no valid internal boundary
+308,morph,Gisclair,gis+clair,incorrect,"Surname, a single morpheme; any internal split is spurious"
+309,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",unsure,"No clear named entity in this sentence; the only arguable one is ""Internet"" (miscellaneous), so an empty answer is defensible but not certain"
+310,morph,Gisclair,Gis+clair,incorrect,"Surname, a single morpheme; any internal split is spurious"
+311,ie,"The general did not mention these refugees , who are on the outer limit of the strip the planes have been checking .","Text: The general did not mention these refugees , who are on the outer limit of the strip the planes have been checking .
+{""person"": [], ""location"": [], ""organization"": [], ""else"": [""The general"", ""refugees"", ""planes"", ""strip""]}",incorrect,"The sentence has no named entities; the output lists common nouns (the general, refugees, the strip, planes)"
+312,sql,What are the countries that have cartoons on TV that were written by Todd Casey?,SELECT DISTINCT tv_channel.country FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.written_by = 'Todd Casey',incorrect,"Joins tv_channel.id to cartoon.id; the link is cartoon.channel = tv_channel.id, so it returns the wrong rows (none)"
+313,morph,snavel,snav+el,incorrect,Single morpheme (Dutch word/surname); no valid internal boundary
+314,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id = (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(*) DESC LIMIT 1),correct,Employee with the most evaluation rows; same result as gold
+315,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",incorrect,"The three people are right, but UAE is a country (location), not else"
+316,morph,minidistricts,mini+dis+trict+s,incorrect,district is one morpheme in English (trict is not a root); should be mini+district+s
+317,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",incorrect,Misses the organization NYMEX
+318,sql,What is the name of the shop that is hiring the largest number of employees?,SELECT name FROM employee WHERE age > 20,incorrect,Unrelated query (employee names filtered by age); never touches shop or hiring
+319,morph,bummiest,bum+mi+est,correct,bum + -y (spelled i) + -est; the doubled m is attached to the suffix (bumm+i+est is the other common convention)
+320,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",incorrect,"NYMEX as organization is right, but ""January"" is a date, not a named entity; expected organization NYMEX only"
+321,morph,swordsman,sword+s+man,correct,sword + linking -s- + man
+322,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(*) FROM countrylanguage WHERE language = 'English' INTERSECT SELECT COUNT(*) FROM countrylanguage WHERE language = 'Dutch',incorrect,Intersects two counts instead of two sets of countries; does not count countries with both languages
+323,sql,How many people are there of each nationality?,"SELECT COUNT(*), nationality FROM people GROUP BY nationality",correct,Count per nationality with the nationality shown; matches gold
+324,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",correct,London is the only named entity
+325,sql,What grade is Kyle in?,SELECT T1.grade FROM highschooler AS T1 INNER JOIN friend AS T2 ON T1.id = T2.student_id INNER JOIN highschooler AS T3 ON T3.id = T2.friend_id WHERE T3.name = 'Kyle',incorrect,"Returns the grades of students who list Kyle as a friend, not Kyle's own grade (SELECT grade FROM highschooler WHERE name = 'Kyle')"
+326,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",correct,London is the only named entity
+327,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",unsure,"No clear named entity in this sentence; the only arguable one is ""Internet"" (miscellaneous), so an empty answer is defensible but not certain"
+328,morph,bummiest,bum+miest,incorrect,Under-segmented: -y and -est are left fused as miest
+329,morph,snavel,sna+vel,incorrect,Single morpheme (Dutch word/surname); no valid internal boundary
+330,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE isofficial = 'T' AND countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix'),incorrect,"Scalar '= (subquery)' keeps only one of the three countries Beatrix heads (Aruba, Netherlands Antilles, Netherlands), so Papiamento and the repeated Dutch rows are lost; needs IN or a join"
+331,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT T2.name FROM evaluation AS T1 INNER JOIN employee AS T2 ON T1.employee_id = T2.employee_id GROUP BY T2.name ORDER BY COUNT(T1.employee_id) DESC LIMIT 1,correct,Employee with the most evaluation rows; same result as gold
+332,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix') AND isofficial = 'T',incorrect,"Scalar '= (subquery)' keeps only one of the three countries Beatrix heads (Aruba, Netherlands Antilles, Netherlands), so Papiamento and the repeated Dutch rows are lost; needs IN or a join"
+333,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.","SELECT tv_channel.series_name FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.title = ""The Rise of the Blue Beetle!""",incorrect,"Joins tv_channel.id to cartoon.id; the link is cartoon.channel = tv_channel.id, so it returns the wrong rows (none)"
+334,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,SELECT DISTINCT model FROM model_list WHERE maker IN (SELECT id FROM car_makers WHERE fullname = 'General Motors') OR modelid IN (SELECT id FROM cars_data WHERE weight > 3500);,incorrect,"Treats model_list.modelid as cars_data.id; a car is linked to its model through car_names (makeid = cars_data.id, model = model_list.model)"
+335,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",incorrect,"The three people are right, but UAE is a country (location), not else"
+336,morph,bummiest,bum+mi+est,correct,bum + -y (spelled i) + -est; the doubled m is attached to the suffix (bumm+i+est is the other common convention)
+337,morph,observable,observ+able,correct,observe + -able (stem-final e dropped)
+338,morph,minidistricts,mini+dis+trict+s+,incorrect,Over-splits district and leaves a trailing empty segment
+339,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix') AND isofficial = 'T',incorrect,"Scalar '= (subquery)' keeps only one of the three countries Beatrix heads (Aruba, Netherlands Antilles, Netherlands), so Papiamento and the repeated Dutch rows are lost; needs IN or a join"
+340,sql,What are the names of players who won in both 2013 and 2016?,"SELECT T1.last_name, T1.first_name 
+FROM players AS T1 
+INNER JOIN matches AS T2 
+ON T1.player_id = T2.winner_id 
+WHERE SUBSTR(T2.tourney_date, 1, 4) IN (2013, 2016)",incorrect,"IN (2013, 2016) returns winners from either year, not players who won in both"
+341,sql,What are the names of players who won in both 2013 and 2016?,"SELECT T1.first_name, T1.last_name FROM players AS T1 INNER JOIN matches AS T2 ON T1.player_id = T2.winner_id WHERE T2.year IN (2013, 2016)",incorrect,"IN (2013, 2016) returns winners from either year, not players who won in both"
+342,sql,What are the names of players who won in both 2013 and 2016?,"SELECT T1.first_name, T1.last_name FROM players AS T1 INNER JOIN matches AS T2 ON T1.player_id = T2.winner_id WHERE T2.year IN (2013, 2016)",incorrect,"IN (2013, 2016) returns winners from either year, not players who won in both"
+343,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",incorrect,"Bristol City is a football club in a league-table row, so organization, not location"
+344,sql,How many people are there of each nationality?,"SELECT COUNT(*), nationality FROM people GROUP BY nationality",correct,Count per nationality with the nationality shown; matches gold
+345,ie,Gaulieder 's family was sleeping in a bedroom at the back of the house and were unharmed by the blast .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",incorrect,"Misses the person ""Gaulieder"""
+346,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",correct,London is the only named entity
+347,morph,jaggier,jag+gi+er,correct,jag + -y (spelled i) + -er; the doubled g is attached to the suffix (jagg+i+er is the other common convention)
+348,morph,swordsman,sword+s+man,correct,sword + linking -s- + man
+349,morph,observable,obser+vable,incorrect,"Boundary in the wrong place; suffix is -able, not -vable"
+350,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"Text: NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .
+{""location"": [], ""else"": [""January"", ""NYMEX""], ""organization"": [], ""person"": []}",incorrect,"NYMEX is an organization (exchange), not else; ""January"" is a date, not a named entity"
+351,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,"
+
+SELECT T1.model FROM model_list AS T1 INNER JOIN car_makers AS T2 ON T1.maker = T2.fullname INNER JOIN cars_data AS T3 ON T2.id = T3.id WHERE T2.fullname = 'General Motors' OR T3.weight > 3500",incorrect,Joins model_list.maker (id) to car_makers.fullname and car_makers.id to cars_data.id; neither is a valid link
+352,morph,swordsman,sword+s+man,correct,sword + linking -s- + man
+353,morph,bummiest,bum+miest,incorrect,Under-segmented: -y and -est are left fused as miest
+354,morph,minidistricts,mini+dis+trict+s,incorrect,district is one morpheme in English (trict is not a root); should be mini+district+s
+355,morph,bummiest,bum+mi+est,correct,bum + -y (spelled i) + -est; the doubled m is attached to the suffix (bumm+i+est is the other common convention)
+356,ie,Bristol City 21 9 6 6 36 23 33,"{""location"": [""Bristol City""], ""else"": [], ""organization"": [], ""person"": []}",incorrect,"Bristol City is a football club in a league-table row, so organization, not location"
+357,morph,minidistricts,mini+dis+trict+s,incorrect,district is one morpheme in English (trict is not a root); should be mini+district+s
+358,morph,observable,ob+serv+able,unsure,"Finer, etymological split of observe into Latin ob- + serv-; fine if bound Latin roots count as morphemes, otherwise observ+able"
+359,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage WHERE countrycode = (SELECT code FROM country WHERE headofstate = 'Beatrix') AND isofficial = 1,incorrect,"IsOfficial holds 'T'/'F', so isofficial = 1 matches nothing (empty result)"
+360,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",incorrect,"Bristol City is a football club in a league-table row, so organization, not location"
+361,morph,bummiest,b+um+mi+est,incorrect,Spurious split of the root bum into b+um
+362,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",incorrect,"Bristol City is a football club in a league-table row, so organization, not location"
+363,sql,What are the countries that have cartoons on TV that were written by Todd Casey?,SELECT DISTINCT tv_channel.country FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.written_by = 'Todd Casey',incorrect,"Joins tv_channel.id to cartoon.id; the link is cartoon.channel = tv_channel.id, so it returns the wrong rows (none)"
+364,ie,"The general did not mention these refugees , who are on the outer limit of the strip the planes have been checking .","{""location"": [""Paris""], ""else"": [""refugees"", ""strip""], ""organization"": [""Acme Corp""], ""person"": [""John Smith""]}",incorrect,"Returns entities from an unrelated example sentence (Paris / Acme Corp / John Smith), none of which are in the text"
+365,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""location"": [], ""else"": [], ""organization"": [], ""person"": []}",unsure,"No clear named entity in this sentence; the only arguable one is ""Internet"" (miscellaneous), so an empty answer is defensible but not certain"
+366,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",incorrect,"NYMEX as organization is right, but ""January"" is a date, not a named entity; expected organization NYMEX only"
+367,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id = (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(*) DESC LIMIT 1),correct,Employee with the most evaluation rows; same result as gold
+368,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.","SELECT tc.series_name FROM tv_channel tc JOIN cartoon c ON tc.id = c.id WHERE c.title = ""The Rise of the Blue Beetle!"";",incorrect,"Joins tv_channel.id to cartoon.id; the link is cartoon.channel = tv_channel.id, so it returns the wrong rows (none)"
+369,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"I'll extract the named entities from the given text. However, since the text you provided does not contain any named entities, I'll use a generic text for illustration.
+
+Text: ""John Smith joined Acme Corp in Paris to attend the 2020 Olympics.""
+
+JSON: 
+{
+  ""person"": [""John Smith""],
+  ""location"": [""Paris""],
+  ""organization"": [""Acme Corp""],
+  ""else"": [""2020 Olympics""]
+}",incorrect,"Returns entities from an unrelated example sentence (Paris / Acme Corp / John Smith), none of which are in the text"
+370,ie,"Diplomats said General Joseph Garba of Nigeria , a U.N. General Assembly president in 1989-90 , was putting forth his own candidacy without being nominated by his country .","{""person"": [""Joseph Garba""], ""location"": [""Nigeria""], ""organization"": [""U.N.""], ""else"": [""General Assembly""]}",incorrect,"Person, Nigeria and U.N. are fine, but ""General Assembly"" is filed under else; it is part of the organization ""U.N. General Assembly"""
+371,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch') GROUP BY countrycode HAVING COUNT(DISTINCT language) = 2",incorrect,"Right filter, but with GROUP BY it returns one row of 1 per country rather than a single count"
+372,sql,How many people are there of each nationality?,"SELECT COUNT(people_id), nationality FROM people GROUP BY nationality",correct,Count per nationality with the nationality shown; matches gold
+373,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT T1.name FROM employee AS T1 INNER JOIN evaluation AS T2 ON T1.employee_id = T2.employee_id GROUP BY T1.name ORDER BY COUNT(T2.employee_id) DESC LIMIT 1,correct,Employee with the most evaluation rows; same result as gold
+374,ie,"More than 14,000 people have lost their lives in over a decade of political turf wars between the ANC and Zulu Chief Mangosuthu Buthelezi 's Inkatha Freedom Party in the province .","{""person"": [""Mangosuthu Buthelezi""], ""location"": [], ""organization"": [""ANC"", ""Inkatha Freedom Party""], ""else"": []}",incorrect,"Person and both organizations are right, but it misses ""Zulu"" (ethnic-group adjective, else/miscellaneous)"
+375,sql,What are the names of players who won in both 2013 and 2016?,"SELECT T1.first_name, T1.last_name FROM players AS T1 
+INNER JOIN matches AS T2 
+ON T1.player_id = T2.winner_id 
+WHERE T2.year IN (2013, 2016)",incorrect,"IN (2013, 2016) returns winners from either year, not players who won in both"
+376,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,"SELECT DISTINCT ml.model 
+FROM model_list ml
+JOIN car_makers cm ON ml.maker = cm.id
+JOIN cars_data cd ON ml.modelid = cd.id
+WHERE cm.fullname = 'General Motors' OR cd.weight > 3500;",incorrect,"Treats model_list.modelid as cars_data.id; a car is linked to its model through car_names (makeid = cars_data.id, model = model_list.model)"
+377,morph,bummiest,bum+miest,incorrect,Under-segmented: -y and -est are left fused as miest
+378,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",incorrect,"NYMEX as organization is right, but ""January"" is a date, not a named entity; expected organization NYMEX only"
+379,morph,swordsman,sword+sman,incorrect,Linking -s- is left glued to man; should be sword+s+man
+380,sql,How many people are there of each nationality?,"
+
+SELECT COUNT(people_id), nationality FROM people GROUP BY nationality",correct,Count per nationality with the nationality shown; matches gold
+381,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",incorrect,"NYMEX as organization is right, but ""January"" is a date, not a named entity; expected organization NYMEX only"
+382,ie,"The general did not mention these refugees , who are on the outer limit of the strip the planes have been checking .","{""person"": [""The general""], ""location"": [""the strip""], ""organization"": [], ""else"": [""refugees""]}",incorrect,"The sentence has no named entities; the output lists common nouns (the general, refugees, the strip, planes)"
+383,morph,jaggier,jag+gi+er,correct,jag + -y (spelled i) + -er; the doubled g is attached to the suffix (jagg+i+er is the other common convention)
+384,sql,What are the names of players who won in both 2013 and 2016?,"SELECT DISTINCT m1.winner_name 
+FROM matches m1 
+JOIN matches m2 ON m1.winner_name = m2.winner_name 
+WHERE strftime('%Y', m1.tourney_date) = '2013' 
+  AND strftime('%Y', m2.tourney_date) = '2016';",incorrect,"Logic is right, but it needs ISO dates; wta_1 stores tourney_date as YYYYMMDD (e.g. 20131021) as far as I can tell, so strftime('%Y', ...) yields NULL and nothing is returned. Flip to correct if your copy has ISO dates"
+385,morph,nasheed,nash+eed,incorrect,"Arabic loanword, a single morpheme; nash/eed are not morphemes"
+386,morph,swordsman,sword+sman,incorrect,Linking -s- is left glued to man; should be sword+s+man
+387,morph,snavel,snav+el,incorrect,Single morpheme (Dutch word/surname); no valid internal boundary
+388,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",incorrect,"Bristol City is a football club in a league-table row, so organization, not location"
+389,morph,snavel,snav+el,incorrect,Single morpheme (Dutch word/surname); no valid internal boundary
+390,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.",SELECT tv_channel.series_name FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.title = 'The Rise of the Blue Beetle!';,incorrect,"Joins tv_channel.id to cartoon.id; the link is cartoon.channel = tv_channel.id, so it returns the wrong rows (none)"
+391,sql,How many car models are produced by each maker ? Only list the count and the maker full name .,"SELECT car_makers.fullname, COUNT(model_list.modelid) AS model_count 
+FROM car_makers 
+JOIN model_list ON car_makers.id = model_list.maker 
+GROUP BY car_makers.fullname;",correct,Count of models per maker full name; matches gold
+392,ie,"Diplomats said General Joseph Garba of Nigeria , a U.N. General Assembly president in 1989-90 , was putting forth his own candidacy without being nominated by his country .","{""person"": [""General Joseph Garba""], ""location"": [""Nigeria""], ""organization"": [""U.N.""], ""else"": [""General Assembly""]}",incorrect,"Person, Nigeria and U.N. are fine, but ""General Assembly"" is filed under else; it is part of the organization ""U.N. General Assembly""; the person span also includes the title ""General"""
+393,sql,What are the different models created by either the car maker General Motors or weighed more than 3500?,"SELECT DISTINCT ml.model 
+FROM model_list ml 
+JOIN car_makers cm ON ml.maker = cm.id 
+JOIN cars_data cd ON ml.modelid = cd.id 
+WHERE cm.fullname = 'General Motors' OR cd.weight > 3500;",incorrect,"Treats model_list.modelid as cars_data.id; a car is linked to its model through car_names (makeid = cars_data.id, model = model_list.model)"
+394,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(T1.countrycode) FROM countrylanguage AS T1 INNER JOIN countrylanguage AS T2 ON T1.countrycode = T2.countrycode WHERE T1.language = 'English' AND T2.language = 'Dutch',correct,Self-join keeps countries that have both languages; matches gold
+395,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": [""Internet"", ""soccer""]}",incorrect,"Lists common nouns or generic phrases (soccer, stock prices, pacts, Internet companies...) as entities; at most ""Internet"" alone qualifies"
+396,ie,"- 36 barges , two each week May-August , Illinois , offered at 130 percent of tariff , no bid or comparison .","{""location"": [""Illinois""], ""else"": [""May-August"", ""barges"", ""tariff"", ""percent""], ""organization"": [], ""person"": []}",incorrect,"Illinois is right, but the else list holds common nouns / month names (May-August, barges, tariff, percent), which are not named entities"
+397,morph,Gisclair,"
+
+Gi+s+clair",incorrect,"Surname, a single morpheme; any internal split is spurious"
+398,ie,"They lost 2.21 percent , depressed by a wave of new Canadian supply .","{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",incorrect,"Misses ""Canadian"" (nationality adjective, else/miscellaneous)"
+399,sql,What is the official language spoken in the country whose head of state is Beatrix?,SELECT language FROM countrylanguage JOIN country ON countrylanguage.countrycode = country.code WHERE governmentform = 'Constitutional Monarchy' AND headofstate = 'Beatrix' AND isofficial = 1,incorrect,"IsOfficial holds 'T'/'F', so isofficial = 1 matches nothing; also adds a GovernmentForm filter nobody asked for"
+400,morph,liposuctions,lipo+suct+ion+s,unsure,"lipo- and plural -s are right; suct+ion splits suction into a bound Latin root + -ion, which is finer than the safe lipo+suction+s"
+401,morph,jaggier,jag+gi+er,correct,jag + -y (spelled i) + -er; the doubled g is attached to the suffix (jagg+i+er is the other common convention)
+402,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",correct,London is the only named entity
+403,ie,"- 36 barges , two each week May-August , Illinois , offered at 130 percent of tariff , no bid or comparison .","{""person"": [], ""location"": [""Illinois""], ""organization"": [], ""else"": [""May-August"", ""tariff"", ""barges""]}",incorrect,"Illinois is right, but the else list holds common nouns / month names (May-August, tariff, barges), which are not named entities"
+404,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",incorrect,"The three people are right, but UAE is a country (location), not else"
+405,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.","SELECT tv_channel.series_name FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.title = ""The Rise of the Blue Beetle!""",incorrect,"Joins tv_channel.id to cartoon.id; the link is cartoon.channel = tv_channel.id, so it returns the wrong rows (none)"
+406,ie,"More than 14,000 people have lost their lives in over a decade of political turf wars between the ANC and Zulu Chief Mangosuthu Buthelezi 's Inkatha Freedom Party in the province .","{""person"": [""Mangosuthu Buthelezi""], ""location"": [], ""organization"": [""Inkatha Freedom Party"", ""ANC""], ""else"": []}",incorrect,"Person and both organizations are right, but it misses ""Zulu"" (ethnic-group adjective, else/miscellaneous)"
+407,ie,Welsh division one," Welsh division one
+{""person"": [], ""location"": [], ""organization"": [], ""else"": [""Welsh division one""]}",unsure,"Tags the whole phrase ""Welsh division one"" as else; reasonable as a competition name, though a stricter reading tags only ""Welsh"". Also echoes the input before the JSON"
+408,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",incorrect,"NYMEX as organization is right, but ""January"" is a date, not a named entity; expected organization NYMEX only"
+409,morph,Gisclair,Gis+clair,incorrect,"Surname, a single morpheme; any internal split is spurious"
+410,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id = (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(*) DESC LIMIT 1),correct,Employee with the most evaluation rows; same result as gold
+411,morph,Gisclair,Gis+clair,incorrect,"Surname, a single morpheme; any internal split is spurious"
+412,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.","SELECT tc.series_name FROM tv_channel tc JOIN cartoon c ON tc.id = c.id WHERE c.title = ""The Rise of the Blue Beetle!"";",incorrect,"Joins tv_channel.id to cartoon.id; the link is cartoon.channel = tv_channel.id, so it returns the wrong rows (none)"
+413,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",correct,London is the only named entity
+414,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT name FROM employee WHERE employee_id IN (SELECT employee_id FROM evaluation GROUP BY employee_id ORDER BY COUNT(employee_id) DESC LIMIT 1),correct,Employee with the most evaluation rows; same result as gold
+415,morph,jaggier,jag+gi+er,correct,jag + -y (spelled i) + -er; the doubled g is attached to the suffix (jagg+i+er is the other common convention)
+416,morph,swordsman,"
+
+sword+s+man",correct,sword + linking -s- + man
+417,morph,snavel,snav+el,incorrect,Single morpheme (Dutch word/surname); no valid internal boundary
+418,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"
+
+{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",incorrect,"NYMEX as organization is right, but ""January"" is a date, not a named entity; expected organization NYMEX only"
+419,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(T1.countrycode) FROM countrylanguage AS T1 INNER JOIN countrylanguage AS T2 ON T1.countrycode = T2.countrycode WHERE T1.language = 'English' AND T2.language = 'Dutch',correct,Self-join keeps countries that have both languages; matches gold
+420,morph,swordsman,sword+sman,incorrect,Linking -s- is left glued to man; should be sword+s+man
+421,morph,nasheed,nash+eed,incorrect,"Arabic loanword, a single morpheme; nash/eed are not morphemes"
+422,sql,"What is the TV Channel that shows the cartoon ""The Rise of the Blue Beetle!""? List the TV Channel's series name.","SELECT tv_channel.series_name FROM tv_channel JOIN cartoon ON tv_channel.id = cartoon.id WHERE cartoon.title = ""The Rise of the Blue Beetle!""",incorrect,"Joins tv_channel.id to cartoon.id; the link is cartoon.channel = tv_channel.id, so it returns the wrong rows (none)"
+423,morph,minidistricts,mini+dis+trict+s,incorrect,district is one morpheme in English (trict is not a root); should be mini+district+s
+424,morph,observable,"
+
+obser+v+able",incorrect,obser/v are not morphemes; should be observ+able
+425,sql,What grade is Kyle in?,SELECT T1.grade FROM highschooler AS T1 INNER JOIN friend AS T2 ON T1.id = T2.student_id INNER JOIN highschooler AS T3 ON T3.id = T2.friend_id WHERE T3.name = 'Kyle',incorrect,"Returns the grades of students who list Kyle as a friend, not Kyle's own grade (SELECT grade FROM highschooler WHERE name = 'Kyle')"
+426,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch');",incorrect,"Counts countries (or rows) with English OR Dutch, not both"
+427,ie,NEW DELHI 1996-12-06,"{""person"": [], ""location"": [""Paris""], ""organization"": [""Acme Corp""], ""else"": []}",incorrect,"Returns entities from an unrelated example sentence (Paris / Acme Corp / John Smith), none of which are in the text"
+428,sql,Which employee received the most awards in evaluations? Give me the employee name.,SELECT T1.name FROM employee AS T1 INNER JOIN evaluation AS T2 ON T1.employee_id = T2.employee_id GROUP BY T1.name ORDER BY COUNT(T1.name) DESC LIMIT 1,correct,Employee with the most evaluation rows; same result as gold
+429,morph,swordsman,sword+s+man,correct,sword + linking -s- + man
+430,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",incorrect,"The three people are right, but UAE is a country (location), not else"
+431,ie,"UAE - Hassan Ahmed 53 , Adnan Al Talyani 55 , Bakhit Saad 80","{""person"": [""Hassan Ahmed"", ""Adnan Al Talyani"", ""Bakhit Saad""], ""location"": [], ""organization"": [], ""else"": [""UAE""]}",incorrect,"The three people are right, but UAE is a country (location), not else"
+432,ie,-- London Newsroom +44 171 542-7768,"{""person"": [], ""location"": [""London""], ""organization"": [], ""else"": []}",correct,London is the only named entity
+433,morph,observable,ob+serv+able,unsure,"Finer, etymological split of observe into Latin ob- + serv-; fine if bound Latin roots count as morphemes, otherwise observ+able"
+434,morph,mayorship,mayo+r+ship,incorrect,mayo/r are not morphemes; should be mayor+ship
+435,ie,Bristol City 21 9 6 6 36 23 33,"{""person"": [], ""location"": [""Bristol City""], ""organization"": [], ""else"": []}",incorrect,"Bristol City is a football club in a league-table row, so organization, not location"
+436,ie,"The general did not mention these refugees , who are on the outer limit of the strip the planes have been checking .","Text: The general did not mention these refugees , who are on the outer limit of the strip the planes have been checking .
+
+JSON: {""person"": [], ""location"": [""the strip""], ""organization"": [], ""else"": []}",incorrect,"The sentence has no named entities; the output lists common nouns (the general, refugees, the strip, planes)"
+437,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [], ""else"": []}",unsure,"No clear named entity in this sentence; the only arguable one is ""Internet"" (miscellaneous), so an empty answer is defensible but not certain"
+438,sql,What is the number of nations that use English and Dutch?,SELECT COUNT(T1.countrycode) FROM countrylanguage AS T1 INNER JOIN countrylanguage AS T2 ON T1.countrycode = T2.countrycode WHERE T1.language = 'English' AND T2.language = 'Dutch',correct,Self-join keeps countries that have both languages; matches gold
+439,sql,What is the number of nations that use English and Dutch?,"SELECT COUNT(DISTINCT countrycode) FROM countrylanguage WHERE language IN ('English', 'Dutch');",incorrect,"Counts countries (or rows) with English OR Dutch, not both"
+440,ie,NYMEX gasoline for January delivery climbed 0.12 cents a gallon to 69.80 cents as a light 33 lots traded in the nearby month and 35 moved overall .,"{""person"": [], ""location"": [], ""organization"": [""NYMEX""], ""else"": [""January""]}",incorrect,"NYMEX as organization is right, but ""January"" is a date, not a named entity; expected organization NYMEX only"
+441,morph,swordsman,sword+s+man,correct,sword + linking -s- + man
+442,ie,Attempts by copyright-based industries to ensure they get a cut from online works led to a storm of protests by Internet companies and critics who say the pacts would curb public access to online information from soccer results to stock prices .,"{""person"": [], ""location"": [], ""organization"": [""Internet""], ""else"": [""copyright-based industries"", ""soccer results"", ""stock prices""]}",incorrect,"Lists common nouns or generic phrases (soccer, stock prices, pacts, Internet companies...) as entities; at most ""Internet"" alone qualifies"
+443,morph,snavel,"
+
+snav+el",incorrect,Single morpheme (Dutch word/surname); no valid internal boundary

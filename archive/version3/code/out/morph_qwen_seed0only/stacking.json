@@ -1,0 +1,30 @@
+[
+  {
+    "task": "morph",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "eps_seq": [
+      1.0,
+      0.7708082026537998
+    ],
+    "acc_seq": [
+      0.385,
+      0.37
+    ],
+    "eps_monotone": true,
+    "acc_monotone": false
+  },
+  {
+    "task": "morph",
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "eps_seq": [
+      1.0,
+      0.5574963609898108
+    ],
+    "acc_seq": [
+      0.275,
+      0.285
+    ],
+    "eps_monotone": true,
+    "acc_monotone": true
+  }
+]

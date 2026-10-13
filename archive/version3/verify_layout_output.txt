@@ -1,0 +1,38 @@
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+============================================================================
+LAYOUT AUDIT  soundver_main.pdf  (20 pages)
+============================================================================
+
+1. LINE NUMBERS OVERLAPPING TEXT: 0
+
+2. TEXT PAST THE COLUMN INTO THE GUTTER: 26
+     p15  L-col   147.7pt over  '=32'
+     p15  L-col   132.9pt over  'N'
+     p15  L-col   123.9pt over  'at'
+     p15  L-col   114.1pt over  'Accuracy'
+     p15  L-col    42.8pt over  'rates'
+     p15  L-col    23.2pt over  'Measured'
+     p19  R-col     3.9pt over  'simulation'
+     p19  R-col     3.9pt over  '∈'
+     p19  R-col     3.9pt over  '≤'
+     p19  R-col     3.9pt over  'max'
+     p19  R-col     3.9pt over  'set-'
+     p19  R-col     3.9pt over  '0'
+
+3. TEXT PAST THE PAGE MARGIN: 137
+     p15  x=[54.0,294.5] w=240.5  '<full-width block>'
+     p12  x=[54.0,289.1] w=235.2  '<full-width block>'
+     p12  x=[54.0,289.2] w=235.2  '<full-width block>'
+     p12  x=[54.0,289.1] w=235.2  '<full-width block>'
+     p12  x=[54.0,289.2] w=235.2  '<full-width block>'
+     p12  x=[54.0,289.2] w=235.2  '<full-width block>'
+     p12  x=[54.0,289.1] w=235.2  '<full-width block>'
+     p12  x=[54.0,289.1] w=235.2  '<full-width block>'
+     p12  x=[54.0,289.2] w=235.2  '<full-width block>'
+     p12  x=[54.0,289.1] w=235.2  '<full-width block>'
+     p12  x=[54.0,289.1] w=235.2  '<full-width block>'
+     p12  x=[54.0,289.1] w=235.2  '<full-width block>'
+
+============================================================================
+163 geometric issues
+============================================================================

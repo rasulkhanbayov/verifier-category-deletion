@@ -1,0 +1,38 @@
+[
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "eps_seq": [
+      1.0,
+      1.0,
+      1.0,
+      0.8943283582089552
+    ],
+    "acc_seq": [
+      0.51,
+      0.51,
+      0.51,
+      0.52
+    ],
+    "eps_monotone": true,
+    "acc_monotone": true
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "eps_seq": [
+      1.0,
+      1.0,
+      1.0,
+      0.9268108651911469
+    ],
+    "acc_seq": [
+      0.405,
+      0.405,
+      0.405,
+      0.405
+    ],
+    "eps_monotone": true,
+    "acc_monotone": true
+  }
+]

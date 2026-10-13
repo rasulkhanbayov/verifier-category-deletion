@@ -1,0 +1,394 @@
+### CHECK answer_nonnegative
+RATIONALE: GSM8K gold answers are counts, amounts, or measures, so they are effectively never negative. This catches sign slips such as subtracting in the wrong order.
+```python
+def check(output, ctx):
+    try:
+        a = final_answer(output)
+        if a is None:
+            return True
+        v = float(a.replace(',', '').replace('$', '').strip())
+        return v >= 0
+    except Exception:
+        return True
+```
+
+### CHECK answer_finite
+RATIONALE: A correct numeric answer is always finite. This catches parsed values like inf or nan.
+```python
+def check(output, ctx):
+    try:
+        import math
+        a = final_answer(output)
+        if a is None:
+            return True
+        v = float(a.replace(',', '').replace('$', '').strip())
+        return math.isfinite(v)
+    except Exception:
+        return True
+```
+
+### CHECK answer_integer_valued
+RATIONALE: GSM8K gold answers are integers, so any correct answer equals an integer as a float. This catches unrounded divisions and fractional mistakes.
+```python
+def check(output, ctx):
+    try:
+        a = final_answer(output)
+        if a is None:
+            return True
+        v = float(a.replace(',', '').replace('$', '').strip())
+        return abs(v - round(v)) < 1e-6
+    except Exception:
+        return True
+```
+
+### CHECK answer_magnitude_bound
+RATIONALE: Grade-school answers stay far below 10^10. This catches runaway multiplications and concatenated digits.
+```python
+def check(output, ctx):
+    try:
+        a = final_answer(output)
+        if a is None:
+            return True
+        v = float(a.replace(',', '').replace('$', '').strip())
+        return abs(v) < 1e10
+    except Exception:
+        return True
+```
+
+### CHECK answer_bounded_by_question_numbers
+RATIONALE: The answer is built by arithmetic on the question's numbers plus small constants (7, 12, 24, 60, 365). It is therefore bounded by the product of those numbers times a generous slack. This catches wildly inflated answers.
+```python
+def check(output, ctx):
+    try:
+        import re
+        a = final_answer(output)
+        if a is None:
+            return True
+        v = abs(float(a.replace(',', '').replace('$', '').strip()))
+        nums = [float(x.replace(',', '')) for x in re.findall(r'\d[\d,]*\.?\d*', ctx['question'])]
+        p = 1.0
+        for n in nums:
+            p *= max(abs(n), 2.0)
+            if p > 1e30:
+                return True
+        return v <= p * 1e7
+    except Exception:
+        return True
+```
+
+### CHECK money_two_decimals
+RATIONALE: Money answers have at most cent precision. This catches money answers with long decimal tails.
+```python
+def check(output, ctx):
+    try:
+        a = final_answer(output)
+        if a is None:
+            return True
+        v = float(a.replace(',', '').replace('$', '').strip())
+        return abs(v * 100 - round(v * 100)) < 1e-4
+    except Exception:
+        return True
+```
+
+### CHECK how_many_integer
+RATIONALE: "How many" questions in GSM8K have integer answers. This catches fractional counts.
+```python
+def check(output, ctx):
+    try:
+        if 'how many' not in ctx['question'].lower():
+            return True
+        a = final_answer(output)
+        if a is None:
+            return True
+        v = float(a.replace(',', '').replace('$', '').strip())
+        return abs(v - round(v)) < 1e-6
+    except Exception:
+        return True
+```
+
+### CHECK how_many_nonnegative
+RATIONALE: A count can never be negative. This catches negative counts.
+```python
+def check(output, ctx):
+    try:
+        if 'how many' not in ctx['question'].lower():
+            return True
+        a = final_answer(output)
+        if a is None:
+            return True
+        return float(a.replace(',', '').replace('$', '').strip()) >= 0
+    except Exception:
+        return True
+```
+
+### CHECK how_much_nonnegative
+RATIONALE: "How much" quantities in GSM8K are nonnegative. This catches sign errors.
+```python
+def check(output, ctx):
+    try:
+        if 'how much' not in ctx['question'].lower():
+            return True
+        a = final_answer(output)
+        if a is None:
+            return True
+        return float(a.replace(',', '').replace('$', '').strip()) >= 0
+    except Exception:
+        return True
+```
+
+### CHECK money_integer
+RATIONALE: Even money answers in GSM8K gold are integer-valued. This catches unrounded cent results.
+```python
+def check(output, ctx):
+    try:
+        if '$' not in ctx['question']:
+            return True
+        a = final_answer(output)
+        if a is None:
+            return True
+        v = float(a.replace(',', '').replace('$', '').strip())
+        return abs(v - round(v)) < 1e-6
+    except Exception:
+        return True
+```
+
+### CHECK answer_digit_count
+RATIONALE: Correct answers never have more than 10 integer digits. This catches digit-concatenation garbage.
+```python
+def check(output, ctx):
+    try:
+        a = final_answer(output)
+        if a is None:
+            return True
+        s = a.replace(',', '').replace('$', '').strip().lstrip('-').split('.')[0]
+        return len(s) <= 10
+    except Exception:
+        return True
+```
+
+### CHECK no_scientific_notation_huge
+RATIONALE: A float written with a large exponent is never a GSM8K answer. This catches overflowed outputs.
+```python
+def check(output, ctx):
+    try:
+        a = final_answer(output)
+        if a is None:
+            return True
+        v = float(a.replace(',', '').replace('$', '').strip())
+        return abs(v) < 1e12
+    except Exception:
+        return True
+```
+
+### CHECK age_reasonable
+RATIONALE: When the question asks how old someone is, a correct age is between 0 and 200. This catches implausible ages.
+```python
+def check(output, ctx):
+    try:
+        q = ctx['question'].lower()
+        if not ('how old' in q):
+            return True
+        a = final_answer(output)
+        if a is None:
+            return True
+        v = float(a.replace(',', '').replace('$', '').strip())
+        return 0 <= v <= 200
+    except Exception:
+        return True
+```
+
+### CHECK people_count_integer
+RATIONALE: Counts of people or animals are whole numbers. This catches fractional counts.
+```python
+def check(output, ctx):
+    try:
+        import re
+        q = ctx['question'].lower()
+        if not re.search(r'how many (people|students|children|kids|dogs|cats|friends|members|players|animals)', q):
+            return True
+        a = final_answer(output)
+        if a is None:
+            return True
+        v = float(a.replace(',', '').replace('$', '').strip())
+        return v >= 0 and abs(v - round(v)) < 1e-6
+    except Exception:
+        return True
+```
+
+### CHECK percent_question_bounded
+RATIONALE: Percentage answers in GSM8K are under 10000. This catches raw-fraction-times-huge errors.
+```python
+def check(output, ctx):
+    try:
+        q = ctx['question'].lower()
+        if 'what percent' not in q and 'what percentage' not in q:
+            return True
+        a = final_answer(output)
+        if a is None:
+            return True
+        v = float(a.replace(',', '').replace('$', '').replace('%', '').strip())
+        return -10000 < v < 10000
+    except Exception:
+        return True
+```
+
+### CHECK probability_percent_range
+RATIONALE: A percent-chance answer lies between 0 and 100. This catches values outside that range.
+```python
+def check(output, ctx):
+    try:
+        q = ctx['question'].lower()
+        if 'percent chance' not in q and 'probability' not in q:
+            return True
+        a = final_answer(output)
+        if a is None:
+            return True
+        v = float(a.replace(',', '').replace('$', '').replace('%', '').strip())
+        return 0 <= v <= 100
+    except Exception:
+        return True
+```
+
+### CHECK answer_not_nan_string
+RATIONALE: A final answer token of "nan" or "inf" is never correct. This catches degenerate outputs.
+```python
+def check(output, ctx):
+    try:
+        a = final_answer(output)
+        if a is None:
+            return True
+        return a.strip().lower() not in ('nan', 'inf', '-inf', 'infinity')
+    except Exception:
+        return True
+```
+
+### CHECK small_question_bound
+RATIONALE: If every number in the question is under 1000, the answer stays well under 10^9 for grade-school arithmetic. This catches blowups.
+```python
+def check(output, ctx):
+    try:
+        import re
+        nums = [float(x.replace(',', '')) for x in re.findall(r'\d[\d,]*\.?\d*', ctx['question'])]
+        if not nums or max(nums) >= 1000:
+            return True
+        a = final_answer(output)
+        if a is None:
+            return True
+        return abs(float(a.replace(',', '').replace('$', '').strip())) < 1e9
+    except Exception:
+        return True
+```
+
+### CHECK how_many_bounded
+RATIONALE: For "how many" questions, the count is below 10^9. This catches inflated counts.
+```python
+def check(output, ctx):
+    try:
+        if 'how many' not in ctx['question'].lower():
+            return True
+        a = final_answer(output)
+        if a is None:
+            return True
+        return abs(float(a.replace(',', '').replace('$', '').strip())) < 1e9
+    except Exception:
+        return True
+```
+
+### CHECK days_week_hours_integer
+RATIONALE: Time answers in GSM8K are integer-valued. This catches fractional time results.
+```python
+def check(output, ctx):
+    try:
+        import re
+        if not re.search(r'how (many|long).*(hours|minutes|days|weeks)', ctx['question'].lower()):
+            return True
+        a = final_answer(output)
+        if a is None:
+            return True
+        v = float(a.replace(',', '').replace('$', '').strip())
+        return abs(v - round(v)) < 1e-6
+    except Exception:
+        return True
+```
+
+### CHECK profit_bounded
+RATIONALE: Profit and earnings answers are bounded by about 10^10. This catches absurd profit values.
+```python
+def check(output, ctx):
+    try:
+        q = ctx['question'].lower()
+        if 'profit' not in q and 'earn' not in q:
+            return True
+        a = final_answer(output)
+        if a is None:
+            return True
+        return abs(float(a.replace(',', '').replace('$', '').strip())) < 1e10
+    except Exception:
+        return True
+```
+
+### CHECK remain_nonnegative
+RATIONALE: A "left" or "remain" quantity is never negative. This catches over-subtraction.
+```python
+def check(output, ctx):
+    try:
+        q = ctx['question'].lower()
+        if 'left' not in q and 'remain' not in q:
+            return True
+        a = final_answer(output)
+        if a is None:
+            return True
+        return float(a.replace(',', '').replace('$', '').strip()) >= 0
+    except Exception:
+        return True
+```
+
+### CHECK total_nonnegative
+RATIONALE: Totals and sums are nonnegative. This catches sign errors in aggregation.
+```python
+def check(output, ctx):
+    try:
+        q = ctx['question'].lower()
+        if 'total' not in q and 'altogether' not in q and 'in all' not in q:
+            return True
+        a = final_answer(output)
+        if a is None:
+            return True
+        return float(a.replace(',', '').replace('$', '').strip()) >= 0
+    except Exception:
+        return True
+```
+
+### CHECK cost_spend_nonnegative
+RATIONALE: Spending or cost amounts are nonnegative. This catches sign mistakes.
+```python
+def check(output, ctx):
+    try:
+        q = ctx['question'].lower()
+        if 'spend' not in q and 'cost' not in q and 'pay' not in q:
+            return True
+        a = final_answer(output)
+        if a is None:
+            return True
+        return float(a.replace(',', '').replace('$', '').strip()) >= 0
+    except Exception:
+        return True
+```
+
+### CHECK final_value_parses_clean
+RATIONALE: The parsed answer, after stripping '$', ',' and '%', must be a plain float. This catches malformed tokens; anything that does not parse is accepted, so the check stays safe.
+```python
+def check(output, ctx):
+    try:
+        import math
+        a = final_answer(output)
+        if a is None:
+            return True
+        try:
+            v = float(a.replace(',', '').replace('$', '').replace('%', '').strip())
+        except Exception:
+            return True
+        return not math.isnan(v)
+    except Exception:
+        return True
+```

@@ -1,0 +1,99 @@
+
+==========================================================================
+1. CROSS-REFERENCES
+==========================================================================
+  PASS  every \ref resolves
+  PASS  no orphaned labels
+
+==========================================================================
+2. CITATIONS
+==========================================================================
+  PASS  every \cite has a bib entry
+  PASS  no uncited bib entries
+
+==========================================================================
+3. SYMBOLS AND NOTATION
+==========================================================================
+  PASS  delta used in body (47)
+  PASS  varepsilon used in body (65)
+  PASS  p_0 used in body (21)
+  PASS  q used in body (7)
+  PASS  r used in body (1)
+  PASS  no stray \epsilon (should be \varepsilon)
+
+==========================================================================
+4. STALE MATERIAL FROM EARLIER VERSIONS
+==========================================================================
+  PASS  absent: old title 'A Ceiling on What Any'
+  PASS  absent: old title 'Well-Formed but Wrong:'
+  PASS  absent: old title 'Sound by Definition'
+  PASS  absent: old section 'Sound Corner'
+  PASS  absent: folded Cor. 1 label
+  PASS  absent: folded Prop. 2 statement
+  PASS  absent: removed experiment label E6
+  PASS  absent: removed experiment label E3b
+  PASS  absent: cut section app:regime
+  PASS  absent: cut section app:hetdisc
+  PASS  absent: cut table tab:lit
+  PASS  absent: proof sketches
+  PASS  absent: removed 'Sound?' column
+
+==========================================================================
+5. EXPERIMENT LABELS
+==========================================================================
+  PASS  labels are E0-E5 only
+  PASS  E0 defined in Experiments and used in Findings
+  PASS  E1 defined in Experiments and used in Findings
+  PASS  E2 defined in Experiments and used in Findings
+  PASS  E3 defined in Experiments and used in Findings
+  PASS  E4 defined in Experiments and used in Findings
+  PASS  E5 defined in Experiments and used in Findings
+
+==========================================================================
+6. DATASETS, MODELS, BASELINES NAMED CONSISTENTLY
+==========================================================================
+  PASS  Spider named consistently (1 form(s))
+  PASS  CoNLL2003 named consistently (1 form(s))
+  PASS  SIGMORPHON 2022 named consistently (1 form(s))
+  PASS  GPT-4o-mini named consistently (1 form(s))
+  PASS  Llama-3.1-8B named consistently (1 form(s))
+  PASS  Llama-3.1-70B named consistently (1 form(s))
+
+==========================================================================
+7. NUMERICAL STATEMENTS AGREE WITH THE TABLES
+==========================================================================
+  PASS  SQL mini eps = 0.928 in Table 1
+  PASS  SQL 4o eps = 0.988 in Table 1
+  PASS  SQL 8B eps = 0.693 in Table 1
+  PASS  SQL 70B eps = 0.776 in Table 1
+  PASS  IE mini eps = 0.958 in Table 1
+  PASS  IE 4o eps = 0.970 in Table 1
+  PASS  IE 8B eps = 0.783 in Table 1
+  PASS  IE 70B eps = 0.959 in Table 1
+  PASS  morph mini eps = 0.804 in Table 1
+  PASS  morph 4o eps = 0.740 in Table 1
+  PASS  morph 8B eps = 0.612 in Table 1
+  PASS  morph 70B eps = 0.632 in Table 1
+  PASS  IE 4o delta = 0.002 in Table 1
+  PASS  IE 8B delta = 0.025 in Table 1
+  PASS  IE 70B delta = 0.005 in Table 1
+  PASS  morph mini delta = 0.120 in Table 1
+  PASS  morph 4o delta = 0.188 in Table 1
+  PASS  morph 8B delta = 0.181 in Table 1
+  PASS  morph 70B delta = 0.164 in Table 1
+
+==========================================================================
+8. SUPPLEMENTARY MATCHES THE MANUSCRIPT
+==========================================================================
+  PASS  README.md present
+  PASS    README.md mentions 'audit'
+  PASS    README.md free of stale 'Ceiling on What Any'
+  PASS    README.md free of stale 'Well-Formed but Wrong:'
+  PASS  EXPERIMENTS.md present
+  PASS    EXPERIMENTS.md mentions 'X1'
+  PASS  code/soundver/records.py present
+  PASS    code/soundver/records.py mentions 'circularity'
+
+==========================================================================
+CLEAN
+==========================================================================

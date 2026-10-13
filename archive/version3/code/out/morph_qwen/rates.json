@@ -1,0 +1,40 @@
+[
+  {
+    "task": "morph",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "subset": [
+      "no_empty_segment",
+      "concatenates"
+    ],
+    "n_base": 1000,
+    "n_cand": 32000,
+    "p0": 0.401,
+    "p": 0.39521875,
+    "delta": 0.1372624156958921,
+    "eps": 0.7702987169206095,
+    "delta_base": 0.14713216957605985,
+    "delta_cand": 0.13694947418360084,
+    "eps_base": 0.7796327212020033,
+    "eps_cand": 0.7700098175993386,
+    "ceiling_pts": NaN
+  },
+  {
+    "task": "morph",
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "subset": [
+      "no_empty_segment",
+      "concatenates"
+    ],
+    "n_base": 1000,
+    "n_cand": 32000,
+    "p0": 0.302,
+    "p": 0.29878125,
+    "delta": 0.1481293724019061,
+    "eps": 0.5567705406923975,
+    "delta_base": 0.1490066225165563,
+    "delta_cand": 0.14810166300596173,
+    "eps_base": 0.5687679083094556,
+    "eps_cand": 0.5563973439101564,
+    "ceiling_pts": NaN
+  }
+]

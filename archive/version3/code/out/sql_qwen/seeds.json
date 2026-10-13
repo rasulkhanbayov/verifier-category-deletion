@@ -1,0 +1,32 @@
+[
+  {
+    "task": "sql",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "eps_mean": 0.8716619929268532,
+    "eps_sd": 0.023329205041655962,
+    "ceiling_mean": 2.3055271604753207,
+    "ceiling_sd": 0.43479898795179844
+  },
+  {
+    "task": "sql",
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "eps_mean": 0.745891305824565,
+    "eps_sd": 0.04183628106773221,
+    "ceiling_mean": 7.0944498795205,
+    "ceiling_sd": NaN
+  }
+]

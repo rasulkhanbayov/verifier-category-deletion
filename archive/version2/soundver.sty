@@ -1,0 +1,84 @@
+% ====================================================================
+% soundver.sty -- shared style for the SoundVer paper
+%   (Gate Before You Rank: Soundness Buys a Floor, Not a Gain, in
+%    Verifier-Based Test-Time Scaling)
+%
+% Load AFTER \documentclass and after the venue template (acl.sty),
+% since acl.sty already supplies its own geometry, xcolor, natbib,
+% hyperref and caption -- reloading any of those here would either
+% error (option clash) or silently override the venue's own choices.
+% This package adds ONLY what acl.sty does not already provide:
+% math/theorem support, booktabs rules, tikz (for Figure 1), and
+% threeparttable (for every table's per-row footnotes).
+%   \usepackage{soundver}
+% ====================================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{soundver}[2026/08/30 SoundVer shared macros and packages]
+
+% ---- math and theorem environments (NOT provided by acl.sty) ----
+\RequirePackage{amsmath,amssymb,amsthm}
+
+% ---- tables: booktabs rules, per-row footnotes, multi-row cells ----
+% multirow is loaded directly by soundver_main.tex; booktabs/threeparttable
+% are not provided anywhere else, so they belong here.
+\RequirePackage{booktabs}
+\RequirePackage{threeparttable}
+
+% ---- figures (native TikZ, used by Figure 1's two-rate-plane plot) ----
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds,calc}
+
+% ---- captions ----
+% acl.sty already \RequirePackage{caption}; only \captionsetup here, no
+% second \usepackage{caption} (that would double-load against acl.sty's
+% own load, matching this file's own no-double-load discipline for
+% hyperref/natbib below).
+\captionsetup{font=small,labelfont=bf}
+
+% acl.sty already loads xcolor, natbib, and hyperref (with its own
+% colorlinks setup) -- do not reload any of them here. Loading xcolor a
+% second time is harmless but redundant; reloading natbib or hyperref
+% with different options after acl.sty has already loaded them can
+% silently discard the venue template's own settings, so neither is
+% repeated in this file.
+\setlength{\emergencystretch}{3em}
+
+% ---- INTEGRITY MACROS ---------------------------------------------------
+% \rp{...}    RESULT PLACEHOLDER: every unmeasured number uses this. It is
+%             deliberately red+bold so no placeholder can survive to
+%             camera-ready. (Not currently used anywhere in the main
+%             text -- every number has been filled from a real result --
+%             but kept defined so a stray future \rp{} still renders
+%             visibly rather than raising an undefined-command error.)
+% \torun{...} an experiment or check still to run/verify before submission.
+% \miss{...}  a known theoretical gap or unquantified assumption violation.
+% \vfy{...}   an idealising assumption that needs empirical verification.
+\providecommand{\rp}[1]{{\color{red}\textbf{[RP: #1]}}}
+\providecommand{\torun}[1]{{\color{blue!50!black}\texttt{>>> TO RUN: #1}}}
+\providecommand{\miss}[1]{{\color{orange!80!black}\texttt{>>> GAP: #1}}}
+\providecommand{\vfy}[1]{{\color{purple!60!black}\texttt{>>> VERIFY: #1}}}
+
+% ---- theorem environments ----
+% Each numbers independently (Definition 1, 2, ...; Proposition 1, 2;
+% Corollary 1-4; Theorem 1; Lemma 1; Assumption 1), matching how
+% soundver_main.tex refers to them (Prop.~\ref{prop:floor}, etc. --
+% never a shared "Theorem 3" style cross-numbering).
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{assumption}{Assumption}
+
+% ---- BUILD STANDARD: line-number overlap fix --------------------------
+% acl.sty's [review] option loads lineno; keep the numbers in the
+% margin so they don't overlap the text body.
+\makeatletter
+\AtBeginDocument{%
+  \@ifpackageloaded{lineno}{%
+    \setlength{\linenumbersep}{6pt}%
+    \renewcommand\linenumberfont{\normalfont\scriptsize\color{gray}}%
+    \leftlinenumbers}{}}
+\makeatother
+
+\endinput

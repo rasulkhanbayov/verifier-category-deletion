@@ -1,0 +1,367 @@
+{
+ "task": "fewnerd",
+ "certified_selection": "itau=0.05",
+ "certificate": {
+  "B_gamma_k": 29,
+  "B_gamma_n": 1000,
+  "B_gamma_upper95": 0.0393318759187474,
+  "B_false_rejections": 86,
+  "B_n_correct": 4479,
+  "B_catch": 0.2820091538551813
+ },
+ "by_model": {
+  "meta-llama/llama-3.1-70b-instruct": {
+   "handwritten": {
+    "acc": 0.34691083916083915,
+    "delta": 0.0015617679212868967,
+    "inst_avg_delta": 0.0011571395510298543,
+    "eps": 0.8552661043517206
+   },
+   "certified": {
+    "acc": 0.362627109002109,
+    "delta": 0.017804154302670624,
+    "inst_avg_delta": 0.024647072436935896,
+    "eps": 0.6888109278196611
+   },
+   "f1_baseline": {
+    "acc": 0.3642937756687757,
+    "delta": 0.0018741215055442762,
+    "inst_avg_delta": 0.004512844249016432,
+    "eps": 0.6958274240501605
+   },
+   "apv_baseline": {
+    "acc": 0.34,
+    "delta": 0.0,
+    "inst_avg_delta": 0.0,
+    "eps": 1.0
+   },
+   "base_acc": 0.34,
+   "n_units": 600,
+   "cert_minus_base": [
+    0.022627109002109,
+    0.011270686026936028,
+    0.03511282074407073
+   ],
+   "cert_minus_hw": [
+    0.015716269841269843,
+    0.005933035714285713,
+    0.026820965608465606
+   ],
+   "cert_minus_f1": [
+    -0.0016666666666666668,
+    -0.005,
+    0.0
+   ],
+   "cert_minus_apv": [
+    0.022627109002109,
+    0.011270686026936028,
+    0.03511282074407073
+   ],
+   "hw_minus_base": [
+    0.006910839160839162,
+    0.0017992424242424243,
+    0.013385343822843822
+   ]
+  },
+  "openai/gpt-4o-mini-2024-07-18": {
+   "handwritten": {
+    "acc": 0.24759941520467835,
+    "delta": 0.0018812709030100335,
+    "inst_avg_delta": 0.003676470588235294,
+    "eps": 0.8062733084709643
+   },
+   "certified": {
+    "acc": 0.25671557682084,
+    "delta": 0.017767558528428092,
+    "inst_avg_delta": 0.01838235294117647,
+    "eps": 0.6482418753329782
+   },
+   "f1_baseline": {
+    "acc": 0.25671557682084,
+    "delta": 0.0,
+    "inst_avg_delta": 0.0,
+    "eps": 0.6576318593500267
+   },
+   "apv_baseline": {
+    "acc": 0.24,
+    "delta": 0.0,
+    "inst_avg_delta": 0.0,
+    "eps": 1.0
+   },
+   "base_acc": 0.24,
+   "n_units": 600,
+   "cert_minus_base": [
+    0.01671557682083998,
+    0.00801010101010101,
+    0.026620501063264208
+   ],
+   "cert_minus_hw": [
+    0.009116161616161616,
+    0.0030555555555555557,
+    0.016666666666666666
+   ],
+   "cert_minus_f1": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "cert_minus_apv": [
+    0.01671557682083998,
+    0.00801010101010101,
+    0.026620501063264208
+   ],
+   "hw_minus_base": [
+    0.007599415204678362,
+    0.0017660818713450292,
+    0.014365789473684205
+   ]
+  },
+  "qwen/qwen-2.5-72b-instruct": {
+   "handwritten": {
+    "acc": 0.3388333333333334,
+    "delta": 0.0,
+    "inst_avg_delta": 0.0,
+    "eps": 0.8786425949509327
+   },
+   "certified": {
+    "acc": 0.3462986111111111,
+    "delta": 0.015036428460703766,
+    "inst_avg_delta": 0.010948905109489052,
+    "eps": 0.79571503483407
+   },
+   "f1_baseline": {
+    "acc": 0.3458819444444444,
+    "delta": 0.0,
+    "inst_avg_delta": 0.0,
+    "eps": 0.8052288560940895
+   },
+   "apv_baseline": {
+    "acc": 0.3283333333333333,
+    "delta": 0.0,
+    "inst_avg_delta": 0.0,
+    "eps": 1.0
+   },
+   "base_acc": 0.3283333333333333,
+   "n_units": 600,
+   "cert_minus_base": [
+    0.017965277777777774,
+    0.0075,
+    0.029667013888888885
+   ],
+   "cert_minus_hw": [
+    0.007465277777777776,
+    0.0002777777777777775,
+    0.015833333333333335
+   ],
+   "cert_minus_f1": [
+    0.0004166666666666667,
+    -0.004583333333333333,
+    0.005416666666666667
+   ],
+   "cert_minus_apv": [
+    0.017965277777777774,
+    0.0075,
+    0.029667013888888885
+   ],
+   "hw_minus_base": [
+    0.010499999999999999,
+    0.0033333333333333335,
+    0.019333333333333334
+   ]
+  }
+ },
+ "filtering": {
+  "handwritten": {
+   "precision": 0.33298055298319884,
+   "recall": 0.9989227803605851,
+   "lost": 0,
+   "n": 776,
+   "subgroups": {
+    "no_entities": {
+     "n": 190,
+     "lost": 0
+    },
+    "has_art": {
+     "n": 55,
+     "lost": 0
+    },
+    "has_organization": {
+     "n": 175,
+     "lost": 0
+    },
+    "has_person": {
+     "n": 212,
+     "lost": 0
+    },
+    "has_location": {
+     "n": 216,
+     "lost": 0
+    },
+    "has_building": {
+     "n": 54,
+     "lost": 0
+    },
+    "has_product": {
+     "n": 42,
+     "lost": 0
+    },
+    "4plus_entities": {
+     "n": 88,
+     "lost": 0
+    },
+    "has_other": {
+     "n": 73,
+     "lost": 0
+    },
+    "has_event": {
+     "n": 36,
+     "lost": 0
+    }
+   }
+  },
+  "certified": {
+   "precision": 0.36956058475045817,
+   "recall": 0.9832180519333258,
+   "lost": 13,
+   "n": 776,
+   "subgroups": {
+    "no_entities": {
+     "n": 190,
+     "lost": 0
+    },
+    "has_art": {
+     "n": 55,
+     "lost": 0
+    },
+    "has_organization": {
+     "n": 175,
+     "lost": 4
+    },
+    "has_person": {
+     "n": 212,
+     "lost": 0
+    },
+    "has_location": {
+     "n": 216,
+     "lost": 5
+    },
+    "has_building": {
+     "n": 54,
+     "lost": 0
+    },
+    "has_product": {
+     "n": 42,
+     "lost": 1
+    },
+    "4plus_entities": {
+     "n": 88,
+     "lost": 5
+    },
+    "has_other": {
+     "n": 73,
+     "lost": 3
+    },
+    "has_event": {
+     "n": 36,
+     "lost": 1
+    }
+   }
+  },
+  "f1_baseline": {
+   "precision": 0.37051206592113006,
+   "recall": 0.9993196507540537,
+   "lost": 1,
+   "n": 776,
+   "subgroups": {
+    "no_entities": {
+     "n": 190,
+     "lost": 0
+    },
+    "has_art": {
+     "n": 55,
+     "lost": 0
+    },
+    "has_organization": {
+     "n": 175,
+     "lost": 0
+    },
+    "has_person": {
+     "n": 212,
+     "lost": 0
+    },
+    "has_location": {
+     "n": 216,
+     "lost": 0
+    },
+    "has_building": {
+     "n": 54,
+     "lost": 0
+    },
+    "has_product": {
+     "n": 42,
+     "lost": 1
+    },
+    "4plus_entities": {
+     "n": 88,
+     "lost": 0
+    },
+    "has_other": {
+     "n": 73,
+     "lost": 0
+    },
+    "has_event": {
+     "n": 36,
+     "lost": 0
+    }
+   }
+  },
+  "apv_baseline": {
+   "precision": 0.29693602693602694,
+   "recall": 1.0,
+   "lost": 0,
+   "n": 776,
+   "subgroups": {
+    "no_entities": {
+     "n": 190,
+     "lost": 0
+    },
+    "has_art": {
+     "n": 55,
+     "lost": 0
+    },
+    "has_organization": {
+     "n": 175,
+     "lost": 0
+    },
+    "has_person": {
+     "n": 212,
+     "lost": 0
+    },
+    "has_location": {
+     "n": 216,
+     "lost": 0
+    },
+    "has_building": {
+     "n": 54,
+     "lost": 0
+    },
+    "has_product": {
+     "n": 42,
+     "lost": 0
+    },
+    "4plus_entities": {
+     "n": 88,
+     "lost": 0
+    },
+    "has_other": {
+     "n": 73,
+     "lost": 0
+    },
+    "has_event": {
+     "n": 36,
+     "lost": 0
+    }
+   }
+  }
+ }
+}

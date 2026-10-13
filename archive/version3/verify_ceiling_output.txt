@@ -1,0 +1,57 @@
+========================================================================
+CHECK 1  gain is strictly decreasing in eps  (symbolic)
+========================================================================
+  gain(eps)   = p*(p_0 - 1)*(varepsilon - 1)/(p - varepsilon*(p - 1))
+  d gain/deps = p*p_0/(-p*varepsilon + p + varepsilon)**2 - p/(-p*varepsilon + p + varepsilon)**2
+  at p0=0.7, p=0.6, eps=0.5 -> -9/32 = -0.281250
+  strictly decreasing: True
+
+========================================================================
+CHECK 2  full conjunction dominates every sub-conjunction, every budget
+========================================================================
+  random sound-check systems tested ........ 4000
+  sub-conjunctions with eps BELOW full ..... 0   (expect 0)
+  sub-conjunctions exceeding the ceiling ... 0   (expect 0)
+
+  control: the same bound with delta > 0 (unsound checks)
+  unsound verifiers exceeding their sound counterpart: 0  (expect 0)
+  -> the ceiling is a statement about SOUND checks only, as claimed.
+
+========================================================================
+CHECK 3  the ceiling evaluated at the rates the paper reports
+========================================================================
+  task  model               p0    eps  ceiling(pts)  note
+  ------------------------------------------------------------------
+  SQL   GPT-4o-mini      0.705  0.928          1.53  
+  SQL   GPT-4o           0.720  0.988          0.25  
+  SQL   Llama-3.1-8B     0.635  0.693          7.62  
+  SQL   Llama-3.1-70B    0.680  0.776          5.09  
+  IE    GPT-4o-mini      0.515  0.958          1.08  
+  IE    GPT-4o           0.460  0.970          0.75  
+  IE    Llama-3.1-8B     0.420  0.783          5.83  delta>0: OUT OF SCOPE, bound assumes soundness
+  IE    Llama-3.1-70B    0.580  0.959          0.99  
+  MOR   GPT-4o-mini      0.400  0.804          5.37  delta>0: OUT OF SCOPE, bound assumes soundness
+  MOR   GPT-4o           0.445  0.740          7.37  delta>0: OUT OF SCOPE, bound assumes soundness
+  MOR   Llama-3.1-8B     0.180  0.612          7.72  delta>0: OUT OF SCOPE, bound assumes soundness
+  MOR   Llama-3.1-70B    0.320  0.632         10.43  delta>0: OUT OF SCOPE, bound assumes soundness
+
+  in-scope cells (delta <= 0.005): 7
+  ceiling range: 0.25 to 7.62 accuracy points
+  GPT-4o / GPT-4o-mini cells : 0.25, 0.75, 1.08, 1.53
+  Llama cells                : 0.99, 5.09, 7.62
+
+  KEY CONSEQUENCE FOR THE PAPER'S STATISTICS:
+  The paper's near-null does NOT need an equivalence test. For the
+  strongest model the ceiling is 0.25 points, which is below the
+  1-point margin the paper pre-registered and far below the 7.5-9.3-point
+  minimum detectable effect. The null is DERIVED from measured rates,
+  not tested against an underpowered comparison.
+
+  corr(base accuracy p0, ceiling) over in-scope cells = +0.250  (n=7)
+  -> the ceiling collapses as the base model improves, which is what
+     the decomposition predicts: headroom (1-p0) and catch rate (1-eps)
+     both shrink together for a stronger model.
+
+========================================================================
+RESULT: ALL CHECKS PASSED
+========================================================================

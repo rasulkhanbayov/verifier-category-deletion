@@ -1,0 +1,275 @@
+{
+ "task": "sql",
+ "pool": "data/pools/pool_sql_admit_seed0.jsonl",
+ "candidates": [
+  "out/candidates/sql_round2_opus_test.jsonl"
+ ],
+ "report": [
+  {
+   "id": "hw:parses",
+   "name": "hw:parses",
+   "status": "admitted",
+   "n_correct": 3766,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 1229,
+   "caught_incorrect": 3,
+   "catch_rate": 0.0024410089503661514
+  },
+  {
+   "id": "hw:executes",
+   "name": "hw:executes",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 1,
+   "rejected_correct_gold": 1,
+   "n_incorrect": 1229,
+   "caught_incorrect": 212,
+   "catch_rate": 0.1724979658258747
+  },
+  {
+   "id": "hw:schema_valid",
+   "name": "hw:schema_valid",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 1,
+   "rejected_correct_gold": 1,
+   "n_incorrect": 1229,
+   "caught_incorrect": 184,
+   "catch_rate": 0.1497152156224573
+  },
+  {
+   "id": "sql-r2_opus_test-47cd0ea01c",
+   "name": "literal_case_mismatch",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 19,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 1229,
+   "caught_incorrect": 71,
+   "catch_rate": 0.05777054515866558
+  },
+  {
+   "id": "sql-r2_opus_test-8224f2b3fb",
+   "name": "quoted_question_literal_present",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 16,
+   "rejected_correct_gold": 6,
+   "n_incorrect": 1229,
+   "caught_incorrect": 6,
+   "catch_rate": 0.004882017900732303
+  },
+  {
+   "id": "sql-r2_opus_test-d1dfe295e7",
+   "name": "how_many_single_row",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 2,
+   "rejected_correct_gold": 2,
+   "n_incorrect": 1229,
+   "caught_incorrect": 6,
+   "catch_rate": 0.004882017900732303
+  },
+  {
+   "id": "sql-r2_opus_test-74632a8205",
+   "name": "question_numbers_in_sql",
+   "status": "vacuous",
+   "n_correct": 3766,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 1229,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "sql-r2_opus_test-bb2aba3257",
+   "name": "how_many_numeric_answer",
+   "status": "vacuous",
+   "n_correct": 3766,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 1229,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  }
+ ],
+ "admitted": [
+  {
+   "id": "hw:parses",
+   "name": "hw:parses",
+   "source": null,
+   "rationale": "version3 hand-written"
+  }
+ ],
+ "feedback": [
+  {
+   "name": "literal_case_mismatch",
+   "source": "def check(output, ctx):\n    try:\n        import re\n        sql = extract_sql(output)\n        pairs = re.findall(r'([A-Za-z_][A-Za-z0-9_]*)\\.?([A-Za-z_][A-Za-z0-9_]*)?\\s*=\\s*\\'([^\\']*)\\'', sql)\n        for a, b, lit in pairs:\n            col = (b or a).lower()\n            tables = [t for t, cols in ctx['schema'].items() if col in [c.lower() for c in cols]]\n            if not tables or lit == '':\n                continue\n            exact_any = False\n            ci_any = False\n            for t in tables:\n                try:\n                    r1 = execute('SELECT 1 FROM \"%s\" WHERE \"%s\" = ? LIMIT 1' % (t, col)) if False else execute(\"SELECT 1 FROM \\\"%s\\\" WHERE \\\"%s\\\" = '%s' LIMIT 1\" % (t, col, lit.replace(\"'\", \"''\")))\n                    if r1:\n                        exact_any = True\n                    r2 = execute(\"SELECT 1 FROM \\\"%s\\\" WHERE lower(\\\"%s\\\") = lower('%s') LIMIT 1\" % (t, col, lit.replace(\"'\", \"''\")))\n                    if r2:\n                        ci_any = True\n                except Exception:\n                    return True\n            if not exact_any and ci_any:\n                return False\n        return True\n    except Exception:\n        return True\n",
+   "n_rejected_correct": 19,
+   "n_correct": 3766,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "Which committees have delegates from both democratic party and liberal party?",
+      "db_id": "election"
+     },
+     "output": "SELECT DISTINCT e1.committee FROM election e1 JOIN election e2 ON e1.committee = e2.committee WHERE e1.party = 'democratic' AND e2.party = 'liberal'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Which committees have delegates from both democratic party and liberal party?",
+      "db_id": "election"
+     },
+     "output": "SELECT DISTINCT e1.committee FROM election e1 JOIN election e2 ON e1.committee = e2.committee WHERE e1.party = 'democratic' AND e2.party = 'liberal'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the headquarters with at least two companies in the banking industry?",
+      "db_id": "gas_company"
+     },
+     "output": "SELECT headquarters FROM company WHERE main_industry = 'banking' GROUP BY headquarters HAVING COUNT(company_id) >= 2",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the headquarters with at least two companies in the banking industry?",
+      "db_id": "gas_company"
+     },
+     "output": "SELECT headquarters FROM company WHERE main_industry = 'banking' GROUP BY headquarters HAVING COUNT(company_id) >= 2",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the headquarters with at least two companies in the banking industry?",
+      "db_id": "gas_company"
+     },
+     "output": "SELECT headquarters FROM company WHERE main_industry = 'banking' GROUP BY headquarters HAVING COUNT(company_id) >= 2",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "What are the headquarters with at least two companies in the banking industry?",
+      "db_id": "gas_company"
+     },
+     "output": "SELECT headquarters FROM company WHERE main_industry = 'banking' GROUP BY headquarters HAVING COUNT(company_id) >= 2",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Return the full name of the staff who provided a customer with the first name April and the last name Burns with a film rental.",
+      "db_id": "sakila_1"
+     },
+     "output": "SELECT s.first_name || ' ' || s.last_name AS full_name \nFROM staff s \nJOIN rental r ON s.staff_id = r.staff_id \nJOIN customer c ON r.customer_id = c.customer_id \nWHERE c.first_name = 'April' AND c.last_name = 'Burns'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Return the full name of the staff who provided a customer with the first name April and the last name Burns with a film rental.",
+      "db_id": "sakila_1"
+     },
+     "output": "SELECT s.first_name || ' ' || s.last_name FROM staff s JOIN rental r ON s.staff_id = r.staff_id JOIN customer c ON r.customer_id = c.customer_id WHERE c.first_name = 'April' AND c.last_name = 'Burns'",
+     "is_gold": false
+    }
+   ]
+  },
+  {
+   "name": "quoted_question_literal_present",
+   "source": "def check(output, ctx):\n    try:\n        import re\n        q = ctx['question']\n        sql = extract_sql(output)\n        norm = lambda s: re.sub(r'[^a-z0-9]', '', s.lower())\n        ns = norm(sql)\n        for m in re.findall(r'\"([^\"]{2,60})\"|\\'([^\\']{2,60})\\'', q):\n            lit = m[0] or m[1]\n            nl = norm(lit)\n            if len(nl) < 2:\n                continue\n            if nl not in ns:\n                return False\n        return True\n    except Exception:\n        return True\n",
+   "n_rejected_correct": 16,
+   "n_correct": 3766,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "List all the scientists' names, their projects' names, and the hours worked by that scientist on each project, in alphabetical order of project name, and then scientist name.",
+      "db_id": "scientist_1"
+     },
+     "output": "SELECT scientists.name, projects.name, projects.hours FROM scientists JOIN assignedto ON scientists.ssn = assignedto.scientist JOIN projects ON assignedto.project = projects.code ORDER BY projects.name, scientists.name",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "List all the scientists' names, their projects' names, and the hours worked by that scientist on each project, in alphabetical order of project name, and then scientist name.",
+      "db_id": "scientist_1"
+     },
+     "output": "SELECT s.name, p.name, p.hours FROM scientists s JOIN assignedto a ON s.ssn = a.scientist JOIN projects p ON a.project = p.code ORDER BY p.name, s.name",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the titles of the papers the author \"Stephanie Weirich\" wrote.",
+      "db_id": "icfp_1"
+     },
+     "output": "SELECT p.title FROM papers p JOIN authors a ON p.paperid = a.authid JOIN authorship au ON a.authid = au.authid WHERE a.fname = 'Stephanie' AND a.lname = 'Weirich'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the titles of the papers the author \"Stephanie Weirich\" wrote.",
+      "db_id": "icfp_1"
+     },
+     "output": "SELECT p.title FROM papers p JOIN authors a ON p.paperid = a.authid JOIN authorship au ON a.authid = au.authid WHERE a.fname = 'Stephanie' AND a.lname = 'Weirich'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the titles of the papers the author \"Stephanie Weirich\" wrote.",
+      "db_id": "icfp_1"
+     },
+     "output": "SELECT papers.title FROM papers JOIN authorship ON papers.paperid = authorship.paperid JOIN authors ON authorship.authid = authors.authid WHERE authors.fname = 'Stephanie' AND authors.lname = 'Weirich'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Find the titles of the papers the author \"Stephanie Weirich\" wrote.",
+      "db_id": "icfp_1"
+     },
+     "output": "SELECT p.title FROM papers p JOIN authors a ON p.paperid = a.authid JOIN authorship au ON a.authid = au.authid WHERE a.fname = 'Stephanie' AND a.lname = 'Weirich'",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Show the residences that have both a player of gender \"M\" and a player of gender \"F\".",
+      "db_id": "riding_club"
+     },
+     "output": "SELECT residence FROM player WHERE gender = 'M' AND residence IN (SELECT residence FROM player WHERE gender = 'F') GROUP BY residence;",
+     "is_gold": false
+    },
+    {
+     "ctx": {
+      "question": "Show the residences that have both a player of gender \"M\" and a player of gender \"F\".",
+      "db_id": "riding_club"
+     },
+     "output": "SELECT DISTINCT p1.residence FROM player p1 JOIN player p2 ON p1.residence = p2.residence WHERE p1.gender = 'M' AND p2.gender = 'F'",
+     "is_gold": false
+    }
+   ]
+  },
+  {
+   "name": "how_many_single_row",
+   "source": "def check(output, ctx):\n    try:\n        import re\n        q = ctx['question'].lower().strip()\n        if not q.startswith('how many'):\n            return True\n        if re.search(r'\\b(each|per|every|by|for all|respectively|different|and what|list|show|which)\\b', q):\n            return True\n        rows = execute(extract_sql(output))\n        return len(rows) <= 1\n    except Exception:\n        return True\n",
+   "n_rejected_correct": 2,
+   "n_correct": 3766,
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "question": "how many degrees were conferred between 1998 and 2002?",
+      "db_id": "csu_1"
+     },
+     "output": "SELECT T1.campus ,  sum(T2.degrees) FROM campuses AS T1 JOIN degrees AS T2 ON T1.id  =  T2.campus WHERE T2.year  >=  1998 AND T2.year  <=  2002 GROUP BY T1.campus",
+     "is_gold": true
+    },
+    {
+     "ctx": {
+      "question": "How many male and female assistant professors do we have?",
+      "db_id": "activity_1"
+     },
+     "output": "SELECT sex ,  count(*) FROM Faculty WHERE rank  =  \"AsstProf\" GROUP BY sex",
+     "is_gold": true
+    }
+   ]
+  }
+ ]
+}

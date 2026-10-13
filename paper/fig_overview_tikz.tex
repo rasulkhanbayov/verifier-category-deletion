@@ -1,0 +1,32 @@
+% TikZ version of the overview figure (gen/fig_overview.pdf is the matplotlib
+% version used by default). Numbers come from gen/numbers.tex, so both stay in
+% sync with the experiment outputs. Needs \usetikzlibrary{arrows.meta} (loaded
+% in main.tex). Not compiled in the authoring environment: check after building.
+\definecolor{okred}{HTML}{D55E00}
+\definecolor{okblue}{HTML}{0072B2}
+\definecolor{okgrey}{HTML}{555555}
+\begin{tikzpicture}[
+    font=\scriptsize,
+    every node/.style={align=center},
+    box/.style={draw, rounded corners=2pt, line width=0.6pt, text width=2.55cm,
+                minimum height=1.15cm, inner sep=2pt},
+    arr/.style={-{Stealth[length=1.6mm]}, line width=0.6pt}]
+  % source
+  \node[box, draw=okgrey, fill=okgrey!8, text width=2.25cm, minimum height=2.6cm] (src) at (1.25,0)
+    {LLM-written\\candidate checks\\[3pt]\emph{``proper nouns do not belong in the miscellaneous field''}};
+  % agreement path (top)
+  \node[box, draw=okred, fill=okred!12] (a1) at (4.25, 0.95) {\textbf{Select by\\agreement (F1)}};
+  \node[box, draw=okred]                (a2) at (7.30, 0.95) {check selected:\\rejected outputs \precIEElse{}\\correct $<$ F1/2 $=$ \thrIE};
+  \node[box, draw=okred]                (a3) at (10.35,0.95) {filter discards every correct\\output for \frSubPctFoneIEHasElseType\%{} of sentences\\with a misc.\ entity};
+  \node[box, draw=okred, fill=okred!12] (a4) at (13.40,0.95) {category lost\\student recall \dsRecFone\\RL recall \rlRecInit{} $\to$ \rlRecFone};
+  % budgeted path (bottom)
+  \node[box, draw=okblue, fill=okblue!10] (b1) at (4.25,-0.95) {\textbf{Select under a budget}\\$\hat\gamma_A\le\tau/2$};
+  \node[box, draw=okblue]                 (b2) at (7.30,-0.95) {check refused:\\it would exceed\\the budget};
+  \node[box, draw=okblue]                 (b3) at (10.35,-0.95) {certify $\gamma$ on held-out\\model outputs\\(Clopper--Pearson $\UB$)};
+  \node[box, draw=okblue, fill=okblue!10] (b4) at (13.40,-0.95) {category kept\\student recall \dsRecCert\\RL recall \rlRecCert};
+  % arrows
+  \draw[arr, okred]  (src.east) ++(0,0.3)  -- (a1.west);
+  \draw[arr, okblue] (src.east) ++(0,-0.3) -- (b1.west);
+  \foreach \x/\y in {a1/a2, a2/a3, a3/a4} \draw[arr, okred]  (\x.east) -- (\y.west);
+  \foreach \x/\y in {b1/b2, b2/b3, b3/b4} \draw[arr, okblue] (\x.east) -- (\y.west);
+\end{tikzpicture}

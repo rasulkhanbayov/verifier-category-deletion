@@ -1,0 +1,62 @@
+[
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "N": 1,
+    "predicted": 0.518651720970926,
+    "observed": 0.49268841394825647,
+    "observed_lo": 0.45894263217097864,
+    "observed_hi": 0.5253093363329584,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "N": 2,
+    "predicted": 0.51952434436193,
+    "observed": 0.49268841394825647,
+    "observed_lo": 0.45894263217097864,
+    "observed_hi": 0.5253093363329584,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "N": 4,
+    "predicted": 0.5195627744283339,
+    "observed": 0.49606299212598426,
+    "observed_lo": 0.46231721034870643,
+    "observed_hi": 0.5298087739032621,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "N": 8,
+    "predicted": 0.5195628431647756,
+    "observed": 0.49718785151856015,
+    "observed_lo": 0.4634420697412823,
+    "observed_hi": 0.530933633295838,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "N": 16,
+    "predicted": 0.5195628431649947,
+    "observed": 0.5016872890888638,
+    "observed_lo": 0.46794150731158607,
+    "observed_hi": 0.5354330708661418,
+    "inside": true
+  },
+  {
+    "task": "ie",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "N": 32,
+    "predicted": 0.5195628431649947,
+    "observed": 0.5028121484814398,
+    "observed_lo": 0.46906636670416196,
+    "observed_hi": 0.5365579302587177,
+    "inside": true
+  }
+]

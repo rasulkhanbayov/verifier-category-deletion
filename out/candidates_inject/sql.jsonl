@@ -1,0 +1,1 @@
+{"id": "inj:no_join", "task": "sql", "round": -1, "name": "inj:no_join", "rationale": "stress test (control): rejects every output with a JOIN", "source": "def check(output, ctx):\n    return ' join ' not in (' ' + output.lower().replace('\\n', ' ') + ' ')\n"}

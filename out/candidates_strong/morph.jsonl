@@ -1,0 +1,1 @@
+{"id": "hws:segments_letters_only", "task": "morph", "name": "hws:segments_letters_only", "rationale": "expert-written baseline check (post hoc, v4.1)", "source": "def check(output, ctx):\n    segs = segments(output)\n    allowed = set(ctx[\"surface\"].lower()) | set(\"abcdefghijklmnopqrstuvwxyz'-\")\n    return all(all(ch.lower() in allowed for ch in s) for s in segs)\n"}

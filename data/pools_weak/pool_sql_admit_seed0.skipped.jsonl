@@ -1,0 +1,2 @@
+{"model": "meta-llama/llama-3.1-8b-instruct", "instance_id": "sqltr-04513", "reason": "gold fails on original DB"}
+{"model": "qwen/qwen-2.5-7b-instruct", "instance_id": "sqltr-04513", "reason": "gold fails on original DB"}

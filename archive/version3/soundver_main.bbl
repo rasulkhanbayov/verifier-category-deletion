@@ -1,0 +1,183 @@
+\begin{thebibliography}{25}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{{Anonymous}(2026)}]{variationverif2026}
+{Anonymous}. 2026.
+\newblock Variation in verification: Understanding verification dynamics in
+  large language models.
+\newblock In \emph{International Conference on Learning Representations}.
+\newblock ArXiv:2509.17995.
+
+\bibitem[{Brown et~al.(2024)Brown, Juravsky, Ehrlich, Clark, Le, R{\'e}, and
+  Mirhoseini}]{brown2024monkeys}
+Bradley Brown, Jordan Juravsky, Ryan Ehrlich, Ronald Clark, Quoc~V Le,
+  Christopher R{\'e}, and Azalia Mirhoseini. 2024.
+\newblock Large language monkeys: Scaling inference compute with repeated
+  sampling.
+\newblock \emph{arXiv preprint arXiv:2407.21787}.
+
+\bibitem[{Cai et~al.(2025)Cai, Wang, Liu, Liu, Niu, and
+  Sugiyama}]{cai2025noisy}
+Xin-Qiang Cai, Wei Wang, Feng Liu, Tongliang Liu, Gang Niu, and Masashi
+  Sugiyama. 2025.
+\newblock Reinforcement learning with verifiable yet noisy rewards under
+  imperfect verifiers.
+\newblock \emph{arXiv preprint arXiv:2510.00915}.
+
+\bibitem[{Chen et~al.(2023)Chen, Zaharia, and Zou}]{chen2023frugalgpt}
+Lingjiao Chen, Matei Zaharia, and James Zou. 2023.
+\newblock Frugalgpt: How to use large language models while reducing cost and
+  improving performance.
+\newblock \emph{arXiv preprint arXiv:2305.05176}.
+
+\bibitem[{Chow(1957)}]{chow1957recognition}
+Chi-Keung Chow. 1957.
+\newblock An optimum character recognition system using decision functions.
+\newblock \emph{IRE Transactions on Electronic Computers}, (4):247--254.
+
+\bibitem[{Cotterell et~al.(2016)Cotterell, Vieira, and
+  Sch{\"u}tze}]{cotterell2016canonical}
+Ryan Cotterell, Tim Vieira, and Hinrich Sch{\"u}tze. 2016.
+\newblock A joint model of orthography and morphological segmentation.
+\newblock In \emph{Proceedings of the 2016 Conference of the North American
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies}, pages 664--669.
+
+\bibitem[{Dorner et~al.(2026)Dorner, Chen, Cruz, and
+  Yang}]{dorner2025rocnreroll}
+Florian~Eddie Dorner, Yatong Chen, Andr{\'e}~F Cruz, and Fanny Yang. 2026.
+\newblock Roc-n-reroll: How verifier imperfection affects test-time scaling.
+\newblock In \emph{International Conference on Learning Representations},
+  volume 2026, pages 150895--150936.
+
+\bibitem[{Efron et~al.(2000)Efron, Tibshirani et~al.}]{efron1994bootstrap}
+Bradley Efron, Robert~J Tibshirani, and 1 others. 2000.
+\newblock \emph{An introduction to the bootstrap}.
+\newblock Boca Raton, Florida.
+
+\bibitem[{El-Yaniv et~al.(2010)}]{elyaniv2010foundations}
+Ran El-Yaniv and 1 others. 2010.
+\newblock On the foundations of noise-free selective classification.
+\newblock \emph{Journal of Machine Learning Research}, 11(5).
+
+\bibitem[{Geifman and El-Yaniv(2017)}]{geifman2017selective}
+Yonatan Geifman and Ran El-Yaniv. 2017.
+\newblock Selective classification for deep neural networks.
+\newblock \emph{Advances in neural information processing systems}, 30.
+
+\bibitem[{Geng et~al.(2023)Geng, Josifoski, Peyrard, and
+  West}]{geng2023grammar}
+Saibo Geng, Martin Josifoski, Maxime Peyrard, and Robert West. 2023.
+\newblock Grammar-constrained decoding for structured nlp tasks without
+  finetuning.
+\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing}, pages 10932--10952.
+
+\bibitem[{Li et~al.(2026)Li, Hei, Yu, and Luo}]{dpc2026}
+Boyan Li, Ou~Ocean~Kun Hei, Yue Yu, and Yuyu Luo. 2026.
+\newblock Dpc: Training-free text-to-sql candidate selection via dual-paradigm
+  consistency.
+\newblock In \emph{Proceedings of the 64th Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 6897--6913.
+
+\bibitem[{Lightman et~al.(2024)Lightman, Kosaraju, Burda, Edwards, Baker, Lee,
+  Leike, Schulman, Sutskever, and Cobbe}]{lightman2024verify}
+Hunter Lightman, Vineet Kosaraju, Yuri Burda, Harrison Edwards, Bowen Baker,
+  Teddy Lee, Jan Leike, John Schulman, Ilya Sutskever, and Karl Cobbe. 2024.
+\newblock Let's verify step by step.
+\newblock In \emph{International Conference on Learning Representations},
+  volume 2024, pages 39578--39601.
+
+\bibitem[{Park et~al.(2024)Park, Wang, Berg-Kirkpatrick, Polikarpova, and
+  D'Antoni}]{park2024grammar}
+Kanghee Park, Jiayu Wang, Taylor Berg-Kirkpatrick, Nadia Polikarpova, and Loris
+  D'Antoni. 2024.
+\newblock Grammar-aligned decoding.
+\newblock \emph{Advances in Neural Information Processing Systems},
+  37:24547--24568.
+
+\bibitem[{Saad-Falcon et~al.(2025)Saad-Falcon, Buchanan, Chen, Huang,
+  McLaughlin, Bhathal, Zhu, Athiwaratkun, Sala, Linderman
+  et~al.}]{saadfalcon2025weaver}
+Jon Saad-Falcon, E~Kelly Buchanan, Mayee~F Chen, Tzu-Heng Huang, Brendan
+  McLaughlin, Tanvir Bhathal, Shang Zhu, Ben Athiwaratkun, Frederic Sala, Scott
+  Linderman, and 1 others. 2025.
+\newblock Shrinking the generation-verification gap with weak verifiers.
+\newblock \emph{arXiv preprint arXiv:2506.18203}.
+
+\bibitem[{Setlur et~al.(2025)Setlur, Rajaraman, Levine, and
+  Kumar}]{setlur2025vbvf}
+Amrith Setlur, Nived Rajaraman, Sergey Levine, and Aviral Kumar. 2025.
+\newblock Scaling test-time compute without verification or rl is suboptimal.
+\newblock \emph{arXiv preprint arXiv:2502.12118}.
+
+\bibitem[{Snell et~al.(2024)Snell, Lee, Xu, and Kumar}]{snell2024scaling}
+Charlie Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar. 2024.
+\newblock Scaling llm test-time compute optimally can be more effective than
+  scaling model parameters.
+\newblock \emph{arXiv preprint arXiv:2408.03314}.
+
+\bibitem[{Stroebl et~al.(2026)Stroebl, Kapoor, and
+  Narayanan}]{stroebl2024verifier}
+Benedikt Stroebl, Sayash Kapoor, and Arvind Narayanan. 2026.
+\newblock The limits of inference scaling through resampling.
+\newblock In \emph{International Conference on Learning Representations},
+  volume 2026, pages 92601--92633.
+
+\bibitem[{Tam et~al.(2024)Tam, Wu, Tsai, Lin, Lee, and Chen}]{tam2024format}
+Zhi~Rui Tam, Cheng-Kuang Wu, Yi-Lin Tsai, Chieh-Yen Lin, Hung-yi Lee, and
+  Yun-Nung Chen. 2024.
+\newblock Let me speak freely? a study on the impact of format restrictions on
+  large language model performance.
+\newblock In \emph{Proceedings of the 2024 Conference on Empirical Methods in
+  Natural Language Processing: Industry Track}, pages 1218--1236, Miami,
+  Florida, US. Association for Computational Linguistics.
+
+\bibitem[{Tritto et~al.(2026)Tritto, Farano, Di~Palma, Rossiello, Narducci,
+  Subramanian, and Di~Noia}]{gradesql2026}
+Mattia Tritto, Giuseppe Farano, Dario Di~Palma, Gaetano Rossiello, Fedelucio
+  Narducci, Dharmashankar Subramanian, and Tommaso Di~Noia. 2026.
+\newblock Test-time verification for text-to-sql via outcome reward models.
+\newblock \emph{arXiv preprint arXiv:2606.30851}.
+
+\bibitem[{Wang et~al.(2022)Wang, Wei, Schuurmans, Le, Chi, Narang, Chowdhery,
+  and Zhou}]{wang2023self}
+Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed~Chi, Sharan Narang,
+  Aakanksha Chowdhery, and Denny Zhou. 2022.
+\newblock Self-consistency improves chain of thought reasoning in language
+  models.
+\newblock \emph{arXiv preprint arXiv:2203.11171}.
+
+\bibitem[{Xu et~al.(2025)Xu, Li, Jiang, Ramasubramanian, Niu, Lin, and
+  Poovendran}]{tinyv2025}
+Zhangchen Xu, Yuetai Li, Fengqing Jiang, Bhaskar Ramasubramanian, Luyao Niu,
+  Bill~Yuchen Lin, and Radha Poovendran. 2025.
+\newblock Tinyv: Reducing false negatives in verification improves rl for llm
+  reasoning.
+\newblock \emph{arXiv preprint arXiv:2505.14625}.
+
+\bibitem[{Yu et~al.(2018)Yu, Zhang, Yang, Yasunaga, Wang, Li, Ma, Li, Yao,
+  Roman, Zhang, and Radev}]{yu2018spider}
+Tao Yu, Rui Zhang, Kai Yang, Michihiro Yasunaga, Dongxu Wang, Zifan Li, James
+  Ma, Irene Li, Qingning Yao, Shanelle Roman, Zilin Zhang, and Dragomir Radev.
+  2018.
+\newblock Spider: A large-scale human-labeled dataset for complex and
+  cross-domain semantic parsing and text-to-{SQL} task.
+\newblock In \emph{Proceedings of the 2018 Conference on Empirical Methods in
+  Natural Language Processing}, pages 3911--3921, Brussels, Belgium.
+  Association for Computational Linguistics.
+
+\bibitem[{Zhao et~al.(2025)Zhao, Liu, Yu, Kung, Chen, Mi, and
+  Yu}]{onetoken2025}
+Yulai Zhao, Haolin Liu, Dian Yu, Sunyuan Kung, Meijia Chen, Haitao Mi, and Dong
+  Yu. 2025.
+\newblock One token to fool llm-as-a-judge.
+\newblock \emph{arXiv preprint arXiv:2507.08794}.
+
+\bibitem[{Zhong et~al.(2020)Zhong, Yu, and Klein}]{zhong2020testsuite}
+Ruiqi Zhong, Tao Yu, and Dan Klein. 2020.
+\newblock Semantic evaluation for text-to-sql with distilled test suites.
+\newblock In \emph{Proceedings of the 2020 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}, pages 396--411.
+
+\end{thebibliography}

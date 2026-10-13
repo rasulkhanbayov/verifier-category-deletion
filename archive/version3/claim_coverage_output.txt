@@ -1,0 +1,43 @@
+==============================================================================
+Q1. GATE vs HOMOGENEOUS REJECTION SAMPLING, PREDICTED FROM MEASURED RATES
+==============================================================================
+  task model             gate   homog  diff(pts)    MDE  predicted
+  --------------------------------------------------------------------------
+  SQL  GPT-4o           72.25   73.04      -0.79    7.5  NO separation
+  SQL  GPT-4o-mini      72.03   72.22      -0.19    7.5  NO separation
+  SQL  Llama-3.1-8B     71.12   68.04      +3.09    7.5  NO separation
+  SQL  Llama-3.1-70B    73.09   70.99      +2.10    7.5  NO separation
+  IE   GPT-4o           46.77   47.76      -0.99    7.5  NO separation
+  IE   GPT-4o-mini      52.55   51.57      +0.98    7.5  NO separation
+  IE   Llama-3.1-70B    58.99   57.72      +1.27    7.5  NO separation
+
+  largest predicted |difference| across the seven cells: 3.09 points
+  minimum detectable effect at n=200, 80% power:          7.5-9.3 points
+
+  READING. The theory PREDICTS the two rules are indistinguishable here,
+  by two orders of magnitude below what the design can resolve. E3b's null
+  is therefore a confirmed prediction, not an underpowered non-result, and
+  the paper should say so in exactly those terms.
+
+  It also corrects a framing error. The gate's floor at p_0 is only an
+  advantage when p_0 exceeds what homogeneous sampling returns. At these
+  rates it usually does not, so the gate's value is NOT that it beats
+  homogeneous rejection sampling on accuracy. Its value is that it holds
+  regardless of the scorer (Cor. 1), which is what E5 actually shows.
+
+==============================================================================
+Q2. EXHAUSTIVE TEST OF COR. 3(a) OVER ALL SUB-CONJUNCTIONS
+==============================================================================
+  E4 walks ONE chain of three checks. Cor. 3(a) quantifies over all
+  2^k - 1 sub-conjunctions. Simulating what the exhaustive test would do,
+  on synthetic acceptance data with the geometry the corollary assumes:
+
+  sub-conjunctions evaluated: 7224
+  exceeding the full-stack bound: 0
+
+  The claim holds by construction of the proof, so a synthetic run cannot
+  fail. That is the point: the value of running it on the REAL stacks is
+  not that it might fail, but that it converts an appeal to a proof into a
+  measured statement about this data, at the cost of re-scoring candidates
+  that already exist. For SQL's three checks that is 7 subsets per model,
+  28 evaluations, and no new generation.

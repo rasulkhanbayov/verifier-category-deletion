@@ -1,0 +1,62 @@
+[
+  {
+    "task": "morph",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "eps_mean": 0.5748782383813273,
+    "eps_sd": 0.05410768497868322,
+    "ceiling_mean": NaN,
+    "ceiling_sd": NaN
+  },
+  {
+    "task": "morph",
+    "model": "meta-llama/llama-3.1-8b-instruct",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "eps_mean": 0.628145508386325,
+    "eps_sd": 0.026120426235827575,
+    "ceiling_mean": NaN,
+    "ceiling_sd": NaN
+  },
+  {
+    "task": "morph",
+    "model": "openai/gpt-4o-2024-11-20",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "eps_mean": 0.7445538415785392,
+    "eps_sd": 0.03530459782588423,
+    "ceiling_mean": NaN,
+    "ceiling_sd": NaN
+  },
+  {
+    "task": "morph",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "eps_mean": 0.8095015891344797,
+    "eps_sd": 0.016315878956732508,
+    "ceiling_mean": NaN,
+    "ceiling_sd": NaN
+  }
+]

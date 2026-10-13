@@ -1,0 +1,86 @@
+========================================================================
+SENTENCE LENGTH
+========================================================================
+  sentences: 285   mean 21.8 words   sd 11.5   range 4-62
+  human academic range is roughly sd 9-14; uniform length is the
+  classic generated-text signature.
+  verdict: OK
+  sentences over 45 words: 11
+    (52w) Separating failures a better implementation would avoid from those none can, one is confirmed of the second ki...
+    (46w) Proofs are in Appendix~ X , the auxiliary lemma in Appendix~ X , the machine check in Appendix~ X . [Reject-ga...
+    (47w) Otherwise draw M and return the accepted candidate that M ranks highest, breaking ties uniformly; if none is a...
+    (48w) Appendix~ X gives the general accuracy formula for any M (Thm.~ X ); the sound case is what the paper uses, an...
+
+========================================================================
+FORMULAIC / LLM PHRASING
+========================================================================
+  none found
+
+========================================================================
+EDITOR TICS (constructions I may have accumulated)
+========================================================================
+    rather than                    13   (2.1 per 1k words)
+    which is/which suggests        12   (1.9 per 1k words)
+    colon-then-reveal              23   (3.7 per 1k words)
+    semicolon                      36   (5.8 per 1k words)
+    sentence-initial But/And/So     6   (1.0 per 1k words)
+    exactly (intensifier)           5   (0.8 per 1k words)
+    precisely                       1   (0.2 per 1k words)
+    plainly/plain                   0   (0.0 per 1k words)
+    that is/namely                  4   (0.6 per 1k words)
+    not X but Y                     1   (0.2 per 1k words)
+    parenthetical dash              7   (1.1 per 1k words)
+    em dash                         0   (0.0 per 1k words)
+
+========================================================================
+REPEATED PHRASES (4-grams appearing 3+ times)
+========================================================================
+  
+    4x  two of three tasks
+    4x  m and m for
+    3x  the argument is about
+    3x  the check runs against
+    3x  check runs against an
+    3x  runs against an implementation
+    3x  against an implementation and
+    3x  an implementation and a
+    3x  implementation and a dataset
+    3x  text to sql's standard
+    3x  for gpt o on
+    3x  best of m and
+    3x  ungated best of m
+    3x  is false in practice
+
+========================================================================
+SECTIONING DENSITY
+========================================================================
+  \section headings in body : 11
+  \paragraph headings       : 25
+  words per paragraph heading: 249
+  (under ~90 words per heading suggests over-sectioning)
+    - Soundness has to be measured, and measuring it is not
+straightforw
+    - So audit it.
+    - Why the two rates have to be separated.
+    - Where soundness holds, it buys little.
+    - What is new, and against what.
+    - Contributions.
+    - Verifier-bounded test-time scaling.
+    - Selection in structured generation.
+    - Combining verifiers, cascades, and constrained decoding.
+    - The audit.
+    - Dropping homogeneity.
+    - E0, does the label matter?
+    - E1, the soundness audit.
+    - E2 to E4, the bound and the form it rests on.
+    - E5, the floor, with controls.
+    - Validity of the rates.
+    - Baselines and statistics.
+    - E1: the soundness audit.
+    - E2: the bound.
+    - E3 and E4: the bound's premise, and where it has converged.
+    - E5: the floor, and the controls.
+    - One team's judgement decides which failures count.
+    - One language, and a prediction about others.
+    - What the bound does and does not cover.
+    - Scope of the theory.

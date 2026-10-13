@@ -1,0 +1,12 @@
+# Analysis, tables, figures and data download (tested with Python 3.10)
+numpy==2.2.6
+scipy==1.15.3
+scikit-learn==1.7.2
+pyarrow==25.0.0
+sqlglot==30.15.0
+requests==2.34.2
+huggingface_hub==2.2.0
+matplotlib==3.8.4
+pillow==12.3.0
+# only for downloading Spider from Google Drive (scripts/download_data.sh spider)
+gdown

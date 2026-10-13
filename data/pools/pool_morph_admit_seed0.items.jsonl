@@ -1,0 +1,1000 @@
+{"instance_id": "morphtr-048055", "surface": "sphygmometers", "gold_segments": ["sphygm", "meter", "s"]}
+{"instance_id": "morphtr-341729", "surface": "fonduqs", "gold_segments": ["fonduq", "s"]}
+{"instance_id": "morphtr-439680", "surface": "Sagan", "gold_segments": ["Sagan"]}
+{"instance_id": "morphtr-268864", "surface": "underheating", "gold_segments": ["under", "heat", "ing"]}
+{"instance_id": "morphtr-301651", "surface": "tidy", "gold_segments": ["tide", "y"]}
+{"instance_id": "morphtr-306361", "surface": "telepaper", "gold_segments": ["tele", "paper"]}
+{"instance_id": "morphtr-284328", "surface": "accipitrine", "gold_segments": ["accipiter", "ine"]}
+{"instance_id": "morphtr-343980", "surface": "vendors", "gold_segments": ["vend", "or", "s"]}
+{"instance_id": "morphtr-056312", "surface": "Aglianico", "gold_segments": ["Aglianico"]}
+{"instance_id": "morphtr-088085", "surface": "holofoil", "gold_segments": ["holo", "foil"]}
+{"instance_id": "morphtr-398205", "surface": "Decrow", "gold_segments": ["Decrow"]}
+{"instance_id": "morphtr-261501", "surface": "nonphosphorylated", "gold_segments": ["non", "phosphorylate", "ed"]}
+{"instance_id": "morphtr-224890", "surface": "Saturnian", "gold_segments": ["Saturn", "ian"]}
+{"instance_id": "morphtr-244654", "surface": "fermentome", "gold_segments": ["ferment", "ome"]}
+{"instance_id": "morphtr-154059", "surface": "treadler", "gold_segments": ["tread", "le", "er"]}
+{"instance_id": "morphtr-431943", "surface": "braggardism", "gold_segments": ["brag", "ard", "ism"]}
+{"instance_id": "morphtr-241316", "surface": "equipartitioned", "gold_segments": ["equi", "partition", "ed"]}
+{"instance_id": "morphtr-420681", "surface": "Ruhr", "gold_segments": ["Ruhr"]}
+{"instance_id": "morphtr-171045", "surface": "panicked", "gold_segments": ["panic", "ed"]}
+{"instance_id": "morphtr-346995", "surface": "normalizers", "gold_segments": ["norm", "al", "ize", "er", "s"]}
+{"instance_id": "morphtr-278885", "surface": "mentionable", "gold_segments": ["mention", "able"]}
+{"instance_id": "morphtr-027694", "surface": "rhinatrematids", "gold_segments": ["rhinatrematid", "s"]}
+{"instance_id": "morphtr-379051", "surface": "phonautograph", "gold_segments": ["phono", "auto", "graph"]}
+{"instance_id": "morphtr-144616", "surface": "materfamiliases", "gold_segments": ["materfamilias", "s"]}
+{"instance_id": "morphtr-351086", "surface": "mylodons", "gold_segments": ["mylodon", "s"]}
+{"instance_id": "morphtr-010211", "surface": "placidity", "gold_segments": ["placid", "ity"]}
+{"instance_id": "morphtr-217262", "surface": "activators", "gold_segments": ["act", "ive", "ate", "or", "s"]}
+{"instance_id": "morphtr-390680", "surface": "nonfuneral", "gold_segments": ["non", "funeral"]}
+{"instance_id": "morphtr-086468", "surface": "immunoactivators", "gold_segments": ["immuno", "act", "ive", "ate", "or", "s"]}
+{"instance_id": "morphtr-086256", "surface": "retrenched", "gold_segments": ["re", "trench", "ed"]}
+{"instance_id": "morphtr-150397", "surface": "unsplit", "gold_segments": ["un", "split"]}
+{"instance_id": "morphtr-058717", "surface": "omnisentient", "gold_segments": ["omni", "sentient"]}
+{"instance_id": "morphtr-452408", "surface": "rotatable", "gold_segments": ["rotate", "able"]}
+{"instance_id": "morphtr-011176", "surface": "ancestors", "gold_segments": ["ancestor", "s"]}
+{"instance_id": "morphtr-006560", "surface": "steerable", "gold_segments": ["steer", "able"]}
+{"instance_id": "morphtr-051194", "surface": "unselfishly", "gold_segments": ["un", "self", "ish", "ly"]}
+{"instance_id": "morphtr-108645", "surface": "Ju", "gold_segments": ["Ju"]}
+{"instance_id": "morphtr-129447", "surface": "tatuing", "gold_segments": ["tatu", "ing"]}
+{"instance_id": "morphtr-000678", "surface": "Orl\u00e9anists", "gold_segments": ["Orl\u00e9anist", "s"]}
+{"instance_id": "morphtr-163753", "surface": "parasitics", "gold_segments": ["parasite", "ic", "s"]}
+{"instance_id": "morphtr-152421", "surface": "isotopocules", "gold_segments": ["isotopocule", "s"]}
+{"instance_id": "morphtr-246083", "surface": "anthroposociological", "gold_segments": ["anthropo", "sociology", "ical"]}
+{"instance_id": "morphtr-137345", "surface": "crotales", "gold_segments": ["crotale", "s"]}
+{"instance_id": "morphtr-047496", "surface": "arthrocentesis", "gold_segments": ["arthrocentesis"]}
+{"instance_id": "morphtr-218613", "surface": "photopenia", "gold_segments": ["photopenia"]}
+{"instance_id": "morphtr-206377", "surface": "orbofiban", "gold_segments": ["orbofiban"]}
+{"instance_id": "morphtr-292778", "surface": "gaited", "gold_segments": ["gait", "ed"]}
+{"instance_id": "morphtr-239061", "surface": "pseudoextinction", "gold_segments": ["pseudo", "extinct", "ion"]}
+{"instance_id": "morphtr-341390", "surface": "remediabilities", "gold_segments": ["remediability", "s"]}
+{"instance_id": "morphtr-058535", "surface": "yokonolides", "gold_segments": ["yokonolide", "s"]}
+{"instance_id": "morphtr-022977", "surface": "infrafamilies", "gold_segments": ["infra", "family", "s"]}
+{"instance_id": "morphtr-149116", "surface": "opalization", "gold_segments": ["opal", "ize", "ation"]}
+{"instance_id": "morphtr-357346", "surface": "polyesteramide", "gold_segments": ["polyesteramide"]}
+{"instance_id": "morphtr-193228", "surface": "mansfieldite", "gold_segments": ["mansfieldite"]}
+{"instance_id": "morphtr-006196", "surface": "duodecimal", "gold_segments": ["duo", "decimal"]}
+{"instance_id": "morphtr-258552", "surface": "Cholon", "gold_segments": ["Cholon"]}
+{"instance_id": "morphtr-000214", "surface": "metallising", "gold_segments": ["metal", "ise", "ing"]}
+{"instance_id": "morphtr-251364", "surface": "maximals", "gold_segments": ["maximum", "al", "s"]}
+{"instance_id": "morphtr-114707", "surface": "ureter", "gold_segments": ["ureter"]}
+{"instance_id": "morphtr-199166", "surface": "capiases", "gold_segments": ["capias", "s"]}
+{"instance_id": "morphtr-326477", "surface": "flannelmouth", "gold_segments": ["flannel", "mouth"]}
+{"instance_id": "morphtr-181149", "surface": "inemuri", "gold_segments": ["inemuri"]}
+{"instance_id": "morphtr-420818", "surface": "zingaros", "gold_segments": ["zingaro", "s"]}
+{"instance_id": "morphtr-236920", "surface": "unexacting", "gold_segments": ["un", "exact", "ing"]}
+{"instance_id": "morphtr-134556", "surface": "unlearners", "gold_segments": ["un", "learn", "er", "s"]}
+{"instance_id": "morphtr-049838", "surface": "camphogen", "gold_segments": ["camphor", "gen"]}
+{"instance_id": "morphtr-232595", "surface": "oenochoe", "gold_segments": ["oenochoe"]}
+{"instance_id": "morphtr-151213", "surface": "dayboy", "gold_segments": ["day", "boy"]}
+{"instance_id": "morphtr-268204", "surface": "considerateness", "gold_segments": ["consider", "ate", "ness"]}
+{"instance_id": "morphtr-151533", "surface": "hedgeless", "gold_segments": ["hedge", "less"]}
+{"instance_id": "morphtr-316387", "surface": "deglazes", "gold_segments": ["de", "glaze", "s"]}
+{"instance_id": "morphtr-047728", "surface": "curmudgeon", "gold_segments": ["curmudgeon"]}
+{"instance_id": "morphtr-367761", "surface": "gracesome", "gold_segments": ["grace", "some"]}
+{"instance_id": "morphtr-276798", "surface": "discospondylitis", "gold_segments": ["disco", "spondylitis"]}
+{"instance_id": "morphtr-148669", "surface": "quave", "gold_segments": ["quave"]}
+{"instance_id": "morphtr-338359", "surface": "southings", "gold_segments": ["south", "ing", "s"]}
+{"instance_id": "morphtr-126785", "surface": "multicables", "gold_segments": ["multi", "cable", "s"]}
+{"instance_id": "morphtr-238692", "surface": "insectoids", "gold_segments": ["insect", "oid", "s"]}
+{"instance_id": "morphtr-261645", "surface": "hyperaldosteronemia", "gold_segments": ["hyper", "aldosteronemia"]}
+{"instance_id": "morphtr-336817", "surface": "leftovers", "gold_segments": ["leftover", "s"]}
+{"instance_id": "morphtr-137376", "surface": "transacetylation", "gold_segments": ["trans", "acetyl", "ate", "ion"]}
+{"instance_id": "morphtr-331449", "surface": "Leyte\u00f1os", "gold_segments": ["Leyte\u00f1o", "s"]}
+{"instance_id": "morphtr-215073", "surface": "simiophagic", "gold_segments": ["simio", "phagic"]}
+{"instance_id": "morphtr-012825", "surface": "tomcods", "gold_segments": ["tomcod", "s"]}
+{"instance_id": "morphtr-080911", "surface": "easts", "gold_segments": ["east", "s"]}
+{"instance_id": "morphtr-127278", "surface": "backscattered", "gold_segments": ["backscatter", "ed"]}
+{"instance_id": "morphtr-104304", "surface": "inmix", "gold_segments": ["in", "mix"]}
+{"instance_id": "morphtr-260186", "surface": "deplumation", "gold_segments": ["deplumation"]}
+{"instance_id": "morphtr-370577", "surface": "nonendemic", "gold_segments": ["non", "endemic"]}
+{"instance_id": "morphtr-291071", "surface": "glitteringly", "gold_segments": ["glitter", "ing", "ly"]}
+{"instance_id": "morphtr-173881", "surface": "stretchouts", "gold_segments": ["stretchout", "s"]}
+{"instance_id": "morphtr-053213", "surface": "scutcheon", "gold_segments": ["scutcheon"]}
+{"instance_id": "morphtr-140485", "surface": "oligosilanes", "gold_segments": ["oligo", "silane", "s"]}
+{"instance_id": "morphtr-013727", "surface": "superseniors", "gold_segments": ["super", "senior", "s"]}
+{"instance_id": "morphtr-080259", "surface": "Fabianists", "gold_segments": ["Fabian", "ist", "s"]}
+{"instance_id": "morphtr-318142", "surface": "cecectomies", "gold_segments": ["cecum", "ectomy", "s"]}
+{"instance_id": "morphtr-065549", "surface": "intrusive", "gold_segments": ["intrude", "ive"]}
+{"instance_id": "morphtr-056121", "surface": "multiethnolect", "gold_segments": ["multi", "ethno", "lect"]}
+{"instance_id": "morphtr-102115", "surface": "broodless", "gold_segments": ["brood", "less"]}
+{"instance_id": "morphtr-387753", "surface": "postcolonialisms", "gold_segments": ["post", "colony", "al", "ism", "s"]}
+{"instance_id": "morphtr-406590", "surface": "Shimabara", "gold_segments": ["Shimabara"]}
+{"instance_id": "morphtr-364117", "surface": "renarrated", "gold_segments": ["re", "narrate", "ed"]}
+{"instance_id": "morphtr-021761", "surface": "omeprazole", "gold_segments": ["oxy", "metho", "prazole"]}
+{"instance_id": "morphtr-344562", "surface": "JWs", "gold_segments": ["JW", "s"]}
+{"instance_id": "morphtr-412890", "surface": "Montrose", "gold_segments": ["Montrose"]}
+{"instance_id": "morphtr-435784", "surface": "infundibulotomy", "gold_segments": ["infundibulo", "tomy"]}
+{"instance_id": "morphtr-212610", "surface": "incumbents", "gold_segments": ["incumbent", "s"]}
+{"instance_id": "morphtr-016368", "surface": "spongiotrophoblast", "gold_segments": ["spongio", "tropho", "blast"]}
+{"instance_id": "morphtr-355272", "surface": "concatenators", "gold_segments": ["concatenator", "s"]}
+{"instance_id": "morphtr-162829", "surface": "distopias", "gold_segments": ["distopia", "s"]}
+{"instance_id": "morphtr-098767", "surface": "amphipsocids", "gold_segments": ["amphipsocid", "s"]}
+{"instance_id": "morphtr-261411", "surface": "jamborite", "gold_segments": ["jamborite"]}
+{"instance_id": "morphtr-458661", "surface": "sapraemic", "gold_segments": ["sapro", "aemia", "ic"]}
+{"instance_id": "morphtr-191304", "surface": "rentages", "gold_segments": ["rentage", "s"]}
+{"instance_id": "morphtr-140796", "surface": "abolitiondoms", "gold_segments": ["abolish", "tion", "dom", "s"]}
+{"instance_id": "morphtr-243110", "surface": "multicase", "gold_segments": ["multi", "case"]}
+{"instance_id": "morphtr-317538", "surface": "Proto-Inuit", "gold_segments": ["Proto", "Inuit"]}
+{"instance_id": "morphtr-238244", "surface": "nonstyle", "gold_segments": ["non", "style"]}
+{"instance_id": "morphtr-279403", "surface": "outfence", "gold_segments": ["out", "fence"]}
+{"instance_id": "morphtr-022413", "surface": "murdering", "gold_segments": ["murder", "ing"]}
+{"instance_id": "morphtr-177358", "surface": "psyches", "gold_segments": ["psyche", "s"]}
+{"instance_id": "morphtr-449434", "surface": "reperiodizations", "gold_segments": ["reperiodization", "s"]}
+{"instance_id": "morphtr-449669", "surface": "underscrupulous", "gold_segments": ["under", "scruple", "ous"]}
+{"instance_id": "morphtr-434835", "surface": "swarmier", "gold_segments": ["swarm", "y", "er"]}
+{"instance_id": "morphtr-116395", "surface": "debellated", "gold_segments": ["debellate", "ed"]}
+{"instance_id": "morphtr-447466", "surface": "hellkite", "gold_segments": ["hell", "kite"]}
+{"instance_id": "morphtr-167062", "surface": "resynthesizing", "gold_segments": ["re", "synthesis", "ize", "ing"]}
+{"instance_id": "morphtr-268209", "surface": "darksomeness", "gold_segments": ["dark", "some", "ness"]}
+{"instance_id": "morphtr-063656", "surface": "juicier", "gold_segments": ["juice", "y", "er"]}
+{"instance_id": "morphtr-237317", "surface": "nanoradian", "gold_segments": ["nano", "radius", "an"]}
+{"instance_id": "morphtr-249553", "surface": "Maastrichtians", "gold_segments": ["Maastricht", "ian", "s"]}
+{"instance_id": "morphtr-303185", "surface": "jaggerbushes", "gold_segments": ["jaggerbush", "s"]}
+{"instance_id": "morphtr-174484", "surface": "polesitters", "gold_segments": ["pole", "sit", "er", "s"]}
+{"instance_id": "morphtr-062748", "surface": "gigglingly", "gold_segments": ["giggle", "ing", "ly"]}
+{"instance_id": "morphtr-182461", "surface": "billboarding", "gold_segments": ["billboard", "ing"]}
+{"instance_id": "morphtr-354824", "surface": "hootier", "gold_segments": ["hoot", "y", "er"]}
+{"instance_id": "morphtr-074464", "surface": "diguanylate", "gold_segments": ["di", "guanyl", "ic", "ate"]}
+{"instance_id": "morphtr-241049", "surface": "mechanosynthetic", "gold_segments": ["mechano", "synthesis", "ic"]}
+{"instance_id": "morphtr-129913", "surface": "subneuronal", "gold_segments": ["sub", "neuron", "al"]}
+{"instance_id": "morphtr-013580", "surface": "Sagaing", "gold_segments": ["Sagaing"]}
+{"instance_id": "morphtr-392155", "surface": "footstep", "gold_segments": ["foot", "step"]}
+{"instance_id": "morphtr-227607", "surface": "triarticulate", "gold_segments": ["tri", "articulate"]}
+{"instance_id": "morphtr-081057", "surface": "groomings", "gold_segments": ["groom", "ing", "s"]}
+{"instance_id": "morphtr-217948", "surface": "deconfounding", "gold_segments": ["de", "confound", "ing"]}
+{"instance_id": "morphtr-208001", "surface": "torticids", "gold_segments": ["torticid", "s"]}
+{"instance_id": "morphtr-409557", "surface": "XNAs", "gold_segments": ["XNA", "s"]}
+{"instance_id": "morphtr-407494", "surface": "trinucleosomes", "gold_segments": ["tri", "nucleo", "some", "s"]}
+{"instance_id": "morphtr-275616", "surface": "unapposite", "gold_segments": ["un", "apposite"]}
+{"instance_id": "morphtr-036752", "surface": "yardbird", "gold_segments": ["yardbird"]}
+{"instance_id": "morphtr-194589", "surface": "immunolabellings", "gold_segments": ["immunolabelling", "s"]}
+{"instance_id": "morphtr-445397", "surface": "micropiles", "gold_segments": ["micropile", "s"]}
+{"instance_id": "morphtr-107005", "surface": "limbing", "gold_segments": ["limb", "ing"]}
+{"instance_id": "morphtr-438898", "surface": "rejoyced", "gold_segments": ["rejoyce", "ed"]}
+{"instance_id": "morphtr-104353", "surface": "aumailed", "gold_segments": ["aumail", "ed"]}
+{"instance_id": "morphtr-224981", "surface": "bignum", "gold_segments": ["bignum"]}
+{"instance_id": "morphtr-055297", "surface": "sciomancers", "gold_segments": ["sciomancer", "s"]}
+{"instance_id": "morphtr-182032", "surface": "McIlwain", "gold_segments": ["McIlwain"]}
+{"instance_id": "morphtr-069939", "surface": "aerogel", "gold_segments": ["aero", "gel"]}
+{"instance_id": "morphtr-401229", "surface": "easified", "gold_segments": ["ease", "ify", "ed"]}
+{"instance_id": "morphtr-146544", "surface": "propagation", "gold_segments": ["propagate", "ion"]}
+{"instance_id": "morphtr-446555", "surface": "ord", "gold_segments": ["ord"]}
+{"instance_id": "morphtr-306052", "surface": "tornal", "gold_segments": ["tornus", "al"]}
+{"instance_id": "morphtr-405127", "surface": "microdolerite", "gold_segments": ["micro", "dolerite"]}
+{"instance_id": "morphtr-377732", "surface": "psi", "gold_segments": ["psi"]}
+{"instance_id": "morphtr-137529", "surface": "nanobiology", "gold_segments": ["nano", "biology"]}
+{"instance_id": "morphtr-009974", "surface": "trashman", "gold_segments": ["trash", "man"]}
+{"instance_id": "morphtr-056645", "surface": "Ruhland", "gold_segments": ["Ruhland"]}
+{"instance_id": "morphtr-264009", "surface": "pseudothecium", "gold_segments": ["pseudo", "thecium"]}
+{"instance_id": "morphtr-376772", "surface": "monotransitivity", "gold_segments": ["mono", "transition", "ive", "ity"]}
+{"instance_id": "morphtr-055767", "surface": "butterburger", "gold_segments": ["butt", "er", "burger"]}
+{"instance_id": "morphtr-362407", "surface": "captionable", "gold_segments": ["caption", "able"]}
+{"instance_id": "morphtr-143640", "surface": "whitedamp", "gold_segments": ["white", "damp"]}
+{"instance_id": "morphtr-000533", "surface": "unreversed", "gold_segments": ["un", "reverse", "ed"]}
+{"instance_id": "morphtr-223910", "surface": "wantcha", "gold_segments": ["want", "cha"]}
+{"instance_id": "morphtr-200500", "surface": "notarizer", "gold_segments": ["notary", "ize", "er"]}
+{"instance_id": "morphtr-379886", "surface": "earlinesses", "gold_segments": ["ere", "ly", "ness", "s"]}
+{"instance_id": "morphtr-030828", "surface": "barcoder", "gold_segments": ["barcode", "er"]}
+{"instance_id": "morphtr-380488", "surface": "underplaying", "gold_segments": ["under", "play", "ing"]}
+{"instance_id": "morphtr-371471", "surface": "polygonizes", "gold_segments": ["polygon", "ize", "s"]}
+{"instance_id": "morphtr-419654", "surface": "homesitting", "gold_segments": ["homesitting"]}
+{"instance_id": "morphtr-273620", "surface": "parabigeminal", "gold_segments": ["para", "bigeminal"]}
+{"instance_id": "morphtr-383809", "surface": "prononc\u00e9", "gold_segments": ["prononc\u00e9"]}
+{"instance_id": "morphtr-219050", "surface": "neopunks", "gold_segments": ["neo", "punk", "s"]}
+{"instance_id": "morphtr-422827", "surface": "hyperviolent", "gold_segments": ["hyper", "violent"]}
+{"instance_id": "morphtr-429680", "surface": "bismutoferrite", "gold_segments": ["bismuto", "ferrite"]}
+{"instance_id": "morphtr-105807", "surface": "skepticks", "gold_segments": ["skeptick", "s"]}
+{"instance_id": "morphtr-333838", "surface": "silasesquioxanes", "gold_segments": ["silasesquioxane", "s"]}
+{"instance_id": "morphtr-089153", "surface": "cyclases", "gold_segments": ["cycle", "ase", "s"]}
+{"instance_id": "morphtr-301511", "surface": "contexes", "gold_segments": ["contex", "s"]}
+{"instance_id": "morphtr-209687", "surface": "Yeghegnadzor", "gold_segments": ["Yeghegnadzor"]}
+{"instance_id": "morphtr-369911", "surface": "nonearthed", "gold_segments": ["non", "earth", "ed"]}
+{"instance_id": "morphtr-005738", "surface": "reperceives", "gold_segments": ["re", "perceive", "s"]}
+{"instance_id": "morphtr-010955", "surface": "afferences", "gold_segments": ["afference", "s"]}
+{"instance_id": "morphtr-094450", "surface": "sarcotubule", "gold_segments": ["sarco", "tube", "ule"]}
+{"instance_id": "morphtr-315357", "surface": "HFCs", "gold_segments": ["HFC", "s"]}
+{"instance_id": "morphtr-132096", "surface": "Jewesses", "gold_segments": ["Jew", "ess", "s"]}
+{"instance_id": "morphtr-302508", "surface": "antivoucher", "gold_segments": ["anti", "vouch", "er"]}
+{"instance_id": "morphtr-425453", "surface": "precoronavirus", "gold_segments": ["pre", "coronavirus"]}
+{"instance_id": "morphtr-424847", "surface": "undisclosable", "gold_segments": ["un", "dis", "close", "able"]}
+{"instance_id": "morphtr-165816", "surface": "refractivities", "gold_segments": ["refract", "ive", "ity", "s"]}
+{"instance_id": "morphtr-011773", "surface": "ictidorhinids", "gold_segments": ["ictidorhinid", "s"]}
+{"instance_id": "morphtr-104277", "surface": "saroses", "gold_segments": ["saros", "s"]}
+{"instance_id": "morphtr-332130", "surface": "spatialised", "gold_segments": ["spatial", "ise", "ed"]}
+{"instance_id": "morphtr-006965", "surface": "tootles", "gold_segments": ["toot", "le", "s"]}
+{"instance_id": "morphtr-114859", "surface": "Sedwick", "gold_segments": ["Sedwick"]}
+{"instance_id": "morphtr-394999", "surface": "incorrigibility", "gold_segments": ["incorrigible", "ity"]}
+{"instance_id": "morphtr-385126", "surface": "unloose", "gold_segments": ["un", "loose"]}
+{"instance_id": "morphtr-369748", "surface": "constitutionists", "gold_segments": ["constitute", "ion", "ist", "s"]}
+{"instance_id": "morphtr-450516", "surface": "instructours", "gold_segments": ["instructour", "s"]}
+{"instance_id": "morphtr-191576", "surface": "sonolite", "gold_segments": ["sonolite"]}
+{"instance_id": "morphtr-388443", "surface": "diarists", "gold_segments": ["diary", "ist", "s"]}
+{"instance_id": "morphtr-186468", "surface": "chirred", "gold_segments": ["chirre", "ed"]}
+{"instance_id": "morphtr-380642", "surface": "spermaphore", "gold_segments": ["spermaphore"]}
+{"instance_id": "morphtr-354064", "surface": "omnigenous", "gold_segments": ["omnigenous"]}
+{"instance_id": "morphtr-275059", "surface": "leadenness", "gold_segments": ["lead", "en", "ness"]}
+{"instance_id": "morphtr-313829", "surface": "rhapsodised", "gold_segments": ["rhapsodise", "ed"]}
+{"instance_id": "morphtr-415123", "surface": "disestablishmentarian", "gold_segments": ["dis", "establish", "ment", "arian"]}
+{"instance_id": "morphtr-387276", "surface": "pseudoconsensus", "gold_segments": ["pseudo", "consensus"]}
+{"instance_id": "morphtr-169962", "surface": "gorgonises", "gold_segments": ["gorgonise", "s"]}
+{"instance_id": "morphtr-169717", "surface": "quasisatellites", "gold_segments": ["quasi", "satellite", "s"]}
+{"instance_id": "morphtr-177740", "surface": "parged", "gold_segments": ["parge", "ed"]}
+{"instance_id": "morphtr-132238", "surface": "bilaterians", "gold_segments": ["bilaterian", "s"]}
+{"instance_id": "morphtr-332538", "surface": "unconciliatory", "gold_segments": ["un", "conciliate", "ory"]}
+{"instance_id": "morphtr-005824", "surface": "virginhood", "gold_segments": ["virgin", "hood"]}
+{"instance_id": "morphtr-068016", "surface": "hoaxable", "gold_segments": ["hoax", "able"]}
+{"instance_id": "morphtr-270229", "surface": "let-down", "gold_segments": ["let", "down"]}
+{"instance_id": "morphtr-006520", "surface": "multispecies", "gold_segments": ["multi", "species"]}
+{"instance_id": "morphtr-335715", "surface": "mesenchyme", "gold_segments": ["mesenchyme"]}
+{"instance_id": "morphtr-244689", "surface": "intrahospital", "gold_segments": ["intra", "hospital"]}
+{"instance_id": "morphtr-032907", "surface": "subvariances", "gold_segments": ["sub", "variant", "ance", "s"]}
+{"instance_id": "morphtr-420056", "surface": "farsangs", "gold_segments": ["farsang", "s"]}
+{"instance_id": "morphtr-201243", "surface": "bearish", "gold_segments": ["bear", "ish"]}
+{"instance_id": "morphtr-158815", "surface": "hypothalamotomies", "gold_segments": ["hypothalamotomy", "s"]}
+{"instance_id": "morphtr-453011", "surface": "peritubal", "gold_segments": ["peri", "tube", "al"]}
+{"instance_id": "morphtr-132608", "surface": "Charukesi", "gold_segments": ["Charukesi"]}
+{"instance_id": "morphtr-169888", "surface": "wikiness", "gold_segments": ["wiki", "ness"]}
+{"instance_id": "morphtr-404919", "surface": "glycosidation", "gold_segments": ["glycose", "ide", "ation"]}
+{"instance_id": "morphtr-054234", "surface": "telosomic", "gold_segments": ["telo", "some", "ic"]}
+{"instance_id": "morphtr-077222", "surface": "pignolias", "gold_segments": ["pignolia", "s"]}
+{"instance_id": "morphtr-375204", "surface": "cookpots", "gold_segments": ["cook", "pot", "s"]}
+{"instance_id": "morphtr-104855", "surface": "unamusable", "gold_segments": ["un", "amuse", "able"]}
+{"instance_id": "morphtr-192534", "surface": "presterilizing", "gold_segments": ["pre", "sterile", "ize", "ing"]}
+{"instance_id": "morphtr-047975", "surface": "freeclimbing", "gold_segments": ["free", "climb", "ing"]}
+{"instance_id": "morphtr-215801", "surface": "transversals", "gold_segments": ["transversal", "s"]}
+{"instance_id": "morphtr-367590", "surface": "Quine", "gold_segments": ["Quine"]}
+{"instance_id": "morphtr-372188", "surface": "cupric", "gold_segments": ["cupric"]}
+{"instance_id": "morphtr-315622", "surface": "signalmasters", "gold_segments": ["signal", "mast", "er", "s"]}
+{"instance_id": "morphtr-193780", "surface": "epinobilin", "gold_segments": ["epi", "nobilin"]}
+{"instance_id": "morphtr-017272", "surface": "manipular", "gold_segments": ["manipular"]}
+{"instance_id": "morphtr-359363", "surface": "Israelizing", "gold_segments": ["Israel", "ize", "ing"]}
+{"instance_id": "morphtr-452044", "surface": "carbonucleophile", "gold_segments": ["carbo", "nucleo", "phile"]}
+{"instance_id": "morphtr-427609", "surface": "fruitens", "gold_segments": ["fruit", "en", "s"]}
+{"instance_id": "morphtr-363561", "surface": "conspecifics", "gold_segments": ["con", "specify", "ic", "s"]}
+{"instance_id": "morphtr-407885", "surface": "forthbrings", "gold_segments": ["forth", "bring", "s"]}
+{"instance_id": "morphtr-433390", "surface": "yohimbine", "gold_segments": ["yohimbe", "ine"]}
+{"instance_id": "morphtr-261385", "surface": "desemantized", "gold_segments": ["desemantize", "ed"]}
+{"instance_id": "morphtr-256292", "surface": "noodlefish", "gold_segments": ["noodle", "fish"]}
+{"instance_id": "morphtr-290444", "surface": "huffiest", "gold_segments": ["huff", "y", "est"]}
+{"instance_id": "morphtr-413016", "surface": "mechanobiology", "gold_segments": ["mechano", "biology"]}
+{"instance_id": "morphtr-181863", "surface": "quarterer", "gold_segments": ["quarter", "er"]}
+{"instance_id": "morphtr-151777", "surface": "nomic", "gold_segments": ["nomic"]}
+{"instance_id": "morphtr-094521", "surface": "catawbas", "gold_segments": ["catawba", "s"]}
+{"instance_id": "morphtr-111279", "surface": "gnatlike", "gold_segments": ["gnat", "like"]}
+{"instance_id": "morphtr-377646", "surface": "rostromedullas", "gold_segments": ["rostro", "medulla", "s"]}
+{"instance_id": "morphtr-410974", "surface": "squillids", "gold_segments": ["squillid", "s"]}
+{"instance_id": "morphtr-426748", "surface": "intraspecificity", "gold_segments": ["intra", "specify", "ic", "ity"]}
+{"instance_id": "morphtr-370115", "surface": "vihuelists", "gold_segments": ["vihuela", "ist", "s"]}
+{"instance_id": "morphtr-368654", "surface": "elaters", "gold_segments": ["elate", "er", "s"]}
+{"instance_id": "morphtr-026089", "surface": "haptoral", "gold_segments": ["haptor", "al"]}
+{"instance_id": "morphtr-149389", "surface": "innings", "gold_segments": ["inning", "s"]}
+{"instance_id": "morphtr-195365", "surface": "isicoco", "gold_segments": ["isicoco"]}
+{"instance_id": "morphtr-267228", "surface": "adjectivize", "gold_segments": ["adjective", "ize"]}
+{"instance_id": "morphtr-366707", "surface": "ultra low cost carrier", "gold_segments": ["ultra", "low", "cost", "carrier"]}
+{"instance_id": "morphtr-440663", "surface": "beleaping", "gold_segments": ["be", "leap", "ing"]}
+{"instance_id": "morphtr-126850", "surface": "augurer", "gold_segments": ["augur", "er"]}
+{"instance_id": "morphtr-224883", "surface": "clavellate", "gold_segments": ["clavellate"]}
+{"instance_id": "morphtr-400362", "surface": "chronoculturally", "gold_segments": ["chrono", "culture", "al", "ly"]}
+{"instance_id": "morphtr-317965", "surface": "nambas", "gold_segments": ["namba", "s"]}
+{"instance_id": "morphtr-084009", "surface": "unconnectedly", "gold_segments": ["un", "connect", "ed", "ly"]}
+{"instance_id": "morphtr-127831", "surface": "sistergirl", "gold_segments": ["sister", "girl"]}
+{"instance_id": "morphtr-168146", "surface": "coheading", "gold_segments": ["co", "head", "ing"]}
+{"instance_id": "morphtr-093450", "surface": "macerative", "gold_segments": ["macerate", "ive"]}
+{"instance_id": "morphtr-364438", "surface": "tellen", "gold_segments": ["tellen"]}
+{"instance_id": "morphtr-088428", "surface": "struggleful", "gold_segments": ["struggle", "ful"]}
+{"instance_id": "morphtr-331368", "surface": "invocator", "gold_segments": ["invocate", "or"]}
+{"instance_id": "morphtr-055696", "surface": "pealeth", "gold_segments": ["peal", "eth"]}
+{"instance_id": "morphtr-138957", "surface": "subfractionating", "gold_segments": ["sub", "fraction", "ate", "ing"]}
+{"instance_id": "morphtr-364029", "surface": "quag", "gold_segments": ["quag"]}
+{"instance_id": "morphtr-224639", "surface": "myelinizes", "gold_segments": ["myelinize", "s"]}
+{"instance_id": "morphtr-080916", "surface": "clankier", "gold_segments": ["clank", "y", "er"]}
+{"instance_id": "morphtr-300555", "surface": "polyphyletic", "gold_segments": ["poly", "phyletic"]}
+{"instance_id": "morphtr-196575", "surface": "homosclerophorids", "gold_segments": ["homosclerophorid", "s"]}
+{"instance_id": "morphtr-200725", "surface": "ischaemic", "gold_segments": ["ischaemia", "ic"]}
+{"instance_id": "morphtr-450909", "surface": "fissurotomy", "gold_segments": ["fissure", "tomy"]}
+{"instance_id": "morphtr-055146", "surface": "harbormistresses", "gold_segments": ["harbor", "mist", "er", "ess", "s"]}
+{"instance_id": "morphtr-411296", "surface": "hypoplastral", "gold_segments": ["hypo", "plastral"]}
+{"instance_id": "morphtr-431295", "surface": "chronomentrophobia", "gold_segments": ["chronomentrophobia"]}
+{"instance_id": "morphtr-286976", "surface": "unsusceptibility", "gold_segments": ["un", "susceptible", "ity"]}
+{"instance_id": "morphtr-105222", "surface": "hypotheticates", "gold_segments": ["hypotheticate", "s"]}
+{"instance_id": "morphtr-353344", "surface": "reknit", "gold_segments": ["re", "knit"]}
+{"instance_id": "morphtr-066652", "surface": "Fukang", "gold_segments": ["Fukang"]}
+{"instance_id": "morphtr-287057", "surface": "illuminings", "gold_segments": ["illumining", "s"]}
+{"instance_id": "morphtr-194095", "surface": "poulard", "gold_segments": ["poulard"]}
+{"instance_id": "morphtr-392193", "surface": "retentiveness", "gold_segments": ["retention", "ive", "ness"]}
+{"instance_id": "morphtr-377525", "surface": "twentysomething", "gold_segments": ["twenty", "something"]}
+{"instance_id": "morphtr-276344", "surface": "OQRs", "gold_segments": ["OQR", "s"]}
+{"instance_id": "morphtr-178713", "surface": "ripomatics", "gold_segments": ["ripomatic", "s"]}
+{"instance_id": "morphtr-135649", "surface": "cytoribosome", "gold_segments": ["cyto", "ribo", "some"]}
+{"instance_id": "morphtr-247967", "surface": "Horwath", "gold_segments": ["Horwath"]}
+{"instance_id": "morphtr-263364", "surface": "oligarchises", "gold_segments": ["oligarchise", "s"]}
+{"instance_id": "morphtr-383543", "surface": "epithelialising", "gold_segments": ["epithelium", "al", "ise", "ing"]}
+{"instance_id": "morphtr-192421", "surface": "rickettsialpox", "gold_segments": ["Ricketts", "ia", "al", "pox"]}
+{"instance_id": "morphtr-322448", "surface": "intwisting", "gold_segments": ["in", "twist", "ing"]}
+{"instance_id": "morphtr-219509", "surface": "malleus", "gold_segments": ["malleus"]}
+{"instance_id": "morphtr-078540", "surface": "pseudoexacerbations", "gold_segments": ["pseudo", "ex", "acerbate", "ion", "s"]}
+{"instance_id": "morphtr-300734", "surface": "housemastership", "gold_segments": ["housemaster", "ship"]}
+{"instance_id": "morphtr-163247", "surface": "eradicate", "gold_segments": ["eradicate"]}
+{"instance_id": "morphtr-161716", "surface": "individualizers", "gold_segments": ["individual", "ize", "er", "s"]}
+{"instance_id": "morphtr-447525", "surface": "climbiest", "gold_segments": ["climb", "y", "est"]}
+{"instance_id": "morphtr-036972", "surface": "galactoses", "gold_segments": ["galactose", "s"]}
+{"instance_id": "morphtr-109498", "surface": "unreadably", "gold_segments": ["un", "read", "able", "ly"]}
+{"instance_id": "morphtr-401657", "surface": "pouds", "gold_segments": ["poud", "s"]}
+{"instance_id": "morphtr-141244", "surface": "teamful", "gold_segments": ["team", "ful"]}
+{"instance_id": "morphtr-145395", "surface": "gullibles", "gold_segments": ["gull", "ible", "s"]}
+{"instance_id": "morphtr-443575", "surface": "stereochromically", "gold_segments": ["stereochromy", "ic", "ally"]}
+{"instance_id": "morphtr-232247", "surface": "microinfuses", "gold_segments": ["micro", "infuse", "s"]}
+{"instance_id": "morphtr-299468", "surface": "slipperily", "gold_segments": ["slippery", "ly"]}
+{"instance_id": "morphtr-175768", "surface": "rolelessness", "gold_segments": ["role", "less", "ness"]}
+{"instance_id": "morphtr-404144", "surface": "unsprinkled", "gold_segments": ["un", "sprinkle", "ed"]}
+{"instance_id": "morphtr-435092", "surface": "brookless", "gold_segments": ["brook", "less"]}
+{"instance_id": "morphtr-315801", "surface": "strobing", "gold_segments": ["strobe", "ing"]}
+{"instance_id": "morphtr-304841", "surface": "Fenn", "gold_segments": ["Fenn"]}
+{"instance_id": "morphtr-090944", "surface": "stells", "gold_segments": ["stell", "s"]}
+{"instance_id": "morphtr-290657", "surface": "larvicide", "gold_segments": ["larva", "cide"]}
+{"instance_id": "morphtr-270950", "surface": "excludest", "gold_segments": ["exclude", "est"]}
+{"instance_id": "morphtr-293466", "surface": "claribella", "gold_segments": ["claribella"]}
+{"instance_id": "morphtr-229835", "surface": "pentamethylene", "gold_segments": ["penta", "methylene"]}
+{"instance_id": "morphtr-185327", "surface": "nanoasperity", "gold_segments": ["nano", "asperity"]}
+{"instance_id": "morphtr-299307", "surface": "recombinantly", "gold_segments": ["re", "combine", "ant", "ly"]}
+{"instance_id": "morphtr-183576", "surface": "plantsits", "gold_segments": ["plantsit", "s"]}
+{"instance_id": "morphtr-222471", "surface": "aubaine", "gold_segments": ["aubaine"]}
+{"instance_id": "morphtr-117550", "surface": "restinguished", "gold_segments": ["restinguish", "ed"]}
+{"instance_id": "morphtr-113908", "surface": "transacylation", "gold_segments": ["trans", "acyl", "ation"]}
+{"instance_id": "morphtr-108949", "surface": "gourmandizings", "gold_segments": ["gourmandizing", "s"]}
+{"instance_id": "morphtr-244655", "surface": "ammoniac", "gold_segments": ["ammonia", "ac"]}
+{"instance_id": "morphtr-267845", "surface": "enseaming", "gold_segments": ["en", "seam", "ing"]}
+{"instance_id": "morphtr-192174", "surface": "Malayised", "gold_segments": ["Malayise", "ed"]}
+{"instance_id": "morphtr-097030", "surface": "macroramphosids", "gold_segments": ["macroramphosid", "s"]}
+{"instance_id": "morphtr-094019", "surface": "Dreyers", "gold_segments": ["Dreyer", "s"]}
+{"instance_id": "morphtr-164210", "surface": "phenylsulfamides", "gold_segments": ["phenylsulfamide", "s"]}
+{"instance_id": "morphtr-275770", "surface": "indeliberateness", "gold_segments": ["in", "deliberate", "ness"]}
+{"instance_id": "morphtr-242654", "surface": "nakedness", "gold_segments": ["nake", "ed", "ness"]}
+{"instance_id": "morphtr-411437", "surface": "calcspar", "gold_segments": ["calc", "spar"]}
+{"instance_id": "morphtr-217851", "surface": "pseudointeractions", "gold_segments": ["pseudo", "inter", "act", "ion", "s"]}
+{"instance_id": "morphtr-351948", "surface": "cryoanalgesia", "gold_segments": ["cryo", "an", "algesia"]}
+{"instance_id": "morphtr-032927", "surface": "caravanettes", "gold_segments": ["caravan", "ette", "s"]}
+{"instance_id": "morphtr-322250", "surface": "bromopyridine", "gold_segments": ["bromo", "pyridine"]}
+{"instance_id": "morphtr-185072", "surface": "bread", "gold_segments": ["bread"]}
+{"instance_id": "morphtr-402161", "surface": "Tylenols", "gold_segments": ["Tylenol", "s"]}
+{"instance_id": "morphtr-441529", "surface": "ultrametrics", "gold_segments": ["ultra", "metric", "s"]}
+{"instance_id": "morphtr-418651", "surface": "microrings", "gold_segments": ["micro", "ring", "s"]}
+{"instance_id": "morphtr-452754", "surface": "slingshotted", "gold_segments": ["sling", "shot", "ed"]}
+{"instance_id": "morphtr-317111", "surface": "dispose", "gold_segments": ["dispose"]}
+{"instance_id": "morphtr-357700", "surface": "spots", "gold_segments": ["spot", "s"]}
+{"instance_id": "morphtr-142722", "surface": "azaguanine", "gold_segments": ["aza", "guano", "ine"]}
+{"instance_id": "morphtr-032165", "surface": "weblebrities", "gold_segments": ["weblebrity", "s"]}
+{"instance_id": "morphtr-289212", "surface": "sesterpenoids", "gold_segments": ["sesterpenoid", "s"]}
+{"instance_id": "morphtr-395529", "surface": "unintoxicated", "gold_segments": ["un", "intoxicate", "ed"]}
+{"instance_id": "morphtr-059407", "surface": "tyrannophobe", "gold_segments": ["tyranno", "phobe"]}
+{"instance_id": "morphtr-097565", "surface": "hedonistic", "gold_segments": ["hedonic", "ism", "ist", "ic"]}
+{"instance_id": "morphtr-132527", "surface": "migrationism", "gold_segments": ["migrate", "ion", "ism"]}
+{"instance_id": "morphtr-193716", "surface": "pro-vaccine", "gold_segments": ["pro", "vaccine"]}
+{"instance_id": "morphtr-006231", "surface": "terrigenous", "gold_segments": ["terrigenous"]}
+{"instance_id": "morphtr-162609", "surface": "thalassemia", "gold_segments": ["thalassemia"]}
+{"instance_id": "morphtr-426157", "surface": "Aighton", "gold_segments": ["Aighton"]}
+{"instance_id": "morphtr-337681", "surface": "prelitter", "gold_segments": ["pre", "litter"]}
+{"instance_id": "morphtr-118548", "surface": "iridectomising", "gold_segments": ["iridectomise", "ing"]}
+{"instance_id": "morphtr-445920", "surface": "nonsubordinates", "gold_segments": ["non", "subordinate", "s"]}
+{"instance_id": "morphtr-141038", "surface": "hercynitic", "gold_segments": ["hercynite", "ic"]}
+{"instance_id": "morphtr-189807", "surface": "keratolimbal", "gold_segments": ["kerato", "limbus", "al"]}
+{"instance_id": "morphtr-443601", "surface": "webfirst", "gold_segments": ["Web", "first"]}
+{"instance_id": "morphtr-046735", "surface": "Copacabana", "gold_segments": ["Copacabana"]}
+{"instance_id": "morphtr-064361", "surface": "epilimnions", "gold_segments": ["epilimnion", "s"]}
+{"instance_id": "morphtr-174584", "surface": "resignaling", "gold_segments": ["re", "signal", "ing"]}
+{"instance_id": "morphtr-447402", "surface": "slopingly", "gold_segments": ["slope", "ing", "ly"]}
+{"instance_id": "morphtr-423771", "surface": "effigiation", "gold_segments": ["effigiation"]}
+{"instance_id": "morphtr-276498", "surface": "mundu", "gold_segments": ["mundu"]}
+{"instance_id": "morphtr-352343", "surface": "burdeis", "gold_segments": ["burdei", "s"]}
+{"instance_id": "morphtr-405912", "surface": "fluorothymidines", "gold_segments": ["fluoro", "thymidine", "s"]}
+{"instance_id": "morphtr-020926", "surface": "upwing", "gold_segments": ["up", "wing"]}
+{"instance_id": "morphtr-325015", "surface": "experimentises", "gold_segments": ["experiment", "ise", "s"]}
+{"instance_id": "morphtr-214896", "surface": "nongolf", "gold_segments": ["non", "golf"]}
+{"instance_id": "morphtr-207210", "surface": "Wen-su", "gold_segments": ["Wen", "su"]}
+{"instance_id": "morphtr-321289", "surface": "perting", "gold_segments": ["pert", "ing"]}
+{"instance_id": "morphtr-326900", "surface": "necessitateth", "gold_segments": ["necessity", "ate", "eth"]}
+{"instance_id": "morphtr-301262", "surface": "flypes", "gold_segments": ["flype", "s"]}
+{"instance_id": "morphtr-136756", "surface": "Hongze", "gold_segments": ["Hongze"]}
+{"instance_id": "morphtr-062724", "surface": "keeked", "gold_segments": ["keek", "ed"]}
+{"instance_id": "morphtr-217874", "surface": "Abxazo", "gold_segments": ["Abxazo"]}
+{"instance_id": "morphtr-239174", "surface": "Goswami", "gold_segments": ["Goswami"]}
+{"instance_id": "morphtr-154247", "surface": "anthropoid", "gold_segments": ["anthropo", "oid"]}
+{"instance_id": "morphtr-410891", "surface": "megawhalebacks", "gold_segments": ["mega", "whaleback", "s"]}
+{"instance_id": "morphtr-453176", "surface": "outslicking", "gold_segments": ["out", "slick", "ing"]}
+{"instance_id": "morphtr-073125", "surface": "anchovy", "gold_segments": ["anchovy"]}
+{"instance_id": "morphtr-302669", "surface": "pile", "gold_segments": ["pile"]}
+{"instance_id": "morphtr-385300", "surface": "petticoated", "gold_segments": ["petty", "coat", "ed"]}
+{"instance_id": "morphtr-295615", "surface": "electromancers", "gold_segments": ["electro", "mancer", "s"]}
+{"instance_id": "morphtr-176167", "surface": "cryofractured", "gold_segments": ["cryo", "fracture", "ed"]}
+{"instance_id": "morphtr-350028", "surface": "correlationist", "gold_segments": ["correlate", "ion", "ist"]}
+{"instance_id": "morphtr-263860", "surface": "ethnonational", "gold_segments": ["ethno", "nation", "al"]}
+{"instance_id": "morphtr-246099", "surface": "bronchoscopists", "gold_segments": ["broncho", "scopy", "ist", "s"]}
+{"instance_id": "morphtr-432171", "surface": "diamonded", "gold_segments": ["diamond", "ed"]}
+{"instance_id": "morphtr-047652", "surface": "cybercelebrity", "gold_segments": ["cyber", "celebrity"]}
+{"instance_id": "morphtr-139554", "surface": "pulmotors", "gold_segments": ["pulmotor", "s"]}
+{"instance_id": "morphtr-171744", "surface": "memorats", "gold_segments": ["memorat", "s"]}
+{"instance_id": "morphtr-364776", "surface": "concludible", "gold_segments": ["conclude", "ible"]}
+{"instance_id": "morphtr-050706", "surface": "unincluded", "gold_segments": ["un", "include", "ed"]}
+{"instance_id": "morphtr-439355", "surface": "Starbase", "gold_segments": ["Starbase"]}
+{"instance_id": "morphtr-350724", "surface": "desupersaturation", "gold_segments": ["de", "super", "saturate", "ion"]}
+{"instance_id": "morphtr-116370", "surface": "carabined", "gold_segments": ["carabine", "ed"]}
+{"instance_id": "morphtr-438624", "surface": "capitalize", "gold_segments": ["capital", "ize"]}
+{"instance_id": "morphtr-114603", "surface": "discumbered", "gold_segments": ["dis", "cumber", "ed"]}
+{"instance_id": "morphtr-123049", "surface": "unfrequenting", "gold_segments": ["un", "frequent", "ing"]}
+{"instance_id": "morphtr-098387", "surface": "preoedipal", "gold_segments": ["pre", "Oedipus", "al"]}
+{"instance_id": "morphtr-126544", "surface": "entrepreneurialism", "gold_segments": ["entrepreneur", "ial", "ism"]}
+{"instance_id": "morphtr-203684", "surface": "nipple", "gold_segments": ["nib", "le"]}
+{"instance_id": "morphtr-396777", "surface": "Melody", "gold_segments": ["Melody"]}
+{"instance_id": "morphtr-194460", "surface": "dixels", "gold_segments": ["dixel", "s"]}
+{"instance_id": "morphtr-358126", "surface": "roborative", "gold_segments": ["roborative"]}
+{"instance_id": "morphtr-301300", "surface": "enediynes", "gold_segments": ["enediyne", "s"]}
+{"instance_id": "morphtr-133101", "surface": "villaless", "gold_segments": ["villa", "less"]}
+{"instance_id": "morphtr-205196", "surface": "whitishly", "gold_segments": ["white", "ish", "ly"]}
+{"instance_id": "morphtr-232206", "surface": "megamperes", "gold_segments": ["mega", "ampere", "s"]}
+{"instance_id": "morphtr-153623", "surface": "circumvolations", "gold_segments": ["circumvolation", "s"]}
+{"instance_id": "morphtr-310834", "surface": "nucleates", "gold_segments": ["nucleus", "ate", "s"]}
+{"instance_id": "morphtr-055706", "surface": "mutex", "gold_segments": ["mutex"]}
+{"instance_id": "morphtr-083009", "surface": "Gael", "gold_segments": ["Gael"]}
+{"instance_id": "morphtr-308333", "surface": "preshear", "gold_segments": ["pre", "shear"]}
+{"instance_id": "morphtr-067297", "surface": "unillustriously", "gold_segments": ["un", "illustrious", "ly"]}
+{"instance_id": "morphtr-408203", "surface": "kisser", "gold_segments": ["kiss", "er"]}
+{"instance_id": "morphtr-343436", "surface": "outwrestling", "gold_segments": ["out", "wrest", "le", "ing"]}
+{"instance_id": "morphtr-342347", "surface": "melanonids", "gold_segments": ["melanonid", "s"]}
+{"instance_id": "morphtr-082889", "surface": "spectrometrically", "gold_segments": ["spectrometric", "ally"]}
+{"instance_id": "morphtr-400869", "surface": "morphodemes", "gold_segments": ["morpho", "deme", "s"]}
+{"instance_id": "morphtr-060660", "surface": "brabblement", "gold_segments": ["brabble", "ment"]}
+{"instance_id": "morphtr-004012", "surface": "potwaller", "gold_segments": ["wall", "er"]}
+{"instance_id": "morphtr-081107", "surface": "immunomes", "gold_segments": ["immune", "ome", "s"]}
+{"instance_id": "morphtr-052623", "surface": "neoshamanism", "gold_segments": ["neo", "shaman", "ism"]}
+{"instance_id": "morphtr-305931", "surface": "grandstanded", "gold_segments": ["grand", "stand", "ed"]}
+{"instance_id": "morphtr-310387", "surface": "Kuwaitis", "gold_segments": ["Kuwait", "i", "s"]}
+{"instance_id": "morphtr-452892", "surface": "cental", "gold_segments": ["cental"]}
+{"instance_id": "morphtr-281755", "surface": "Stefanick", "gold_segments": ["Stefanick"]}
+{"instance_id": "morphtr-314394", "surface": "gupeiite", "gold_segments": ["gupeiite"]}
+{"instance_id": "morphtr-375101", "surface": "jinking", "gold_segments": ["jink", "ing"]}
+{"instance_id": "morphtr-427115", "surface": "immunoadherence", "gold_segments": ["immuno", "adhere", "ence"]}
+{"instance_id": "morphtr-379199", "surface": "stargazings", "gold_segments": ["stargazing", "s"]}
+{"instance_id": "morphtr-024331", "surface": "nonpriority", "gold_segments": ["non", "prior", "ity"]}
+{"instance_id": "morphtr-213471", "surface": "hallhouses", "gold_segments": ["hallhouse", "s"]}
+{"instance_id": "morphtr-310334", "surface": "Twitterer", "gold_segments": ["Twitter", "er"]}
+{"instance_id": "morphtr-183955", "surface": "riverbanks", "gold_segments": ["riverbank", "s"]}
+{"instance_id": "morphtr-262799", "surface": "albuminizing", "gold_segments": ["albuminize", "ing"]}
+{"instance_id": "morphtr-037054", "surface": "neurodepression", "gold_segments": ["neuro", "de", "press", "ion"]}
+{"instance_id": "morphtr-319789", "surface": "toleratest", "gold_segments": ["tolerate", "est"]}
+{"instance_id": "morphtr-415167", "surface": "colonialists", "gold_segments": ["colony", "al", "ist", "s"]}
+{"instance_id": "morphtr-433581", "surface": "unsully", "gold_segments": ["un", "sully"]}
+{"instance_id": "morphtr-245469", "surface": "kiosques", "gold_segments": ["kiosque", "s"]}
+{"instance_id": "morphtr-275011", "surface": "Uganda", "gold_segments": ["Uganda"]}
+{"instance_id": "morphtr-449049", "surface": "cyberdemocratic", "gold_segments": ["cyber", "democrat", "ic"]}
+{"instance_id": "morphtr-081000", "surface": "eruginous", "gold_segments": ["eruginous"]}
+{"instance_id": "morphtr-102616", "surface": "multiflex", "gold_segments": ["multiflex"]}
+{"instance_id": "morphtr-039231", "surface": "jujubes", "gold_segments": ["jujube", "s"]}
+{"instance_id": "morphtr-436989", "surface": "immensurate", "gold_segments": ["in", "mensurate"]}
+{"instance_id": "morphtr-351267", "surface": "monotransactivators", "gold_segments": ["mono", "trans", "act", "ive", "ate", "or", "s"]}
+{"instance_id": "morphtr-273698", "surface": "Dandong", "gold_segments": ["Dandong"]}
+{"instance_id": "morphtr-086983", "surface": "florification", "gold_segments": ["florification"]}
+{"instance_id": "morphtr-287055", "surface": "stepping", "gold_segments": ["step", "ing"]}
+{"instance_id": "morphtr-409193", "surface": "musicons", "gold_segments": ["musicon", "s"]}
+{"instance_id": "morphtr-221263", "surface": "P.R.B.", "gold_segments": ["P.R.B."]}
+{"instance_id": "morphtr-208388", "surface": "cyberpsychologists", "gold_segments": ["cyber", "psycho", "logy", "ist", "s"]}
+{"instance_id": "morphtr-339590", "surface": "saltirewise", "gold_segments": ["saltire", "wise"]}
+{"instance_id": "morphtr-454812", "surface": "prelocalize", "gold_segments": ["pre", "local", "ize"]}
+{"instance_id": "morphtr-265676", "surface": "lagoon", "gold_segments": ["lagoon"]}
+{"instance_id": "morphtr-281971", "surface": "bagsies", "gold_segments": ["bagsy", "s"]}
+{"instance_id": "morphtr-013694", "surface": "nethergarment", "gold_segments": ["nether", "garment"]}
+{"instance_id": "morphtr-145602", "surface": "x-band", "gold_segments": ["x", "band"]}
+{"instance_id": "morphtr-263245", "surface": "overpowering", "gold_segments": ["over", "power", "ing"]}
+{"instance_id": "morphtr-442593", "surface": "outflattered", "gold_segments": ["out", "flat", "er", "ed"]}
+{"instance_id": "morphtr-316038", "surface": "resplits", "gold_segments": ["re", "split", "s"]}
+{"instance_id": "morphtr-237419", "surface": "bryozoon", "gold_segments": ["bryo", "zoon"]}
+{"instance_id": "morphtr-000922", "surface": "raftload", "gold_segments": ["raft", "load"]}
+{"instance_id": "morphtr-331013", "surface": "vibrissa", "gold_segments": ["vibrissa"]}
+{"instance_id": "morphtr-068570", "surface": "bifurcated", "gold_segments": ["bifurcate", "ed"]}
+{"instance_id": "morphtr-195439", "surface": "petrologists", "gold_segments": ["petro", "logy", "ist", "s"]}
+{"instance_id": "morphtr-337555", "surface": "trainees", "gold_segments": ["train", "ee", "s"]}
+{"instance_id": "morphtr-257204", "surface": "draps", "gold_segments": ["drap", "s"]}
+{"instance_id": "morphtr-127164", "surface": "rNTPs", "gold_segments": ["rNTP", "s"]}
+{"instance_id": "morphtr-079614", "surface": "agar-agar", "gold_segments": ["agar", "agar"]}
+{"instance_id": "morphtr-084467", "surface": "angiocarps", "gold_segments": ["angio", "carp", "s"]}
+{"instance_id": "morphtr-267583", "surface": "Digifan", "gold_segments": ["Digifan"]}
+{"instance_id": "morphtr-100042", "surface": "fractons", "gold_segments": ["fractal", "on", "s"]}
+{"instance_id": "morphtr-164968", "surface": "unlexicalized", "gold_segments": ["un", "lexicalize", "ed"]}
+{"instance_id": "morphtr-058891", "surface": "semantical", "gold_segments": ["semantic", "al"]}
+{"instance_id": "morphtr-039266", "surface": "runniness", "gold_segments": ["run", "y", "ness"]}
+{"instance_id": "morphtr-208559", "surface": "homebreds", "gold_segments": ["home", "bred", "s"]}
+{"instance_id": "morphtr-023143", "surface": "Danegeld", "gold_segments": ["Danegeld"]}
+{"instance_id": "morphtr-173347", "surface": "ESNs", "gold_segments": ["ESN", "s"]}
+{"instance_id": "morphtr-251804", "surface": "picaresqueness", "gold_segments": ["picaresque", "ness"]}
+{"instance_id": "morphtr-203851", "surface": "quilter", "gold_segments": ["quilt", "er"]}
+{"instance_id": "morphtr-036283", "surface": "lipoblast", "gold_segments": ["lipo", "blast"]}
+{"instance_id": "morphtr-292361", "surface": "repeeled", "gold_segments": ["re", "peel", "ed"]}
+{"instance_id": "morphtr-360385", "surface": "unsanctifying", "gold_segments": ["un", "sanctify", "ing"]}
+{"instance_id": "morphtr-167667", "surface": "metaliterate", "gold_segments": ["meta", "literate"]}
+{"instance_id": "morphtr-437858", "surface": "Einsteinian", "gold_segments": ["Einstein", "ian"]}
+{"instance_id": "morphtr-019809", "surface": "tetrahydrate", "gold_segments": ["tetra", "hydrate"]}
+{"instance_id": "morphtr-394161", "surface": "anticulture", "gold_segments": ["anti", "culture"]}
+{"instance_id": "morphtr-083525", "surface": "reimburse", "gold_segments": ["re", "im", "burse"]}
+{"instance_id": "morphtr-371422", "surface": "upvoted", "gold_segments": ["up", "vote", "ed"]}
+{"instance_id": "morphtr-114748", "surface": "isothiosemicarbazides", "gold_segments": ["iso", "thio", "semi", "carbazide", "s"]}
+{"instance_id": "morphtr-297081", "surface": "qirats", "gold_segments": ["qirat", "s"]}
+{"instance_id": "morphtr-263253", "surface": "cerebroarterial", "gold_segments": ["cerebro", "artery", "al"]}
+{"instance_id": "morphtr-006598", "surface": "gorks", "gold_segments": ["gork", "s"]}
+{"instance_id": "morphtr-039364", "surface": "outcompeted", "gold_segments": ["out", "compete", "ed"]}
+{"instance_id": "morphtr-178225", "surface": "streambed", "gold_segments": ["stream", "bed"]}
+{"instance_id": "morphtr-116566", "surface": "hayings", "gold_segments": ["haying", "s"]}
+{"instance_id": "morphtr-361809", "surface": "follicles", "gold_segments": ["follicle", "s"]}
+{"instance_id": "morphtr-442098", "surface": "spectrofluorophotometer", "gold_segments": ["spectro", "fluoro", "photo", "meter"]}
+{"instance_id": "morphtr-175336", "surface": "elepidote", "gold_segments": ["ex", "lepidote"]}
+{"instance_id": "morphtr-138029", "surface": "imagism", "gold_segments": ["image", "ism"]}
+{"instance_id": "morphtr-198645", "surface": "derivants", "gold_segments": ["derivant", "s"]}
+{"instance_id": "morphtr-025998", "surface": "biliphyte", "gold_segments": ["biliphyte"]}
+{"instance_id": "morphtr-279192", "surface": "detailist", "gold_segments": ["detail", "ist"]}
+{"instance_id": "morphtr-352245", "surface": "heedy", "gold_segments": ["heed", "y"]}
+{"instance_id": "morphtr-192386", "surface": "apohyal", "gold_segments": ["apohyal"]}
+{"instance_id": "morphtr-254677", "surface": "feelth", "gold_segments": ["feel", "th"]}
+{"instance_id": "morphtr-358450", "surface": "rubbishness", "gold_segments": ["rubbish", "ness"]}
+{"instance_id": "morphtr-176350", "surface": "keytars", "gold_segments": ["keytar", "s"]}
+{"instance_id": "morphtr-422234", "surface": "thrombodynamics", "gold_segments": ["thromb", "o", "dynamic", "ics"]}
+{"instance_id": "morphtr-240577", "surface": "crestfishes", "gold_segments": ["crest", "fish", "s"]}
+{"instance_id": "morphtr-320349", "surface": "reimbodies", "gold_segments": ["re", "imbody", "s"]}
+{"instance_id": "morphtr-316499", "surface": "ingestional", "gold_segments": ["ingest", "ion", "al"]}
+{"instance_id": "morphtr-234809", "surface": "quissets", "gold_segments": ["quisset", "s"]}
+{"instance_id": "morphtr-150786", "surface": "phytolaccas", "gold_segments": ["phytolacca", "s"]}
+{"instance_id": "morphtr-299590", "surface": "forshapes", "gold_segments": ["for", "shape", "s"]}
+{"instance_id": "morphtr-062917", "surface": "shiphandler", "gold_segments": ["ship", "hand", "le", "er"]}
+{"instance_id": "morphtr-345682", "surface": "tricolpate", "gold_segments": ["tri", "colpus", "ate"]}
+{"instance_id": "morphtr-408979", "surface": "girasol", "gold_segments": ["girasol"]}
+{"instance_id": "morphtr-294733", "surface": "guapotes", "gold_segments": ["guapote", "s"]}
+{"instance_id": "morphtr-109467", "surface": "pauperisations", "gold_segments": ["pauperise", "ation", "s"]}
+{"instance_id": "morphtr-281400", "surface": "colporter", "gold_segments": ["colporter"]}
+{"instance_id": "morphtr-128912", "surface": "circummultiple", "gold_segments": ["circum", "multiple"]}
+{"instance_id": "morphtr-216650", "surface": "phlegmatically", "gold_segments": ["phlegmatic", "ally"]}
+{"instance_id": "morphtr-123960", "surface": "astrophile", "gold_segments": ["astro", "phile"]}
+{"instance_id": "morphtr-292674", "surface": "Nueirs", "gold_segments": ["Nueir", "s"]}
+{"instance_id": "morphtr-454771", "surface": "contredanses", "gold_segments": ["contredanse", "s"]}
+{"instance_id": "morphtr-395567", "surface": "squinty", "gold_segments": ["squint", "y"]}
+{"instance_id": "morphtr-333624", "surface": "syntactic", "gold_segments": ["syntax", "ic"]}
+{"instance_id": "morphtr-205949", "surface": "wearout", "gold_segments": ["wear", "out"]}
+{"instance_id": "morphtr-182513", "surface": "charlatan", "gold_segments": ["charlatan"]}
+{"instance_id": "morphtr-370573", "surface": "deading", "gold_segments": ["dead", "ing"]}
+{"instance_id": "morphtr-313159", "surface": "miscomputations", "gold_segments": ["mis", "compute", "ation", "s"]}
+{"instance_id": "morphtr-129509", "surface": "contraindicated", "gold_segments": ["contra", "indicate", "ed"]}
+{"instance_id": "morphtr-191529", "surface": "monoinnervation", "gold_segments": ["mono", "in", "nerve", "ate", "ion"]}
+{"instance_id": "morphtr-292521", "surface": "geriatrophiles", "gold_segments": ["geriatrophile", "s"]}
+{"instance_id": "morphtr-103665", "surface": "riverbeds", "gold_segments": ["rive", "er", "bed", "s"]}
+{"instance_id": "morphtr-004281", "surface": "filmlessness", "gold_segments": ["film", "less", "ness"]}
+{"instance_id": "morphtr-202105", "surface": "lumbrinerids", "gold_segments": ["lumbrinerid", "s"]}
+{"instance_id": "morphtr-263135", "surface": "spectacularness", "gold_segments": ["spectacle", "ar", "ness"]}
+{"instance_id": "morphtr-330917", "surface": "reaped", "gold_segments": ["reap", "ed"]}
+{"instance_id": "morphtr-095272", "surface": "luciferases", "gold_segments": ["luciferin", "ase", "s"]}
+{"instance_id": "morphtr-303196", "surface": "wencher", "gold_segments": ["wench", "er"]}
+{"instance_id": "morphtr-053920", "surface": "bicycler", "gold_segments": ["bicycle", "er"]}
+{"instance_id": "morphtr-008397", "surface": "beardworms", "gold_segments": ["beardworm", "s"]}
+{"instance_id": "morphtr-304796", "surface": "Huntingdonians", "gold_segments": ["Huntingdon", "ian", "s"]}
+{"instance_id": "morphtr-214193", "surface": "queuers", "gold_segments": ["queue", "er", "s"]}
+{"instance_id": "morphtr-023072", "surface": "binocles", "gold_segments": ["binocle", "s"]}
+{"instance_id": "morphtr-236179", "surface": "Tayto", "gold_segments": ["Tayto"]}
+{"instance_id": "morphtr-369945", "surface": "bubblesome", "gold_segments": ["bubble", "some"]}
+{"instance_id": "morphtr-243685", "surface": "spatiodeterministic", "gold_segments": ["spatio", "determine", "ist", "ic"]}
+{"instance_id": "morphtr-198800", "surface": "befortuning", "gold_segments": ["be", "fortune", "ing"]}
+{"instance_id": "morphtr-414758", "surface": "aldebaranium", "gold_segments": ["Aldebaran", "ium"]}
+{"instance_id": "morphtr-261146", "surface": "riegel", "gold_segments": ["riegel"]}
+{"instance_id": "morphtr-024295", "surface": "heders", "gold_segments": ["heder", "s"]}
+{"instance_id": "morphtr-106368", "surface": "paternostered", "gold_segments": ["paternoster", "ed"]}
+{"instance_id": "morphtr-331481", "surface": "hydrobionts", "gold_segments": ["hydro", "biont", "s"]}
+{"instance_id": "morphtr-444410", "surface": "morphinize", "gold_segments": ["morphine", "ize"]}
+{"instance_id": "morphtr-080691", "surface": "Lebanonist", "gold_segments": ["Lebanon", "ist"]}
+{"instance_id": "morphtr-034697", "surface": "spatiochromatic", "gold_segments": ["spatio", "chroma", "atic"]}
+{"instance_id": "morphtr-154045", "surface": "nerfs", "gold_segments": ["nerf", "s"]}
+{"instance_id": "morphtr-357275", "surface": "intramarsupial", "gold_segments": ["intra", "marsupium", "al"]}
+{"instance_id": "morphtr-221344", "surface": "endomutation", "gold_segments": ["endo", "mutate", "ion"]}
+{"instance_id": "morphtr-319284", "surface": "haloalkaliphile", "gold_segments": ["halo", "alkali", "phile"]}
+{"instance_id": "morphtr-292379", "surface": "nonpolytheistic", "gold_segments": ["non", "poly", "theist", "ic"]}
+{"instance_id": "morphtr-382618", "surface": "encoffiners", "gold_segments": ["en", "coffin", "er", "s"]}
+{"instance_id": "morphtr-409249", "surface": "thalamostriate", "gold_segments": ["thalamo", "striate"]}
+{"instance_id": "morphtr-057089", "surface": "dumplingy", "gold_segments": ["dumple", "ing", "y"]}
+{"instance_id": "morphtr-025941", "surface": "dispersonating", "gold_segments": ["dis", "person", "ate", "ing"]}
+{"instance_id": "morphtr-053130", "surface": "unhash", "gold_segments": ["un", "hash"]}
+{"instance_id": "morphtr-368848", "surface": "possessioning", "gold_segments": ["possess", "ion", "ing"]}
+{"instance_id": "morphtr-231850", "surface": "demarginalize", "gold_segments": ["de", "margin", "al", "ize"]}
+{"instance_id": "morphtr-088193", "surface": "autoprotonizations", "gold_segments": ["auto", "protonization", "s"]}
+{"instance_id": "morphtr-238125", "surface": "sequestrating", "gold_segments": ["sequestrate", "ing"]}
+{"instance_id": "morphtr-080467", "surface": "Mitsuhide", "gold_segments": ["Mitsuhide"]}
+{"instance_id": "morphtr-364083", "surface": "stablish", "gold_segments": ["stablish"]}
+{"instance_id": "morphtr-287278", "surface": "endocytoplasmic", "gold_segments": ["endo", "cyto", "plasm", "ic"]}
+{"instance_id": "morphtr-444747", "surface": "paleoevolution", "gold_segments": ["paleo", "evolution"]}
+{"instance_id": "morphtr-379458", "surface": "easternise", "gold_segments": ["east", "ern", "ise"]}
+{"instance_id": "morphtr-052782", "surface": "stockfeed", "gold_segments": ["stock", "feed"]}
+{"instance_id": "morphtr-008309", "surface": "grandfatherlessness", "gold_segments": ["grand", "father", "less", "ness"]}
+{"instance_id": "morphtr-184213", "surface": "accommodators", "gold_segments": ["accommodate", "or", "s"]}
+{"instance_id": "morphtr-340361", "surface": "acquiescer", "gold_segments": ["acquiesce", "er"]}
+{"instance_id": "morphtr-267285", "surface": "condoling", "gold_segments": ["condole", "ing"]}
+{"instance_id": "morphtr-302488", "surface": "multiconcept", "gold_segments": ["multi", "concept"]}
+{"instance_id": "morphtr-343928", "surface": "helved", "gold_segments": ["helve", "ed"]}
+{"instance_id": "morphtr-117918", "surface": "methylergonovine", "gold_segments": ["methyl", "ergonovine"]}
+{"instance_id": "morphtr-012642", "surface": "racebend", "gold_segments": ["race", "bend"]}
+{"instance_id": "morphtr-124476", "surface": "hao", "gold_segments": ["hao"]}
+{"instance_id": "morphtr-303246", "surface": "liftouts", "gold_segments": ["liftout", "s"]}
+{"instance_id": "morphtr-109596", "surface": "monotherapeutic", "gold_segments": ["mono", "therapy", "ic"]}
+{"instance_id": "morphtr-327706", "surface": "inukshuk", "gold_segments": ["inukshuk"]}
+{"instance_id": "morphtr-290359", "surface": "antinatalists", "gold_segments": ["anti", "natal", "ism", "ist", "s"]}
+{"instance_id": "morphtr-029308", "surface": "monocolonize", "gold_segments": ["mono", "colony", "ize"]}
+{"instance_id": "morphtr-072321", "surface": "bankrolls", "gold_segments": ["bank", "roll", "s"]}
+{"instance_id": "morphtr-397031", "surface": "thermonuclease", "gold_segments": ["thermo", "nucleo", "ase"]}
+{"instance_id": "morphtr-432546", "surface": "Arriaza", "gold_segments": ["Arriaza"]}
+{"instance_id": "morphtr-290437", "surface": "extraplacental", "gold_segments": ["extra", "placenta", "al"]}
+{"instance_id": "morphtr-183146", "surface": "steganalyzed", "gold_segments": ["steganalyze", "ed"]}
+{"instance_id": "morphtr-438623", "surface": "altyn", "gold_segments": ["altyn"]}
+{"instance_id": "morphtr-303623", "surface": "immoralize", "gold_segments": ["in", "moral", "ize"]}
+{"instance_id": "morphtr-158301", "surface": "microabrasion", "gold_segments": ["micro", "abrade", "ion"]}
+{"instance_id": "morphtr-261377", "surface": "radiendocrinators", "gold_segments": ["radiendocrinator", "s"]}
+{"instance_id": "morphtr-160551", "surface": "biophotonics", "gold_segments": ["bio", "photo", "on", "ics"]}
+{"instance_id": "morphtr-377357", "surface": "cracticids", "gold_segments": ["cracticid", "s"]}
+{"instance_id": "morphtr-442189", "surface": "channelopsins", "gold_segments": ["channelopsin", "s"]}
+{"instance_id": "morphtr-020727", "surface": "itself", "gold_segments": ["it", "self"]}
+{"instance_id": "morphtr-336895", "surface": "chapelled", "gold_segments": ["chapel", "ed"]}
+{"instance_id": "morphtr-357828", "surface": "nonsuspense", "gold_segments": ["non", "suspense"]}
+{"instance_id": "morphtr-030367", "surface": "oilocracies", "gold_segments": ["oil", "o", "cracy", "s"]}
+{"instance_id": "morphtr-431315", "surface": "smackees", "gold_segments": ["smack", "ee", "s"]}
+{"instance_id": "morphtr-365535", "surface": "diplochromosomes", "gold_segments": ["diplo", "chromo", "some", "s"]}
+{"instance_id": "morphtr-027173", "surface": "exantlating", "gold_segments": ["exantlate", "ing"]}
+{"instance_id": "morphtr-266822", "surface": "Chi-hsi", "gold_segments": ["Chi", "hsi"]}
+{"instance_id": "morphtr-084988", "surface": "majorizers", "gold_segments": ["major", "ize", "er", "s"]}
+{"instance_id": "morphtr-275268", "surface": "perigenual", "gold_segments": ["peri", "genu", "al"]}
+{"instance_id": "morphtr-449999", "surface": "lazyloads", "gold_segments": ["lay", "s", "y", "load", "s"]}
+{"instance_id": "morphtr-065676", "surface": "viator", "gold_segments": ["viator"]}
+{"instance_id": "morphtr-452494", "surface": "tracheosternal", "gold_segments": ["tracheo", "sternum", "al"]}
+{"instance_id": "morphtr-097906", "surface": "nontranscendent", "gold_segments": ["non", "transcend", "ent"]}
+{"instance_id": "morphtr-017342", "surface": "Huffman", "gold_segments": ["Huffman"]}
+{"instance_id": "morphtr-223688", "surface": "nerfherders", "gold_segments": ["nerfherder", "s"]}
+{"instance_id": "morphtr-405627", "surface": "color", "gold_segments": ["color"]}
+{"instance_id": "morphtr-328342", "surface": "Batumi", "gold_segments": ["Batumi"]}
+{"instance_id": "morphtr-084449", "surface": "panegyrised", "gold_segments": ["panegyrise", "ed"]}
+{"instance_id": "morphtr-169292", "surface": "phonoarticulatory", "gold_segments": ["phono", "articulate", "ation", "ory"]}
+{"instance_id": "morphtr-261258", "surface": "ceaselessness", "gold_segments": ["cease", "less", "ness"]}
+{"instance_id": "morphtr-198642", "surface": "scolopendriform", "gold_segments": ["scolopendriform"]}
+{"instance_id": "morphtr-339049", "surface": "intermediacies", "gold_segments": ["intermediate", "cy", "s"]}
+{"instance_id": "morphtr-233394", "surface": "isopodologist", "gold_segments": ["iso", "pod", "logist"]}
+{"instance_id": "morphtr-354405", "surface": "colonial", "gold_segments": ["colony", "al"]}
+{"instance_id": "morphtr-132478", "surface": "cruells", "gold_segments": ["cruell", "s"]}
+{"instance_id": "morphtr-450424", "surface": "decerebrations", "gold_segments": ["decerebration", "s"]}
+{"instance_id": "morphtr-057740", "surface": "granuliform", "gold_segments": ["granule", "iform"]}
+{"instance_id": "morphtr-358330", "surface": "guazus", "gold_segments": ["guazu", "s"]}
+{"instance_id": "morphtr-240680", "surface": "austenitization", "gold_segments": ["austenite", "ize", "ation"]}
+{"instance_id": "morphtr-388450", "surface": "overlaying", "gold_segments": ["over", "lay", "ing"]}
+{"instance_id": "morphtr-443574", "surface": "benzoazocines", "gold_segments": ["benzoazocine", "s"]}
+{"instance_id": "morphtr-091208", "surface": "exemes", "gold_segments": ["exeme", "s"]}
+{"instance_id": "morphtr-223534", "surface": "hermaphroditisms", "gold_segments": ["hermaphrodite", "ism", "s"]}
+{"instance_id": "morphtr-054494", "surface": "arefy", "gold_segments": ["arefy"]}
+{"instance_id": "morphtr-363884", "surface": "interrailers", "gold_segments": ["interrail", "er", "s"]}
+{"instance_id": "morphtr-216358", "surface": "rapers", "gold_segments": ["rape", "er", "s"]}
+{"instance_id": "morphtr-384402", "surface": "hypostatised", "gold_segments": ["hypostatise", "ed"]}
+{"instance_id": "morphtr-414925", "surface": "ablepsia", "gold_segments": ["ablepsia"]}
+{"instance_id": "morphtr-370486", "surface": "becometh", "gold_segments": ["be", "come", "eth"]}
+{"instance_id": "morphtr-014635", "surface": "arcturids", "gold_segments": ["arcturid", "s"]}
+{"instance_id": "morphtr-180392", "surface": "botanies", "gold_segments": ["botany", "s"]}
+{"instance_id": "morphtr-401189", "surface": "Tempelhof", "gold_segments": ["Tempelhof"]}
+{"instance_id": "morphtr-068664", "surface": "peevishly", "gold_segments": ["pue", "ish", "ly"]}
+{"instance_id": "morphtr-458551", "surface": "testworthiness", "gold_segments": ["test", "worthy", "ness"]}
+{"instance_id": "morphtr-021121", "surface": "Lin-fen", "gold_segments": ["Lin", "fen"]}
+{"instance_id": "morphtr-103384", "surface": "percipiences", "gold_segments": ["percipience", "s"]}
+{"instance_id": "morphtr-430889", "surface": "slimebag", "gold_segments": ["slime", "bag"]}
+{"instance_id": "morphtr-250909", "surface": "carbonade", "gold_segments": ["carbon", "ade"]}
+{"instance_id": "morphtr-261069", "surface": "bare", "gold_segments": ["bare"]}
+{"instance_id": "morphtr-438382", "surface": "hypercalcinurias", "gold_segments": ["hyper", "calcinuria", "s"]}
+{"instance_id": "morphtr-051129", "surface": "parvenuisms", "gold_segments": ["parvenu", "ism", "s"]}
+{"instance_id": "morphtr-278455", "surface": "cardphones", "gold_segments": ["card", "phone", "s"]}
+{"instance_id": "morphtr-373938", "surface": "apomictically", "gold_segments": ["apomictic", "ally"]}
+{"instance_id": "morphtr-299122", "surface": "iconically", "gold_segments": ["icon", "ic", "ally"]}
+{"instance_id": "morphtr-128435", "surface": "clearskin", "gold_segments": ["clear", "skin"]}
+{"instance_id": "morphtr-324978", "surface": "factionist", "gold_segments": ["faction", "ist"]}
+{"instance_id": "morphtr-014279", "surface": "concubines", "gold_segments": ["concubine", "s"]}
+{"instance_id": "morphtr-281412", "surface": "lampriforms", "gold_segments": ["lampriform", "s"]}
+{"instance_id": "morphtr-320561", "surface": "columbamides", "gold_segments": ["columbamide", "s"]}
+{"instance_id": "morphtr-307495", "surface": "cubicular", "gold_segments": ["cubicular"]}
+{"instance_id": "morphtr-166661", "surface": "meantimes", "gold_segments": ["mean", "time", "s"]}
+{"instance_id": "morphtr-217501", "surface": "goliaths", "gold_segments": ["goliath", "s"]}
+{"instance_id": "morphtr-175251", "surface": "arteriectomies", "gold_segments": ["arterio", "ectomy", "s"]}
+{"instance_id": "morphtr-220406", "surface": "holloed", "gold_segments": ["hollo", "ed"]}
+{"instance_id": "morphtr-375062", "surface": "engraulids", "gold_segments": ["engraulid", "s"]}
+{"instance_id": "morphtr-266483", "surface": "pharyngography", "gold_segments": ["pharyngo", "graphy"]}
+{"instance_id": "morphtr-317254", "surface": "pheomelanogenesis", "gold_segments": ["pheo", "melano", "genesis"]}
+{"instance_id": "morphtr-402435", "surface": "immunohistocompatibilities", "gold_segments": ["immuno", "histo", "compatible", "ity", "s"]}
+{"instance_id": "morphtr-111085", "surface": "fillest", "gold_segments": ["fill", "est"]}
+{"instance_id": "morphtr-368697", "surface": "McDuff", "gold_segments": ["McDuff"]}
+{"instance_id": "morphtr-140620", "surface": "science-fictiony", "gold_segments": ["science", "fictiony"]}
+{"instance_id": "morphtr-345283", "surface": "superchurches", "gold_segments": ["super", "church", "s"]}
+{"instance_id": "morphtr-207891", "surface": "palagonitic", "gold_segments": ["palagonite", "ic"]}
+{"instance_id": "morphtr-079566", "surface": "centreboards", "gold_segments": ["centre", "board", "s"]}
+{"instance_id": "morphtr-401920", "surface": "inaugur", "gold_segments": ["inaugur"]}
+{"instance_id": "morphtr-216095", "surface": "undervaccinate", "gold_segments": ["under", "vaccine", "ate"]}
+{"instance_id": "morphtr-050748", "surface": "sugarplums", "gold_segments": ["sugarplum", "s"]}
+{"instance_id": "morphtr-051247", "surface": "lidless", "gold_segments": ["lid", "less"]}
+{"instance_id": "morphtr-126911", "surface": "frontiersmanship", "gold_segments": ["frontier", "man", "ship"]}
+{"instance_id": "morphtr-310756", "surface": "aromatogram", "gold_segments": ["aromatogram"]}
+{"instance_id": "morphtr-178118", "surface": "tallaged", "gold_segments": ["tallage", "ed"]}
+{"instance_id": "morphtr-407956", "surface": "pheromones", "gold_segments": ["pheromone", "s"]}
+{"instance_id": "morphtr-419972", "surface": "duodenes", "gold_segments": ["duodene", "s"]}
+{"instance_id": "morphtr-213319", "surface": "kango", "gold_segments": ["kango"]}
+{"instance_id": "morphtr-341535", "surface": "bemonster", "gold_segments": ["be", "monster"]}
+{"instance_id": "morphtr-434086", "surface": "darsana", "gold_segments": ["darsana"]}
+{"instance_id": "morphtr-093540", "surface": "BDSers", "gold_segments": ["BDS", "er", "s"]}
+{"instance_id": "morphtr-387689", "surface": "lovespoons", "gold_segments": ["lovespoon", "s"]}
+{"instance_id": "morphtr-106709", "surface": "molliturbels", "gold_segments": ["molliturbel", "s"]}
+{"instance_id": "morphtr-328216", "surface": "indigently", "gold_segments": ["indigent", "ly"]}
+{"instance_id": "morphtr-202341", "surface": "trueism", "gold_segments": ["true", "ism"]}
+{"instance_id": "morphtr-121004", "surface": "venombins", "gold_segments": ["venombin", "s"]}
+{"instance_id": "morphtr-293967", "surface": "telegeusids", "gold_segments": ["telegeusid", "s"]}
+{"instance_id": "morphtr-189513", "surface": "heartache", "gold_segments": ["heartache"]}
+{"instance_id": "morphtr-144414", "surface": "molarisations", "gold_segments": ["mole", "ar", "isation", "s"]}
+{"instance_id": "morphtr-391147", "surface": "begowns", "gold_segments": ["be", "gown", "s"]}
+{"instance_id": "morphtr-130943", "surface": "hepatosis", "gold_segments": ["hepato", "osis"]}
+{"instance_id": "morphtr-406636", "surface": "coagonist", "gold_segments": ["co", "agonist"]}
+{"instance_id": "morphtr-186915", "surface": "nonradiate", "gold_segments": ["non", "radiate"]}
+{"instance_id": "morphtr-048295", "surface": "spatiotopic", "gold_segments": ["spatio", "topic"]}
+{"instance_id": "morphtr-253136", "surface": "flareups", "gold_segments": ["flareup", "s"]}
+{"instance_id": "morphtr-288390", "surface": "meares", "gold_segments": ["meare", "s"]}
+{"instance_id": "morphtr-145490", "surface": "ascidiozooids", "gold_segments": ["ascidiozooid", "s"]}
+{"instance_id": "morphtr-209306", "surface": "cringeful", "gold_segments": ["cringe", "ful"]}
+{"instance_id": "morphtr-220468", "surface": "pooled", "gold_segments": ["pool", "ed"]}
+{"instance_id": "morphtr-217041", "surface": "shoegazer", "gold_segments": ["shoegaze", "er"]}
+{"instance_id": "morphtr-162417", "surface": "Francophobe", "gold_segments": ["Franco", "phobe"]}
+{"instance_id": "morphtr-145928", "surface": "radiophysics", "gold_segments": ["radio", "physic", "s"]}
+{"instance_id": "morphtr-044175", "surface": "piecharts", "gold_segments": ["piechart", "s"]}
+{"instance_id": "morphtr-165756", "surface": "unconstitutional", "gold_segments": ["un", "constitute", "ion", "al"]}
+{"instance_id": "morphtr-005360", "surface": "nanofocuses", "gold_segments": ["nano", "focus", "s"]}
+{"instance_id": "morphtr-234079", "surface": "diversion", "gold_segments": ["diverse", "ion"]}
+{"instance_id": "morphtr-025843", "surface": "anancy", "gold_segments": ["anancy"]}
+{"instance_id": "morphtr-289645", "surface": "Knightian", "gold_segments": ["Knight", "ian"]}
+{"instance_id": "morphtr-403911", "surface": "expandingness", "gold_segments": ["expand", "ing", "ness"]}
+{"instance_id": "morphtr-116795", "surface": "enregistering", "gold_segments": ["en", "register", "ing"]}
+{"instance_id": "morphtr-020498", "surface": "stubtail", "gold_segments": ["stub", "tail"]}
+{"instance_id": "morphtr-158032", "surface": "childlovers", "gold_segments": ["child", "love", "er", "s"]}
+{"instance_id": "morphtr-431649", "surface": "shitasses", "gold_segments": ["shit", "ass", "s"]}
+{"instance_id": "morphtr-251101", "surface": "raconteuses", "gold_segments": ["raconteuse", "s"]}
+{"instance_id": "morphtr-337119", "surface": "teleiochrysalises", "gold_segments": ["teleio", "chrysalis", "s"]}
+{"instance_id": "morphtr-337730", "surface": "molybdous", "gold_segments": ["molybdenum", "ous"]}
+{"instance_id": "morphtr-238780", "surface": "mitted", "gold_segments": ["mitt", "ed"]}
+{"instance_id": "morphtr-033856", "surface": "retarred", "gold_segments": ["re", "tar", "ed"]}
+{"instance_id": "morphtr-390404", "surface": "unscrew", "gold_segments": ["un", "screw"]}
+{"instance_id": "morphtr-452929", "surface": "heptacalcium", "gold_segments": ["hepta", "calcium"]}
+{"instance_id": "morphtr-027222", "surface": "hights", "gold_segments": ["hight", "s"]}
+{"instance_id": "morphtr-319652", "surface": "lesing", "gold_segments": ["lese", "ing"]}
+{"instance_id": "morphtr-027937", "surface": "pokelogans", "gold_segments": ["pokelogan", "s"]}
+{"instance_id": "morphtr-427813", "surface": "'raris", "gold_segments": ["'rari", "s"]}
+{"instance_id": "morphtr-422177", "surface": "uteropelvic", "gold_segments": ["utero", "pelvis", "ic"]}
+{"instance_id": "morphtr-270880", "surface": "quinquefarious", "gold_segments": ["quinquefarious"]}
+{"instance_id": "morphtr-097376", "surface": "don", "gold_segments": ["don"]}
+{"instance_id": "morphtr-012952", "surface": "safeness", "gold_segments": ["safe", "ness"]}
+{"instance_id": "morphtr-369657", "surface": "alloyed", "gold_segments": ["alloy", "ed"]}
+{"instance_id": "morphtr-081316", "surface": "genning", "gold_segments": ["gen", "ing"]}
+{"instance_id": "morphtr-363216", "surface": "Seaman", "gold_segments": ["Seaman"]}
+{"instance_id": "morphtr-053187", "surface": "nitrogeniferous", "gold_segments": ["nitro", "gen", "iferous"]}
+{"instance_id": "morphtr-307976", "surface": "middlish", "gold_segments": ["middle", "ish"]}
+{"instance_id": "morphtr-419256", "surface": "misarranges", "gold_segments": ["mis", "arrange", "s"]}
+{"instance_id": "morphtr-234772", "surface": "sperages", "gold_segments": ["sperage", "s"]}
+{"instance_id": "morphtr-117118", "surface": "cuckold-maker", "gold_segments": ["cuckold", "make", "er"]}
+{"instance_id": "morphtr-239717", "surface": "antioncogene", "gold_segments": ["anti", "onco", "gene"]}
+{"instance_id": "morphtr-390971", "surface": "intermedial", "gold_segments": ["inter", "media", "al"]}
+{"instance_id": "morphtr-453004", "surface": "unonerous", "gold_segments": ["un", "onerous"]}
+{"instance_id": "morphtr-080981", "surface": "refluctuation", "gold_segments": ["re", "fluctuate", "ion"]}
+{"instance_id": "morphtr-234279", "surface": "observerless", "gold_segments": ["observe", "er", "less"]}
+{"instance_id": "morphtr-227144", "surface": "reserialization", "gold_segments": ["re", "serie", "s", "al", "ize", "ation"]}
+{"instance_id": "morphtr-195860", "surface": "sculptable", "gold_segments": ["sculpt", "able"]}
+{"instance_id": "morphtr-346814", "surface": "glazen", "gold_segments": ["glass", "en"]}
+{"instance_id": "morphtr-283356", "surface": "weighbeam", "gold_segments": ["weighbeam"]}
+{"instance_id": "morphtr-194176", "surface": "metaperiodate", "gold_segments": ["meta", "per", "iodine", "ic", "ate"]}
+{"instance_id": "morphtr-130443", "surface": "Pyrrhonists", "gold_segments": ["Pyrrhonist", "s"]}
+{"instance_id": "morphtr-045675", "surface": "posttympanic", "gold_segments": ["post", "tympanum", "ic"]}
+{"instance_id": "morphtr-071470", "surface": "misaborted", "gold_segments": ["mis", "abort", "ed"]}
+{"instance_id": "morphtr-434685", "surface": "disfancy", "gold_segments": ["dis", "fancy"]}
+{"instance_id": "morphtr-344444", "surface": "californite", "gold_segments": ["California", "ite"]}
+{"instance_id": "morphtr-292905", "surface": "maydays", "gold_segments": ["mayday", "s"]}
+{"instance_id": "morphtr-059131", "surface": "feaks", "gold_segments": ["feak", "s"]}
+{"instance_id": "morphtr-095201", "surface": "victory", "gold_segments": ["victor", "y"]}
+{"instance_id": "morphtr-442819", "surface": "forwaked", "gold_segments": ["for", "wake", "ed"]}
+{"instance_id": "morphtr-143576", "surface": "kuznetsovite", "gold_segments": ["kuznetsovite"]}
+{"instance_id": "morphtr-348174", "surface": "farmerhood", "gold_segments": ["farm", "er", "hood"]}
+{"instance_id": "morphtr-410529", "surface": "continuers", "gold_segments": ["continue", "er", "s"]}
+{"instance_id": "morphtr-359501", "surface": "fadedly", "gold_segments": ["fade", "ed", "ly"]}
+{"instance_id": "morphtr-339536", "surface": "mazurkalike", "gold_segments": ["mazurka", "like"]}
+{"instance_id": "morphtr-184635", "surface": "nonrebreathing", "gold_segments": ["non", "rebreathe", "ing"]}
+{"instance_id": "morphtr-018293", "surface": "housegirl", "gold_segments": ["house", "girl"]}
+{"instance_id": "morphtr-351500", "surface": "hepatosteatotic", "gold_segments": ["hepato", "steatotic"]}
+{"instance_id": "morphtr-112114", "surface": "Bungay", "gold_segments": ["Bungay"]}
+{"instance_id": "morphtr-060901", "surface": "shitatenage", "gold_segments": ["shitatenage"]}
+{"instance_id": "morphtr-217740", "surface": "uranoscopids", "gold_segments": ["uranoscopid", "s"]}
+{"instance_id": "morphtr-079133", "surface": "burlesqueness", "gold_segments": ["burlesque", "ness"]}
+{"instance_id": "morphtr-239795", "surface": "beryllium", "gold_segments": ["beryl", "ium"]}
+{"instance_id": "morphtr-127515", "surface": "coanalyze", "gold_segments": ["co", "analyze"]}
+{"instance_id": "morphtr-420668", "surface": "motherfucks", "gold_segments": ["motherfuck", "s"]}
+{"instance_id": "morphtr-083760", "surface": "hornbooks", "gold_segments": ["horn", "book", "s"]}
+{"instance_id": "morphtr-015482", "surface": "gainer", "gold_segments": ["gain", "er"]}
+{"instance_id": "morphtr-064358", "surface": "Li\u00e8ge", "gold_segments": ["Li\u00e8ge"]}
+{"instance_id": "morphtr-145462", "surface": "misdropped", "gold_segments": ["mis", "drop", "ed"]}
+{"instance_id": "morphtr-108923", "surface": "whitherwards", "gold_segments": ["whither", "wards"]}
+{"instance_id": "morphtr-259314", "surface": "Semitization", "gold_segments": ["Sem", "ite", "ization"]}
+{"instance_id": "morphtr-045210", "surface": "godpapa", "gold_segments": ["god", "papa"]}
+{"instance_id": "morphtr-377030", "surface": "forefence", "gold_segments": ["fore", "fence"]}
+{"instance_id": "morphtr-323202", "surface": "superspreaders", "gold_segments": ["super", "spread", "er", "s"]}
+{"instance_id": "morphtr-079184", "surface": "overbrowning", "gold_segments": ["over", "brown", "ing"]}
+{"instance_id": "morphtr-400263", "surface": "stuffing", "gold_segments": ["stuffe", "ing"]}
+{"instance_id": "morphtr-016573", "surface": "slushbreakers", "gold_segments": ["slushbreaker", "s"]}
+{"instance_id": "morphtr-084033", "surface": "bihermitian", "gold_segments": ["bi", "hermitian"]}
+{"instance_id": "morphtr-035548", "surface": "rubricating", "gold_segments": ["rubricate", "ing"]}
+{"instance_id": "morphtr-450257", "surface": "transitionless", "gold_segments": ["transition", "less"]}
+{"instance_id": "morphtr-192074", "surface": "sausagy", "gold_segments": ["sausage", "y"]}
+{"instance_id": "morphtr-217353", "surface": "hecatonicosachoron", "gold_segments": ["hecatonicosachoron"]}
+{"instance_id": "morphtr-051744", "surface": "bobbinwork", "gold_segments": ["bobbin", "work"]}
+{"instance_id": "morphtr-087944", "surface": "harrowingness", "gold_segments": ["harrow", "ing", "ness"]}
+{"instance_id": "morphtr-203776", "surface": "atactostelic", "gold_segments": ["atactostele", "ic"]}
+{"instance_id": "morphtr-420013", "surface": "Aland", "gold_segments": ["Aland"]}
+{"instance_id": "morphtr-099229", "surface": "pellacks", "gold_segments": ["pellack", "s"]}
+{"instance_id": "morphtr-418898", "surface": "hurtling", "gold_segments": ["hurt", "le", "ing"]}
+{"instance_id": "morphtr-251126", "surface": "AIPACer", "gold_segments": ["AIPAC", "er"]}
+{"instance_id": "morphtr-354072", "surface": "sphygmograph", "gold_segments": ["sphygm", "graph"]}
+{"instance_id": "morphtr-362595", "surface": "hamsa", "gold_segments": ["hamsa"]}
+{"instance_id": "morphtr-338168", "surface": "monesting", "gold_segments": ["monest", "ing"]}
+{"instance_id": "morphtr-450143", "surface": "ohu", "gold_segments": ["ohu"]}
+{"instance_id": "morphtr-007476", "surface": "pommeracs", "gold_segments": ["pommerac", "s"]}
+{"instance_id": "morphtr-040690", "surface": "cormogenesis", "gold_segments": ["corm", "o", "genesis"]}
+{"instance_id": "morphtr-284102", "surface": "metricate", "gold_segments": ["metre", "ic", "ate"]}
+{"instance_id": "morphtr-153308", "surface": "Frankish", "gold_segments": ["Frank", "ish"]}
+{"instance_id": "morphtr-183754", "surface": "freezable", "gold_segments": ["freeze", "able"]}
+{"instance_id": "morphtr-237405", "surface": "foreflowed", "gold_segments": ["fore", "flow", "ed"]}
+{"instance_id": "morphtr-441655", "surface": "unaches", "gold_segments": ["un", "ache", "s"]}
+{"instance_id": "morphtr-087769", "surface": "strubbed", "gold_segments": ["strub", "ed"]}
+{"instance_id": "morphtr-232529", "surface": "soubrettish", "gold_segments": ["soubrette", "ish"]}
+{"instance_id": "morphtr-054216", "surface": "forthcomings", "gold_segments": ["forth", "come", "ing", "s"]}
+{"instance_id": "morphtr-431844", "surface": "extracting", "gold_segments": ["extract", "ing"]}
+{"instance_id": "morphtr-230423", "surface": "tetradactyly", "gold_segments": ["tetra", "dactyl", "y"]}
+{"instance_id": "morphtr-231571", "surface": "coronals", "gold_segments": ["coronal", "s"]}
+{"instance_id": "morphtr-291397", "surface": "bucketizes", "gold_segments": ["bouk", "et", "ize", "s"]}
+{"instance_id": "morphtr-179756", "surface": "dynamicizes", "gold_segments": ["dynamic", "ize", "s"]}
+{"instance_id": "morphtr-369529", "surface": "trampoline", "gold_segments": ["trampoline"]}
+{"instance_id": "morphtr-101023", "surface": "nettlebed", "gold_segments": ["nettle", "bed"]}
+{"instance_id": "morphtr-006588", "surface": "minimuffin", "gold_segments": ["mini", "muff", "in"]}
+{"instance_id": "morphtr-396964", "surface": "transmissionist", "gold_segments": ["trans", "mission", "ist"]}
+{"instance_id": "morphtr-427492", "surface": "bock", "gold_segments": ["bock"]}
+{"instance_id": "morphtr-062162", "surface": "coplayer", "gold_segments": ["co", "play", "er"]}
+{"instance_id": "morphtr-250168", "surface": "helide", "gold_segments": ["helium", "ide"]}
+{"instance_id": "morphtr-111281", "surface": "unnests", "gold_segments": ["un", "nest", "s"]}
+{"instance_id": "morphtr-207288", "surface": "redisburse", "gold_segments": ["re", "dis", "burse"]}
+{"instance_id": "morphtr-201621", "surface": "recanter", "gold_segments": ["recant", "er"]}
+{"instance_id": "morphtr-413172", "surface": "quarter-witted", "gold_segments": ["quarter", "wit", "ed"]}
+{"instance_id": "morphtr-210503", "surface": "puffbirds", "gold_segments": ["puff", "bird", "s"]}
+{"instance_id": "morphtr-178224", "surface": "jisei", "gold_segments": ["jisei"]}
+{"instance_id": "morphtr-371056", "surface": "devise", "gold_segments": ["devise"]}
+{"instance_id": "morphtr-422275", "surface": "perjurious", "gold_segments": ["perjurious"]}
+{"instance_id": "morphtr-448599", "surface": "thrombocytapheresis", "gold_segments": ["thromb", "o", "cyte", "apheresis"]}
+{"instance_id": "morphtr-226871", "surface": "heterobands", "gold_segments": ["hetero", "band", "s"]}
+{"instance_id": "morphtr-316108", "surface": "f-bomb", "gold_segments": ["f", "bomb"]}
+{"instance_id": "morphtr-338200", "surface": "organomercurial", "gold_segments": ["organo", "mercury", "al"]}
+{"instance_id": "morphtr-337353", "surface": "eubacterial", "gold_segments": ["eu", "bacteria", "al"]}
+{"instance_id": "morphtr-282825", "surface": "saddenest", "gold_segments": ["sad", "en", "est"]}
+{"instance_id": "morphtr-374294", "surface": "bragginess", "gold_segments": ["brag", "y", "ness"]}
+{"instance_id": "morphtr-152549", "surface": "tubulure", "gold_segments": ["tubulure"]}
+{"instance_id": "morphtr-292391", "surface": "bushwacking", "gold_segments": ["bushwack", "ing"]}
+{"instance_id": "morphtr-145361", "surface": "tetracyanocuprates", "gold_segments": ["tetracyanocuprate", "s"]}
+{"instance_id": "morphtr-228689", "surface": "aminonitriles", "gold_segments": ["amino", "nitrile", "s"]}
+{"instance_id": "morphtr-060270", "surface": "dyadic", "gold_segments": ["dyad", "ic"]}
+{"instance_id": "morphtr-310325", "surface": "seirospore", "gold_segments": ["seirospore"]}
+{"instance_id": "morphtr-376007", "surface": "uncrinkling", "gold_segments": ["un", "crinkle", "ing"]}
+{"instance_id": "morphtr-013181", "surface": "furor", "gold_segments": ["fury", "or"]}
+{"instance_id": "morphtr-132066", "surface": "liverywoman", "gold_segments": ["live", "er", "y", "woman"]}
+{"instance_id": "morphtr-293229", "surface": "heterochromosome", "gold_segments": ["hetero", "chromo", "some"]}
+{"instance_id": "morphtr-250949", "surface": "estheticises", "gold_segments": ["estheticise", "s"]}
+{"instance_id": "morphtr-365558", "surface": "Leung", "gold_segments": ["Leung"]}
+{"instance_id": "morphtr-282491", "surface": "pulverise", "gold_segments": ["pulverise"]}
+{"instance_id": "morphtr-269659", "surface": "seductive", "gold_segments": ["seduce", "ion", "ive"]}
+{"instance_id": "morphtr-050027", "surface": "cassicans", "gold_segments": ["cassican", "s"]}
+{"instance_id": "morphtr-101020", "surface": "fishes", "gold_segments": ["fish", "s"]}
+{"instance_id": "morphtr-202649", "surface": "permakill", "gold_segments": ["perma", "kill"]}
+{"instance_id": "morphtr-152555", "surface": "unvote", "gold_segments": ["un", "vote"]}
+{"instance_id": "morphtr-257212", "surface": "plungings", "gold_segments": ["plunging", "s"]}
+{"instance_id": "morphtr-212560", "surface": "quasirandom", "gold_segments": ["quasi", "random"]}
+{"instance_id": "morphtr-118594", "surface": "recompleting", "gold_segments": ["re", "complete", "ing"]}
+{"instance_id": "morphtr-417089", "surface": "bromocholesterols", "gold_segments": ["bromo", "cholesteric", "ol", "s"]}
+{"instance_id": "morphtr-302439", "surface": "companioning", "gold_segments": ["companion", "ing"]}
+{"instance_id": "morphtr-113217", "surface": "tonified", "gold_segments": ["tone", "ify", "ed"]}
+{"instance_id": "morphtr-318375", "surface": "modinha", "gold_segments": ["modinha"]}
+{"instance_id": "morphtr-307928", "surface": "alkannin", "gold_segments": ["alkannin"]}
+{"instance_id": "morphtr-286779", "surface": "ruffleless", "gold_segments": ["ruffle", "less"]}
+{"instance_id": "morphtr-062407", "surface": "hoar", "gold_segments": ["hoar"]}
+{"instance_id": "morphtr-309013", "surface": "indefeasible", "gold_segments": ["in", "defeasible"]}
+{"instance_id": "morphtr-134153", "surface": "commodifiability", "gold_segments": ["commodity", "ify", "ability"]}
+{"instance_id": "morphtr-413697", "surface": "unreimbursed", "gold_segments": ["un", "reimburse", "ed"]}
+{"instance_id": "morphtr-097926", "surface": "Kafkaesque", "gold_segments": ["Kafka", "esque"]}
+{"instance_id": "morphtr-108514", "surface": "purposers", "gold_segments": ["purpose", "er", "s"]}
+{"instance_id": "morphtr-332592", "surface": "junctionless", "gold_segments": ["join", "tion", "less"]}
+{"instance_id": "morphtr-201887", "surface": "contrabanded", "gold_segments": ["contraband", "ed"]}
+{"instance_id": "morphtr-322024", "surface": "biodemographical", "gold_segments": ["bio", "demo", "graphy", "ical"]}
+{"instance_id": "morphtr-176151", "surface": "polyamorists", "gold_segments": ["polyamory", "ist", "s"]}
+{"instance_id": "morphtr-141887", "surface": "urophiles", "gold_segments": ["uro", "phile", "s"]}
+{"instance_id": "morphtr-293282", "surface": "metacognitively", "gold_segments": ["meta", "cognition", "ive", "ly"]}
+{"instance_id": "morphtr-177839", "surface": "overrising", "gold_segments": ["over", "rise", "ing"]}
+{"instance_id": "morphtr-089093", "surface": "subcategorises", "gold_segments": ["sub", "category", "ise", "s"]}
+{"instance_id": "morphtr-021046", "surface": "unswaddles", "gold_segments": ["un", "swathe", "le", "s"]}
+{"instance_id": "morphtr-269987", "surface": "spiniest", "gold_segments": ["spine", "y", "est"]}
+{"instance_id": "morphtr-221279", "surface": "besleeps", "gold_segments": ["be", "sleep", "s"]}
+{"instance_id": "morphtr-157111", "surface": "musicophiles", "gold_segments": ["muse", "ic", "o", "phile", "s"]}
+{"instance_id": "morphtr-296039", "surface": "ulcerovegetant", "gold_segments": ["ulcero", "vegetant"]}
+{"instance_id": "morphtr-373827", "surface": "forbiddenly", "gold_segments": ["forbid", "en", "ly"]}
+{"instance_id": "morphtr-114270", "surface": "warraunts", "gold_segments": ["warraunt", "s"]}
+{"instance_id": "morphtr-119264", "surface": "gentle", "gold_segments": ["gentle"]}
+{"instance_id": "morphtr-350707", "surface": "antilipopolysaccharide", "gold_segments": ["anti", "lipo", "poly", "saccharo", "ide"]}
+{"instance_id": "morphtr-422936", "surface": "unmoderated", "gold_segments": ["un", "moderate", "ed"]}
+{"instance_id": "morphtr-394570", "surface": "signals", "gold_segments": ["signal", "s"]}
+{"instance_id": "morphtr-228871", "surface": "subparticles", "gold_segments": ["sub", "particle", "s"]}
+{"instance_id": "morphtr-114845", "surface": "rep-tile", "gold_segments": ["rep", "tile"]}
+{"instance_id": "morphtr-000164", "surface": "patty", "gold_segments": ["patty"]}
+{"instance_id": "morphtr-293264", "surface": "felines", "gold_segments": ["feline", "s"]}
+{"instance_id": "morphtr-392798", "surface": "nonhomosexuals", "gold_segments": ["non", "homo", "sex", "ual", "s"]}
+{"instance_id": "morphtr-407944", "surface": "patchboxes", "gold_segments": ["patchbox", "s"]}
+{"instance_id": "morphtr-336413", "surface": "vanishified", "gold_segments": ["vanishify", "ed"]}
+{"instance_id": "morphtr-035191", "surface": "sumo", "gold_segments": ["sumo"]}
+{"instance_id": "morphtr-360108", "surface": "holofoils", "gold_segments": ["holo", "foil", "s"]}
+{"instance_id": "morphtr-321864", "surface": "antifeeding", "gold_segments": ["anti", "fee", "ed", "ing"]}
+{"instance_id": "morphtr-440751", "surface": "turnverein", "gold_segments": ["turnverein"]}
+{"instance_id": "morphtr-209463", "surface": "frappucino", "gold_segments": ["frappucino"]}
+{"instance_id": "morphtr-368070", "surface": "infradentaries", "gold_segments": ["infra", "dentary", "s"]}
+{"instance_id": "morphtr-180824", "surface": "debittering", "gold_segments": ["de", "bite", "er", "ing"]}
+{"instance_id": "morphtr-360377", "surface": "bossish", "gold_segments": ["boss", "ish"]}
+{"instance_id": "morphtr-407446", "surface": "unequality", "gold_segments": ["un", "equal", "ity"]}
+{"instance_id": "morphtr-062668", "surface": "outhunt", "gold_segments": ["out", "hunt"]}
+{"instance_id": "morphtr-454820", "surface": "vanalite", "gold_segments": ["vanalite"]}
+{"instance_id": "morphtr-034900", "surface": "deies", "gold_segments": ["deie", "s"]}
+{"instance_id": "morphtr-423185", "surface": "chitinised", "gold_segments": ["chitinise", "ed"]}
+{"instance_id": "morphtr-141362", "surface": "cryotherapists", "gold_segments": ["cryo", "therapy", "ist", "s"]}
+{"instance_id": "morphtr-443683", "surface": "sejmik", "gold_segments": ["sejmik"]}
+{"instance_id": "morphtr-363158", "surface": "outhire", "gold_segments": ["out", "hire"]}
+{"instance_id": "morphtr-436830", "surface": "perspiring", "gold_segments": ["perspire", "ing"]}
+{"instance_id": "morphtr-269812", "surface": "merlucciids", "gold_segments": ["merlucciid", "s"]}
+{"instance_id": "morphtr-339230", "surface": "unacceptably", "gold_segments": ["un", "accept", "able", "ly"]}
+{"instance_id": "morphtr-372677", "surface": "chainage", "gold_segments": ["chain", "age"]}
+{"instance_id": "morphtr-435142", "surface": "kicksleds", "gold_segments": ["kick", "sled", "s"]}
+{"instance_id": "morphtr-287373", "surface": "mercadito", "gold_segments": ["mercadito"]}
+{"instance_id": "morphtr-366307", "surface": "Nangle", "gold_segments": ["Nangle"]}
+{"instance_id": "morphtr-271994", "surface": "demagnifying", "gold_segments": ["de", "magnify", "ing"]}
+{"instance_id": "morphtr-130216", "surface": "guideboard", "gold_segments": ["guide", "board"]}
+{"instance_id": "morphtr-276323", "surface": "Eurasiatics", "gold_segments": ["Eurasiatic", "s"]}
+{"instance_id": "morphtr-425749", "surface": "lithy", "gold_segments": ["lith", "y"]}
+{"instance_id": "morphtr-371570", "surface": "misle", "gold_segments": ["misle"]}
+{"instance_id": "morphtr-198151", "surface": "tchotchke", "gold_segments": ["tchotchke"]}
+{"instance_id": "morphtr-393581", "surface": "putrefies", "gold_segments": ["putrefy", "s"]}
+{"instance_id": "morphtr-405110", "surface": "antecedences", "gold_segments": ["antecedent", "ence", "s"]}
+{"instance_id": "morphtr-197717", "surface": "serenizes", "gold_segments": ["serene", "ize", "s"]}
+{"instance_id": "morphtr-453151", "surface": "flatlands", "gold_segments": ["flat", "land", "s"]}
+{"instance_id": "morphtr-027133", "surface": "amenders", "gold_segments": ["amend", "er", "s"]}
+{"instance_id": "morphtr-159857", "surface": "phytopathogen", "gold_segments": ["phyto", "patho", "gen"]}
+{"instance_id": "morphtr-325934", "surface": "end-foot", "gold_segments": ["end", "foot"]}
+{"instance_id": "morphtr-020768", "surface": "hexanediamide", "gold_segments": ["hex", "ane", "di", "ammonia", "ide"]}
+{"instance_id": "morphtr-292560", "surface": "merce", "gold_segments": ["merce"]}
+{"instance_id": "morphtr-135621", "surface": "guilds", "gold_segments": ["guild", "s"]}
+{"instance_id": "morphtr-446659", "surface": "hyperinflations", "gold_segments": ["hyper", "inflate", "ion", "s"]}
+{"instance_id": "morphtr-059119", "surface": "distinguo", "gold_segments": ["distinguo"]}
+{"instance_id": "morphtr-432041", "surface": "magnesiohastingsite", "gold_segments": ["magnesio", "Hastings", "ite"]}
+{"instance_id": "morphtr-259029", "surface": "unturbated", "gold_segments": ["un", "turbated"]}
+{"instance_id": "morphtr-143667", "surface": "scraggiest", "gold_segments": ["scrag", "y", "est"]}
+{"instance_id": "morphtr-390618", "surface": "stupidly", "gold_segments": ["stupid", "ly"]}
+{"instance_id": "morphtr-403873", "surface": "sesquifumarates", "gold_segments": ["sesqui", "fumaric", "ate", "s"]}
+{"instance_id": "morphtr-207131", "surface": "neologist", "gold_segments": ["neologist"]}
+{"instance_id": "morphtr-010219", "surface": "sabotages", "gold_segments": ["sabotage", "s"]}
+{"instance_id": "morphtr-243426", "surface": "freakazoids", "gold_segments": ["freak", "a", "oid", "s"]}
+{"instance_id": "morphtr-271813", "surface": "epimacular", "gold_segments": ["epi", "macula", "ar"]}
+{"instance_id": "morphtr-158040", "surface": "billikens", "gold_segments": ["billiken", "s"]}
+{"instance_id": "morphtr-073697", "surface": "eumelanosome", "gold_segments": ["eu", "melano", "some"]}
+{"instance_id": "morphtr-278658", "surface": "myceliogenic", "gold_segments": ["mycelio", "genic"]}
+{"instance_id": "morphtr-291360", "surface": "weirdoes", "gold_segments": ["weird", "o", "s"]}
+{"instance_id": "morphtr-305748", "surface": "white-collar", "gold_segments": ["white", "collar"]}
+{"instance_id": "morphtr-249382", "surface": "vulvalike", "gold_segments": ["vulva", "like"]}
+{"instance_id": "morphtr-273551", "surface": "tapacolos", "gold_segments": ["tapacolo", "s"]}
+{"instance_id": "morphtr-183401", "surface": "outies", "gold_segments": ["out", "y", "s"]}
+{"instance_id": "morphtr-387791", "surface": "Antigua", "gold_segments": ["Antigua"]}
+{"instance_id": "morphtr-144711", "surface": "McElrath", "gold_segments": ["McElrath"]}
+{"instance_id": "morphtr-064107", "surface": "Olympian", "gold_segments": ["Olympia", "an"]}
+{"instance_id": "morphtr-152297", "surface": "bankroll", "gold_segments": ["bank", "roll"]}
+{"instance_id": "morphtr-259617", "surface": "Marquina", "gold_segments": ["Marquina"]}
+{"instance_id": "morphtr-089732", "surface": "periodlike", "gold_segments": ["period", "like"]}
+{"instance_id": "morphtr-320920", "surface": "waylayings", "gold_segments": ["waylay", "ing", "s"]}
+{"instance_id": "morphtr-166769", "surface": "rethreaded", "gold_segments": ["re", "thread", "ed"]}

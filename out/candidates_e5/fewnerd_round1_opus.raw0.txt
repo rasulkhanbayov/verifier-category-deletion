@@ -1,0 +1,576 @@
+### CHECK entity_is_token_span
+RATIONALE: The label lower-cases and strips each entity and compares it to gold token spans, so every correct entity must equal a contiguous run of lower-cased text tokens joined by single spaces. This catches `It's`, `Dr. Martin Haskell`, `D & E procedure` and `Geysers Air Monitoring Programs (GAMP)`.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        text = ctx['text']
+        if '  ' in text or any(c in text for c in '\t\n\r'):
+            return True
+        toks = text.lower().split(' ')
+        spans = set()
+        n = len(toks)
+        for i in range(n):
+            for j in range(i + 1, min(n, i + 40) + 1):
+                spans.add(' '.join(toks[i:j]))
+        for v in p.values():
+            if not isinstance(v, list):
+                continue
+            for e in v:
+                if not isinstance(e, str):
+                    continue
+                s = e.lower().strip()
+                if len(s.split(' ')) > 40:
+                    continue
+                if s not in spans:
+                    return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK entity_lower_substring_of_text
+RATIONALE: A gold span is a substring of the lower-cased text, so every correct entity is too. This catches entities that were reformatted or invented.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        t = ctx['text'].lower()
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str) and e.lower().strip() not in t:
+                        return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK entity_nonempty
+RATIONALE: Gold spans contain at least one token, so no correct entity is empty after stripping. This catches blank strings.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str) and e.strip() == '':
+                        return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK entities_are_strings
+RATIONALE: Gold entities are strings, so a correct list cannot contain numbers, nulls or nested objects. This catches malformed list items.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if not isinstance(e, str):
+                        return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK each_entity_token_in_text
+RATIONALE: Every token of a gold span is a text token, so each space-separated piece of a correct entity is a lower-cased text token. This catches `It's` and `(GAMP)`.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        text = ctx['text']
+        if any(c in text for c in '\t\n\r'):
+            return True
+        toks = set(text.lower().split())
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        for w in e.lower().strip().split():
+                            if w not in toks:
+                                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK global_count_le_occurrences
+RATIONALE: Gold spans occupy distinct, non-overlapping positions, so a string repeated across all fields cannot appear more times than it occurs in the text. This catches `FIFA World Cup 2018` listed under both art and event.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        toks = ctx['text'].lower().split()
+        from collections import Counter
+        c = Counter()
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        c[e.lower().strip()] += 1
+        for s, k in c.items():
+            st = s.split()
+            m = len(st)
+            if m == 0:
+                continue
+            occ = sum(1 for i in range(len(toks) - m + 1) if toks[i:i + m] == st)
+            if occ == 0:
+                continue
+            if k > occ:
+                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK per_field_count_le_occurrences
+RATIONALE: Within one field, each duplicate of an entity must correspond to a distinct occurrence in the text. This catches spurious repeats inside a field while still allowing `California` twice when it appears twice.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        toks = ctx['text'].lower().split()
+        from collections import Counter
+        for v in p.values():
+            if not isinstance(v, list):
+                continue
+            c = Counter(e.lower().strip() for e in v if isinstance(e, str))
+            for s, k in c.items():
+                st = s.split()
+                m = len(st)
+                if m == 0:
+                    continue
+                occ = sum(1 for i in range(len(toks) - m + 1) if toks[i:i + m] == st)
+                if occ and k > occ:
+                    return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK total_entity_tokens_le_text_tokens
+RATIONALE: Gold spans do not overlap, so their token lengths sum to at most the number of text tokens. This catches heavily duplicated or bloated outputs.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        n = len(ctx['text'].split())
+        tot = 0
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        tot += len(e.split())
+        return tot <= n
+    except Exception:
+        return True
+```
+
+### CHECK total_entities_le_tokens
+RATIONALE: Each gold entity uses at least one distinct token, so the entity count cannot exceed the token count. This catches runaway lists.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        n = len(ctx['text'].split())
+        tot = sum(len(v) for v in p.values() if isinstance(v, list))
+        return tot <= n
+    except Exception:
+        return True
+```
+
+### CHECK no_internal_double_space
+RATIONALE: Gold spans are joined by single spaces, so a stripped entity containing a double space can only be correct if the text itself has one. This catches sloppy spacing.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        if '  ' in ctx['text']:
+            return True
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str) and '  ' in e.strip():
+                        return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK non_overlapping_assignment_exists
+RATIONALE: All gold entity instances can be placed on distinct, non-overlapping token positions. A backtracking search rejects only when no such placement exists, and it accepts if any entity cannot be located or the search runs too long.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        toks = ctx['text'].lower().split()
+        items = []
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        items.append(e.lower().strip().split())
+        cands = []
+        for st in items:
+            m = len(st)
+            if m == 0:
+                return True
+            c = [i for i in range(len(toks) - m + 1) if toks[i:i + m] == st]
+            if not c:
+                return True
+            cands.append((m, c))
+        cands.sort(key=lambda x: len(x[1]))
+        used = [False] * len(toks)
+        steps = [0]
+
+        def bt(k):
+            steps[0] += 1
+            if steps[0] > 20000:
+                raise RuntimeError
+            if k == len(cands):
+                return True
+            m, c = cands[k]
+            for i in c:
+                if not any(used[i:i + m]):
+                    for j in range(i, i + m):
+                        used[j] = True
+                    if bt(k + 1):
+                        return True
+                    for j in range(i, i + m):
+                        used[j] = False
+            return False
+
+        try:
+            return bt(0)
+        except RuntimeError:
+            return True
+    except Exception:
+        return True
+```
+
+### CHECK entity_starts_at_token_boundary
+RATIONALE: A gold span begins at a token start, so the first word of each correct entity must equal a full text token. This catches fragments cut from the middle of a token.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        toks = set(ctx['text'].lower().split())
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        w = e.lower().split()
+                        if w and w[0] not in toks:
+                            return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK entity_ends_at_token_boundary
+RATIONALE: A gold span ends at a token end, so the last word of each correct entity must equal a full text token. This catches outputs like `(GAMP)`.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        toks = set(ctx['text'].lower().split())
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        w = e.lower().split()
+                        if w and w[-1] not in toks:
+                            return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK entity_chars_in_text
+RATIONALE: Every character of a lower-cased gold span appears in the lower-cased text. This catches transliterations, such as dropped accents, and invented symbols.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        cs = set(ctx['text'].lower())
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        for ch in e.lower().strip():
+                            if ch not in cs:
+                                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK entity_no_newline
+RATIONALE: Gold spans contain no newlines or tabs unless the text does. This catches multi-line junk inside an entity.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        t = ctx['text']
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        s = e.strip()
+                        for ch in '\n\t\r':
+                            if ch in s and ch not in t:
+                                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK entity_length_le_text
+RATIONALE: A span of the text cannot be longer than the text itself. This catches hallucinated long strings.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        L = len(ctx['text'])
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str) and len(e.strip()) > L:
+                        return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK entity_token_count_le_text
+RATIONALE: A correct entity has no more tokens than the text has. This catches oversized entities.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        n = len(ctx['text'].split())
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str) and len(e.split()) > n:
+                        return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_merged_apostrophe_s
+RATIONALE: If the text separates `'s` as its own token, then a correct entity cannot glue it onto a word as in `It's`, unless that glued form appears as a text token. This catches retokenized titles.
+```python
+def check(output, ctx):
+    try:
+        import re
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        toks = set(ctx['text'].lower().split())
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        for w in e.lower().split():
+                            if re.search(r"\w'\w", w) and w not in toks:
+                                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_attached_parenthesis
+RATIONALE: If parentheses are standalone tokens in the text, then a correct entity cannot contain a word with a parenthesis attached to it. This catches `Programs (GAMP)`.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        toks = set(ctx['text'].lower().split())
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        for w in e.lower().split():
+                            if any(c in w for c in '()[]') and len(w) > 1 and w not in toks:
+                                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_attached_period
+RATIONALE: A word in a correct entity that ends with a period must be a text token. This catches `Dr.` when the text has `Dr .`.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        toks = set(ctx['text'].lower().split())
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        for w in e.lower().split():
+                            if w.endswith('.') and len(w) > 1 and w not in toks:
+                                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_html_unescape
+RATIONALE: If the text contains a literal `&amp;` sequence, a gold span keeps those tokens. This catches an entity that turns that sequence into a bare `&` within a text span.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        t = ctx['text'].lower()
+        if '& amp ;' not in t:
+            return True
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        s = e.lower().strip()
+                        if '&' in s and '& amp' not in s and s not in t:
+                            return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK no_quote_normalization
+RATIONALE: Smart or curly quotes in an entity must also appear in the text. This catches quote normalization that changes characters.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        t = ctx['text']
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        for ch in '\u2018\u2019\u201c\u201d':
+                            if ch in e and ch not in t:
+                                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK accents_preserved
+RATIONALE: Every non-ASCII character in a correct entity comes from the text. This catches invented diacritics or substituted Unicode characters.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        t = ctx['text'].lower()
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        for ch in e.lower():
+                            if ord(ch) > 127 and ch not in t:
+                                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK digits_in_text
+RATIONALE: Any digit in a gold span appears in the text. This catches hallucinated years or numbers.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        t = ctx['text']
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        for ch in e:
+                            if ch.isdigit() and ch not in t:
+                                return False
+        return True
+    except Exception:
+        return True
+```
+
+### CHECK entity_consecutive_tokens_adjacent
+RATIONALE: Consecutive words of a gold span are adjacent tokens in the text. This catches entities that splice together non-adjacent words or drop words in between, such as `D & E procedure`.
+```python
+def check(output, ctx):
+    try:
+        p = parse_json(output)
+        if not isinstance(p, dict):
+            return True
+        toks = ctx['text'].lower().split()
+        pairs = set(zip(toks, toks[1:]))
+        ts = set(toks)
+        for v in p.values():
+            if isinstance(v, list):
+                for e in v:
+                    if isinstance(e, str):
+                        w = e.lower().split()
+                        if not all(x in ts for x in w):
+                            continue
+                        for a, b in zip(w, w[1:]):
+                            if (a, b) not in pairs:
+                                return False
+        return True
+    except Exception:
+        return True
+```

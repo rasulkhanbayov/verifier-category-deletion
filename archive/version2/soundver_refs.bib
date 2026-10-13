@@ -1,0 +1,222 @@
+% SoundVer references. Verification status inherited from the 2026-07-20 pass.
+
+@article{snell2024scaling,
+  title={Scaling llm test-time compute optimally can be more effective than scaling model parameters},
+  author={Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},
+  journal={arXiv preprint arXiv:2408.03314},
+  year={2024}
+}
+
+@inproceedings{stroebl2024verifier,
+  title={The limits of inference scaling through resampling},
+  author={Stroebl, Benedikt and Kapoor, Sayash and Narayanan, Arvind},
+  booktitle={International Conference on Learning Representations},
+  volume={2026},
+  pages={92601--92633},
+  year={2026}
+}
+
+@article{setlur2025vbvf,
+  title={Scaling test-time compute without verification or rl is suboptimal},
+  author={Setlur, Amrith and Rajaraman, Nived and Levine, Sergey and Kumar, Aviral},
+  journal={arXiv preprint arXiv:2502.12118},
+  year={2025}
+}
+
+@article{brown2024monkeys,
+  title={Large language monkeys: Scaling inference compute with repeated sampling},
+  author={Brown, Bradley and Juravsky, Jordan and Ehrlich, Ryan and Clark, Ronald and Le, Quoc V and R{\'e}, Christopher and Mirhoseini, Azalia},
+  journal={arXiv preprint arXiv:2407.21787},
+  year={2024}
+}
+
+@inproceedings{lightman2024verify,
+  title={Let's verify step by step},
+  author={Lightman, Hunter and Kosaraju, Vineet and Burda, Yuri and Edwards, Harrison and Baker, Bowen and Lee, Teddy and Leike, Jan and Schulman, John and Sutskever, Ilya and Cobbe, Karl},
+  booktitle={International Conference on Learning Representations},
+  volume={2024},
+  pages={39578--39601},
+  year={2024}
+}
+
+@article{wang2023self,
+  title={Self-consistency improves chain of thought reasoning in language models},
+  author={Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc and Chi, Ed and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny},
+  journal={arXiv preprint arXiv:2203.11171},
+  year={2022}
+}
+
+@book{efron1994bootstrap,
+  title={An introduction to the bootstrap},
+  author={Efron, Bradley and Tibshirani, Robert J and others},
+  year={2000},
+  publisher={Boca Raton, Florida}
+}
+
+
+% [V-2026-07] arXiv:2606.30851. Reports that learned outcome reward models
+% outperform execution-based Best-of-N and majority voting on BIRD and
+% Spider. This is the empirical puzzle the paper explains. Author list
+% confirmed from the paper's own title page.
+@article{gradesql2026,
+  title={Test-Time Verification for Text-to-SQL via Outcome Reward Models},
+  author={Tritto, Mattia and Farano, Giuseppe and Di Palma, Dario and Rossiello, Gaetano and Narducci, Fedelucio and Subramanian, Dharmashankar and Di Noia, Tommaso},
+  journal={arXiv preprint arXiv:2606.30851},
+  year={2026}
+}
+
+% [V-2026-07] arXiv:2507.12399. THE CLOSEST THEORETICAL NEIGHBOUR. Proves
+% that instance-level accuracy of Rejection Sampling and Best-of-N is
+% characterised by the geometry of the verifier's ROC curve; RS beats BoN at
+% fixed compute; low-compute performance does not extrapolate to high
+% compute. Our Prop. 2 is the sound corner (TPR = 1) of their framework.
+% Authors and affiliations confirmed from the arXiv HTML.
+@inproceedings{dorner2025rocnreroll,
+  title={Roc-n-reroll: How verifier imperfection affects test-time scaling},
+  author={Dorner, Florian Eddie and Chen, Yatong and Cruz, Andr{\'e} F and Yang, Fanny},
+  booktitle={International Conference on Learning Representations},
+  volume={2026},
+  pages={150895--150936},
+  year={2026}
+}
+
+% [V-2026-07] arXiv:2505.14625. Reports that among responses marked
+% incorrect by Prime Verifier on Big-Math-RL-Verified, 38.5% were in fact
+% correct. This is the false-discovery rate of rejection, NOT delta; the
+% paper must not conflate them. Evidence that nominal soundness does not
+% imply realised soundness. Author list NOT confirmed.
+@article{tinyv2025,
+  title={Tinyv: Reducing false negatives in verification improves rl for llm reasoning},
+  author={Xu, Zhangchen and Li, Yuetai and Jiang, Fengqing and Ramasubramanian, Bhaskar and Niu, Luyao and Lin, Bill Yuchen and Poovendran, Radha},
+  journal={arXiv preprint arXiv:2505.14625},
+  year={2025}
+}
+
+% [V-2026-07] arXiv:2507.08794. LLM judges accept substantively empty
+% responses; reported false-positive rates of roughly 35-67% for a
+% superficial "master key" prefix across several judges. Evidence that
+% learned verifiers carry large epsilon. Author list NOT confirmed.
+@article{onetoken2025,
+  title={One token to fool llm-as-a-judge},
+  author={Zhao, Yulai and Liu, Haolin and Yu, Dian and Kung, Sunyuan and Chen, Meijia and Mi, Haitao and Yu, Dong},
+  journal={arXiv preprint arXiv:2507.08794},
+  year={2025}
+}
+
+% [V-2026-07] arXiv:2506.18203. Weaver combines multiple weak imperfect
+% verifiers by WEIGHTED ensembling with weak supervision. Contrast with our
+% Prop. 4: a weighted score cannot preserve delta = 0, whereas conjunction
+% does. Full author list confirmed from the authors' GitHub citation block.
+@article{saadfalcon2025weaver,
+  title={Shrinking the generation-verification gap with weak verifiers},
+  author={Saad-Falcon, Jon and Buchanan, E Kelly and Chen, Mayee F and Huang, Tzu-Heng and McLaughlin, Brendan and Bhathal, Tanvir and Zhu, Shang and Athiwaratkun, Ben and Sala, Frederic and Linderman, Scott and others},
+  journal={arXiv preprint arXiv:2506.18203},
+  year={2025}
+}
+
+% [V-2026-07] arXiv:2510.00915. Frames verifier fallibility as false
+% positives and false negatives in the RLVR setting and notes that rule-based
+% checkers are brittle to formatting and algebraically equivalent forms.
+% Author list NOT confirmed.
+@article{cai2025noisy,
+  title={Reinforcement learning with verifiable yet noisy rewards under imperfect verifiers},
+  author={Cai, Xin-Qiang and Wang, Wei and Liu, Feng and Liu, Tongliang and Niu, Gang and Sugiyama, Masashi},
+  journal={arXiv preprint arXiv:2510.00915},
+  year={2025}
+}
+
+% [MISSING ENTIRELY] Selective prediction and LLM cascades are the closest
+% ALGORITHMIC relatives of the reject-gated rule: both gate on a score and
+% fall back or escalate. Cite at least Chow (1957/1970), El-Yaniv and Wiener
+% (2010), Geifman and El-Yaniv (2017), and one recent LLM cascade paper.
+% The authors must locate and add these; nothing is fabricated here.
+
+% [V-2026-07] arXiv:2604.15163. CURRENT TRAINING-FREE SOTA for text-to-SQL
+% candidate selection, and the closest experimental neighbour. Frames the
+% same problem (the generation-selection gap, Pass@K not translating to
+% Pass@1) and reports up to 2.2 points over strong selection baselines.
+% AUTHOR LIST FLAGGED: the second author's name rendered oddly in the
+% source consulted; confirm all four names against the paper's title page
+% before submission.
+@inproceedings{dpc2026,
+  title={DPC: Training-Free Text-to-SQL Candidate Selection via Dual-Paradigm Consistency},
+  author={Li, Boyan and Hei, Ou Ocean Kun and Yu, Yue and Luo, Yuyu},
+  booktitle={Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  pages={6897--6913},
+  year={2026}
+}
+
+% [V-2026-07] Confirmed via the reference lists of multiple arXiv papers.
+% Needed because execution-result matching against a single database
+% conflates "does not execute" with "wrong", which breaks the delta
+% measurement in Experiment 2. Distilled test suites give a correctness
+% label that does not depend on the executability check.
+@inproceedings{zhong2020testsuite,
+  title={Semantic evaluation for text-to-sql with distilled test suites},
+  author={Zhong, Ruiqi and Yu, Tao and Klein, Dan},
+  booktitle={Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  pages={396--411},
+  year={2020}
+}
+
+@article{chow1957recognition,
+  title={An optimum character recognition system using decision functions},
+  author={Chow, Chi-Keung},
+  journal={IRE Transactions on Electronic Computers},
+  number={4},
+  pages={247--254},
+  year={1957},
+  publisher={IEEE}
+}
+
+@article{chow1970optimum,
+  title={Optimal stochastic control of linear economic systems},
+  author={Chow, Gregory C},
+  journal={Journal of Money, Credit and Banking},
+  volume={2},
+  number={3},
+  pages={291--302},
+  year={1970},
+  publisher={JSTOR}
+}
+
+@article{elyaniv2010foundations,
+  title={On the Foundations of Noise-free Selective Classification.},
+  author={El-Yaniv, Ran and others},
+  journal={Journal of Machine Learning Research},
+  volume={11},
+  number={5},
+  year={2010}
+}
+
+@article{geifman2017selective,
+  title={Selective classification for deep neural networks},
+  author={Geifman, Yonatan and El-Yaniv, Ran},
+  journal={Advances in neural information processing systems},
+  volume={30},
+  year={2017}
+}
+
+@article{chen2023frugalgpt,
+  title={Frugalgpt: How to use large language models while reducing cost and improving performance},
+  author={Chen, Lingjiao and Zaharia, Matei and Zou, James},
+  journal={arXiv preprint arXiv:2305.05176},
+  year={2023}
+}
+
+@inproceedings{geng2023grammar,
+  title={Grammar-constrained decoding for structured NLP tasks without finetuning},
+  author={Geng, Saibo and Josifoski, Martin and Peyrard, Maxime and West, Robert},
+  booktitle={Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing},
+  pages={10932--10952},
+  year={2023}
+}
+
+@article{park2024grammar,
+  title={Grammar-aligned decoding},
+  author={Park, Kanghee and Wang, Jiayu and Berg-Kirkpatrick, Taylor and Polikarpova, Nadia and D'Antoni, Loris},
+  journal={Advances in Neural Information Processing Systems},
+  volume={37},
+  pages={24547--24568},
+  year={2024}
+}

@@ -1,0 +1,1387 @@
+{
+ "task": "sql",
+ "pool": "data/pools/pool_sql_admit_seed0.jsonl",
+ "candidates": [
+  "out/candidates/sql_round0.jsonl"
+ ],
+ "report": [
+  {
+   "id": "hw:parses",
+   "name": "hw:parses",
+   "status": "admitted",
+   "n_correct": 3766,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 1229,
+   "caught_incorrect": 3,
+   "catch_rate": 0.0024410089503661514
+  },
+  {
+   "id": "sql-r0-63db16b830",
+   "name": "check_case_insensitive_columns",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 3766,
+   "rejected_correct_gold": 999,
+   "n_incorrect": 1229,
+   "caught_incorrect": 1229,
+   "catch_rate": 1.0
+  },
+  {
+   "id": "sql-r0-17592cb3a1",
+   "name": "no_ambiguous_column_references",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 2246,
+   "rejected_correct_gold": 648,
+   "n_incorrect": 1229,
+   "caught_incorrect": 917,
+   "catch_rate": 0.7461350691619203
+  },
+  {
+   "id": "sql-r0-a3e02dfcdc",
+   "name": "check_alias_usage_for_clarity",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 1665,
+   "rejected_correct_gold": 234,
+   "n_incorrect": 1229,
+   "caught_incorrect": 724,
+   "catch_rate": 0.5890968266883645
+  },
+  {
+   "id": "sql-r0-507b9111a9",
+   "name": "check_column_aliases_for_self_joins",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 1019,
+   "rejected_correct_gold": 95,
+   "n_incorrect": 1229,
+   "caught_incorrect": 463,
+   "catch_rate": 0.37672904800650936
+  },
+  {
+   "id": "sql-r0-d10ed85368",
+   "name": "check_join_when_multiple_tables_mentioned",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 2209,
+   "rejected_correct_gold": 530,
+   "n_incorrect": 1229,
+   "caught_incorrect": 409,
+   "catch_rate": 0.33279088689991865
+  },
+  {
+   "id": "sql-r0-6203c7c36c",
+   "name": "check_multiple_conditions_for_complex_filters",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 967,
+   "rejected_correct_gold": 258,
+   "n_incorrect": 1229,
+   "caught_incorrect": 316,
+   "catch_rate": 0.25711960943856793
+  },
+  {
+   "id": "hw:executes",
+   "name": "hw:executes",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 1,
+   "rejected_correct_gold": 1,
+   "n_incorrect": 1229,
+   "caught_incorrect": 212,
+   "catch_rate": 0.1724979658258747
+  },
+  {
+   "id": "sql-r0-a680b686ff",
+   "name": "check_no_select_star",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 721,
+   "rejected_correct_gold": 296,
+   "n_incorrect": 1229,
+   "caught_incorrect": 201,
+   "catch_rate": 0.16354759967453214
+  },
+  {
+   "id": "hw:schema_valid",
+   "name": "hw:schema_valid",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 1,
+   "rejected_correct_gold": 1,
+   "n_incorrect": 1229,
+   "caught_incorrect": 184,
+   "catch_rate": 0.1497152156224573
+  },
+  {
+   "id": "sql-r0-5dfb9fe8ec",
+   "name": "join_presence_for_questions_involving_multiple_tables",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 247,
+   "rejected_correct_gold": 41,
+   "n_incorrect": 1229,
+   "caught_incorrect": 116,
+   "catch_rate": 0.09438567941415785
+  },
+  {
+   "id": "sql-r0-eb1be596bc",
+   "name": "column_selection_matches_question",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 187,
+   "rejected_correct_gold": 60,
+   "n_incorrect": 1229,
+   "caught_incorrect": 101,
+   "catch_rate": 0.0821806346623271
+  },
+  {
+   "id": "sql-r0-ac6ad36f45",
+   "name": "count_aggregate_for_questions_asking_about_count",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 181,
+   "rejected_correct_gold": 55,
+   "n_incorrect": 1229,
+   "caught_incorrect": 94,
+   "catch_rate": 0.07648494711147275
+  },
+  {
+   "id": "sql-r0-2f9a672dc8",
+   "name": "check_column_selection_for_explicit_request",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 244,
+   "rejected_correct_gold": 84,
+   "n_incorrect": 1229,
+   "caught_incorrect": 89,
+   "catch_rate": 0.07241659886086249
+  },
+  {
+   "id": "sql-r0-aec4399474",
+   "name": "limit_presence_for_top_k_questions",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 234,
+   "rejected_correct_gold": 61,
+   "n_incorrect": 1229,
+   "caught_incorrect": 75,
+   "catch_rate": 0.061025223759153785
+  },
+  {
+   "id": "sql-r0-7b486d1d7a",
+   "name": "check_count_for_quantity_requests",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 115,
+   "rejected_correct_gold": 36,
+   "n_incorrect": 1229,
+   "caught_incorrect": 65,
+   "catch_rate": 0.05288852725793328
+  },
+  {
+   "id": "sql-r0-478df6bdd9",
+   "name": "check_group_by_for_aggregation",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 103,
+   "rejected_correct_gold": 32,
+   "n_incorrect": 1229,
+   "caught_incorrect": 53,
+   "catch_rate": 0.043124491456468676
+  },
+  {
+   "id": "sql-r0-a6edd16adb",
+   "name": "check_negation_for_exclusion_requests",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 27,
+   "rejected_correct_gold": 17,
+   "n_incorrect": 1229,
+   "caught_incorrect": 22,
+   "catch_rate": 0.01790073230268511
+  },
+  {
+   "id": "sql-r0-33785a7d21",
+   "name": "proper_handling_of_negations",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 54,
+   "rejected_correct_gold": 12,
+   "n_incorrect": 1229,
+   "caught_incorrect": 21,
+   "catch_rate": 0.01708706265256306
+  },
+  {
+   "id": "sql-r0-f09565f3ed",
+   "name": "order_by_for_sorting_questions",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 8,
+   "rejected_correct_gold": 1,
+   "n_incorrect": 1229,
+   "caught_incorrect": 13,
+   "catch_rate": 0.010577705451586655
+  },
+  {
+   "id": "sql-r0-d7c9525cda",
+   "name": "check_date_filter_for_temporal_questions",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 13,
+   "rejected_correct_gold": 5,
+   "n_incorrect": 1229,
+   "caught_incorrect": 8,
+   "catch_rate": 0.006509357200976403
+  },
+  {
+   "id": "sql-r0-f2634dcdb9",
+   "name": "check_no_hardcoded_values",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 20,
+   "rejected_correct_gold": 4,
+   "n_incorrect": 1229,
+   "caught_incorrect": 8,
+   "catch_rate": 0.006509357200976403
+  },
+  {
+   "id": "sql-r0-a2befb59e3",
+   "name": "where_clause_for_filtering_questions",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 18,
+   "rejected_correct_gold": 9,
+   "n_incorrect": 1229,
+   "caught_incorrect": 8,
+   "catch_rate": 0.006509357200976403
+  },
+  {
+   "id": "sql-r0-f6d854827a",
+   "name": "aggregation_for_summary_questions",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 22,
+   "rejected_correct_gold": 9,
+   "n_incorrect": 1229,
+   "caught_incorrect": 8,
+   "catch_rate": 0.006509357200976403
+  },
+  {
+   "id": "sql-r0-23383324d0",
+   "name": "check_min_max_for_extreme_values",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 25,
+   "rejected_correct_gold": 8,
+   "n_incorrect": 1229,
+   "caught_incorrect": 7,
+   "catch_rate": 0.005695687550854353
+  },
+  {
+   "id": "sql-r0-4035b79703",
+   "name": "check_except_for_exclusion_questions",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 4,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 1229,
+   "caught_incorrect": 4,
+   "catch_rate": 0.0032546786004882017
+  },
+  {
+   "id": "sql-r0-79b3bb68a2",
+   "name": "check_joins_for_relationships",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 1,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 1229,
+   "caught_incorrect": 4,
+   "catch_rate": 0.0032546786004882017
+  },
+  {
+   "id": "sql-r0-934067627c",
+   "name": "group_by_for_aggregation_with_multiple_columns",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 6,
+   "rejected_correct_gold": 2,
+   "n_incorrect": 1229,
+   "caught_incorrect": 4,
+   "catch_rate": 0.0032546786004882017
+  },
+  {
+   "id": "sql-r0-7a4a8823ea",
+   "name": "check_aggregation_for_average",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 2,
+   "rejected_correct_gold": 2,
+   "n_incorrect": 1229,
+   "caught_incorrect": 1,
+   "catch_rate": 0.0008136696501220504
+  },
+  {
+   "id": "sql-r0-f5c6d1ac6d",
+   "name": "check_distinct_in_presence_request",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 3,
+   "rejected_correct_gold": 3,
+   "n_incorrect": 1229,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "sql-r0-50618f33c2",
+   "name": "check_where_clause_for_filters",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 4,
+   "rejected_correct_gold": 4,
+   "n_incorrect": 1229,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "sql-r0-9c0cc39608",
+   "name": "check_order_by_when_sorting_mentioned",
+   "status": "vacuous",
+   "n_correct": 3766,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 1229,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "sql-r0-5ed7e8bf17",
+   "name": "check_comparison_operators_for_ranges",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 5,
+   "rejected_correct_gold": 1,
+   "n_incorrect": 1229,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "sql-r0-0477eef9a6",
+   "name": "check_limit_for_top_k_requests",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 10,
+   "rejected_correct_gold": 2,
+   "n_incorrect": 1229,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "sql-r0-d9b9c40451",
+   "name": "check_subquery_when_explicitly_requested",
+   "status": "vacuous",
+   "n_correct": 3766,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 1229,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "sql-r0-4fdcdae87e",
+   "name": "check_union_for_combined_results",
+   "status": "vacuous",
+   "n_correct": 3766,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 1229,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "sql-r0-f7dc9b7651",
+   "name": "check_having_for_post_aggregation_filters",
+   "status": "vacuous",
+   "n_correct": 3766,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 1229,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "sql-r0-3a18a9e5e4",
+   "name": "check_numeric_comparisons",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 2,
+   "rejected_correct_gold": 2,
+   "n_incorrect": 1229,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "sql-r0-b849c5b211",
+   "name": "distinct_keyword_when_question_indicates_uniqueness",
+   "status": "unsound",
+   "n_correct": 3766,
+   "rejected_correct": 3,
+   "rejected_correct_gold": 3,
+   "n_incorrect": 1229,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  },
+  {
+   "id": "sql-r0-de4f7984f7",
+   "name": "case_insensitive_matching_for_string_filters",
+   "status": "vacuous",
+   "n_correct": 3766,
+   "rejected_correct": 0,
+   "rejected_correct_gold": 0,
+   "n_incorrect": 1229,
+   "caught_incorrect": 0,
+   "catch_rate": 0.0
+  }
+ ],
+ "admitted": [
+  {
+   "id": "hw:parses",
+   "name": "hw:parses",
+   "source": null,
+   "rationale": "version3 hand-written"
+  }
+ ],
+ "feedback": [
+  {
+   "name": "check_distinct_in_presence_request",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    if 'distinct' in ctx['question'].lower():\n        sql = extract_sql(output).lower()\n        return 'distinct' in sql\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-03801",
+      "question": "For each distinct test result, find the number of students who got the result.",
+      "db_id": "e_learning"
+     },
+     "output": "SELECT test_result ,  COUNT(*) FROM Student_Tests_Taken GROUP BY test_result ORDER BY COUNT(*) DESC"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-04320",
+      "question": "What are the distinct grant amount for the grants where the documents were sent before '1986-08-26 20:49:27' and grant were ended after '1989-03-16 18:27:16'?",
+      "db_id": "tracking_grants_for_research"
+     },
+     "output": "SELECT T1.grant_amount FROM Grants AS T1 JOIN Documents AS T2 ON T1.grant_id  =  T2.grant_id WHERE T2.sent_date  <  '1986-08-26 20:49:27' INTERSECT SELECT grant_amount FROM grants WHERE grant_end_date  >  '1989-03-16 18:27:16'"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-06058",
+      "question": "Return the total number of distinct customers.",
+      "db_id": "customers_and_addresses"
+     },
+     "output": "SELECT count(*) FROM customers"
+    }
+   ]
+  },
+  {
+   "name": "check_where_clause_for_filters",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    keywords = ['where', '!=', '<>', 'not in', 'not like']\n    if 'not' in question or 'except' in question:\n        return any(keyword in sql for keyword in keywords)\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-03104",
+      "question": "Find the id and first name of the student that has the most number of assessment notes?",
+      "db_id": "behavior_monitoring"
+     },
+     "output": "SELECT T1.student_id ,  T2.first_name FROM Assessment_Notes AS T1 JOIN Students AS T2 ON T1.student_id  =  T2.student_id GROUP BY T1.student_id ORDER BY count(*) DESC LIMIT 1"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-05165",
+      "question": "What are the names of the clients who do not have any booking?",
+      "db_id": "cre_Drama_Workshop_Groups"
+     },
+     "output": "SELECT Customer_Name FROM Clients EXCEPT SELECT T2.Customer_Name FROM Bookings AS T1 JOIN Clients AS T2 ON T1.Customer_ID  =  T2.Client_ID"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-06712",
+      "question": "What is the first name of the staff who did not give any lesson?",
+      "db_id": "driving_school"
+     },
+     "output": "SELECT first_name FROM Staff EXCEPT SELECT T2.first_name FROM Lessons AS T1 JOIN Staff AS T2 ON T1.staff_id  =  T2.staff_id"
+    }
+   ]
+  },
+  {
+   "name": "check_group_by_for_aggregation",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    if 'each' in question or 'grouped by' in question:\n        return 'group by' in sql\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-05892",
+      "question": "What is the name and detail of each staff member?",
+      "db_id": "cre_Theme_park"
+     },
+     "output": "SELECT name, other_details FROM staff"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-05892",
+      "question": "What is the name and detail of each staff member?",
+      "db_id": "cre_Theme_park"
+     },
+     "output": "SELECT name, other_details FROM staff"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-05892",
+      "question": "What is the name and detail of each staff member?",
+      "db_id": "cre_Theme_park"
+     },
+     "output": "SELECT name, other_details FROM staff"
+    }
+   ]
+  },
+  {
+   "name": "check_count_for_quantity_requests",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    if 'how many' in ctx['question'].lower() or 'number of' in ctx['question'].lower():\n        return 'count(' in extract_sql(output).lower()\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-02578",
+      "question": "How many kids stay in the rooms reserved by ROY SWEAZY?",
+      "db_id": "inn_1"
+     },
+     "output": "SELECT SUM(kids) FROM reservations WHERE firstname = 'ROY' AND lastname = 'SWEAZY'"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-02578",
+      "question": "How many kids stay in the rooms reserved by ROY SWEAZY?",
+      "db_id": "inn_1"
+     },
+     "output": "SELECT SUM(kids) FROM reservations WHERE firstname = 'ROY' AND lastname = 'SWEAZY'"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-02578",
+      "question": "How many kids stay in the rooms reserved by ROY SWEAZY?",
+      "db_id": "inn_1"
+     },
+     "output": "SELECT SUM(kids) FROM reservations WHERE firstname = 'ROY' AND lastname = 'SWEAZY'"
+    }
+   ]
+  },
+  {
+   "name": "check_column_selection_for_explicit_request",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    for column in ctx['schema']:\n        if column.lower() in question and column.lower() not in sql:\n            return False\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-04242",
+      "question": "Show the ids of all employees who have authorized destruction.",
+      "db_id": "cre_Doc_Tracking_DB"
+     },
+     "output": "SELECT DISTINCT destruction_authorised_by_employee_id FROM documents_to_be_destroyed WHERE destruction_authorised_by_employee_id IS NOT NULL"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-04242",
+      "question": "Show the ids of all employees who have authorized destruction.",
+      "db_id": "cre_Doc_Tracking_DB"
+     },
+     "output": "SELECT destruction_authorised_by_employee_id FROM documents_to_be_destroyed WHERE destruction_authorised_by_employee_id IS NOT NULL"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-04242",
+      "question": "Show the ids of all employees who have authorized destruction.",
+      "db_id": "cre_Doc_Tracking_DB"
+     },
+     "output": "SELECT DISTINCT destruction_authorised_by_employee_id FROM documents_to_be_destroyed WHERE destruction_authorised_by_employee_id IS NOT NULL"
+    }
+   ]
+  },
+  {
+   "name": "check_comparison_operators_for_ranges",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    if any(keyword in question for keyword in ['greater than', 'less than', 'between']):\n        return any(op in sql for op in ['>', '<', 'between'])\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-00201",
+      "question": "Find the day in which the difference between the max temperature and min temperature was the smallest. Also report the difference.",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT date, (max_temperature_f - min_temperature_f) AS temperature_difference FROM weather ORDER BY temperature_difference ASC LIMIT 1"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-00201",
+      "question": "Find the day in which the difference between the max temperature and min temperature was the smallest. Also report the difference.",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT date, (max_temperature_f - min_temperature_f) AS temperature_difference \nFROM weather \nORDER BY temperature_difference ASC \nLIMIT 1"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-00201",
+      "question": "Find the day in which the difference between the max temperature and min temperature was the smallest. Also report the difference.",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT date, (max_temperature_f - min_temperature_f) AS temperature_difference \nFROM weather \nORDER BY temperature_difference ASC \nLIMIT 1;"
+    }
+   ]
+  },
+  {
+   "name": "check_negation_for_exclusion_requests",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    if 'not' in question or 'other than' in question:\n        return any(keyword in sql for keyword in ['!=', 'not in', 'not like'])\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-00055",
+      "question": "What are the census rankings of cities that do not have the status \"Village\"?",
+      "db_id": "farm"
+     },
+     "output": "SELECT census_ranking FROM city WHERE status <> 'Village'"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-02993",
+      "question": "What are the titles of films that are either longer than 100 minutes or rated PG other than those that cost more than 200 to replace?",
+      "db_id": "sakila_1"
+     },
+     "output": "SELECT title FROM film WHERE (length > 100 OR rating = 'PG') AND replacement_cost <= 200"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-02993",
+      "question": "What are the titles of films that are either longer than 100 minutes or rated PG other than those that cost more than 200 to replace?",
+      "db_id": "sakila_1"
+     },
+     "output": "SELECT title FROM film WHERE (length > 100 OR rating = 'PG') AND replacement_cost <= 200"
+    }
+   ]
+  },
+  {
+   "name": "check_join_when_multiple_tables_mentioned",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    sql = extract_sql(output).lower()\n    table_mentions = sum(1 for table in ctx['schema'] if table.lower() in sql)\n    return table_mentions >= 2\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-04242",
+      "question": "Show the ids of all employees who have authorized destruction.",
+      "db_id": "cre_Doc_Tracking_DB"
+     },
+     "output": "SELECT DISTINCT destruction_authorised_by_employee_id FROM documents_to_be_destroyed WHERE destruction_authorised_by_employee_id IS NOT NULL"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-04242",
+      "question": "Show the ids of all employees who have authorized destruction.",
+      "db_id": "cre_Doc_Tracking_DB"
+     },
+     "output": "SELECT destruction_authorised_by_employee_id FROM documents_to_be_destroyed WHERE destruction_authorised_by_employee_id IS NOT NULL"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-04242",
+      "question": "Show the ids of all employees who have authorized destruction.",
+      "db_id": "cre_Doc_Tracking_DB"
+     },
+     "output": "SELECT DISTINCT destruction_authorised_by_employee_id FROM documents_to_be_destroyed WHERE destruction_authorised_by_employee_id IS NOT NULL"
+    }
+   ]
+  },
+  {
+   "name": "check_limit_for_top_k_requests",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    if 'top' in ctx['question'].lower() or 'limit' in ctx['question'].lower():\n        return 'limit' in extract_sql(output).lower()\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-06160",
+      "question": "Give the songs included in volumes that have more than 1 week on top.",
+      "db_id": "music_4"
+     },
+     "output": "SELECT song FROM volume WHERE weeks_on_top > 1"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-06160",
+      "question": "Give the songs included in volumes that have more than 1 week on top.",
+      "db_id": "music_4"
+     },
+     "output": "SELECT DISTINCT volume.song FROM volume WHERE volume.weeks_on_top > 1"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-06160",
+      "question": "Give the songs included in volumes that have more than 1 week on top.",
+      "db_id": "music_4"
+     },
+     "output": "SELECT song FROM volume WHERE weeks_on_top > 1"
+    }
+   ]
+  },
+  {
+   "name": "check_aggregation_for_average",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    if 'average' in ctx['question'].lower() or 'avg' in ctx['question'].lower():\n        return 'avg(' in extract_sql(output).lower()\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-01278",
+      "question": "What is the average attendance of stadiums with capacity percentage higher than 100%?",
+      "db_id": "game_injury"
+     },
+     "output": "SELECT average_attendance FROM stadium WHERE capacity_percentage  >  100"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-01486",
+      "question": "Find the names and average salaries of all departments whose average salary is greater than 42000.",
+      "db_id": "college_2"
+     },
+     "output": "SELECT dept_name ,  AVG (salary) FROM instructor GROUP BY dept_name HAVING AVG (salary)  >  42000"
+    }
+   ]
+  },
+  {
+   "name": "check_case_insensitive_columns",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    sql = extract_sql(output)\n    columns = [col.lower() for table in ctx['schema'] for col in ctx['schema'][table]]\n    return all(word.lower() in columns for word in re.findall(r'\\b\\w+\\b', sql) if word.upper() != word and word.lower() != 'select')\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-04242",
+      "question": "Show the ids of all employees who have authorized destruction.",
+      "db_id": "cre_Doc_Tracking_DB"
+     },
+     "output": "SELECT DISTINCT destruction_authorised_by_employee_id FROM documents_to_be_destroyed WHERE destruction_authorised_by_employee_id IS NOT NULL"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-04242",
+      "question": "Show the ids of all employees who have authorized destruction.",
+      "db_id": "cre_Doc_Tracking_DB"
+     },
+     "output": "SELECT destruction_authorised_by_employee_id FROM documents_to_be_destroyed WHERE destruction_authorised_by_employee_id IS NOT NULL"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-04242",
+      "question": "Show the ids of all employees who have authorized destruction.",
+      "db_id": "cre_Doc_Tracking_DB"
+     },
+     "output": "SELECT DISTINCT destruction_authorised_by_employee_id FROM documents_to_be_destroyed WHERE destruction_authorised_by_employee_id IS NOT NULL"
+    }
+   ]
+  },
+  {
+   "name": "check_alias_usage_for_clarity",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    sql = extract_sql(output).lower()\n    return ' as ' in sql or len(sql.split()) <= 10\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-01775",
+      "question": "What are the ages of the gymnasts, ordered descending by their total points?",
+      "db_id": "gymnast"
+     },
+     "output": "SELECT p.age FROM people p JOIN gymnast g ON p.people_id = g.gymnast_id ORDER BY g.total_points DESC"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-01775",
+      "question": "What are the ages of the gymnasts, ordered descending by their total points?",
+      "db_id": "gymnast"
+     },
+     "output": "SELECT p.age FROM people p JOIN gymnast g ON p.people_id = g.gymnast_id ORDER BY g.total_points DESC"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-01775",
+      "question": "What are the ages of the gymnasts, ordered descending by their total points?",
+      "db_id": "gymnast"
+     },
+     "output": "SELECT p.age FROM people p JOIN gymnast g ON p.people_id = g.gymnast_id ORDER BY g.total_points DESC"
+    }
+   ]
+  },
+  {
+   "name": "check_date_filter_for_temporal_questions",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    question = ctx['question'].lower()\n    if any(keyword in question for keyword in ['after', 'before', 'between', 'date']):\n        return any(keyword in extract_sql(output).lower() for keyword in ['>', '<', 'between', 'date'])\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-03259",
+      "question": "List the first name of all employees with job code PROF ordered by their date of birth.",
+      "db_id": "college_1"
+     },
+     "output": "SELECT emp_fname FROM employee WHERE emp_jobcode = 'PROF' ORDER BY emp_dob"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-03259",
+      "question": "List the first name of all employees with job code PROF ordered by their date of birth.",
+      "db_id": "college_1"
+     },
+     "output": "SELECT emp_fname FROM employee WHERE emp_jobcode = 'PROF' ORDER BY emp_dob"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-03259",
+      "question": "List the first name of all employees with job code PROF ordered by their date of birth.",
+      "db_id": "college_1"
+     },
+     "output": "SELECT emp_fname FROM employee WHERE emp_jobcode = 'PROF' ORDER BY emp_dob"
+    }
+   ]
+  },
+  {
+   "name": "check_except_for_exclusion_questions",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    if 'except' in ctx['question'].lower():\n        return 'except' in extract_sql(output).lower()\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-01898",
+      "question": "Show the names of all the donors except those whose donation amount less than 9.",
+      "db_id": "school_finance"
+     },
+     "output": "SELECT donator_name FROM endowment WHERE amount >= 9"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-01898",
+      "question": "Show the names of all the donors except those whose donation amount less than 9.",
+      "db_id": "school_finance"
+     },
+     "output": "SELECT donator_name FROM endowment WHERE amount >= 9"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-01898",
+      "question": "Show the names of all the donors except those whose donation amount less than 9.",
+      "db_id": "school_finance"
+     },
+     "output": "SELECT donator_name FROM endowment WHERE amount >= 9"
+    }
+   ]
+  },
+  {
+   "name": "check_column_aliases_for_self_joins",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    sql = extract_sql(output).lower()\n    tables = [table.lower() for table in ctx['schema']]\n    for table in tables:\n        if sql.count(table) > 1 and ' as ' not in sql:\n            return False\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-01775",
+      "question": "What are the ages of the gymnasts, ordered descending by their total points?",
+      "db_id": "gymnast"
+     },
+     "output": "SELECT p.age FROM people p JOIN gymnast g ON p.people_id = g.gymnast_id ORDER BY g.total_points DESC"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-01775",
+      "question": "What are the ages of the gymnasts, ordered descending by their total points?",
+      "db_id": "gymnast"
+     },
+     "output": "SELECT p.age FROM people p JOIN gymnast g ON p.people_id = g.gymnast_id ORDER BY g.total_points DESC"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-01775",
+      "question": "What are the ages of the gymnasts, ordered descending by their total points?",
+      "db_id": "gymnast"
+     },
+     "output": "SELECT p.age FROM people p JOIN gymnast g ON p.people_id = g.gymnast_id ORDER BY g.total_points DESC"
+    }
+   ]
+  },
+  {
+   "name": "check_numeric_comparisons",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    question = ctx['question'].lower()\n    if any(keyword in question for keyword in ['more than', 'greater than', 'fewer than', 'less than']):\n        return any(op in extract_sql(output).lower() for op in ['>', '<', '>=', '<='])\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-02488",
+      "question": "For directors who had more than one movie, return the titles and produced years of all movies directed by them.",
+      "db_id": "movie_1"
+     },
+     "output": "SELECT T1.title ,  T1.year FROM Movie AS T1 JOIN Movie AS T2 ON T1.director  =  T2.director WHERE T1.title != T2.title"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-02489",
+      "question": "For each director who directed more than one movie, what are the titles and dates of release for all those movies?",
+      "db_id": "movie_1"
+     },
+     "output": "SELECT T1.title ,  T1.year FROM Movie AS T1 JOIN Movie AS T2 ON T1.director  =  T2.director WHERE T1.title != T2.title"
+    }
+   ]
+  },
+  {
+   "name": "check_joins_for_relationships",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    question = ctx['question'].lower()\n    if 'related' in question or 'join' in question:\n        return 'join' in extract_sql(output).lower()\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-05922",
+      "question": "Which tourist attractions are related to royal family? Tell me their details and how we can get there.",
+      "db_id": "cre_Theme_park"
+     },
+     "output": "SELECT description, how_to_get_there FROM tourist_attractions WHERE tourist_attraction_id IN (SELECT tourist_attraction_id FROM staff WHERE name IN (SELECT royal_family_details FROM royal_family));"
+    }
+   ]
+  },
+  {
+   "name": "check_min_max_for_extreme_values",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    question = ctx['question'].lower()\n    if 'minimum' in question or 'maximum' in question:\n        return any(keyword in extract_sql(output).lower() for keyword in ['min(', 'max('])\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-00110",
+      "question": "What are the dates with a maximum temperature higher than 85?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT date FROM weather WHERE max_temperature_f > 85"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-00110",
+      "question": "What are the dates with a maximum temperature higher than 85?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT date FROM weather WHERE max_temperature_f > 85"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-00110",
+      "question": "What are the dates with a maximum temperature higher than 85?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT date FROM weather WHERE max_temperature_f > 85"
+    }
+   ]
+  },
+  {
+   "name": "check_no_hardcoded_values",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    sql = extract_sql(output).lower()\n    question = ctx['question'].lower()\n    return all(value not in sql for value in ['123', 'abc', 'test', 'example'])\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-03786",
+      "question": "How many tests have result \"Fail\"?",
+      "db_id": "e_learning"
+     },
+     "output": "SELECT COUNT(*) FROM student_tests_taken WHERE test_result = 'Fail'"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-03786",
+      "question": "How many tests have result \"Fail\"?",
+      "db_id": "e_learning"
+     },
+     "output": "SELECT COUNT(*) FROM student_tests_taken WHERE test_result = 'Fail'"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-03786",
+      "question": "How many tests have result \"Fail\"?",
+      "db_id": "e_learning"
+     },
+     "output": "SELECT COUNT(*) FROM student_tests_taken WHERE test_result = 'Fail'"
+    }
+   ]
+  },
+  {
+   "name": "check_multiple_conditions_for_complex_filters",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    question = ctx['question'].lower()\n    if 'and' in question or 'or' in question:\n        sql = extract_sql(output).lower()\n        return 'and' in sql or 'or' in sql\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-00178",
+      "question": "What is the name of every city that has at least 15 stations and how many stations does it have?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT city, COUNT(*) AS station_count FROM station GROUP BY city HAVING COUNT(*) >= 15"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-00178",
+      "question": "What is the name of every city that has at least 15 stations and how many stations does it have?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT city, COUNT(*) AS station_count FROM station GROUP BY city HAVING COUNT(*) >= 15"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-00178",
+      "question": "What is the name of every city that has at least 15 stations and how many stations does it have?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT city, COUNT(*) AS station_count FROM station GROUP BY city HAVING station_count >= 15"
+    }
+   ]
+  },
+  {
+   "name": "check_no_select_star",
+   "source": "def check(output: str, ctx: dict) -> bool:\n    sql = extract_sql(output).lower()\n    return '*' not in sql or 'select *' in ctx['question'].lower()\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-00178",
+      "question": "What is the name of every city that has at least 15 stations and how many stations does it have?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT city, COUNT(*) AS station_count FROM station GROUP BY city HAVING COUNT(*) >= 15"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-00178",
+      "question": "What is the name of every city that has at least 15 stations and how many stations does it have?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT city, COUNT(*) AS station_count FROM station GROUP BY city HAVING COUNT(*) >= 15"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-00178",
+      "question": "What is the name of every city that has at least 15 stations and how many stations does it have?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT city, COUNT(*) AS station_count FROM station GROUP BY city HAVING station_count >= 15"
+    }
+   ]
+  },
+  {
+   "name": "column_selection_matches_question",
+   "source": "def check(output, ctx):\n    question = ctx['question'].lower()\n    schema = ctx['schema']\n    sql = extract_sql(output).lower()\n    for table, columns in schema.items():\n        for column in columns:\n            if column.lower() in question and column.lower() not in sql:\n                return False\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-00178",
+      "question": "What is the name of every city that has at least 15 stations and how many stations does it have?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT city, COUNT(*) AS station_count FROM station GROUP BY city HAVING COUNT(*) >= 15"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-00178",
+      "question": "What is the name of every city that has at least 15 stations and how many stations does it have?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT city, COUNT(*) AS station_count FROM station GROUP BY city HAVING COUNT(*) >= 15"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-00178",
+      "question": "What is the name of every city that has at least 15 stations and how many stations does it have?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT city, COUNT(*) AS station_count FROM station GROUP BY city HAVING station_count >= 15"
+    }
+   ]
+  },
+  {
+   "name": "distinct_keyword_when_question_indicates_uniqueness",
+   "source": "def check(output, ctx):\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    if ('distinct' in question or 'unique' in question) and 'distinct' not in sql:\n        return False\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-03801",
+      "question": "For each distinct test result, find the number of students who got the result.",
+      "db_id": "e_learning"
+     },
+     "output": "SELECT test_result ,  COUNT(*) FROM Student_Tests_Taken GROUP BY test_result ORDER BY COUNT(*) DESC"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-04320",
+      "question": "What are the distinct grant amount for the grants where the documents were sent before '1986-08-26 20:49:27' and grant were ended after '1989-03-16 18:27:16'?",
+      "db_id": "tracking_grants_for_research"
+     },
+     "output": "SELECT T1.grant_amount FROM Grants AS T1 JOIN Documents AS T2 ON T1.grant_id  =  T2.grant_id WHERE T2.sent_date  <  '1986-08-26 20:49:27' INTERSECT SELECT grant_amount FROM grants WHERE grant_end_date  >  '1989-03-16 18:27:16'"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-06058",
+      "question": "Return the total number of distinct customers.",
+      "db_id": "customers_and_addresses"
+     },
+     "output": "SELECT count(*) FROM customers"
+    }
+   ]
+  },
+  {
+   "name": "count_aggregate_for_questions_asking_about_count",
+   "source": "def check(output, ctx):\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    if ('how many' in question or 'count' in question) and 'count(' not in sql:\n        return False\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-06815",
+      "question": "Find the country of the airlines whose name starts with 'Orbit'.",
+      "db_id": "flight_4"
+     },
+     "output": "SELECT country FROM airlines WHERE name LIKE 'Orbit%'"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-06815",
+      "question": "Find the country of the airlines whose name starts with 'Orbit'.",
+      "db_id": "flight_4"
+     },
+     "output": "SELECT country FROM airlines WHERE name LIKE 'Orbit%'"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-06815",
+      "question": "Find the country of the airlines whose name starts with 'Orbit'.",
+      "db_id": "flight_4"
+     },
+     "output": "SELECT country FROM airlines WHERE name LIKE 'Orbit%'"
+    }
+   ]
+  },
+  {
+   "name": "where_clause_for_filtering_questions",
+   "source": "def check(output, ctx):\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    if any(keyword in question for keyword in ['greater than', 'less than', 'equal to', 'not', 'except']) and 'where' not in sql:\n        return False\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-01316",
+      "question": "Show the locations that have both performances with more than 2000 attendees and performances with less than 1000 attendees.",
+      "db_id": "performance_attendance"
+     },
+     "output": "SELECT location FROM performance GROUP BY location HAVING SUM(CASE WHEN attendance > 2000 THEN 1 ELSE 0 END) > 0 AND SUM(CASE WHEN attendance < 1000 THEN 1 ELSE 0 END) > 0;"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-06096",
+      "question": "Which contact channel codes were used less than 5 times?",
+      "db_id": "customers_and_addresses"
+     },
+     "output": "SELECT channel_code FROM customer_contact_channels GROUP BY channel_code HAVING COUNT(*) < 5"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-06096",
+      "question": "Which contact channel codes were used less than 5 times?",
+      "db_id": "customers_and_addresses"
+     },
+     "output": "SELECT channel_code FROM customer_contact_channels GROUP BY channel_code HAVING COUNT(*) < 5"
+    }
+   ]
+  },
+  {
+   "name": "join_presence_for_questions_involving_multiple_tables",
+   "source": "def check(output, ctx):\n    question = ctx['question'].lower()\n    schema = ctx['schema']\n    sql = extract_sql(output).lower()\n    table_mentions = [table for table in schema if table.lower() in question]\n    if len(table_mentions) > 1 and 'join' not in sql:\n        return False\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-05370",
+      "question": "Find the ids of the problems that are reported by the staff whose last name is Bosco.",
+      "db_id": "tracking_software_problems"
+     },
+     "output": "SELECT problem_id FROM problems WHERE reported_by_staff_id IN (SELECT staff_id FROM staff WHERE staff_last_name = 'Bosco')"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-05370",
+      "question": "Find the ids of the problems that are reported by the staff whose last name is Bosco.",
+      "db_id": "tracking_software_problems"
+     },
+     "output": "SELECT problem_id FROM problems WHERE reported_by_staff_id IN (SELECT staff_id FROM staff WHERE staff_last_name = 'Bosco')"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-05370",
+      "question": "Find the ids of the problems that are reported by the staff whose last name is Bosco.",
+      "db_id": "tracking_software_problems"
+     },
+     "output": "SELECT problem_id FROM problems WHERE reported_by_staff_id IN (SELECT staff_id FROM staff WHERE staff_last_name = 'Bosco')"
+    }
+   ]
+  },
+  {
+   "name": "aggregation_for_summary_questions",
+   "source": "def check(output, ctx):\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    if any(keyword in question for keyword in ['average', 'sum', 'maximum', 'minimum']) and not any(func in sql for func in ['avg(', 'sum(', 'max(', 'min(']):\n        return False\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-00110",
+      "question": "What are the dates with a maximum temperature higher than 85?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT date FROM weather WHERE max_temperature_f > 85"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-00110",
+      "question": "What are the dates with a maximum temperature higher than 85?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT date FROM weather WHERE max_temperature_f > 85"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-00110",
+      "question": "What are the dates with a maximum temperature higher than 85?",
+      "db_id": "bike_1"
+     },
+     "output": "SELECT date FROM weather WHERE max_temperature_f > 85"
+    }
+   ]
+  },
+  {
+   "name": "order_by_for_sorting_questions",
+   "source": "def check(output, ctx):\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    if any(keyword in question for keyword in ['order by', 'sorted by', 'highest', 'lowest']) and 'order by' not in sql:\n        return False\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-01377",
+      "question": "Give the name of the department with the lowest budget.",
+      "db_id": "college_2"
+     },
+     "output": "SELECT dept_name FROM department WHERE budget = (SELECT MIN(budget) FROM department)"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-04712",
+      "question": "Give the id and product type of the product with the lowest price.",
+      "db_id": "department_store"
+     },
+     "output": "SELECT product_id, product_type_code FROM products WHERE product_price = (SELECT MIN(product_price) FROM products)"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-04712",
+      "question": "Give the id and product type of the product with the lowest price.",
+      "db_id": "department_store"
+     },
+     "output": "SELECT product_id, product_type_code FROM products WHERE product_price = (SELECT MIN(product_price) FROM products)"
+    }
+   ]
+  },
+  {
+   "name": "group_by_for_aggregation_with_multiple_columns",
+   "source": "def check(output, ctx):\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    if 'group by' not in sql and 'count(' in sql and ',' in sql.split('select')[1].split('from')[0]:\n        return False\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-05700",
+      "question": "Find the numbers of different majors and cities.",
+      "db_id": "dorm_1"
+     },
+     "output": "SELECT COUNT(DISTINCT major) AS different_majors, COUNT(DISTINCT city_code) AS different_cities FROM student"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-05700",
+      "question": "Find the numbers of different majors and cities.",
+      "db_id": "dorm_1"
+     },
+     "output": "SELECT COUNT(DISTINCT major) AS distinct_majors, COUNT(DISTINCT city_code) AS distinct_cities FROM student"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-05700",
+      "question": "Find the numbers of different majors and cities.",
+      "db_id": "dorm_1"
+     },
+     "output": "SELECT COUNT(DISTINCT major) AS different_majors, COUNT(DISTINCT city_code) AS different_cities FROM student"
+    }
+   ]
+  },
+  {
+   "name": "limit_presence_for_top_k_questions",
+   "source": "def check(output, ctx):\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    if any(keyword in question for keyword in ['top', 'first']) and 'limit' not in sql:\n        return False\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-06712",
+      "question": "What is the first name of the staff who did not give any lesson?",
+      "db_id": "driving_school"
+     },
+     "output": "SELECT first_name FROM staff WHERE staff_id NOT IN (SELECT DISTINCT staff_id FROM lessons)"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-06712",
+      "question": "What is the first name of the staff who did not give any lesson?",
+      "db_id": "driving_school"
+     },
+     "output": "SELECT first_name FROM staff WHERE staff_id NOT IN (SELECT DISTINCT staff_id FROM lessons)"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-06712",
+      "question": "What is the first name of the staff who did not give any lesson?",
+      "db_id": "driving_school"
+     },
+     "output": "SELECT first_name FROM staff WHERE staff_id NOT IN (SELECT DISTINCT staff_id FROM lessons)"
+    }
+   ]
+  },
+  {
+   "name": "proper_handling_of_negations",
+   "source": "def check(output, ctx):\n    question = ctx['question'].lower()\n    sql = extract_sql(output).lower()\n    if any(keyword in question for keyword in ['not', 'except']) and 'not' not in sql and 'except' not in sql:\n        return False\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-01749",
+      "question": "Return the names of gymnasts who did not grow up in Santo Domingo.",
+      "db_id": "gymnast"
+     },
+     "output": "SELECT p.name FROM people p JOIN gymnast g ON p.people_id = g.gymnast_id WHERE p.hometown != 'Santo Domingo'"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-01749",
+      "question": "Return the names of gymnasts who did not grow up in Santo Domingo.",
+      "db_id": "gymnast"
+     },
+     "output": "SELECT p.name FROM people p JOIN gymnast g ON p.people_id = g.gymnast_id WHERE p.hometown != 'Santo Domingo'"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-01749",
+      "question": "Return the names of gymnasts who did not grow up in Santo Domingo.",
+      "db_id": "gymnast"
+     },
+     "output": "SELECT name FROM people WHERE hometown != 'Santo Domingo' AND people_id IN (SELECT gymnast_id FROM gymnast)"
+    }
+   ]
+  },
+  {
+   "name": "no_ambiguous_column_references",
+   "source": "def check(output, ctx):\n    schema = ctx['schema']\n    sql = extract_sql(output).lower()\n    for table, columns in schema.items():\n        for column in columns:\n            if sum(column.lower() in other_columns for other_table, other_columns in schema.items()) > 1 and f'{column.lower()}' in sql and f'{table.lower()}.' not in sql:\n                return False\n    return True",
+   "rejected_correct_examples": [
+    {
+     "ctx": {
+      "instance_id": "sqltr-01287",
+      "question": "How many distinct kinds of injuries happened after season 2010?",
+      "db_id": "game_injury"
+     },
+     "output": "SELECT COUNT(DISTINCT injury) FROM injury_accident JOIN game ON injury_accident.game_id = game.id WHERE game.season > 2010"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-01287",
+      "question": "How many distinct kinds of injuries happened after season 2010?",
+      "db_id": "game_injury"
+     },
+     "output": "SELECT COUNT(DISTINCT injury) FROM injury_accident WHERE game_id IN (SELECT id FROM game WHERE season > 2010)"
+    },
+    {
+     "ctx": {
+      "instance_id": "sqltr-01287",
+      "question": "How many distinct kinds of injuries happened after season 2010?",
+      "db_id": "game_injury"
+     },
+     "output": "SELECT COUNT(DISTINCT injury) FROM injury_accident JOIN game ON injury_accident.game_id = game.id WHERE game.season > 2010"
+    }
+   ]
+  }
+ ]
+}

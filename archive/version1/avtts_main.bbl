@@ -1,0 +1,137 @@
+\begin{thebibliography}{20}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[{Atlas-ISTN authors}(2021)]{atlasistn2021}
+{Atlas-ISTN authors}.
+\newblock {Atlas-ISTN}: Joint segmentation, registration and atlas
+  construction.
+\newblock \emph{Medical Image Analysis}, 2021.
+
+\bibitem[Brown et~al.(2024)Brown, Juravsky, Ehrlich, Clark, Le, Re, and
+  Mirhoseini]{brown2024monkeys}
+Bradley Brown, Jordan Juravsky, Ryan Ehrlich, Ronald Clark, Quoc~V. Le,
+  Christopher Re, and Azalia Mirhoseini.
+\newblock Large language monkeys: Scaling inference compute with repeated
+  sampling.
+\newblock \emph{arXiv preprint arXiv:2407.21787}, 2024.
+
+\bibitem[Efron and Tibshirani(1994)]{efron1994bootstrap}
+Bradley Efron and Robert~J. Tibshirani.
+\newblock \emph{An Introduction to the Bootstrap}.
+\newblock Chapman and Hall/CRC, 1994.
+
+\bibitem[{Euler-characteristic authors}(2025)]{eulerchar2025}
+{Euler-characteristic authors}.
+\newblock Topology optimization in medical image segmentation with fast euler
+  characteristic.
+\newblock \emph{arXiv preprint arXiv:2507.23763}, 2025.
+
+\bibitem[Isensee et~al.(2021)Isensee, Jaeger, Kohl, Petersen, and
+  Maier-Hein]{isensee2021nnunet}
+Fabian Isensee, Paul~F. Jaeger, Simon A.~A. Kohl, Jens Petersen, and Klaus~H.
+  Maier-Hein.
+\newblock {nnU-Net}: A self-configuring method for deep learning-based
+  biomedical image segmentation.
+\newblock \emph{Nature Methods}, 2021.
+
+\bibitem[Kirillov et~al.(2023)Kirillov, Mintun, Ravi, et~al.]{kirillov2023sam}
+Alexander Kirillov, Eric Mintun, Nikhila Ravi, et~al.
+\newblock Segment anything.
+\newblock In \emph{IEEE/CVF International Conference on Computer Vision
+  (ICCV)}, 2023.
+
+\bibitem[{Lightman and colleagues}(2024)]{lightman2024verify}
+{Lightman and colleagues}.
+\newblock Let's verify step by step.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2024.
+
+\bibitem[Niu et~al.(2023)Niu, Wu, Zhang, Wen, Chen, Zhao, and Tan]{niu2023sar}
+Shuaicheng Niu, Jiaxiang Wu, Yifan Zhang, Zhiquan Wen, Yaofo Chen, Peilin Zhao,
+  and Mingkui Tan.
+\newblock Towards stable test-time adaptation in dynamic wild world.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2023.
+
+\bibitem[{Persistent-homology-loss authors}(2021)]{phloss2021}
+{Persistent-homology-loss authors}.
+\newblock A persistent homology-based topological loss for multi-class
+  segmentation of cardiac {MR}.
+\newblock \emph{arXiv preprint arXiv:2107.12689}, 2021.
+
+\bibitem[{SAM-TTA authors}(2026)]{samtta2026}
+{SAM-TTA authors}.
+\newblock {SAM}-aware test-time adaptation for universal medical image
+  segmentation.
+\newblock \emph{arXiv preprint arXiv:2506.05221}, 2026.
+
+\bibitem[{Self-consistency authors}(2023)]{wang2023self}
+{Self-consistency authors}.
+\newblock Self-consistency improves chain-of-thought reasoning in language
+  models.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2023.
+
+\bibitem[Setlur et~al.(2025)]{setlur2025verifier}
+Amrith Setlur et~al.
+\newblock On the robustness of verifier-based test-time scaling.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Snell et~al.(2024)Snell, Lee, Xu, and Kumar]{snell2024scaling}
+Charlie Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar.
+\newblock Scaling {LLM} test-time compute optimally can be more effective than
+  scaling model parameters.
+\newblock \emph{arXiv preprint arXiv:2408.03314}, 2024.
+
+\bibitem[Stroebl et~al.(2024)Stroebl, Kapoor, and
+  Narayanan]{stroebl2024verifier}
+Benedikt Stroebl, Sayash Kapoor, and Arvind Narayanan.
+\newblock Inference scaling f{L}aws: The limits of {LLM} resampling with
+  imperfect verifiers.
+\newblock \emph{arXiv preprint arXiv:2411.17501}, 2024.
+
+\bibitem[{TEDS-Net authors}(2022)]{tedsnet2022}
+{TEDS-Net authors}.
+\newblock {TEDS-Net}: Enforcing anatomically plausible segmentations via
+  topology-preserving deformations.
+\newblock \emph{Medical Image Analysis}, 2022.
+
+\bibitem[Wang et~al.(2021)Wang, Shelhamer, Liu, Olshausen, and
+  Darrell]{wang2021tent}
+Dequan Wang, Evan Shelhamer, Shaoteng Liu, Bruno Olshausen, and Trevor Darrell.
+\newblock Tent: Fully test-time adaptation by entropy minimization.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2021.
+
+\bibitem[Wang et~al.(2022)Wang, Fink, Van~Gool, and Dai]{wang2022cotta}
+Qin Wang, Olga Fink, Luc Van~Gool, and Dengxin Dai.
+\newblock Continual test-time domain adaptation.
+\newblock In \emph{IEEE/CVF Conference on Computer Vision and Pattern
+  Recognition (CVPR)}, pages 7201--7211, 2022.
+
+\bibitem[Warfield et~al.(2004)Warfield, Zou, and Wells]{warfield2004staple}
+Simon~K. Warfield, Kelly~H. Zou, and William~M. Wells.
+\newblock Simultaneous truth and performance level estimation ({STAPLE}).
+\newblock \emph{IEEE Transactions on Medical Imaging}, 2004.
+
+\bibitem[Yu et~al.(2025)Yu, Jiang, Chen, Chang, Wang, Wu, Dong, Liu, Zhu, Qin,
+  Wang, and Tian]{yu2025medsegtta}
+Wenjing Yu, Shuo Jiang, Yifei Chen, Shuo Chang, Yuanhan Wang, Beining Wu, Jie
+  Dong, Mingxuan Liu, Shenghao Zhu, Feiwei Qin, Changmiao Wang, and Qiyuan
+  Tian.
+\newblock A large scale benchmark for test time adaptation methods in medical
+  image segmentation.
+\newblock \emph{arXiv preprint arXiv:2512.02497}, 2025.
+
+\bibitem[Zhou et~al.(2025)]{zhou2025topotta}
+Zhou et~al.
+\newblock {TopoTTA}: Topology-enhanced test-time adaptation for tubular
+  structure segmentation.
+\newblock In \emph{IEEE/CVF International Conference on Computer Vision
+  (ICCV)}, 2025.
+
+\end{thebibliography}

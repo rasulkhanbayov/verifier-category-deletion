@@ -1,0 +1,5 @@
+numpy>=1.24
+# optional, only for the paper build checks
+pymupdf>=1.23     # measure_pages.py, verify_figures.py
+sympy>=1.12       # verify_ceiling.py symbolic check
+sqlglot>=25.0     # optional: SQL parsing in checks.py; regex fallback if absent

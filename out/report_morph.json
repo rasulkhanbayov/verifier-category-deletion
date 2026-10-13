@@ -1,0 +1,226 @@
+{
+ "task": "morph",
+ "certified_selection": "itau=0.02",
+ "certificate": {
+  "B_gamma_k": 5,
+  "B_gamma_n": 1000,
+  "B_gamma_upper95": 0.010484076911415651,
+  "B_false_rejections": 5,
+  "B_n_correct": 2532,
+  "B_catch": 0.007698541329011345
+ },
+ "by_model": {
+  "meta-llama/llama-3.1-70b-instruct": {
+   "handwritten": {
+    "acc": 0.3541910078225868,
+    "delta": 0.14133869577707556,
+    "inst_avg_delta": 0.18729096989966554,
+    "eps": 0.6219037233213897
+   },
+   "certified": {
+    "acc": 0.3641474171539961,
+    "delta": 0.0,
+    "inst_avg_delta": 0.0,
+    "eps": 0.9538090045178377
+   },
+   "f1_baseline": {
+    "acc": 0.36413434525857125,
+    "delta": 0.0,
+    "inst_avg_delta": 0.0,
+    "eps": 0.9569247546346783
+   },
+   "base_acc": 0.36333333333333334,
+   "n_units": 600,
+   "cert_minus_base": [
+    0.000814083820662768,
+    6.944444444444444e-05,
+    0.0018835465399610134
+   ],
+   "cert_minus_hw": [
+    0.009956409331409333,
+    -0.005195165945165945,
+    0.025627870971620968
+   ],
+   "cert_minus_f1": [
+    1.30718954248366e-05,
+    0.0,
+    3.9215686274509805e-05
+   ],
+   "hw_minus_base": [
+    -0.009142325510746563,
+    -0.024800780359990882,
+    0.006050305688463581
+   ]
+  },
+  "openai/gpt-4o-mini-2024-07-18": {
+   "handwritten": {
+    "acc": 0.3923464052287582,
+    "delta": 0.09271863362013612,
+    "inst_avg_delta": 0.1414790996784566,
+    "eps": 0.8114542578872888
+   },
+   "certified": {
+    "acc": 0.395,
+    "delta": 0.0,
+    "inst_avg_delta": 0.0,
+    "eps": 0.9909264962956796
+   },
+   "f1_baseline": {
+    "acc": 0.395,
+    "delta": 0.0,
+    "inst_avg_delta": 0.0,
+    "eps": 0.9910097394489303
+   },
+   "base_acc": 0.3933333333333333,
+   "n_units": 600,
+   "cert_minus_base": [
+    0.0016666666666666668,
+    0.0,
+    0.005
+   ],
+   "cert_minus_hw": [
+    0.00265359477124183,
+    -0.0074444444444444445,
+    0.013333333333333334
+   ],
+   "cert_minus_f1": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "hw_minus_base": [
+    -0.0009869281045751636,
+    -0.010764705882352942,
+    0.008679738562091503
+   ]
+  },
+  "qwen/qwen-2.5-72b-instruct": {
+   "handwritten": {
+    "acc": 0.37163636363636365,
+    "delta": 0.1296049119060331,
+    "inst_avg_delta": 0.15789473684210525,
+    "eps": 0.7735619109522262
+   },
+   "certified": {
+    "acc": 0.3870632183908046,
+    "delta": 0.0,
+    "inst_avg_delta": 0.0,
+    "eps": 0.9778193045173871
+   },
+   "f1_baseline": {
+    "acc": 0.3870632183908046,
+    "delta": 0.0,
+    "inst_avg_delta": 0.0,
+    "eps": 0.9779005524861878
+   },
+   "base_acc": 0.385,
+   "n_units": 600,
+   "cert_minus_base": [
+    0.0020632183908045974,
+    0.0,
+    0.005793103448275863
+   ],
+   "cert_minus_hw": [
+    0.01542685475444096,
+    0.003277658045977012,
+    0.02881587208289794
+   ],
+   "cert_minus_f1": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "hw_minus_base": [
+    -0.013363636363636366,
+    -0.026308838383838382,
+    -0.001367297979798
+   ]
+  }
+ },
+ "filtering": {
+  "handwritten": {
+   "precision": 0.4178823931477882,
+   "recall": 0.8796367069825997,
+   "lost": 151,
+   "n": 933,
+   "subgroups": {
+    "2_morphemes": {
+     "n": 449,
+     "lost": 53
+    },
+    "canonical_differs_from_surface": {
+     "n": 154,
+     "lost": 151
+    },
+    "3_morphemes": {
+     "n": 344,
+     "lost": 75
+    },
+    "1_morphemes": {
+     "n": 68,
+     "lost": 0
+    },
+    "4+_morphemes": {
+     "n": 72,
+     "lost": 23
+    }
+   }
+  },
+  "certified": {
+   "precision": 0.380676080445015,
+   "recall": 1.0,
+   "lost": 0,
+   "n": 933,
+   "subgroups": {
+    "2_morphemes": {
+     "n": 449,
+     "lost": 0
+    },
+    "canonical_differs_from_surface": {
+     "n": 154,
+     "lost": 0
+    },
+    "3_morphemes": {
+     "n": 344,
+     "lost": 0
+    },
+    "1_morphemes": {
+     "n": 68,
+     "lost": 0
+    },
+    "4+_morphemes": {
+     "n": 72,
+     "lost": 0
+    }
+   }
+  },
+  "f1_baseline": {
+   "precision": 0.3804026202815263,
+   "recall": 1.0,
+   "lost": 0,
+   "n": 933,
+   "subgroups": {
+    "2_morphemes": {
+     "n": 449,
+     "lost": 0
+    },
+    "canonical_differs_from_surface": {
+     "n": 154,
+     "lost": 0
+    },
+    "3_morphemes": {
+     "n": 344,
+     "lost": 0
+    },
+    "1_morphemes": {
+     "n": 68,
+     "lost": 0
+    },
+    "4+_morphemes": {
+     "n": 72,
+     "lost": 0
+    }
+   }
+  }
+ }
+}

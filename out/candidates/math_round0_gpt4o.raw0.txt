@@ -1,0 +1,387 @@
+### CHECK consistent_with_total_in_problem
+RATIONALE: If the problem explicitly mentions a total that is distributed or split among entities, any correct output must be consistent with this total.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        total_match = re.search(r'\btotal[^0-9]*([0-9]+)', problem_text)
+        if not total_match:
+            return True
+        total = int(total_match.group(1))
+        if str(total) not in output:
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK mention_relevant_units
+RATIONALE: If the problem involves specific units (e.g., dollars, pounds, gallons), a correct output must mention these units in the reasoning to confirm that the answer contextually matches the problem.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        units = re.findall(r'\b(dollars|pounds|gallons|tables|snails|coins|questions|logs|crickets|eggs)\b', problem_text, re.IGNORECASE)
+        if not units:
+            return True
+        for unit in set(units):
+            if unit.lower() not in output.lower():
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK validate_ratio_consistency
+RATIONALE: If the problem specifies a ratio, correct outputs must maintain this ratio in the calculations mentioned.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        ratio_match = re.search(r'\b(\d+):(\d+)\b', problem_text)
+        if not ratio_match:
+            return True
+        ratio1, ratio2 = map(int, ratio_match.groups())
+        if f"{ratio1}:{ratio2}" not in output and f"{ratio2}:{ratio1}" not in output:
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK consistent_with_given_percentages
+RATIONALE: If the problem mentions percentages, any correct output must use these percentages in calculations or reasoning.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        percentages = re.findall(r'\b(\d+)%\b', problem_text)
+        if not percentages:
+            return True
+        for percentage in percentages:
+            if percentage not in output:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK correct_total_subtraction
+RATIONALE: If the problem involves finding a remainder or subtracting from a total, correct outputs must explicitly show consistent subtraction reasoning.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        if 'remaining' not in problem_text.lower() and 'left' not in problem_text.lower():
+            return True
+        if '-' not in output:
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK doubling_or_halving_logic
+RATIONALE: If the problem specifies doubling or halving quantities, a correct output must explicitly show these calculations.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        if 'double' not in problem_text.lower() and 'half' not in problem_text.lower():
+            return True
+        if '2*' not in output and '/2' not in output:
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK consistent_with_given_multipliers
+RATIONALE: If the problem involves a multiplier (e.g., "3 times", "1.4 times"), correct outputs must use the multiplier explicitly.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        multiplier_match = re.findall(r'(\d+(\.\d+)?) times', problem_text)
+        if not multiplier_match:
+            return True
+        for multiplier, _ in multiplier_match:
+            if multiplier not in output:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK correct_final_answer_sign
+RATIONALE: For problems involving savings, profit, or reductions, the final answer should reasonably have a positive or negative sign based on context.
+```python
+def check(output, ctx):
+    try:
+        question = ctx['question'].lower()
+        final = final_answer(output)
+        if final is None:
+            return True
+        final = float(final)
+        if ('save' in question or 'profit' in question) and final < 0:
+            return False
+        if ('loss' in question or 'debt' in question) and final > 0:
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK consistent_with_given_totals
+RATIONALE: If the problem specifies a total amount (e.g., total eggs, total coins), correct outputs must compute results consistent with this total.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        total_match = re.search(r'\btotal[^0-9]*([0-9]+)', problem_text)
+        if not total_match:
+            return True
+        total = int(total_match.group(1))
+        if total not in map(int, re.findall(r'\d+', output)):
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK valid_division_steps
+RATIONALE: Problems involving division (e.g., "per", "each", "split") require explicit division steps in correct outputs.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        if 'per' not in problem_text.lower() and 'each' not in problem_text.lower() and 'split' not in problem_text.lower():
+            return True
+        if '/' not in output and 'divided' not in output.lower():
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK consistent_with_remainder_logic
+RATIONALE: Problems explicitly mentioning a "remainder" or "leftover" must include consistent subtraction or modulo reasoning in correct outputs.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        if 'remainder' not in problem_text.lower() and 'leftover' not in problem_text.lower():
+            return True
+        if '%' not in output and 'mod' not in output.lower():
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK consistent_with_given_groups
+RATIONALE: If the problem involves distributing or grouping items, correct outputs must involve consistent multiplication or division logic.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        if 'group' not in problem_text.lower() and 'distribute' not in problem_text.lower():
+            return True
+        if '*' not in output and '/' not in output:
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK consistent_with_mention_of_zero
+RATIONALE: If the problem explicitly mentions "zero" or "none", correct outputs must account for this in calculations or reasoning.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        if 'zero' not in problem_text.lower() and 'none' not in problem_text.lower():
+            return True
+        if '0' not in output:
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK consistent_with_fractions
+RATIONALE: Problems involving fractions (e.g., "1/2", "3/4") must show consistent calculations with fractions in correct outputs.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        fractions = re.findall(r'\b(\d+)/(\d+)', problem_text)
+        if not fractions:
+            return True
+        for fraction in fractions:
+            if '/'.join(fraction) not in output:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK consistent_with_currency_format
+RATIONALE: If the problem involves currency, correct outputs must use consistent formatting (e.g., "$" before amounts).
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        if '$' not in problem_text:
+            return True
+        if '$' not in output:
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK consistent_with_temperatures
+RATIONALE: Problems involving temperatures require explicit reasoning about degrees (e.g., "90 degrees", "100 degrees").
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        if 'degree' not in problem_text.lower():
+            return True
+        if 'degree' not in output.lower():
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK consistent_with_time_units
+RATIONALE: Problems involving time (e.g., "days", "weeks", "hours") must use these units in reasoning or calculations in correct outputs.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        time_units = ['day', 'week', 'hour', 'minute']
+        if not any(unit in problem_text.lower() for unit in time_units):
+            return True
+        if not any(unit in output.lower() for unit in time_units):
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK consistent_with_quantity_units
+RATIONALE: Problems involving quantities (e.g., "trees", "tables", "snails") must consistently reference these units in correct outputs.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        units = re.findall(r'\b(trees|tables|snails|logs|eggs|coins|tasks|questions|crickets)\b', problem_text, re.IGNORECASE)
+        if not units:
+            return True
+        for unit in set(units):
+            if unit.lower() not in output.lower():
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK consistent_with_explicit_numbers
+RATIONALE: Problems specifying explicit numbers must use these numbers directly in calculations or reasoning in correct outputs.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        numbers = re.findall(r'\b\d+\b', problem_text)
+        if not numbers:
+            return True
+        for number in numbers:
+            if number not in output:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK validate_references_to_entities
+RATIONALE: If the problem specifies named entities (e.g., "John", "Betty"), correct outputs must mention these entities in reasoning.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        entities = re.findall(r'\b[A-Z][a-z]+\b', problem_text)
+        if not entities:
+            return True
+        for entity in entities:
+            if entity not in output:
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK consistent_with_proportions
+RATIONALE: Problems involving proportions (e.g., "half", "three-fourths") must include these proportions in calculations or reasoning in correct outputs.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        proportions = re.findall(r'\b(half|third|quarter|fourth|fifth)\b', problem_text, re.IGNORECASE)
+        if not proportions:
+            return True
+        for proportion in proportions:
+            if proportion.lower() not in output.lower():
+                return False
+        return True
+    except:
+        return True
+```
+
+### CHECK consistent_with_resource_distribution
+RATIONALE: If the problem involves distributing resources (e.g., "split", "shared"), correct outputs must explicitly describe this distribution.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        if 'split' not in problem_text.lower() and 'shared' not in problem_text.lower():
+            return True
+        if 'split' not in output.lower() and 'shared' not in output.lower():
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK validate_intermediate_steps
+RATIONALE: For multi-step problems, correct outputs must include intermediate steps that align with the problem's reasoning structure.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        if 'step' not in problem_text.lower():
+            return True
+        if 'step' not in output.lower():
+            return False
+        return True
+    except:
+        return True
+```
+
+### CHECK consistent_with_mentioned_operations
+RATIONALE: Problems explicitly mentioning operations (e.g., "sum", "multiply") must include corresponding operations in the output reasoning.
+```python
+def check(output, ctx):
+    try:
+        problem_text = ctx['question']
+        operations = ['sum', 'multiply', 'divide', 'subtract', 'add']
+        if not any(op in problem_text.lower() for op in operations):
+            return True
+        if not any(op in output.lower() for op in operations):
+            return False
+        return True
+    except:
+        return True
+```

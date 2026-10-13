@@ -1,0 +1,78 @@
+{
+ "certified_selection": "itau=0.05",
+ "handwritten": {
+  "examples": 5709,
+  "correct": 1440,
+  "precision": 0.2522333158171308,
+  "inputs_covered": 1996,
+  "correct_examples_by_subgroup": {
+   "no_entities": 386,
+   "plain": 691,
+   "entity_3plus_tokens": 106,
+   "has_else_type": 184,
+   "4plus_entities": 167,
+   "entity_with_lowercase_token": 28,
+   "entity_with_digit": 9
+  }
+ },
+ "f1_baseline": {
+  "examples": 2705,
+  "correct": 1267,
+  "precision": 0.46839186691312384,
+  "inputs_covered": 1809,
+  "correct_examples_by_subgroup": {
+   "no_entities": 386,
+   "plain": 685,
+   "4plus_entities": 123,
+   "entity_with_lowercase_token": 26,
+   "entity_3plus_tokens": 84,
+   "has_else_type": 20,
+   "entity_with_digit": 3
+  }
+ },
+ "certified": {
+  "examples": 3448,
+  "correct": 1418,
+  "precision": 0.41125290023201855,
+  "inputs_covered": 1895,
+  "correct_examples_by_subgroup": {
+   "no_entities": 386,
+   "plain": 684,
+   "entity_3plus_tokens": 103,
+   "has_else_type": 175,
+   "4plus_entities": 163,
+   "entity_with_lowercase_token": 25,
+   "entity_with_digit": 6
+  }
+ },
+ "none": {
+  "examples": 7038,
+  "correct": 1447,
+  "precision": 0.20559818130150612,
+  "inputs_covered": 2000,
+  "correct_examples_by_subgroup": {
+   "no_entities": 393,
+   "plain": 691,
+   "entity_3plus_tokens": 106,
+   "has_else_type": 184,
+   "4plus_entities": 167,
+   "entity_with_lowercase_token": 28,
+   "entity_with_digit": 9
+  }
+ },
+ "oracle": {
+  "examples": 1447,
+  "correct": 1447,
+  "precision": 1.0,
+  "inputs_covered": 1387,
+  "correct_examples_by_subgroup": {
+   "no_entities": 393,
+   "plain": 691,
+   "entity_3plus_tokens": 106,
+   "has_else_type": 184,
+   "4plus_entities": 167,
+   "entity_with_lowercase_token": 28,
+   "entity_with_digit": 9
+  }
+ }
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "task": "morph",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "eps_mean": 0.769884935256266,
+    "eps_sd": 0.011946108707424193,
+    "ceiling_mean": NaN,
+    "ceiling_sd": NaN
+  },
+  {
+    "task": "morph",
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "eps_mean": 0.5566023273345131,
+    "eps_sd": 0.01532997995276233,
+    "ceiling_mean": NaN,
+    "ceiling_sd": NaN
+  }
+]

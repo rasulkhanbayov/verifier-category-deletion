@@ -1,0 +1,59 @@
+% ====================================================================
+% avtts.sty  -- shared style for the AV-TTS paper
+% Venue-neutral: load AFTER \documentclass and after the venue's own
+% font/geometry choices (inputenc, fontenc, font package, geometry).
+% Works with the generic two-column build and the LNCS preview alike.
+%   \usepackage{avtts}
+% ====================================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{avtts}[2026/06/15 AV-TTS shared macros and packages]
+
+% ---- math, graphics, tables, color ----
+\RequirePackage{amsmath,amssymb,amsthm}
+\RequirePackage{graphicx}
+\RequirePackage{booktabs}
+\RequirePackage{xcolor}
+
+% ---- figures (native TikZ) ----
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds,calc}
+
+% ---- algorithms ----
+\RequirePackage{algorithm}
+\RequirePackage{algpseudocode}
+
+% ---- citations (numeric, compressed). The .bib must match \bibliography{name} ----
+\RequirePackage[numbers,sort&compress]{natbib}
+
+% ---- captions and links ----
+\RequirePackage{caption}
+\captionsetup{font=small,labelfont=bf}
+\RequirePackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,
+            citecolor=blue!45!black,urlcolor=blue!45!black}
+\setlength{\emergencystretch}{3em}
+
+% ---- INTEGRITY MACROS ---------------------------------------------------
+% \rp{...}    RESULT PLACEHOLDER: every unmeasured number uses this. It is
+%             deliberately red+bold so no placeholder can survive to camera-ready.
+% \torun{...} an experiment still to run, tagged for the student.
+\providecommand{\rp}[1]{{\color{red}\textbf{[RP: #1]}}}
+\providecommand{\torun}[1]{{\color{blue!50!black}\texttt{>>> TO RUN: #1}}}
+
+% ---- theorem environments ----
+\newtheorem{proposition}{Proposition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{claim}{Claim}
+
+% ---- BUILD STANDARD: line-number overlap fix --------------------------
+% Many venue classes load the lineno package for review. If present, keep
+% the numbers in the margin (avoids overlap with the text body).
+\makeatletter
+\AtBeginDocument{%
+  \@ifpackageloaded{lineno}{%
+    \setlength{\linenumbersep}{6pt}%
+    \renewcommand\linenumberfont{\normalfont\scriptsize\color{gray}}%
+    \leftlinenumbers}{}}
+\makeatother
+
+\endinput

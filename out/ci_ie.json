@@ -1,0 +1,70 @@
+{
+ "task": "ie",
+ "selection": "tau=0.02",
+ "N": 32,
+ "by_model": {
+  "meta-llama/llama-3.1-70b-instruct": {
+   "n": 100,
+   "base": 0.44,
+   "handwritten": 0.47714285714285715,
+   "synth": 0.5451875901875902,
+   "synth_minus_base": [
+    0.1051875901875902,
+    0.0512987012987013,
+    0.16694408369408364
+   ],
+   "synth_minus_handwritten": [
+    0.06804473304473305,
+    0.027724025974025974,
+    0.11542568542568542
+   ],
+   "handwritten_minus_base": [
+    0.037142857142857144,
+    0.007142857142857142,
+    0.07714285714285714
+   ]
+  },
+  "openai/gpt-4o-mini-2024-07-18": {
+   "n": 100,
+   "base": 0.37,
+   "handwritten": 0.37,
+   "synth": 0.402,
+   "synth_minus_base": [
+    0.032,
+    0.003,
+    0.069
+   ],
+   "synth_minus_handwritten": [
+    0.032,
+    0.003,
+    0.069
+   ],
+   "handwritten_minus_base": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  "qwen/qwen-2.5-72b-instruct": {
+   "n": 100,
+   "base": 0.55,
+   "handwritten": 0.56,
+   "synth": 0.5855555555555556,
+   "synth_minus_base": [
+    0.035555555555555556,
+    0.005555555555555556,
+    0.07555555555555556
+   ],
+   "synth_minus_handwritten": [
+    0.025555555555555554,
+    0.0,
+    0.06
+   ],
+   "handwritten_minus_base": [
+    0.01,
+    0.0,
+    0.03
+   ]
+  }
+ }
+}

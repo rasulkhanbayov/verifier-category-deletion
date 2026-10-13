@@ -1,0 +1,170 @@
+[
+  {
+    "task": "ie",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "rule": "gated",
+    "acc": 0.4364454443194601,
+    "delta_pts": 3.3790101237345342,
+    "ci": [
+      2.249718785151855,
+      4.611923509561305
+    ],
+    "p": 9.999000099990002e-05,
+    "degenerate": false,
+    "gate_fired_frac": 0.11361079865016872
+  },
+  {
+    "task": "ie",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "rule": "homogeneous",
+    "acc": 0.39032620922384703,
+    "delta_pts": -1.205939257592801,
+    "ci": [
+      -4.161979752530937,
+      1.687289088863897
+    ],
+    "p": 0.44645535446455353,
+    "degenerate": false,
+    "gate_fired_frac": 0.11361079865016872
+  },
+  {
+    "task": "ie",
+    "model": "meta-llama/llama-3.1-70b-instruct",
+    "rule": "ungated",
+    "acc": 0.35545556805399325,
+    "delta_pts": -4.694746906636671,
+    "ci": [
+      -7.5393700787401565,
+      -1.796962879640082
+    ],
+    "p": 0.0022997700229977,
+    "degenerate": false,
+    "gate_fired_frac": 0.11361079865016872
+  },
+  {
+    "task": "ie",
+    "model": "meta-llama/llama-3.1-8b-instruct",
+    "rule": "gated",
+    "acc": 0.1968503937007874,
+    "delta_pts": 7.979977502812148,
+    "ci": [
+      6.299212598425196,
+      9.786276715410574
+    ],
+    "p": 9.999000099990002e-05,
+    "degenerate": false,
+    "gate_fired_frac": 0.4184476940382452
+  },
+  {
+    "task": "ie",
+    "model": "meta-llama/llama-3.1-8b-instruct",
+    "rule": "homogeneous",
+    "acc": 0.20247469066366705,
+    "delta_pts": 8.523464566929135,
+    "ci": [
+      5.961754780652419,
+      11.24859392575928
+    ],
+    "p": 9.999000099990002e-05,
+    "degenerate": false,
+    "gate_fired_frac": 0.4184476940382452
+  },
+  {
+    "task": "ie",
+    "model": "meta-llama/llama-3.1-8b-instruct",
+    "rule": "ungated",
+    "acc": 0.12373453318335208,
+    "delta_pts": 0.6422272215973004,
+    "ci": [
+      -1.6872890888638914,
+      3.0371203599550047
+    ],
+    "p": 0.6417358264173583,
+    "degenerate": false,
+    "gate_fired_frac": 0.4184476940382452
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "rule": "gated",
+    "acc": 0.5208098987626547,
+    "delta_pts": 0.11554555680539934,
+    "ci": [
+      0.0,
+      0.3374578177727794
+    ],
+    "p": 1.0,
+    "degenerate": false,
+    "gate_fired_frac": 0.015748031496062992
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "rule": "homogeneous",
+    "acc": 0.5286839145106862,
+    "delta_pts": 0.908368953880765,
+    "ci": [
+      -0.4499437570303688,
+      2.249718785151855
+    ],
+    "p": 0.260973902609739,
+    "degenerate": false,
+    "gate_fired_frac": 0.015748031496062992
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-2024-11-20",
+    "rule": "ungated",
+    "acc": 0.5275590551181102,
+    "delta_pts": 0.7928233970753655,
+    "ci": [
+      -0.5624296962879582,
+      2.1372328458942658
+    ],
+    "p": 0.3243675632436756,
+    "degenerate": false,
+    "gate_fired_frac": 0.015748031496062992
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "rule": "gated",
+    "acc": 0.33070866141732286,
+    "delta_pts": 0.3379527559055118,
+    "ci": [
+      0.0,
+      0.7874015748031482
+    ],
+    "p": 0.24847515248475152,
+    "degenerate": false,
+    "gate_fired_frac": 0.04049493813273341
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "rule": "homogeneous",
+    "acc": 0.33520809898762655,
+    "delta_pts": 0.784533183352081,
+    "ci": [
+      -0.5624296962879638,
+      2.1372328458942604
+    ],
+    "p": 0.3130686931306869,
+    "degenerate": false,
+    "gate_fired_frac": 0.04049493813273341
+  },
+  {
+    "task": "ie",
+    "model": "openai/gpt-4o-mini-2024-07-18",
+    "rule": "ungated",
+    "acc": 0.3295838020247469,
+    "delta_pts": 0.2219910011248594,
+    "ci": [
+      -1.1248593925759276,
+      1.5748031496062964
+    ],
+    "p": 0.867013298670133,
+    "degenerate": false,
+    "gate_fired_frac": 0.04049493813273341
+  }
+]

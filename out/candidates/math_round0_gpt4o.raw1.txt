@@ -1,0 +1,420 @@
+### CHECK answer_within_possible_range
+RATIONALE: Many problems imply constraints on the range of the answer (e.g., it can't be negative, too large, or too small). This check ensures the final answer is within a logical range based on context clues in the question.
+```python
+def check(output, ctx):
+    try:
+        answer = final_answer(output)
+        if answer is None:
+            return True
+        answer = float(answer)
+        if "how many" in ctx["question"].lower() or "how much" in ctx["question"].lower():
+            if answer < 0:
+                return False
+        if "per day" in ctx["question"].lower() or "per week" in ctx["question"].lower():
+            if answer > 1e6:  # Arbitrary upper limit for sanity
+                return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK consistent_units
+RATIONALE: If the question specifies a unit (e.g., dollars, gallons, pounds), the final answer must be expressed in the same unit. This avoids mismatches like reporting gallons for a dollar-related problem.
+```python
+def check(output, ctx):
+    try:
+        question = ctx["question"].lower()
+        if any(unit in question for unit in ["$", "dollars", "pounds", "gallons", "liters", "kg", "kilograms"]):
+            if "$" in question and "$" not in output:
+                return False
+            if "pounds" in question and "pound" not in output:
+                return False
+            if any(unit in question for unit in ["gallons", "liters", "litres"]) and not any(unit in output for unit in ["gallon", "liter", "litre"]):
+                return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK non_zero_answer_when_appropriate
+RATIONALE: Certain questions logically imply that a zero answer would be incorrect (e.g., "How much profit did he make?"). This check ensures answers are not zero when logically impossible.
+```python
+def check(output, ctx):
+    try:
+        question = ctx["question"].lower()
+        if any(keyword in question for keyword in ["profit", "money", "spend", "earn", "weight", "cost", "total", "number of"]):
+            answer = final_answer(output)
+            if answer is None:
+                return True
+            if float(answer) == 0:
+                return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK final_answer_matches_question_type
+RATIONALE: The final answer must match the type of quantity asked in the question (e.g., integer for "how many apples," float for "cost in dollars").
+```python
+def check(output, ctx):
+    try:
+        question = ctx["question"].lower()
+        answer = final_answer(output)
+        if answer is None:
+            return True
+        if "how many" in question and not answer.isdigit():
+            return False
+        if "how much" in question and not any(c in answer for c in "0123456789."):
+            return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK ensures_no_impossible_percentages
+RATIONALE: Percentages cannot exceed 100% or be negative. This check ensures no output violates this logical constraint.
+```python
+def check(output, ctx):
+    try:
+        percentages = [float(num) for num in re.findall(r"\b\d+\.?\d*%", output)]
+        if any(p < 0 or p > 100 for p in percentages):
+            return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK prevents_negative_quantities
+RATIONALE: Physical quantities like weight, number of items, or amount of money cannot be negative. This check ensures such values are not negative.
+```python
+def check(output, ctx):
+    try:
+        answer = final_answer(output)
+        if answer is None:
+            return True
+        if float(answer) < 0:
+            return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK checks_for_missing_references
+RATIONALE: Some questions explicitly reference specific entities (e.g., "Betty's age" or "Jerry's profit"). The output must reference these entities to ensure relevance.
+```python
+def check(output, ctx):
+    try:
+        question = ctx["question"].lower()
+        if any(name in question for name in ["betty", "jerry", "emma", "john", "doug"]):
+            if not any(name in output.lower() for name in ["betty", "jerry", "emma", "john", "doug"]):
+                return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK non_fractional_count_for_discrete_items
+RATIONALE: Discrete items like apples, eggs, or toys must have whole number counts in the final answer.
+```python
+def check(output, ctx):
+    try:
+        question = ctx["question"].lower()
+        if any(keyword in question for keyword in ["how many", "number of"]):
+            answer = final_answer(output)
+            if answer is None:
+                return True
+            if float(answer) != int(float(answer)):
+                return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK prevents_division_by_zero
+RATIONALE: Outputs that involve division must not divide by zero. This ensures all arithmetic is valid.
+```python
+def check(output, ctx):
+    try:
+        if "/0" in output.replace(" ", ""):
+            return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK final_answer_is_positive_for_totals
+RATIONALE: Totals like profits, weights, or sums must be positive numbers unless explicitly stated otherwise.
+```python
+def check(output, ctx):
+    try:
+        question = ctx["question"].lower()
+        if "total" in question or "sum" in question:
+            answer = final_answer(output)
+            if answer is None:
+                return True
+            if float(answer) <= 0:
+                return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK consistency_with_ratios
+RATIONALE: When ratios are explicitly given in the problem, the final answer must be consistent with those ratios.
+```python
+def check(output, ctx):
+    try:
+        question = ctx["question"].lower()
+        if "ratio" in question:
+            ratio_match = re.search(r"(\d+):(\d+)", question)
+            if ratio_match:
+                ratio_a, ratio_b = map(int, ratio_match.groups())
+                total_ratio = ratio_a + ratio_b
+                answer = final_answer(output)
+                if answer is None:
+                    return True
+                if int(answer) % total_ratio != 0:
+                    return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK checks_for_relevant_entities
+RATIONALE: If the question mentions specific entities (e.g., "mother duck," "Emma"), the output must address those entities.
+```python
+def check(output, ctx):
+    try:
+        question = ctx["question"].lower()
+        entities = re.findall(r"\b[A-Z][a-z]+\b", question)
+        if entities and not any(entity.lower() in output.lower() for entity in entities):
+            return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK prevents_illogical_temporal_answers
+RATIONALE: Temporal questions (e.g., "how many weeks") must not have answers that are negative or unreasonably large.
+```python
+def check(output, ctx):
+    try:
+        question = ctx["question"].lower()
+        if "weeks" in question or "days" in question:
+            answer = final_answer(output)
+            if answer is None:
+                return True
+            if float(answer) < 0 or float(answer) > 1e4:  # Arbitrary large limit
+                return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK final_answer_includes_key_terms
+RATIONALE: The final answer must include key terms from the question (e.g., units like "gallons" or "pounds").
+```python
+def check(output, ctx):
+    try:
+        question = ctx["question"].lower()
+        if any(unit in question for unit in ["gallons", "pounds", "liters", "dollars", "$"]):
+            if not any(unit in output.lower() for unit in ["gallon", "pound", "liter", "$"]):
+                return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK consistent_with_multiplication
+RATIONALE: If the problem involves multiplication, the final answer must reflect the logical product of relevant factors.
+```python
+def check(output, ctx):
+    try:
+        if "*" in ctx["question"]:
+            answer = final_answer(output)
+            if answer is None:
+                return True
+            # Extract numbers from output and check for logical consistency
+            numbers = [float(num) for num in re.findall(r"\b\d+\.?\d*\b", output)]
+            if len(numbers) >= 2:
+                product = numbers[0] * numbers[1]
+                if abs(product - float(answer)) > 1e-6:
+                    return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK prevents_inconsistent_addition
+RATIONALE: Questions involving addition must have answers consistent with the sum of relevant numbers.
+```python
+def check(output, ctx):
+    try:
+        if "+" in ctx["question"]:
+            answer = final_answer(output)
+            if answer is None:
+                return True
+            numbers = [float(num) for num in re.findall(r"\b\d+\.?\d*\b", output)]
+            if len(numbers) >= 2:
+                summation = sum(numbers)
+                if abs(summation - float(answer)) > 1e-6:
+                    return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK ensures_valid_currency_format
+RATIONALE: If the question involves currency, the final answer must include a valid currency format (e.g., "$200").
+```python
+def check(output, ctx):
+    try:
+        question = ctx["question"].lower()
+        if "$" in question or "dollars" in question:
+            if not re.search(r"\$\s*\d+\.?\d{0,2}", output):
+                return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK prevents_negative_profits
+RATIONALE: Profit-related questions must not yield negative final answers unless explicitly stated otherwise.
+```python
+def check(output, ctx):
+    try:
+        question = ctx["question"].lower()
+        if "profit" in question:
+            answer = final_answer(output)
+            if answer is None:
+                return True
+            if float(answer) < 0:
+                return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK prevents_fractions_for_whole_entities
+RATIONALE: Entities that must logically be whole (e.g., people, animals) must not result in fractional answers.
+```python
+def check(output, ctx):
+    try:
+        question = ctx["question"].lower()
+        if any(keyword in question for keyword in ["people", "animals", "ducklings"]):
+            answer = final_answer(output)
+            if answer is None:
+                return True
+            if float(answer) != int(float(answer)):
+                return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK ensures_valid_discount_calculations
+RATIONALE: Problems involving discounts must ensure that the final answer logically reflects the reduced price.
+```python
+def check(output, ctx):
+    try:
+        question = ctx["question"].lower()
+        if "discount" in question or "half off" in question:
+            if "50%" in question and not re.search(r"\b\d+\.?\d*\b", output):
+                return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK prevents_excessive_rounding
+RATIONALE: Outputs should avoid excessive rounding that leads to inaccurate results for problems involving arithmetic.
+```python
+def check(output, ctx):
+    try:
+        if re.search(r"\d+\.\d+", output):
+            # Allow up to 2 decimal places
+            numbers = [num for num in re.findall(r"\d+\.\d+", output)]
+            if any(len(num.split(".")[1]) > 2 for num in numbers):
+                return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK ensures_valid_percentage_calculation
+RATIONALE: Problems involving percentages must ensure the final answer logically reflects the percentage described.
+```python
+def check(output, ctx):
+    try:
+        question = ctx["question"].lower()
+        if "%" in question:
+            percentages = [float(n) for n in re.findall(r"\d+\.?\d*", output)]
+            if any(p < 0 or p > 100 for p in percentages):
+                return False
+        return True
+    except:
+        return True
+```
+
+---
+
+### CHECK consistent_with_subtraction
+RATIONALE: Questions requiring subtraction must have outputs consistent with the difference of relevant numbers.
+```python
+def check(output, ctx):
+    try:
+        if "-" in ctx["question"]:
+            answer = final_answer(output)
+            if answer is None:
+                return True
+            numbers = [float(num) for num in re.findall(r"\b\d+\.?\d*\b", output)]
+            if len(numbers) >= 2:
+                diff = numbers[0] - numbers[1]
+                if abs(diff - float(answer)) > 1e-6:
+                    return False
+        return True
+    except:
+        return True
+```

@@ -1,0 +1,4 @@
+Contamination bound: ceiling <= 100*(1-p0)*(1-eps)*p/q <= 100*(1-eps) pts, at any p0 (incl. p0=0)
+openai/gpt-4o-2024-11-20         eps seed0=0.918 min over seeds=0.918 -> bound seed0 8.2 pts, worst seed 8.2 pts | V1-corrected eps seed0=0.850 -> 15.0 pts, worst seed 15.0 pts
+openai/gpt-4o-mini-2024-07-18    eps seed0=0.877 min over seeds=0.877 -> bound seed0 12.3 pts, worst seed 12.3 pts | V1-corrected eps seed0=0.812 -> 18.8 pts, worst seed 18.8 pts
+qwen/qwen-2.5-72b-instruct       eps seed0=0.894 min over seeds=0.894 -> bound seed0 10.6 pts, worst seed 10.6 pts

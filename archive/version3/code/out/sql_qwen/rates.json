@@ -1,0 +1,42 @@
+[
+  {
+    "task": "sql",
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "subset": [
+      "parses",
+      "schema_valid",
+      "executes"
+    ],
+    "n_base": 992,
+    "n_cand": 31744,
+    "p0": 0.7298387096774194,
+    "p": 0.7281376008064516,
+    "delta": 0.0002516989680342311,
+    "eps": 0.8733423241177792,
+    "delta_base": 0.0013812154696132596,
+    "delta_cand": 0.00021631911395690923,
+    "eps_base": 0.8694029850746269,
+    "eps_cand": 0.8734646581691773,
+    "ceiling_pts": NaN
+  },
+  {
+    "task": "sql",
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "subset": [
+      "parses",
+      "schema_valid",
+      "executes"
+    ],
+    "n_base": 999,
+    "n_cand": 31968,
+    "p0": 0.6116116116116116,
+    "p": 0.6126751751751752,
+    "delta": 0.002178541367529831,
+    "eps": 0.746123727486296,
+    "delta_base": 0.0016366612111292963,
+    "delta_cand": 0.002195445726539365,
+    "eps_base": 0.7422680412371134,
+    "eps_cand": 0.7462445485382007,
+    "ceiling_pts": NaN
+  }
+]
